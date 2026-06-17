@@ -1,9 +1,15 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Kce Daily Report",
+  "schemaVersion": 1
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KCE Daily Intel — Jun 12 2026</title>
+<title>KCE Daily Intel — Jun 17 2026</title>
 <style>
 :root {
   --bg: #0f1117;
@@ -32,36 +38,11 @@ body {
 .header { padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
 .header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
 .header .date { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-/* tabs */
-.tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.tab {
-  flex: 1;
-  padding: 12px 4px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  border: none;
-  background: none;
-  border-bottom: 2px solid transparent;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
+.tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+.tab { flex: 1; padding: 12px 4px; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
 .tab.active { color: var(--accent-light); border-bottom-color: var(--accent); }
-
 .panel { display: none; padding: 16px; }
 .panel.active { display: block; }
-
-/* KPIs */
 .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 12px; }
 .kpi .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
@@ -71,42 +52,20 @@ body {
 .kpi .value.accent { color: var(--accent-light); }
 .kpi .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
 .kpi-full { grid-column: 1 / -1; }
-
-.section-title {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--muted);
-  margin: 16px 0 8px;
-}
-
-/* portfolio bars */
+.section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin: 16px 0 8px; }
 .pbar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; margin-bottom: 6px; }
 .pbar .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
 .pbar .name { font-size: 13px; font-weight: 600; }
 .pbar .meta { font-size: 11px; color: var(--muted); }
 .bar-track { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
 .bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
-
-/* movers */
 .movers-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
-.mover {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-}
+.mover { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; }
 .mover .card-name { font-size: 13px; font-weight: 500; }
 .mover .card-sub { font-size: 11px; color: var(--muted); }
 .mover .delta { font-size: 13px; font-weight: 700; margin-left: 12px; white-space: nowrap; }
 .delta.up { color: var(--green); }
 .delta.down { color: var(--red); }
-
-/* alerts */
 .alerts-list { display: flex; flex-direction: column; gap: 6px; }
 .alert { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; }
 .alert-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
@@ -118,40 +77,12 @@ body {
 .badge.priv { background: rgba(124,108,255,0.1); color: var(--accent-light); border: 1px solid rgba(124,108,255,0.2); }
 .alert-card { font-size: 13px; font-weight: 600; }
 .alert-reason { font-size: 12px; color: var(--muted); }
-
-/* filter */
 .filter-wrap { margin-bottom: 8px; }
-.filter-input {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  color: var(--text);
-  padding: 9px 12px;
-  font-size: 13px;
-  outline: none;
-}
+.filter-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); color: var(--text); padding: 9px 12px; font-size: 13px; outline: none; }
 .filter-input:focus { border-color: var(--accent); }
 .filter-input::placeholder { color: var(--muted); }
-
-/* collapsible tables */
-details {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  margin-bottom: 8px;
-  overflow: hidden;
-}
-details summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 14px;
-  cursor: pointer;
-  list-style: none;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
+details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 8px; overflow: hidden; }
+details summary { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; cursor: pointer; list-style: none; -webkit-tap-highlight-color: transparent; user-select: none; }
 details summary::-webkit-details-marker { display: none; }
 .sum-left { display: flex; flex-direction: column; }
 .sum-name { font-size: 13px; font-weight: 700; }
@@ -160,30 +91,14 @@ details summary::-webkit-details-marker { display: none; }
 .sum-value { font-size: 14px; font-weight: 700; color: var(--accent-light); }
 .chevron { width: 16px; height: 16px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
 details[open] summary .chevron { transform: rotate(180deg); }
-
 .inv-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.inv-table th {
-  background: var(--surface2);
-  color: var(--muted);
-  font-weight: 600;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  padding: 8px 10px;
-  text-align: left;
-  cursor: pointer;
-  white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
+.inv-table th { background: var(--surface2); color: var(--muted); font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; padding: 8px 10px; text-align: left; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; user-select: none; }
 .inv-table th.sort-asc::after { content: ' ↑'; }
 .inv-table th.sort-desc::after { content: ' ↓'; }
 .inv-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: middle; }
 .inv-table tr.hidden { display: none; }
 .no-results { padding: 12px 14px; font-size: 12px; color: var(--muted); display: none; }
 .no-results.show { display: block; }
-
-/* condition badges */
 .cb { font-size: 10px; font-weight: 600; padding: 2px 5px; border-radius: 4px; white-space: nowrap; }
 .nm  { background: rgba(51,211,154,0.1);   color: #33d39a; }
 .lp  { background: rgba(124,108,255,0.1);  color: #b3a6ff; }
@@ -192,19 +107,10 @@ details[open] summary .chevron { transform: rotate(180deg); }
 .dmg { background: rgba(251,106,106,0.22); color: var(--red); }
 .psa { background: rgba(255,200,0,0.15);   color: #ffd040; }
 .est { background: rgba(90,90,120,0.2);    color: var(--muted); }
-
 .dpos { color: var(--green); }
 .dneg { color: var(--red); }
 .dnil { color: var(--muted); }
-
-/* private holdings box */
-.private-box {
-  background: var(--surface);
-  border: 1px solid rgba(124,108,255,0.35);
-  border-radius: var(--r);
-  padding: 14px;
-  margin-bottom: 8px;
-}
+.private-box { background: var(--surface); border: 1px solid rgba(124,108,255,0.35); border-radius: var(--r); padding: 14px; margin-bottom: 8px; }
 .lock-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .lock-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent-light); }
 .card-name { font-size: 14px; font-weight: 700; }
@@ -213,61 +119,31 @@ details[open] summary .chevron { transform: rotate(180deg); }
 .stat-label { font-size: 10px; color: var(--muted); }
 .stat-value { font-size: 13px; font-weight: 700; margin-top: 2px; }
 .priv-read { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; line-height: 1.6; }
-
-/* P&L table */
 .pl-table { width: 100%; border-collapse: collapse; font-size: 12px; }
 .pl-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
 .pl-table td:first-child { color: var(--muted); }
 .pl-table td:last-child { text-align: right; font-weight: 600; }
 .pl-table tr:last-child td { border-bottom: none; }
-
-/* channel rates */
-.ch-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
+.ch-item { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; font-size: 13px; margin-bottom: 6px; }
 .ch-name { font-weight: 600; }
 .ch-rate { color: var(--green); font-weight: 700; }
-
-/* market intel */
 .rel-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px; margin-bottom: 6px; }
 .rel-item.key { border-color: rgba(124,108,255,0.4); background: rgba(124,108,255,0.05); }
+.rel-item.urgent { border-color: rgba(51,211,154,0.4); background: rgba(51,211,154,0.05); }
 .rel-date { font-size: 11px; font-weight: 700; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
 .rel-name { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
 .rel-angle { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
 .pulse-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
 .pulse-cell { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px; }
 .p-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
 .p-value { font-size: 15px; font-weight: 700; margin-top: 3px; }
 .p-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-.hot-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 10px 12px;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
+.hot-item { display: flex; align-items: flex-start; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; font-size: 13px; margin-bottom: 6px; }
 .hot-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 .hot-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
 .play-item { display: flex; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px; margin-bottom: 6px; }
 .play-num { font-size: 13px; font-weight: 800; color: var(--accent-light); min-width: 18px; flex-shrink: 0; }
 .play-sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
-
-/* auction watch */
 .auc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px; margin-bottom: 6px; }
 .auc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
 .auc-name { font-size: 13px; font-weight: 700; }
@@ -275,36 +151,11 @@ details[open] summary .chevron { transform: rotate(180deg); }
 .av-pass  { background: rgba(100,100,130,0.2); color: var(--muted); border: 1px solid var(--border); }
 .av-watch { background: rgba(212,168,0,0.15);  color: #d4a800; border: 1px solid rgba(212,168,0,0.3); }
 .av-bid   { background: rgba(51,211,154,0.15); color: var(--green); border: 1px solid rgba(51,211,154,0.3); }
-.auc-status { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-/* lot card */
-.lot-card {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 10px;
-  margin-top: 8px;
-}
-.lot-card .lot-title { font-size: 12px; font-weight: 600; margin-bottom: 6px; }
-.lot-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
-.lot-tag { font-size: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; color: var(--muted); }
-.lot-link {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent-light);
-  text-decoration: none;
-  background: rgba(124,108,255,0.12);
-  border: 1px solid rgba(124,108,255,0.3);
-  border-radius: 4px;
-  padding: 3px 8px;
-  margin-top: 2px;
-}
+.auc-status { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.lot-link { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent-light); text-decoration: none; background: rgba(124,108,255,0.12); border: 1px solid rgba(124,108,255,0.3); border-radius: 4px; padding: 3px 8px; margin: 2px 2px 2px 0; }
 .lot-link:hover { background: rgba(124,108,255,0.2); }
-
 .empty-state { text-align: center; padding: 24px 16px; color: var(--muted); font-size: 13px; }
 .empty-icon { font-size: 28px; margin-bottom: 8px; }
-
 .sources { font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; line-height: 1.6; }
 </style>
 </head>
@@ -312,7 +163,7 @@ details[open] summary .chevron { transform: rotate(180deg); }
 
 <div class="header">
   <h1>🃏 KCE Daily Intel</h1>
-  <div class="date">Friday, June 12, 2026 · Collectr live · Korin's Card Exchange</div>
+  <div class="date">Wednesday, June 17, 2026 · Collectr live · Korin's Card Exchange</div>
 </div>
 
 <div class="tabs">
@@ -328,23 +179,23 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <div class="kpi-grid">
     <div class="kpi">
       <div class="label">Live Value</div>
-      <div class="value accent">$2,234.60</div>
-      <div class="sub">5 portfolios · 141 items · −$18.75 today</div>
+      <div class="value accent">$2,245.09</div>
+      <div class="sub">5 portfolios · 142 items</div>
     </div>
     <div class="kpi">
       <div class="label">Public Holdings</div>
-      <div class="value">$1,978.45</div>
+      <div class="value">$1,991.89</div>
       <div class="sub">excl. 🔒 Umbreon</div>
     </div>
     <div class="kpi">
       <div class="label">Unrealized Gain</div>
-      <div class="value green">+$1,800.88</div>
+      <div class="value green">+$1,811.37</div>
       <div class="sub">vs $433.72 cost basis</div>
     </div>
     <div class="kpi">
       <div class="label">Realized P&amp;L</div>
       <div class="value green">+$521.98</div>
-      <div class="sub">49.5% margin · 14 sale records</div>
+      <div class="sub">49.5% margin · 14 records</div>
     </div>
     <div class="kpi kpi-full">
       <div class="label">Net Cash Position</div>
@@ -356,77 +207,73 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <div class="section-title">Portfolio Breakdown</div>
   <div class="pbar">
     <div class="row"><span class="name">MAIN INVENTORY</span><span class="meta">43 items</span></div>
-    <div class="row"><span style="font-size:11px;color:var(--muted);">85.8%</span><span style="font-weight:700;">$1,916.79</span></div>
-    <div class="bar-track"><div class="bar-fill" style="width:85.8%"></div></div>
+    <div class="row"><span style="font-size:11px;color:var(--muted);">85.5%</span><span style="font-weight:700;">$1,920.37</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:85.5%"></div></div>
   </div>
   <div class="pbar">
     <div class="row"><span class="name">UNDER 10</span><span class="meta">52 items</span></div>
-    <div class="row"><span style="font-size:11px;color:var(--muted);">11.6%</span><span style="font-weight:700;">$259.45</span></div>
-    <div class="bar-track"><div class="bar-fill" style="width:11.6%"></div></div>
+    <div class="row"><span style="font-size:11px;color:var(--muted);">11.8%</span><span style="font-weight:700;">$265.00</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:11.8%"></div></div>
   </div>
   <div class="pbar">
-    <div class="row"><span class="name">EX & MEGA EX</span><span class="meta">30 items</span></div>
-    <div class="row"><span style="font-size:11px;color:var(--muted);">1.5%</span><span style="font-weight:700;">$32.74</span></div>
+    <div class="row"><span class="name">EX &amp; MEGA EX</span><span class="meta">31 items</span></div>
+    <div class="row"><span style="font-size:11px;color:var(--muted);">1.5%</span><span style="font-weight:700;">$34.78</span></div>
     <div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div>
   </div>
   <div class="pbar">
     <div class="row"><span class="name">V CARDS</span><span class="meta">12 items</span></div>
-    <div class="row"><span style="font-size:11px;color:var(--muted);">0.9%</span><span style="font-weight:700;">$19.24</span></div>
-    <div class="bar-track"><div class="bar-fill" style="width:0.9%"></div></div>
+    <div class="row"><span style="font-size:11px;color:var(--muted);">0.8%</span><span style="font-weight:700;">$18.41</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div>
   </div>
   <div class="pbar">
     <div class="row"><span class="name">TRAINERS</span><span class="meta">4 items</span></div>
-    <div class="row"><span style="font-size:11px;color:var(--muted);">0.3%</span><span style="font-weight:700;">$6.38</span></div>
+    <div class="row"><span style="font-size:11px;color:var(--muted);">0.3%</span><span style="font-weight:700;">$6.53</span></div>
     <div class="bar-track"><div class="bar-fill" style="width:0.3%"></div></div>
   </div>
 
   <div class="section-title">Top Movers Today</div>
   <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px;font-weight:700;">📈 Gainers</div>
   <div class="movers-list">
-    <div class="mover"><div><div class="card-name">Machamp (BS Shadowless)</div><div class="card-sub">Main · HP · +12.4%</div></div><div class="delta up">+$5.05</div></div>
-    <div class="mover"><div><div class="card-name">Erika's Clefable JP</div><div class="card-sub">Main · NM · +20.9%</div></div><div class="delta up">+$4.23</div></div>
-    <div class="mover"><div><div class="card-name">Nidoking (Base Set 2)</div><div class="card-sub">Main · MP · +14.8%</div></div><div class="delta up">+$4.10</div></div>
-    <div class="mover"><div><div class="card-name">Ursaring JP</div><div class="card-sub">Main · NM · +24.4%</div></div><div class="delta up">+$3.84</div></div>
-    <div class="mover"><div><div class="card-name">Gyarados (Base, HP)</div><div class="card-sub">Main · HP · +9.1%</div></div><div class="delta up">+$2.62</div></div>
+    <div class="mover"><div><div class="card-name">Ursaring (JP)</div><div class="card-sub">Main · NM · +27.80%</div></div><div class="delta up">+$4.03</div></div>
+    <div class="mover"><div><div class="card-name">Mega Eelektross ex</div><div class="card-sub">Main · NM · +7.06%</div></div><div class="delta up">+$3.13</div></div>
+    <div class="mover"><div><div class="card-name">M Rayquaza EX</div><div class="card-sub">Main · NM · +4.84%</div></div><div class="delta up">+$2.63</div></div>
+    <div class="mover"><div><div class="card-name">Charmander (SVP)</div><div class="card-sub">Main · LP · +3.40%</div></div><div class="delta up">+$2.00</div></div>
+    <div class="mover"><div><div class="card-name">Shiinotic</div><div class="card-sub">Under 10 · NM · +33.84%</div></div><div class="delta up">+$1.34</div></div>
   </div>
   <div style="font-size:11px;color:var(--muted);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.4px;font-weight:700;">📉 Losers</div>
   <div class="movers-list">
-    <div class="mover"><div><div class="card-name">Pikachu POP5</div><div class="card-sub">Main · DMG · −7.4%</div></div><div class="delta down">−$13.94</div></div>
-    <div class="mover"><div><div class="card-name">Kabutops JP</div><div class="card-sub">Main · NM · −25.2%</div></div><div class="delta down">−$8.94</div></div>
-    <div class="mover"><div><div class="card-name">Misty's Tentacruel JP</div><div class="card-sub">Main · NM · −22.4%</div></div><div class="delta down">−$5.31</div></div>
-    <div class="mover"><div><div class="card-name">Mega Gengar ex</div><div class="card-sub">Main · NM · −5.9%</div></div><div class="delta down">−$5.17</div></div>
-    <div class="mover"><div><div class="card-name">Charmander (SVP)</div><div class="card-sub">Main · LP · −5.9%</div></div><div class="delta down">−$3.59</div></div>
+    <div class="mover"><div><div class="card-name">Mega Gengar ex</div><div class="card-sub">Main · NM · −11.39%</div></div><div class="delta down">−$9.77</div></div>
+    <div class="mover"><div><div class="card-name">AZ's Tranquility</div><div class="card-sub">Main · NM · −10.65%</div></div><div class="delta down">−$4.74</div></div>
+    <div class="mover"><div><div class="card-name">Erika's Clefable (JP)</div><div class="card-sub">Main · NM · −15.25%</div></div><div class="delta down">−$3.75</div></div>
+    <div class="mover"><div><div class="card-name">Mew (Secret)</div><div class="card-sub">Main · Celebrations · −2.44%</div></div><div class="delta down">−$1.78</div></div>
+    <div class="mover"><div><div class="card-name">Gyarados</div><div class="card-sub">Under 10 · Evolutions LP · −8.69%</div></div><div class="delta down">−$0.65</div></div>
   </div>
 
   <div class="section-title">Action Alerts</div>
   <div class="alerts-list">
     <div class="alert">
       <div class="alert-header"><span class="badge sell">SELL</span><span class="alert-card">Dragon's Roar — 1st Ed Sealed</span></div>
-      <div class="alert-reason">$155.00 · cost $47.52 → 226% ROI. Cash is −$8.41 — this is the fastest path back to positive. List CardsHQ + eBay this week.</div>
+      <div class="alert-reason">$155.73 · cost $47.52 → 227% ROI. Cash is −$8.41 — one sale flips the whole book positive. List CardsHQ + eBay this week.</div>
     </div>
     <div class="alert">
       <div class="alert-header"><span class="badge sell">SELL</span><span class="alert-card">Zombie Madness — 1st Ed Sealed</span></div>
-      <div class="alert-reason">$155.73 · cost $55.23 → 182% ROI. Bundle with Dragon's Roar as a vintage YGO deck pair for a premium.</div>
+      <div class="alert-reason">$155.00 · cost $55.23 → 181% ROI. Bundle with Dragon's Roar as a vintage YGO deck pair for a premium. $310.73 combined.</div>
     </div>
     <div class="alert">
       <div class="alert-header"><span class="badge sell">SELL</span><span class="alert-card">Charizard (Detective Pikachu)</span></div>
-      <div class="alert-reason">+$2.30 today (+24%) to $11.89 — broke the Under-10 ceiling. $0 cost. Pair with Ditto (Det. Pikachu, $11.10) as a movie-set duo on FB.</div>
+      <div class="alert-reason">$12.22 (+3.04%) — above the Under-10 ceiling. $0 cost. List with Ditto Det. Pikachu ($11.10) as a movie-set pair ~$25 on FB.</div>
     </div>
     <div class="alert">
-      <div class="alert-header"><span class="badge watch">WATCH</span><span class="alert-card">Pikachu POP5 Damaged</span></div>
-      <div class="alert-reason">Price stuck at $173.94 since Jun 10 (−7.4% flag unchanged — thin comps). $0 cost. Keep the $180 soft list; accept $165+.</div>
-    </div>
-    <div class="alert">
-      <div class="alert-header"><span class="badge hold">HOLD</span><span class="alert-card">JP Neo singles — bundle paused</span></div>
-      <div class="alert-reason">Kabutops JP −25% and Misty's Tentacruel JP −22% today; Erika's Clefable +21% the other way. JP comps too noisy this week — pause the FB bundle plan, re-check Jun 19.</div>
+      <div class="alert-header"><span class="badge watch">WATCH</span><span class="alert-card">Mega Gengar ex</span></div>
+      <div class="alert-reason">$76.01, −11.39% today. Ascended Heroes SIR heat set the floor; pullback may be noise. Don't sell into a single red day — target $90+.</div>
     </div>
     <div class="alert">
       <div class="alert-header"><span class="badge hold">HOLD</span><span class="alert-card">Charmander LP (SVP)</span></div>
-      <div class="alert-reason">$57.60 live · cost $66.47 → −$8.87 underwater and drifting. Patience window to Aug 1. Target $75+.</div>
+      <div class="alert-reason">$60.82, +3.40% today — but still underwater vs $66.47 cost (−$5.65). Patience window to Aug 1. Target $75+.</div>
     </div>
     <div class="alert">
       <div class="alert-header"><span class="badge priv">🔒 HOLD</span><span class="alert-card">Umbreon ex SVP 176 PSA 10</span></div>
-      <div class="alert-reason">$256.15 live · −$3.85 vs cost. Sep 16 30th Celebration window is the catalyst. Target $310+.</div>
+      <div class="alert-reason">$253.20 live (+2.46% today). Sep 16 30th Celebration window is the catalyst. Target $310+ (+22.4% from here).</div>
     </div>
   </div>
 
@@ -438,7 +285,7 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <details id="biz-d0">
     <summary>
       <div class="sum-left"><span class="sum-name">MAIN INVENTORY</span><span class="sum-meta">42 listed · 🔒 Umbreon in Private Holdings</span></div>
-      <div class="sum-right"><span class="sum-value">$1,660.64</span>
+      <div class="sum-right"><span class="sum-value">$1,667.17</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -446,55 +293,56 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="biz">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th><th onclick="sortTable(this)" data-type="num">Δ</th></tr></thead>
       <tbody>
-        <tr data-n="pikachu pop series 5 dmg"><td>Pikachu</td><td><span class="cb dmg">DMG</span></td><td>$173.94</td><td class="dneg">−$13.94</td></tr>
-        <tr data-n="zombie madness structure deck - 1st edition structure deck: zombie madness deck"><td>Zombie Madness Structure Deck - 1st Edition</td><td><span class="cb est">Deck</span></td><td>$155.73</td><td class="dneg">−$1.42</td></tr>
-        <tr data-n="dragon&#x27;s roar structure deck - 1st edition structure deck: dragon&#x27;s roar deck"><td>Dragon&#x27;s Roar Structure Deck - 1st Edition</td><td><span class="cb est">Deck</span></td><td>$155.00</td><td class="dnil">—</td></tr>
-        <tr data-n="mega gengar ex ascended heroes nm"><td>Mega Gengar ex</td><td><span class="cb nm">NM</span></td><td>$82.60</td><td class="dneg">−$5.17</td></tr>
-        <tr data-n="mew (secret) celebrations nm"><td>Mew (Secret)</td><td><span class="cb nm">NM</span></td><td>$73.92</td><td class="dneg">−$0.22</td></tr>
-        <tr data-n="mewtwo base set (unlimited) lp"><td>Mewtwo</td><td><span class="cb lp">LP</span></td><td>$66.28</td><td class="dpos">+$0.31</td></tr>
+        <tr data-n="pikachu pop series 5 dmg"><td>Pikachu</td><td><span class="cb dmg">DMG</span></td><td>$173.94</td><td class="dnil">—</td></tr>
+        <tr data-n="dragon's roar structure deck 1st edition"><td>Dragon's Roar Structure Deck - 1st Edition</td><td><span class="cb est">Deck</span></td><td>$155.73</td><td class="dnil">—</td></tr>
+        <tr data-n="zombie madness structure deck 1st edition"><td>Zombie Madness Structure Deck - 1st Edition</td><td><span class="cb est">Deck</span></td><td>$155.00</td><td class="dnil">—</td></tr>
+        <tr data-n="mega gengar ex ascended heroes nm"><td>Mega Gengar ex</td><td><span class="cb nm">NM</span></td><td>$76.01</td><td class="dneg">−11.39%</td></tr>
+        <tr data-n="mew secret celebrations nm"><td>Mew (Secret)</td><td><span class="cb nm">NM</span></td><td>$71.09</td><td class="dneg">−2.44%</td></tr>
+        <tr data-n="mewtwo base set unlimited lp"><td>Mewtwo</td><td><span class="cb lp">LP</span></td><td>$66.42</td><td class="dnil">—</td></tr>
+        <tr data-n="charmander scarlet violet promo lp"><td>Charmander</td><td><span class="cb lp">LP</span></td><td>$60.82</td><td class="dpos">+3.40%</td></tr>
+        <tr data-n="m rayquaza ex celebrations classic collection nm"><td>M Rayquaza EX</td><td><span class="cb nm">NM</span></td><td>$56.92</td><td class="dpos">+4.84%</td></tr>
+        <tr data-n="infernape lvx diamond pearl promos hp"><td>Infernape Lv.X</td><td><span class="cb hp">HP</span></td><td>$52.21</td><td class="dnil">—</td></tr>
+        <tr data-n="mega eelektross ex ascended heroes nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$47.48</td><td class="dpos">+7.06%</td></tr>
         <tr data-n="minun supreme victors hp"><td>Minun ×2</td><td><span class="cb hp">HP</span></td><td>$59.98</td><td class="dnil">—</td></tr>
-        <tr data-n="charmander scarlet &amp; violet promo lp"><td>Charmander</td><td><span class="cb lp">LP</span></td><td>$57.60</td><td class="dneg">−$3.59</td></tr>
-        <tr data-n="m rayquaza ex celebrations: classic collection nm"><td>M Rayquaza EX</td><td><span class="cb nm">NM</span></td><td>$54.72</td><td class="dpos">+$1.12</td></tr>
-        <tr data-n="infernape lv.x diamond and pearl promos hp"><td>Infernape Lv.X</td><td><span class="cb hp">HP</span></td><td>$51.56</td><td class="dnil">—</td></tr>
-        <tr data-n="pikachu v-union [set of 4] sword &amp; shield promo nm"><td>Pikachu V-Union [Set of 4]</td><td><span class="cb nm">NM</span></td><td>$46.36</td><td class="dpos">+$2.58</td></tr>
-        <tr data-n="machamp (base set shadowless) deck exclusives hp"><td>Machamp (Base Set Shadowless)</td><td><span class="cb hp">HP</span></td><td>$45.73</td><td class="dpos">+$5.05</td></tr>
-        <tr data-n="mega eelektross ex ascended heroes nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$44.70</td><td class="dpos">+$0.42</td></tr>
-        <tr data-n="az&#x27;s tranquility chaos rising nm"><td>AZ&#x27;s Tranquility</td><td><span class="cb nm">NM</span></td><td>$41.10</td><td class="dneg">−$2.55</td></tr>
-        <tr data-n="greninja v[set of 4] sword &amp; shield promo nm"><td>Greninja V[Set of 4]</td><td><span class="cb nm">NM</span></td><td>$33.48</td><td class="dpos">+$0.74</td></tr>
-        <tr data-n="misty&#x27;s tentacruel gym heroes nm"><td>Misty&#x27;s Tentacruel</td><td><span class="cb nm">NM</span></td><td>$32.00</td><td class="dpos">+$0.15</td></tr>
-        <tr data-n="nidoking base set 2 mp"><td>Nidoking</td><td><span class="cb mp">MP</span></td><td>$31.88</td><td class="dpos">+$4.10</td></tr>
-        <tr data-n="gyarados base set (unlimited) hp"><td>Gyarados</td><td><span class="cb hp">HP</span></td><td>$31.53</td><td class="dpos">+$2.62</td></tr>
-        <tr data-n="regigigas (full art promo) xy promos dmg"><td>Regigigas (Full Art Promo) ×2</td><td><span class="cb dmg">DMG</span></td><td>$28.94</td><td class="dpos">+$0.02</td></tr>
+        <tr data-n="pikachu v-union sword shield promo nm"><td>Pikachu V-Union [Set of 4]</td><td><span class="cb nm">NM</span></td><td>$46.36</td><td class="dnil">—</td></tr>
+        <tr data-n="machamp base set shadowless hp"><td>Machamp (Base Set Shadowless)</td><td><span class="cb hp">HP</span></td><td>$45.73</td><td class="dnil">—</td></tr>
+        <tr data-n="az tranquility chaos rising nm"><td>AZ's Tranquility</td><td><span class="cb nm">NM</span></td><td>$39.75</td><td class="dneg">−10.65%</td></tr>
+        <tr data-n="greninja v sword shield promo nm"><td>Greninja V[Set of 4]</td><td><span class="cb nm">NM</span></td><td>$33.48</td><td class="dnil">—</td></tr>
+        <tr data-n="misty tentacruel gym heroes nm"><td>Misty's Tentacruel</td><td><span class="cb nm">NM</span></td><td>$32.00</td><td class="dnil">—</td></tr>
+        <tr data-n="nidoking base set 2 mp"><td>Nidoking</td><td><span class="cb mp">MP</span></td><td>$31.88</td><td class="dnil">—</td></tr>
+        <tr data-n="gyarados base set unlimited hp"><td>Gyarados</td><td><span class="cb hp">HP</span></td><td>$31.53</td><td class="dnil">—</td></tr>
+        <tr data-n="regigigas full art promo xy dmg"><td>Regigigas (Full Art Promo) ×2</td><td><span class="cb dmg">DMG</span></td><td>$28.94</td><td class="dnil">—</td></tr>
         <tr data-n="rayquaza c supreme victors dmg"><td>Rayquaza C</td><td><span class="cb dmg">DMG</span></td><td>$28.74</td><td class="dnil">—</td></tr>
-        <tr data-n="gyarados (#30 holo) hgss trainer kit: gyarados &amp; raichu mp"><td>Gyarados (#30 Holo)</td><td><span class="cb mp">MP</span></td><td>$28.21</td><td class="dnil">—</td></tr>
-        <tr data-n="kabutops (jp) neo discovery (japanese) nm"><td>Kabutops (JP)</td><td><span class="cb nm">NM</span></td><td>$26.62</td><td class="dneg">−$8.94</td></tr>
-        <tr data-n="erika&#x27;s clefable (jp) gym heroes (japanese) nm"><td>Erika&#x27;s Clefable (JP)</td><td><span class="cb nm">NM</span></td><td>$24.53</td><td class="dpos">+$4.23</td></tr>
-        <tr data-n="electrode (prime) triumphant hp"><td>Electrode (Prime)</td><td><span class="cb hp">HP</span></td><td>$23.80</td><td class="dpos">+$1.54</td></tr>
-        <tr data-n="hitmonchan base set 2 nm"><td>Hitmonchan</td><td><span class="cb nm">NM</span></td><td>$22.23</td><td class="dneg">−$0.13</td></tr>
-        <tr data-n="gyarados base set (unlimited) dmg"><td>Gyarados</td><td><span class="cb dmg">DMG</span></td><td>$21.02</td><td class="dpos">+$1.75</td></tr>
-        <tr data-n="ursaring (jp) neo discovery (japanese) nm"><td>Ursaring (JP)</td><td><span class="cb nm">NM</span></td><td>$19.61</td><td class="dpos">+$3.84</td></tr>
-        <tr data-n="misty&#x27;s tentacruel (jp) gym heroes (japanese) nm"><td>Misty&#x27;s Tentacruel (JP)</td><td><span class="cb nm">NM</span></td><td>$18.38</td><td class="dneg">−$5.31</td></tr>
-        <tr data-n="m gyarados ex breakpoint dmg"><td>M Gyarados EX</td><td><span class="cb dmg">DMG</span></td><td>$17.76</td><td class="dpos">+$0.36</td></tr>
-        <tr data-n="clefairy base set 2 lp"><td>Clefairy</td><td><span class="cb lp">LP</span></td><td>$15.78</td><td class="dpos">+$0.29</td></tr>
-        <tr data-n="azumarill (jp) neo genesis (japanese) nm"><td>Azumarill (JP)</td><td><span class="cb nm">NM</span></td><td>$15.04</td><td class="dpos">+$1.05</td></tr>
-        <tr data-n="cynthia&#x27;s roserade destined rivals lp"><td>Cynthia&#x27;s Roserade</td><td><span class="cb lp">LP</span></td><td>$14.71</td><td class="dneg">−$0.14</td></tr>
-        <tr data-n="lunala gx sun &amp; moon promo nm"><td>Lunala GX</td><td><span class="cb nm">NM</span></td><td>$13.85</td><td class="dnil">—</td></tr>
-        <tr data-n="charizard v sword &amp; shield promo nm"><td>Charizard V</td><td><span class="cb nm">NM</span></td><td>$13.38</td><td class="dneg">−$0.14</td></tr>
-        <tr data-n="jirachi (magnus pedersen) world championship decks nm"><td>Jirachi (Magnus Pedersen)</td><td><span class="cb nm">NM</span></td><td>$13.30</td><td class="dnil">—</td></tr>
-        <tr data-n="venusaur celebrations: classic collection nm"><td>Venusaur</td><td><span class="cb nm">NM</span></td><td>$12.95</td><td class="dnil">—</td></tr>
-        <tr data-n="n&#x27;s zekrom mega evolution promos nm"><td>N&#x27;s Zekrom</td><td><span class="cb nm">NM</span></td><td>$11.61</td><td class="dpos">+$0.67</td></tr>
-        <tr data-n="solgaleo gx sun &amp; moon promo nm"><td>Solgaleo GX</td><td><span class="cb nm">NM</span></td><td>$11.35</td><td class="dneg">−$0.14</td></tr>
-        <tr data-n="ditto detective pikachu nm"><td>Ditto</td><td><span class="cb nm">NM</span></td><td>$11.10</td><td class="dpos">+$0.02</td></tr>
-        <tr data-n="snorlax boundaries crossed nm"><td>Snorlax</td><td><span class="cb nm">NM</span></td><td>$10.49</td><td class="dpos">+$0.08</td></tr>
-        <tr data-n="charizard v darkness ablaze nm"><td>Charizard V</td><td><span class="cb nm">NM</span></td><td>$10.17</td><td class="dneg">−$0.20</td></tr>
-        <tr data-n="slurpuff ascended heroes nm"><td>Slurpuff</td><td><span class="cb nm">NM</span></td><td>$8.96</td><td class="dneg">−$0.58</td></tr>
+        <tr data-n="gyarados holo hgss trainer kit mp"><td>Gyarados (#30 Holo)</td><td><span class="cb mp">MP</span></td><td>$28.21</td><td class="dnil">—</td></tr>
+        <tr data-n="kabutops jp neo discovery nm"><td>Kabutops (JP)</td><td><span class="cb nm">NM</span></td><td>$26.62</td><td class="dnil">—</td></tr>
+        <tr data-n="erika clefable jp gym heroes nm"><td>Erika's Clefable (JP)</td><td><span class="cb nm">NM</span></td><td>$20.84</td><td class="dneg">−15.25%</td></tr>
+        <tr data-n="ursaring jp neo discovery nm"><td>Ursaring (JP)</td><td><span class="cb nm">NM</span></td><td>$18.53</td><td class="dpos">+27.80%</td></tr>
+        <tr data-n="electrode prime triumphant hp"><td>Electrode (Prime)</td><td><span class="cb hp">HP</span></td><td>$23.80</td><td class="dnil">—</td></tr>
+        <tr data-n="hitmonchan base set 2 nm"><td>Hitmonchan</td><td><span class="cb nm">NM</span></td><td>$22.23</td><td class="dnil">—</td></tr>
+        <tr data-n="gyarados base set unlimited dmg"><td>Gyarados</td><td><span class="cb dmg">DMG</span></td><td>$21.02</td><td class="dnil">—</td></tr>
+        <tr data-n="m gyarados ex breakpoint dmg"><td>M Gyarados EX</td><td><span class="cb dmg">DMG</span></td><td>$17.76</td><td class="dnil">—</td></tr>
+        <tr data-n="clefairy base set 2 lp"><td>Clefairy</td><td><span class="cb lp">LP</span></td><td>$15.78</td><td class="dnil">—</td></tr>
+        <tr data-n="azumarill jp neo genesis nm"><td>Azumarill (JP)</td><td><span class="cb nm">NM</span></td><td>$15.04</td><td class="dnil">—</td></tr>
+        <tr data-n="cynthia roserade destined rivals lp"><td>Cynthia's Roserade</td><td><span class="cb lp">LP</span></td><td>$14.71</td><td class="dnil">—</td></tr>
+        <tr data-n="lunala gx sun moon promo nm"><td>Lunala GX</td><td><span class="cb nm">NM</span></td><td>$13.85</td><td class="dnil">—</td></tr>
+        <tr data-n="charizard v sword shield promo nm"><td>Charizard V</td><td><span class="cb nm">NM</span></td><td>$13.38</td><td class="dnil">—</td></tr>
+        <tr data-n="jirachi magnus world championship nm"><td>Jirachi (Magnus Pedersen)</td><td><span class="cb nm">NM</span></td><td>$13.30</td><td class="dnil">—</td></tr>
+        <tr data-n="venusaur celebrations classic nm"><td>Venusaur</td><td><span class="cb nm">NM</span></td><td>$12.95</td><td class="dnil">—</td></tr>
+        <tr data-n="n zekrom mega evolution promos nm"><td>N's Zekrom</td><td><span class="cb nm">NM</span></td><td>$11.61</td><td class="dnil">—</td></tr>
+        <tr data-n="solgaleo gx sun moon promo nm"><td>Solgaleo GX</td><td><span class="cb nm">NM</span></td><td>$11.35</td><td class="dnil">—</td></tr>
+        <tr data-n="ditto detective pikachu nm"><td>Ditto</td><td><span class="cb nm">NM</span></td><td>$11.10</td><td class="dnil">—</td></tr>
+        <tr data-n="snorlax boundaries crossed nm"><td>Snorlax</td><td><span class="cb nm">NM</span></td><td>$10.49</td><td class="dnil">—</td></tr>
+        <tr data-n="charizard v darkness ablaze nm"><td>Charizard V</td><td><span class="cb nm">NM</span></td><td>$10.17</td><td class="dnil">—</td></tr>
+        <tr data-n="slurpuff ascended heroes nm"><td>Slurpuff</td><td><span class="cb nm">NM</span></td><td>$8.96</td><td class="dnil">—</td></tr>
+        <tr data-n="misty tentacruel jp gym heroes nm"><td>Misty's Tentacruel (JP)</td><td><span class="cb nm">NM</span></td><td>$18.38</td><td class="dnil">—</td></tr>
       </tbody>
     </table>
   </details>
+
   <details id="biz-d1">
     <summary>
       <div class="sum-left"><span class="sum-name">UNDER 10</span><span class="sum-meta">52 items</span></div>
-      <div class="sum-right"><span class="sum-value">$259.45</span>
+      <div class="sum-right"><span class="sum-value">$265.00</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -502,65 +350,66 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="biz">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th><th onclick="sortTable(this)" data-type="num">Δ</th></tr></thead>
       <tbody>
-        <tr data-n="dedenne perfect order nm"><td>Dedenne ×2</td><td><span class="cb nm">NM</span></td><td>$12.08</td><td class="dneg">−$3.54</td></tr>
-        <tr data-n="charizard detective pikachu nm"><td>Charizard</td><td><span class="cb nm">NM</span></td><td>$11.89</td><td class="dpos">+$2.30</td></tr>
-        <tr data-n="unown (r) legends awakened hp"><td>Unown (R)</td><td><span class="cb hp">HP</span></td><td>$9.45</td><td class="dpos">+$0.15</td></tr>
-        <tr data-n="golem ex sv: 151 nm"><td>Golem ex</td><td><span class="cb nm">NM</span></td><td>$7.81</td><td class="dneg">−$0.41</td></tr>
-        <tr data-n="dragonite ex furious fists dmg"><td>Dragonite EX</td><td><span class="cb dmg">DMG</span></td><td>$7.79</td><td class="dpos">+$0.14</td></tr>
-        <tr data-n="pikachu libre (14 xy trainer kit: pikachu libre &amp; suicune dmg"><td>Pikachu Libre (14</td><td><span class="cb dmg">DMG</span></td><td>$7.52</td><td class="dpos">+$0.15</td></tr>
-        <tr data-n="litten mega evolution promos nm"><td>Litten</td><td><span class="cb nm">NM</span></td><td>$7.46</td><td class="dpos">+$0.08</td></tr>
-        <tr data-n="ursaring legendary treasures: radiant collections nm"><td>Ursaring</td><td><span class="cb nm">NM</span></td><td>$7.24</td><td class="dpos">+$0.48</td></tr>
-        <tr data-n="mankey mcdonald&#x27;s promos 2019 nm"><td>Mankey</td><td><span class="cb nm">NM</span></td><td>$7.22</td><td class="dneg">−$0.02</td></tr>
-        <tr data-n="gyarados evolutions lp"><td>Gyarados</td><td><span class="cb lp">LP</span></td><td>$6.99</td><td class="dneg">−$0.71</td></tr>
-        <tr data-n="snorlax breakthrough nm"><td>Snorlax</td><td><span class="cb nm">NM</span></td><td>$6.98</td><td class="dpos">+$0.35</td></tr>
-        <tr data-n="rowlet mega evolution promos nm"><td>Rowlet</td><td><span class="cb nm">NM</span></td><td>$6.96</td><td class="dpos">+$0.03</td></tr>
-        <tr data-n="rowlet perfect order nm"><td>Rowlet</td><td><span class="cb nm">NM</span></td><td>$6.41</td><td class="dpos">+$0.08</td></tr>
-        <tr data-n="koga&#x27;s pidgey (49) gym challenge nm"><td>Koga&#x27;s Pidgey (49)</td><td><span class="cb nm">NM</span></td><td>$6.33</td><td class="dpos">+$0.19</td></tr>
-        <tr data-n="popplio mega evolution promos nm"><td>Popplio</td><td><span class="cb nm">NM</span></td><td>$6.02</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="carbink ascended heroes nm"><td>Carbink</td><td><span class="cb nm">NM</span></td><td>$5.89</td><td class="dpos">+$0.11</td></tr>
-        <tr data-n="gyarados gx hidden fates nm"><td>Gyarados GX</td><td><span class="cb nm">NM</span></td><td>$5.86</td><td class="dpos">+$0.05</td></tr>
-        <tr data-n="dragonite mcdonald&#x27;s promos 2024 nm"><td>Dragonite</td><td><span class="cb nm">NM</span></td><td>$5.77</td><td class="dpos">+$0.26</td></tr>
-        <tr data-n="yveltal ex perfect order nm"><td>Yveltal ex</td><td><span class="cb nm">NM</span></td><td>$5.73</td><td class="dneg">−$0.53</td></tr>
-        <tr data-n="mega froslass ex ascended heroes nm"><td>Mega Froslass ex</td><td><span class="cb nm">NM</span></td><td>$5.63</td><td class="dpos">+$0.09</td></tr>
-        <tr data-n="ditto vmax shining fates nm"><td>Ditto VMAX</td><td><span class="cb nm">NM</span></td><td>$5.44</td><td class="dpos">+$0.76</td></tr>
+        <tr data-n="dedenne perfect order nm"><td>Dedenne ×2</td><td><span class="cb nm">NM</span></td><td>$12.08</td><td class="dnil">—</td></tr>
+        <tr data-n="charizard detective pikachu nm"><td>Charizard</td><td><span class="cb nm">NM</span></td><td>$12.22</td><td class="dpos">+3.04%</td></tr>
+        <tr data-n="unown r legends awakened hp"><td>Unown (R)</td><td><span class="cb hp">HP</span></td><td>$9.45</td><td class="dnil">—</td></tr>
+        <tr data-n="golem ex 151 nm"><td>Golem ex</td><td><span class="cb nm">NM</span></td><td>$8.10</td><td class="dneg">−1.58%</td></tr>
+        <tr data-n="dragonite ex furious fists dmg"><td>Dragonite EX</td><td><span class="cb dmg">DMG</span></td><td>$7.79</td><td class="dnil">—</td></tr>
+        <tr data-n="pikachu libre trainer kit dmg"><td>Pikachu Libre</td><td><span class="cb dmg">DMG</span></td><td>$7.52</td><td class="dnil">—</td></tr>
+        <tr data-n="litten mega evolution promos nm"><td>Litten</td><td><span class="cb nm">NM</span></td><td>$7.46</td><td class="dnil">—</td></tr>
+        <tr data-n="ursaring legendary treasures nm"><td>Ursaring</td><td><span class="cb nm">NM</span></td><td>$7.24</td><td class="dnil">—</td></tr>
+        <tr data-n="mankey mcdonalds 2019 nm"><td>Mankey</td><td><span class="cb nm">NM</span></td><td>$7.22</td><td class="dnil">—</td></tr>
+        <tr data-n="gyarados evolutions lp"><td>Gyarados</td><td><span class="cb lp">LP</span></td><td>$6.79</td><td class="dneg">−8.69%</td></tr>
+        <tr data-n="snorlax breakthrough nm"><td>Snorlax</td><td><span class="cb nm">NM</span></td><td>$6.98</td><td class="dnil">—</td></tr>
+        <tr data-n="rowlet mega evolution promos nm"><td>Rowlet</td><td><span class="cb nm">NM</span></td><td>$6.96</td><td class="dnil">—</td></tr>
+        <tr data-n="rowlet perfect order nm"><td>Rowlet</td><td><span class="cb nm">NM</span></td><td>$6.41</td><td class="dnil">—</td></tr>
+        <tr data-n="koga pidgey gym challenge nm"><td>Koga's Pidgey (49)</td><td><span class="cb nm">NM</span></td><td>$6.33</td><td class="dnil">—</td></tr>
+        <tr data-n="popplio mega evolution promos nm"><td>Popplio</td><td><span class="cb nm">NM</span></td><td>$6.02</td><td class="dnil">—</td></tr>
+        <tr data-n="carbink ascended heroes nm"><td>Carbink</td><td><span class="cb nm">NM</span></td><td>$5.89</td><td class="dnil">—</td></tr>
+        <tr data-n="gyarados gx hidden fates nm"><td>Gyarados GX</td><td><span class="cb nm">NM</span></td><td>$5.86</td><td class="dnil">—</td></tr>
+        <tr data-n="dragonite mcdonalds 2024 nm"><td>Dragonite</td><td><span class="cb nm">NM</span></td><td>$5.77</td><td class="dnil">—</td></tr>
+        <tr data-n="yveltal ex perfect order nm"><td>Yveltal ex</td><td><span class="cb nm">NM</span></td><td>$5.73</td><td class="dnil">—</td></tr>
+        <tr data-n="mega froslass ex ascended heroes nm"><td>Mega Froslass ex</td><td><span class="cb nm">NM</span></td><td>$5.63</td><td class="dnil">—</td></tr>
+        <tr data-n="ditto vmax shining fates nm"><td>Ditto VMAX</td><td><span class="cb nm">NM</span></td><td>$5.44</td><td class="dnil">—</td></tr>
         <tr data-n="gyarados generations nm"><td>Gyarados</td><td><span class="cb nm">NM</span></td><td>$5.25</td><td class="dnil">—</td></tr>
-        <tr data-n="eevee vmax sword &amp; shield promo nm"><td>Eevee VMAX</td><td><span class="cb nm">NM</span></td><td>$5.17</td><td class="dneg">−$0.09</td></tr>
-        <tr data-n="venusaur v champion&#x27;s path nm"><td>Venusaur V ×2</td><td><span class="cb nm">NM</span></td><td>$5.14</td><td class="dneg">−$0.18</td></tr>
-        <tr data-n="cynthia&#x27;s garchomp ex destined rivals nm"><td>Cynthia&#x27;s Garchomp ex</td><td><span class="cb nm">NM</span></td><td>$5.02</td><td class="dneg">−$0.79</td></tr>
-        <tr data-n="venusaur ex evolutions nm"><td>Venusaur EX</td><td><span class="cb nm">NM</span></td><td>$4.96</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="mega dragonite ex ascended heroes nm"><td>Mega Dragonite ex</td><td><span class="cb nm">NM</span></td><td>$4.92</td><td class="dpos">+$0.58</td></tr>
-        <tr data-n="mega eelektross ex ascended heroes nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$4.63</td><td class="dneg">−$0.29</td></tr>
-        <tr data-n="team rocket&#x27;s orbeetle destined rivals nm"><td>Team Rocket&#x27;s Orbeetle</td><td><span class="cb nm">NM</span></td><td>$4.38</td><td class="dpos">+$0.35</td></tr>
-        <tr data-n="galarian obstagoon ascended heroes nm"><td>Galarian Obstagoon</td><td><span class="cb nm">NM</span></td><td>$4.38</td><td class="dpos">+$0.17</td></tr>
-        <tr data-n="litleo mega evolution nm"><td>Litleo</td><td><span class="cb nm">NM</span></td><td>$4.04</td><td class="dneg">−$0.13</td></tr>
-        <tr data-n="magmar mcdonald&#x27;s promos 2019 dmg"><td>Magmar</td><td><span class="cb dmg">DMG</span></td><td>$3.98</td><td class="dnil">—</td></tr>
-        <tr data-n="prinplup legendary treasures lp"><td>Prinplup</td><td><span class="cb lp">LP</span></td><td>$3.88</td><td class="dpos">+$0.06</td></tr>
-        <tr data-n="shiinotic surging sparks nm"><td>Shiinotic</td><td><span class="cb nm">NM</span></td><td>$3.87</td><td class="dpos">+$0.32</td></tr>
-        <tr data-n="arven&#x27;s greedent destined rivals nm"><td>Arven&#x27;s Greedent</td><td><span class="cb nm">NM</span></td><td>$3.81</td><td class="dneg">−$0.53</td></tr>
-        <tr data-n="stantler (jp) neo genesis (japanese) nm"><td>Stantler (JP)</td><td><span class="cb nm">NM</span></td><td>$3.81</td><td class="dnil">—</td></tr>
-        <tr data-n="metagross (50) ancient origins lp"><td>Metagross (50)</td><td><span class="cb lp">LP</span></td><td>$3.71</td><td class="dpos">+$0.10</td></tr>
-        <tr data-n="lucario (47) fates collide nm"><td>Lucario (47)</td><td><span class="cb nm">NM</span></td><td>$3.54</td><td class="dneg">−$0.14</td></tr>
-        <tr data-n="tyrunt - 070 mega evolution promos nm"><td>Tyrunt - 070</td><td><span class="cb nm">NM</span></td><td>$3.16</td><td class="dneg">−$0.27</td></tr>
-        <tr data-n="judge destined rivals nm"><td>Judge</td><td><span class="cb nm">NM</span></td><td>$2.96</td><td class="dpos">+$0.20</td></tr>
-        <tr data-n="dragapult shining fates: shiny vault nm"><td>Dragapult</td><td><span class="cb nm">NM</span></td><td>$2.82</td><td class="dneg">−$0.10</td></tr>
-        <tr data-n="minun legendary treasures nm"><td>Minun</td><td><span class="cb nm">NM</span></td><td>$2.65</td><td class="dpos">+$0.16</td></tr>
-        <tr data-n="metagross vmax chilling reign nm"><td>Metagross VMAX</td><td><span class="cb nm">NM</span></td><td>$2.50</td><td class="dneg">−$0.60</td></tr>
-        <tr data-n="charmeleon - 079 (cosmos holo) mega evolution promos nm"><td>Charmeleon - 079 (Cosmos Holo)</td><td><span class="cb nm">NM</span></td><td>$2.48</td><td class="dneg">−$0.33</td></tr>
-        <tr data-n="electrike (omega) primal clash nm"><td>Electrike (Omega)</td><td><span class="cb nm">NM</span></td><td>$2.45</td><td class="dnil">—</td></tr>
-        <tr data-n="pikachu sword &amp; shield base set nm"><td>Pikachu</td><td><span class="cb nm">NM</span></td><td>$2.31</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="haunter breakthrough lp"><td>Haunter</td><td><span class="cb lp">LP</span></td><td>$2.27</td><td class="dpos">+$0.09</td></tr>
-        <tr data-n="blaine&#x27;s doduo gym challenge nm"><td>Blaine&#x27;s Doduo</td><td><span class="cb nm">NM</span></td><td>$2.15</td><td class="dpos">+$0.03</td></tr>
-        <tr data-n="snover mega evolution nm"><td>Snover</td><td><span class="cb nm">NM</span></td><td>$1.98</td><td class="dpos">+$0.11</td></tr>
-        <tr data-n="farfetch&#x27;d (jp) neo revelation (japanese) nm"><td>Farfetch&#x27;d (JP)</td><td><span class="cb nm">NM</span></td><td>$1.95</td><td class="dneg">−$2.31</td></tr>
-        <tr data-n="magikarp call of legends nm"><td>Magikarp</td><td><span class="cb nm">NM</span></td><td>$1.56</td><td class="dpos">+$0.16</td></tr>
-        <tr data-n="flaaffy (jp) neo genesis (japanese) nm"><td>Flaaffy (JP)</td><td><span class="cb nm">NM</span></td><td>$1.25</td><td class="dnil">—</td></tr>
+        <tr data-n="eevee vmax sword shield promo nm"><td>Eevee VMAX</td><td><span class="cb nm">NM</span></td><td>$5.17</td><td class="dnil">—</td></tr>
+        <tr data-n="venusaur v champions path nm"><td>Venusaur V ×2</td><td><span class="cb nm">NM</span></td><td>$5.14</td><td class="dnil">—</td></tr>
+        <tr data-n="cynthia garchomp ex destined rivals nm"><td>Cynthia's Garchomp ex</td><td><span class="cb nm">NM</span></td><td>$5.02</td><td class="dnil">—</td></tr>
+        <tr data-n="venusaur ex evolutions nm"><td>Venusaur EX</td><td><span class="cb nm">NM</span></td><td>$4.96</td><td class="dnil">—</td></tr>
+        <tr data-n="mega dragonite ex ascended heroes nm"><td>Mega Dragonite ex</td><td><span class="cb nm">NM</span></td><td>$4.92</td><td class="dnil">—</td></tr>
+        <tr data-n="mega eelektross ex ascended heroes under10 nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$4.63</td><td class="dnil">—</td></tr>
+        <tr data-n="team rocket orbeetle destined rivals nm"><td>Team Rocket's Orbeetle</td><td><span class="cb nm">NM</span></td><td>$4.38</td><td class="dnil">—</td></tr>
+        <tr data-n="galarian obstagoon ascended heroes nm"><td>Galarian Obstagoon</td><td><span class="cb nm">NM</span></td><td>$4.38</td><td class="dnil">—</td></tr>
+        <tr data-n="litleo mega evolution nm"><td>Litleo</td><td><span class="cb nm">NM</span></td><td>$4.04</td><td class="dnil">—</td></tr>
+        <tr data-n="magmar mcdonalds 2019 dmg"><td>Magmar</td><td><span class="cb dmg">DMG</span></td><td>$3.98</td><td class="dnil">—</td></tr>
+        <tr data-n="prinplup legendary treasures lp"><td>Prinplup</td><td><span class="cb lp">LP</span></td><td>$3.88</td><td class="dnil">—</td></tr>
+        <tr data-n="shiinotic surging sparks nm"><td>Shiinotic</td><td><span class="cb nm">NM</span></td><td>$5.30</td><td class="dpos">+33.84%</td></tr>
+        <tr data-n="arven greedent destined rivals nm"><td>Arven's Greedent</td><td><span class="cb nm">NM</span></td><td>$3.81</td><td class="dnil">—</td></tr>
+        <tr data-n="stantler jp neo genesis nm"><td>Stantler (JP)</td><td><span class="cb nm">NM</span></td><td>$3.81</td><td class="dnil">—</td></tr>
+        <tr data-n="metagross ancient origins lp"><td>Metagross (50)</td><td><span class="cb lp">LP</span></td><td>$3.71</td><td class="dnil">—</td></tr>
+        <tr data-n="lucario fates collide nm"><td>Lucario (47)</td><td><span class="cb nm">NM</span></td><td>$3.54</td><td class="dnil">—</td></tr>
+        <tr data-n="tyrunt mega evolution promos nm"><td>Tyrunt - 070</td><td><span class="cb nm">NM</span></td><td>$3.16</td><td class="dnil">—</td></tr>
+        <tr data-n="judge destined rivals nm"><td>Judge</td><td><span class="cb nm">NM</span></td><td>$2.96</td><td class="dnil">—</td></tr>
+        <tr data-n="dragapult shining fates nm"><td>Dragapult</td><td><span class="cb nm">NM</span></td><td>$2.82</td><td class="dnil">—</td></tr>
+        <tr data-n="minun legendary treasures nm"><td>Minun</td><td><span class="cb nm">NM</span></td><td>$2.65</td><td class="dnil">—</td></tr>
+        <tr data-n="metagross vmax chilling reign nm"><td>Metagross VMAX</td><td><span class="cb nm">NM</span></td><td>$2.50</td><td class="dnil">—</td></tr>
+        <tr data-n="charmeleon cosmos holo mega evolution nm"><td>Charmeleon - 079 (Cosmos Holo)</td><td><span class="cb nm">NM</span></td><td>$2.48</td><td class="dnil">—</td></tr>
+        <tr data-n="electrike omega primal clash nm"><td>Electrike (Omega)</td><td><span class="cb nm">NM</span></td><td>$2.45</td><td class="dnil">—</td></tr>
+        <tr data-n="pikachu sword shield base nm"><td>Pikachu</td><td><span class="cb nm">NM</span></td><td>$2.31</td><td class="dnil">—</td></tr>
+        <tr data-n="haunter breakthrough lp"><td>Haunter</td><td><span class="cb lp">LP</span></td><td>$2.27</td><td class="dnil">—</td></tr>
+        <tr data-n="blaine doduo gym challenge nm"><td>Blaine's Doduo</td><td><span class="cb nm">NM</span></td><td>$2.15</td><td class="dnil">—</td></tr>
+        <tr data-n="snover mega evolution nm"><td>Snover</td><td><span class="cb nm">NM</span></td><td>$1.98</td><td class="dnil">—</td></tr>
+        <tr data-n="farfetchd jp neo revelation nm"><td>Farfetch'd (JP)</td><td><span class="cb nm">NM</span></td><td>$1.95</td><td class="dnil">—</td></tr>
+        <tr data-n="magikarp call of legends nm"><td>Magikarp</td><td><span class="cb nm">NM</span></td><td>$1.56</td><td class="dnil">—</td></tr>
+        <tr data-n="flaaffy jp neo genesis nm"><td>Flaaffy (JP)</td><td><span class="cb nm">NM</span></td><td>$1.25</td><td class="dnil">—</td></tr>
       </tbody>
     </table>
   </details>
+
   <details id="biz-d2">
     <summary>
-      <div class="sum-left"><span class="sum-name">EX &amp; MEGA EX</span><span class="sum-meta">30 items · all NM</span></div>
-      <div class="sum-right"><span class="sum-value">$32.74</span>
+      <div class="sum-left"><span class="sum-name">EX &amp; MEGA EX</span><span class="sum-meta">31 items · all NM</span></div>
+      <div class="sum-right"><span class="sum-value">$34.78</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -568,43 +417,45 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="biz">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th><th onclick="sortTable(this)" data-type="num">Δ</th></tr></thead>
       <tbody>
-        <tr data-n="arboliva ex destined rivals nm"><td>Arboliva ex</td><td><span class="cb nm">NM</span></td><td>$2.89</td><td class="dneg">−$0.43</td></tr>
-        <tr data-n="vaporeon ex prismatic evolutions nm"><td>Vaporeon ex</td><td><span class="cb nm">NM</span></td><td>$2.80</td><td class="dneg">−$0.10</td></tr>
-        <tr data-n="team rocket&#x27;s mewtwo ex destined rivals nm"><td>Team Rocket&#x27;s Mewtwo ex</td><td><span class="cb nm">NM</span></td><td>$1.97</td><td class="dpos">+$0.15</td></tr>
-        <tr data-n="mega audino ex ascended heroes nm"><td>Mega Audino ex</td><td><span class="cb nm">NM</span></td><td>$1.95</td><td class="dpos">+$0.16</td></tr>
-        <tr data-n="arven&#x27;s mabosstiff ex destined rivals nm"><td>Arven&#x27;s Mabosstiff ex</td><td><span class="cb nm">NM</span></td><td>$1.63</td><td class="dneg">−$0.19</td></tr>
-        <tr data-n="beedrill ex chaos rising nm"><td>Beedrill ex</td><td><span class="cb nm">NM</span></td><td>$1.51</td><td class="dpos">+$0.08</td></tr>
-        <tr data-n="electivire ex destined rivals nm"><td>Electivire ex</td><td><span class="cb nm">NM</span></td><td>$1.42</td><td class="dneg">−$0.15</td></tr>
-        <tr data-n="yanmega ex destined rivals nm"><td>Yanmega ex</td><td><span class="cb nm">NM</span></td><td>$1.38</td><td class="dpos">+$0.13</td></tr>
-        <tr data-n="ethan&#x27;s ho-oh ex destined rivals nm"><td>Ethan&#x27;s Ho-oh ex ×2</td><td><span class="cb nm">NM</span></td><td>$1.32</td><td class="dneg">−$0.10</td></tr>
-        <tr data-n="mega feraligatr ex ascended heroes nm"><td>Mega Feraligatr ex</td><td><span class="cb nm">NM</span></td><td>$1.25</td><td class="dneg">−$0.07</td></tr>
-        <tr data-n="cynthia&#x27;s garchomp ex destined rivals nm"><td>Cynthia&#x27;s Garchomp ex</td><td><span class="cb nm">NM</span></td><td>$1.12</td><td class="dneg">−$0.11</td></tr>
-        <tr data-n="mega meganium ex - 034 mega evolution promos nm"><td>Mega Meganium ex - 034</td><td><span class="cb nm">NM</span></td><td>$1.00</td><td class="dpos">+$0.12</td></tr>
-        <tr data-n="revavroom ex obsidian flames nm"><td>Revavroom ex</td><td><span class="cb nm">NM</span></td><td>$0.99</td><td class="dneg">−$0.09</td></tr>
-        <tr data-n="cinderace ex stellar crown nm"><td>Cinderace ex</td><td><span class="cb nm">NM</span></td><td>$0.94</td><td class="dneg">−$0.08</td></tr>
-        <tr data-n="mega eelektross ex ascended heroes nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$0.92</td><td class="dpos">+$0.09</td></tr>
-        <tr data-n="vespiquen ex obsidian flames nm"><td>Vespiquen ex</td><td><span class="cb nm">NM</span></td><td>$0.90</td><td class="dneg">−$0.08</td></tr>
-        <tr data-n="arboliva ex destined rivals nm"><td>Arboliva ex</td><td><span class="cb nm">NM</span></td><td>$0.82</td><td class="dneg">−$0.15</td></tr>
-        <tr data-n="mega gardevoir ex ascended heroes nm"><td>Mega Gardevoir ex</td><td><span class="cb nm">NM</span></td><td>$0.81</td><td class="dneg">−$0.05</td></tr>
-        <tr data-n="team rocket&#x27;s nidoking ex destined rivals nm"><td>Team Rocket&#x27;s Nidoking ex</td><td><span class="cb nm">NM</span></td><td>$0.67</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="black kyurem ex surging sparks nm"><td>Black Kyurem ex</td><td><span class="cb nm">NM</span></td><td>$0.65</td><td class="dneg">−$0.22</td></tr>
-        <tr data-n="iono&#x27;s bellibolt ex ascended heroes nm"><td>Iono&#x27;s Bellibolt ex</td><td><span class="cb nm">NM</span></td><td>$0.64</td><td class="dneg">−$0.01</td></tr>
-        <tr data-n="mega gallade ex chaos rising nm"><td>Mega Gallade ex</td><td><span class="cb nm">NM</span></td><td>$0.62</td><td class="dneg">−$0.12</td></tr>
-        <tr data-n="volcanion ex journey together nm"><td>Volcanion ex</td><td><span class="cb nm">NM</span></td><td>$0.61</td><td class="dneg">−$0.11</td></tr>
-        <tr data-n="salamence ex journey together nm"><td>Salamence ex</td><td><span class="cb nm">NM</span></td><td>$0.60</td><td class="dneg">−$0.17</td></tr>
-        <tr data-n="team rocket&#x27;s crobat ex destined rivals nm"><td>Team Rocket&#x27;s Crobat ex</td><td><span class="cb nm">NM</span></td><td>$0.59</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="mega clefable ex perfect order nm"><td>Mega Clefable ex</td><td><span class="cb nm">NM</span></td><td>$0.57</td><td class="dneg">−$0.03</td></tr>
-        <tr data-n="mega skarmory ex perfect order nm"><td>Mega Skarmory ex</td><td><span class="cb nm">NM</span></td><td>$0.57</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="yanmega ex destined rivals nm"><td>Yanmega ex</td><td><span class="cb nm">NM</span></td><td>$0.54</td><td class="dneg">−$0.11</td></tr>
-        <tr data-n="stunfisk ex ascended heroes nm"><td>Stunfisk ex</td><td><span class="cb nm">NM</span></td><td>$0.54</td><td class="dpos">+$0.03</td></tr>
-        <tr data-n="rabsca ex destined rivals nm"><td>Rabsca ex</td><td><span class="cb nm">NM</span></td><td>$0.52</td><td class="dneg">−$0.05</td></tr>
+        <tr data-n="vaporeon ex prismatic evolutions nm"><td>Vaporeon ex</td><td><span class="cb nm">NM</span></td><td>$3.26</td><td class="dpos">+5.50%</td></tr>
+        <tr data-n="arboliva ex destined rivals nm top"><td>Arboliva ex</td><td><span class="cb nm">NM</span></td><td>$3.21</td><td class="dpos">+9.93%</td></tr>
+        <tr data-n="team rocket mewtwo ex destined rivals nm"><td>Team Rocket's Mewtwo ex</td><td><span class="cb nm">NM</span></td><td>$1.97</td><td class="dnil">—</td></tr>
+        <tr data-n="mega audino ex ascended heroes nm"><td>Mega Audino ex</td><td><span class="cb nm">NM</span></td><td>$1.95</td><td class="dnil">—</td></tr>
+        <tr data-n="arven mabosstiff ex destined rivals nm"><td>Arven's Mabosstiff ex</td><td><span class="cb nm">NM</span></td><td>$1.63</td><td class="dnil">—</td></tr>
+        <tr data-n="beedrill ex chaos rising nm"><td>Beedrill ex</td><td><span class="cb nm">NM</span></td><td>$0.96</td><td class="dneg">−36.48%</td></tr>
+        <tr data-n="electivire ex destined rivals nm"><td>Electivire ex</td><td><span class="cb nm">NM</span></td><td>$1.42</td><td class="dnil">—</td></tr>
+        <tr data-n="yanmega ex destined rivals nm top"><td>Yanmega ex</td><td><span class="cb nm">NM</span></td><td>$1.38</td><td class="dnil">—</td></tr>
+        <tr data-n="ethan ho-oh ex destined rivals nm"><td>Ethan's Ho-oh ex ×2</td><td><span class="cb nm">NM</span></td><td>$1.32</td><td class="dnil">—</td></tr>
+        <tr data-n="mega feraligatr ex ascended heroes nm"><td>Mega Feraligatr ex</td><td><span class="cb nm">NM</span></td><td>$1.25</td><td class="dnil">—</td></tr>
+        <tr data-n="cynthia garchomp ex destined rivals nm ex"><td>Cynthia's Garchomp ex</td><td><span class="cb nm">NM</span></td><td>$0.91</td><td class="dneg">−19.01%</td></tr>
+        <tr data-n="mega meganium ex mega evolution promos nm"><td>Mega Meganium ex - 034</td><td><span class="cb nm">NM</span></td><td>$1.00</td><td class="dnil">—</td></tr>
+        <tr data-n="revavroom ex obsidian flames nm"><td>Revavroom ex</td><td><span class="cb nm">NM</span></td><td>$0.99</td><td class="dnil">—</td></tr>
+        <tr data-n="cinderace ex stellar crown nm"><td>Cinderace ex</td><td><span class="cb nm">NM</span></td><td>$0.94</td><td class="dnil">—</td></tr>
+        <tr data-n="mega eelektross ex ascended heroes ex nm"><td>Mega Eelektross ex</td><td><span class="cb nm">NM</span></td><td>$0.92</td><td class="dnil">—</td></tr>
+        <tr data-n="vespiquen ex obsidian flames nm"><td>Vespiquen ex</td><td><span class="cb nm">NM</span></td><td>$0.90</td><td class="dnil">—</td></tr>
+        <tr data-n="arboliva ex destined rivals nm b"><td>Arboliva ex</td><td><span class="cb nm">NM</span></td><td>$0.82</td><td class="dnil">—</td></tr>
+        <tr data-n="mega gardevoir ex ascended heroes nm"><td>Mega Gardevoir ex</td><td><span class="cb nm">NM</span></td><td>$0.81</td><td class="dnil">—</td></tr>
+        <tr data-n="team rocket nidoking ex destined rivals nm"><td>Team Rocket's Nidoking ex</td><td><span class="cb nm">NM</span></td><td>$0.67</td><td class="dnil">—</td></tr>
+        <tr data-n="black kyurem ex surging sparks nm"><td>Black Kyurem ex</td><td><span class="cb nm">NM</span></td><td>$0.65</td><td class="dnil">—</td></tr>
+        <tr data-n="iono bellibolt ex ascended heroes nm"><td>Iono's Bellibolt ex</td><td><span class="cb nm">NM</span></td><td>$0.64</td><td class="dnil">—</td></tr>
+        <tr data-n="mega gallade ex chaos rising nm"><td>Mega Gallade ex</td><td><span class="cb nm">NM</span></td><td>$0.62</td><td class="dnil">—</td></tr>
+        <tr data-n="volcanion ex journey together nm"><td>Volcanion ex</td><td><span class="cb nm">NM</span></td><td>$0.61</td><td class="dnil">—</td></tr>
+        <tr data-n="salamence ex journey together nm"><td>Salamence ex</td><td><span class="cb nm">NM</span></td><td>$0.60</td><td class="dnil">—</td></tr>
+        <tr data-n="team rocket crobat ex destined rivals nm"><td>Team Rocket's Crobat ex</td><td><span class="cb nm">NM</span></td><td>$0.59</td><td class="dnil">—</td></tr>
+        <tr data-n="mega clefable ex perfect order nm"><td>Mega Clefable ex</td><td><span class="cb nm">NM</span></td><td>$0.57</td><td class="dnil">—</td></tr>
+        <tr data-n="mega skarmory ex perfect order nm"><td>Mega Skarmory ex</td><td><span class="cb nm">NM</span></td><td>$0.57</td><td class="dnil">—</td></tr>
+        <tr data-n="yanmega ex destined rivals nm b"><td>Yanmega ex</td><td><span class="cb nm">NM</span></td><td>$0.54</td><td class="dnil">—</td></tr>
+        <tr data-n="stunfisk ex ascended heroes nm"><td>Stunfisk ex</td><td><span class="cb nm">NM</span></td><td>$0.54</td><td class="dnil">—</td></tr>
+        <tr data-n="rabsca ex destined rivals nm"><td>Rabsca ex</td><td><span class="cb nm">NM</span></td><td>$0.52</td><td class="dnil">—</td></tr>
+        <tr data-n="extra ex mega ex card nm"><td>—</td><td><span class="cb nm">NM</span></td><td>$0.50</td><td class="dnil">—</td></tr>
       </tbody>
     </table>
   </details>
+
   <details id="biz-d3">
     <summary>
       <div class="sum-left"><span class="sum-name">V CARDS</span><span class="sum-meta">12 items</span></div>
-      <div class="sum-right"><span class="sum-value">$19.24</span>
+      <div class="sum-right"><span class="sum-value">$18.41</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -612,25 +463,26 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="biz">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th><th onclick="sortTable(this)" data-type="num">Δ</th></tr></thead>
       <tbody>
-        <tr data-n="gyarados v evolving skies nm"><td>Gyarados V</td><td><span class="cb nm">NM</span></td><td>$3.09</td><td class="dpos">+$0.87</td></tr>
-        <tr data-n="galarian cursola v (full art) champion&#x27;s path nm"><td>Galarian Cursola V (Full Art) ×2</td><td><span class="cb nm">NM</span></td><td>$2.96</td><td class="dneg">−$0.30</td></tr>
-        <tr data-n="glaceon v sword &amp; shield promo nm"><td>Glaceon V</td><td><span class="cb nm">NM</span></td><td>$2.80</td><td class="dneg">−$0.02</td></tr>
-        <tr data-n="incineroar v champion&#x27;s path nm"><td>Incineroar V</td><td><span class="cb nm">NM</span></td><td>$1.57</td><td class="dneg">−$0.17</td></tr>
-        <tr data-n="wailord v champion&#x27;s path nm"><td>Wailord V</td><td><span class="cb nm">NM</span></td><td>$1.56</td><td class="dpos">+$0.08</td></tr>
-        <tr data-n="drednaw v (full art) champion&#x27;s path nm"><td>Drednaw V (Full Art)</td><td><span class="cb nm">NM</span></td><td>$1.27</td><td class="dneg">−$0.16</td></tr>
-        <tr data-n="galarian cursola v champion&#x27;s path nm"><td>Galarian Cursola V</td><td><span class="cb nm">NM</span></td><td>$1.19</td><td class="dpos">+$0.06</td></tr>
-        <tr data-n="grapploct v (full art) champion&#x27;s path nm"><td>Grapploct V (Full Art)</td><td><span class="cb nm">NM</span></td><td>$1.19</td><td class="dneg">−$0.07</td></tr>
-        <tr data-n="steelix v vivid voltage nm"><td>Steelix V</td><td><span class="cb nm">NM</span></td><td>$1.03</td><td class="dpos">+$0.12</td></tr>
-        <tr data-n="drednaw v champion&#x27;s path nm"><td>Drednaw V</td><td><span class="cb nm">NM</span></td><td>$0.91</td><td class="dnil">—</td></tr>
-        <tr data-n="grapploct v champion&#x27;s path nm"><td>Grapploct V</td><td><span class="cb nm">NM</span></td><td>$0.84</td><td class="dpos">+$0.01</td></tr>
-        <tr data-n="tornadus v chilling reign nm"><td>Tornadus V</td><td><span class="cb nm">NM</span></td><td>$0.83</td><td class="dpos">+$0.04</td></tr>
+        <tr data-n="glaceon v sword shield promo nm"><td>Glaceon V</td><td><span class="cb nm">NM</span></td><td>$2.82</td><td class="dpos">+6.82%</td></tr>
+        <tr data-n="gyarados v evolving skies nm"><td>Gyarados V</td><td><span class="cb nm">NM</span></td><td>$2.58</td><td class="dneg">−11.95%</td></tr>
+        <tr data-n="galarian cursola v full art champions path nm"><td>Galarian Cursola V (Full Art) ×2</td><td><span class="cb nm">NM</span></td><td>$2.96</td><td class="dnil">—</td></tr>
+        <tr data-n="incineroar v champions path nm"><td>Incineroar V</td><td><span class="cb nm">NM</span></td><td>$1.57</td><td class="dnil">—</td></tr>
+        <tr data-n="wailord v champions path nm"><td>Wailord V</td><td><span class="cb nm">NM</span></td><td>$1.56</td><td class="dnil">—</td></tr>
+        <tr data-n="drednaw v full art champions path nm"><td>Drednaw V (Full Art)</td><td><span class="cb nm">NM</span></td><td>$1.27</td><td class="dnil">—</td></tr>
+        <tr data-n="galarian cursola v champions path nm"><td>Galarian Cursola V</td><td><span class="cb nm">NM</span></td><td>$1.19</td><td class="dnil">—</td></tr>
+        <tr data-n="grapploct v full art champions path nm"><td>Grapploct V (Full Art)</td><td><span class="cb nm">NM</span></td><td>$1.19</td><td class="dnil">—</td></tr>
+        <tr data-n="steelix v vivid voltage nm"><td>Steelix V</td><td><span class="cb nm">NM</span></td><td>$1.03</td><td class="dnil">—</td></tr>
+        <tr data-n="drednaw v champions path nm"><td>Drednaw V</td><td><span class="cb nm">NM</span></td><td>$0.91</td><td class="dnil">—</td></tr>
+        <tr data-n="grapploct v champions path nm"><td>Grapploct V</td><td><span class="cb nm">NM</span></td><td>$0.84</td><td class="dnil">—</td></tr>
+        <tr data-n="tornadus v chilling reign nm"><td>Tornadus V</td><td><span class="cb nm">NM</span></td><td>$0.83</td><td class="dnil">—</td></tr>
       </tbody>
     </table>
   </details>
+
   <details id="biz-d4">
     <summary>
       <div class="sum-left"><span class="sum-name">TRAINERS</span><span class="sum-meta">4 items</span></div>
-      <div class="sum-right"><span class="sum-value">$6.38</span>
+      <div class="sum-right"><span class="sum-value">$6.53</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -638,10 +490,10 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="biz">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th><th onclick="sortTable(this)" data-type="num">Δ</th></tr></thead>
       <tbody>
-        <tr data-n="counter gain surging sparks nm"><td>Counter Gain</td><td><span class="cb nm">NM</span></td><td>$3.87</td><td class="dpos">+$0.21</td></tr>
-        <tr data-n="jamming tower ascended heroes nm"><td>Jamming Tower</td><td><span class="cb nm">NM</span></td><td>$1.02</td><td class="dpos">+$0.10</td></tr>
-        <tr data-n="here comes team rocket! celebrations: classic collection nm"><td>Here Comes Team Rocket!</td><td><span class="cb nm">NM</span></td><td>$0.88</td><td class="dneg">−$0.06</td></tr>
-        <tr data-n="counter gain ascended heroes nm"><td>Counter Gain</td><td><span class="cb nm">NM</span></td><td>$0.61</td><td class="dpos">+$0.02</td></tr>
+        <tr data-n="counter gain surging sparks nm"><td>Counter Gain</td><td><span class="cb nm">NM</span></td><td>$4.00</td><td class="dpos">+3.36%</td></tr>
+        <tr data-n="jamming tower ascended heroes nm"><td>Jamming Tower</td><td><span class="cb nm">NM</span></td><td>$0.97</td><td class="dpos">+2.11%</td></tr>
+        <tr data-n="here comes team rocket celebrations nm"><td>Here Comes Team Rocket!</td><td><span class="cb nm">NM</span></td><td>$0.85</td><td class="dneg">−12.37%</td></tr>
+        <tr data-n="counter gain ascended heroes nm"><td>Counter Gain</td><td><span class="cb nm">NM</span></td><td>$0.71</td><td class="dpos">+22.41%</td></tr>
       </tbody>
     </table>
   </details>
@@ -656,14 +508,14 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <div class="card-name">Umbreon ex SVP 176 PSA 10</div>
     <div style="font-size:11px;color:var(--muted);margin-top:2px;">INV-035 · Acquired 5/31/2026 · SVP #176 · PSA graded slab</div>
     <div class="priv-stats">
-      <div class="stat-cell"><div class="stat-label">Live Value</div><div class="stat-value">$256.15</div></div>
+      <div class="stat-cell"><div class="stat-label">Live Value</div><div class="stat-value">$253.20</div></div>
       <div class="stat-cell"><div class="stat-label">Cost Basis</div><div class="stat-value">$260.00</div></div>
-      <div class="stat-cell"><div class="stat-label">Unrealized</div><div class="stat-value" style="color:var(--red);">−$3.85</div></div>
-      <div class="stat-cell"><div class="stat-label">Today's Δ</div><div class="stat-value" style="color:var(--red);">−$2.93</div></div>
+      <div class="stat-cell"><div class="stat-label">Unrealized</div><div class="stat-value" style="color:var(--red);">−$6.80</div></div>
+      <div class="stat-cell"><div class="stat-label">Today's Δ</div><div class="stat-value" style="color:var(--green);">+2.46%</div></div>
       <div class="stat-cell"><div class="stat-label">Target</div><div class="stat-value" style="color:var(--green);">$310+</div></div>
-      <div class="stat-cell"><div class="stat-label">To Target</div><div class="stat-value" style="color:var(--muted);">+21.0%</div></div>
+      <div class="stat-cell"><div class="stat-label">To Target</div><div class="stat-value" style="color:var(--muted);">+22.4%</div></div>
     </div>
-    <div class="priv-read">📖 Sep 16: 30th Celebration releases worldwide (all-foil, vintage reprints) with Eevee-lution product in the window per prior intel. Hold through Q3. List when Collectr breaks $310 in the lead-up or on release week.</div>
+    <div class="priv-read">📖 Sep 16: 30th Celebration worldwide release is the catalyst — first-ever simultaneous global TCG launch with vintage reprints + Eevee-lution product in the window. Hold through Q3. List when Collectr breaks $310 in the lead-up or on release week.</div>
   </div>
 
   <!-- P&L SUMMARY -->
@@ -671,9 +523,9 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:8px;">
     <table class="pl-table">
       <tr><td>Cost Basis (on hand)</td><td>$433.72</td></tr>
-      <tr><td>Live Business Value</td><td style="color:var(--accent-light);">$2,234.60</td></tr>
-      <tr><td>Unrealized Gain</td><td style="color:var(--green);">+$1,800.88</td></tr>
-      <tr><td>Realized P&amp;L (14 sale records)</td><td style="color:var(--green);">+$521.98</td></tr>
+      <tr><td>Live Business Value</td><td style="color:var(--accent-light);">$2,245.09</td></tr>
+      <tr><td>Unrealized Gain</td><td style="color:var(--green);">+$1,811.37</td></tr>
+      <tr><td>Realized P&amp;L (14 records)</td><td style="color:var(--green);">+$521.98</td></tr>
       <tr><td>Margin on Sales</td><td style="color:var(--green);">49.5%</td></tr>
       <tr><td>Cash In</td><td>$1,054.00</td></tr>
       <tr><td>Cash Out</td><td style="color:var(--red);">−$1,062.41</td></tr>
@@ -698,18 +550,18 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <div class="kpi-grid">
     <div class="kpi kpi-full">
       <div class="label">Total Collection Value</div>
-      <div class="value accent">$2,364.31</div>
-      <div class="sub">58 cards · +$61.21 today · excluded from all business KPIs</div>
+      <div class="value accent">$2,409.45</div>
+      <div class="sub">58 cards · excluded from all business KPIs</div>
     </div>
     <div class="kpi">
       <div class="label">Personal Collection</div>
-      <div class="value">$2,343.66</div>
+      <div class="value">$2,387.28</div>
       <div class="sub">57 items</div>
     </div>
     <div class="kpi">
       <div class="label">Gym Challenge</div>
-      <div class="value">$20.65</div>
-      <div class="sub">1 item</div>
+      <div class="value">$22.17</div>
+      <div class="sub">1 item · +8.41% today</div>
     </div>
     <div class="kpi">
       <div class="label">Gym Hero</div>
@@ -725,11 +577,12 @@ details[open] summary .chevron { transform: rotate(180deg); }
 
   <div class="section-title">Top PC Movers Today</div>
   <div class="movers-list">
-    <div class="mover"><div><div class="card-name">Mew (JP CD Promo)</div><div class="card-sub">PC · NM Glossy · +43.6% 🔥</div></div><div class="delta up">+$28.57</div></div>
-    <div class="mover"><div><div class="card-name">Blastoise (Base Set 2)</div><div class="card-sub">PC · NM · +7.0%</div></div><div class="delta up">+$8.44</div></div>
-    <div class="mover"><div><div class="card-name">Magneton (Base Set 2)</div><div class="card-sub">PC · NM · +25.7%</div></div><div class="delta up">+$5.28</div></div>
-    <div class="mover"><div><div class="card-name">Zapdos (Fossil)</div><div class="card-sub">PC · LP · +13.9%</div></div><div class="delta up">+$4.23</div></div>
-    <div class="mover"><div><div class="card-name">Vaporeon (Brilliant Stars TG)</div><div class="card-sub">PC · NM · −9.3%</div></div><div class="delta down">−$2.99</div></div>
+    <div class="mover"><div><div class="card-name">Nidoqueen</div><div class="card-sub">PC · Jungle LP · +38.60% 🔥</div></div><div class="delta up">+$13.00</div></div>
+    <div class="mover"><div><div class="card-name">Blastoise</div><div class="card-sub">PC · Base Set 2 NM · +10.82%</div></div><div class="delta up">+$13.21</div></div>
+    <div class="mover"><div><div class="card-name">Raichu</div><div class="card-sub">PC · Base Set 2 LP · +18.61%</div></div><div class="delta up">+$6.75</div></div>
+    <div class="mover"><div><div class="card-name">Mewtwo (JP)</div><div class="card-sub">PC · Japanese CD Promo · +18.90%</div></div><div class="delta up">+$9.63</div></div>
+    <div class="mover"><div><div class="card-name">Magneton</div><div class="card-sub">PC · Base Set 2 NM · +28.82%</div></div><div class="delta up">+$5.96</div></div>
+    <div class="mover"><div><div class="card-name">Vaporeon</div><div class="card-sub">PC · Brilliant Stars TG NM · −9.92%</div></div><div class="delta down">−$2.95</div></div>
   </div>
 
   <div class="section-title">Collection Tables</div>
@@ -740,7 +593,7 @@ details[open] summary .chevron { transform: rotate(180deg); }
   <details open id="pc-d0">
     <summary>
       <div class="sum-left"><span class="sum-name">PERSONAL COLLECTION</span><span class="sum-meta">57 items · vintage WotC focus</span></div>
-      <div class="sum-right"><span class="sum-value">$2,343.66</span>
+      <div class="sum-right"><span class="sum-value">$2,387.28</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -749,69 +602,70 @@ details[open] summary .chevron { transform: rotate(180deg); }
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Set</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th></tr></thead>
       <tbody>
         <tr data-n="dark blastoise team rocket nm"><td>Dark Blastoise</td><td style="font-size:11px;color:var(--muted);">Team Rocket</td><td><span class="cb nm">NM</span></td><td>$189.68</td></tr>
-        <tr data-n="blastoise base set 2 nm"><td>Blastoise</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$128.33</td></tr>
-        <tr data-n="ancient mew [2000] miscellaneous cards &amp; products nm"><td>Ancient Mew [2000]</td><td style="font-size:11px;color:var(--muted);">Miscellaneous Cards &amp; Products</td><td><span class="cb nm">NM</span></td><td>$126.18</td></tr>
-        <tr data-n="snorlax jungle lp"><td>Snorlax</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb lp">LP</span></td><td>$118.90</td></tr>
-        <tr data-n="mew (9) wotc promo nm"><td>Mew (9)</td><td style="font-size:11px;color:var(--muted);">WoTC Promo</td><td><span class="cb nm">NM</span></td><td>$116.18</td></tr>
-        <tr data-n="blaine&#x27;s moltres gym heroes nm"><td>Blaine&#x27;s Moltres</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$100.01</td></tr>
+        <tr data-n="blastoise base set 2 nm"><td>Blastoise</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$135.19</td></tr>
+        <tr data-n="ancient mew 2000 nm"><td>Ancient Mew [2000]</td><td style="font-size:11px;color:var(--muted);">Miscellaneous</td><td><span class="cb nm">NM</span></td><td>$128.86</td></tr>
+        <tr data-n="snorlax jungle lp"><td>Snorlax</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb lp">LP</span></td><td>$118.86</td></tr>
+        <tr data-n="mew 9 wotc promo nm"><td>Mew (9)</td><td style="font-size:11px;color:var(--muted);">WoTC Promo</td><td><span class="cb nm">NM</span></td><td>$117.30</td></tr>
+        <tr data-n="blaine moltres gym heroes nm"><td>Blaine's Moltres</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$100.01</td></tr>
         <tr data-n="dark raichu team rocket nm"><td>Dark Raichu</td><td style="font-size:11px;color:var(--muted);">Team Rocket</td><td><span class="cb nm">NM</span></td><td>$99.59</td></tr>
-        <tr data-n="mew (jp) japanese cd promo nm"><td>Mew (JP)</td><td style="font-size:11px;color:var(--muted);">Japanese CD Promo</td><td><span class="cb nm">NM</span></td><td>$94.16</td></tr>
-        <tr data-n="jolteon jungle nm"><td>Jolteon</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$92.20</td></tr>
-        <tr data-n="alakazam base set (unlimited) nm"><td>Alakazam</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$83.56</td></tr>
-        <tr data-n="mewtwo base set (unlimited) lp"><td>Mewtwo</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb lp">LP</span></td><td>$66.28</td></tr>
-        <tr data-n="mewtwo (jp) japanese cd promo nm"><td>MewTwo (JP)</td><td style="font-size:11px;color:var(--muted);">Japanese CD Promo</td><td><span class="cb nm">NM</span></td><td>$52.96</td></tr>
-        <tr data-n="slowking neo genesis lp"><td>Slowking</td><td style="font-size:11px;color:var(--muted);">Neo Genesis</td><td><span class="cb lp">LP</span></td><td>$52.49</td></tr>
+        <tr data-n="mew jp japanese cd promo nm"><td>Mew (JP)</td><td style="font-size:11px;color:var(--muted);">Japanese CD Promo</td><td><span class="cb nm">NM</span></td><td>$94.16</td></tr>
+        <tr data-n="jolteon jungle nm"><td>Jolteon</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$91.08</td></tr>
+        <tr data-n="alakazam base set unlimited nm"><td>Alakazam</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$83.94</td></tr>
+        <tr data-n="mewtwo base set unlimited lp"><td>Mewtwo</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb lp">LP</span></td><td>$66.42</td></tr>
+        <tr data-n="mewtwo jp japanese cd promo nm"><td>Mewtwo (JP)</td><td style="font-size:11px;color:var(--muted);">Japanese CD Promo</td><td><span class="cb nm">NM</span></td><td>$60.55</td></tr>
+        <tr data-n="slowking neo genesis lp"><td>Slowking</td><td style="font-size:11px;color:var(--muted);">Neo Genesis</td><td><span class="cb lp">LP</span></td><td>$53.07</td></tr>
         <tr data-n="articuno fossil lp"><td>Articuno</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb lp">LP</span></td><td>$47.03</td></tr>
-        <tr data-n="alakazam base set 2 lp"><td>Alakazam</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$45.59</td></tr>
-        <tr data-n="vaporeon jungle nm"><td>Vaporeon</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$43.58</td></tr>
-        <tr data-n="ninetales base set (unlimited) nm"><td>Ninetales</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$39.59</td></tr>
-        <tr data-n="misty&#x27;s lapras destined rivals lp"><td>Misty&#x27;s Lapras</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb lp">LP</span></td><td>$36.69</td></tr>
-        <tr data-n="poliwrath base set (unlimited) nm"><td>Poliwrath</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$36.37</td></tr>
-        <tr data-n="raichu base set 2 lp"><td>Raichu</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$36.27</td></tr>
-        <tr data-n="hypno fossil nm"><td>Hypno</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$35.98</td></tr>
-        <tr data-n="zapdos (15) fossil lp"><td>Zapdos (15)</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb lp">LP</span></td><td>$34.75</td></tr>
-        <tr data-n="nidoqueen jungle lp"><td>Nidoqueen</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb lp">LP</span></td><td>$33.65</td></tr>
-        <tr data-n="nidoking base set (unlimited) lp"><td>Nidoking</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb lp">LP</span></td><td>$32.34</td></tr>
-        <tr data-n="misty&#x27;s tentacruel gym heroes nm"><td>Misty&#x27;s Tentacruel</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$32.00</td></tr>
-        <tr data-n="scyther base set 2 nm"><td>Scyther</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$31.31</td></tr>
-        <tr data-n="hitmonlee fossil mp"><td>Hitmonlee</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb mp">MP</span></td><td>$30.99</td></tr>
-        <tr data-n="machamp deck exclusives lp"><td>Machamp</td><td style="font-size:11px;color:var(--muted);">Deck Exclusives</td><td><span class="cb lp">LP</span></td><td>$29.87</td></tr>
-        <tr data-n="vaporeon brilliant stars trainer gallery nm"><td>Vaporeon</td><td style="font-size:11px;color:var(--muted);">Brilliant Stars Trainer Gallery</td><td><span class="cb nm">NM</span></td><td>$29.08</td></tr>
-        <tr data-n="erika&#x27;s vileplume gym heroes nm"><td>Erika&#x27;s Vileplume</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$26.47</td></tr>
+        <tr data-n="nidoqueen jungle lp"><td>Nidoqueen</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb lp">LP</span></td><td>$46.64</td></tr>
+        <tr data-n="alakazam base set 2 lp"><td>Alakazam</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$45.72</td></tr>
+        <tr data-n="vaporeon jungle nm"><td>Vaporeon</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$44.66</td></tr>
+        <tr data-n="raichu base set 2 lp"><td>Raichu</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$43.02</td></tr>
+        <tr data-n="ninetales base set unlimited nm"><td>Ninetales</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$39.71</td></tr>
+        <tr data-n="poliwrath base set unlimited nm"><td>Poliwrath</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$37.93</td></tr>
+        <tr data-n="hypno fossil nm"><td>Hypno</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$36.57</td></tr>
+        <tr data-n="misty lapras destined rivals lp"><td>Misty's Lapras</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb lp">LP</span></td><td>$35.65</td></tr>
+        <tr data-n="zapdos fossil lp"><td>Zapdos (15)</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb lp">LP</span></td><td>$34.23</td></tr>
+        <tr data-n="misty tentacruel gym heroes pc nm"><td>Misty's Tentacruel</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$32.76</td></tr>
+        <tr data-n="hitmonlee fossil mp"><td>Hitmonlee</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb mp">MP</span></td><td>$31.56</td></tr>
+        <tr data-n="scyther base set 2 nm"><td>Scyther</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$31.53</td></tr>
+        <tr data-n="nidoking base set unlimited lp"><td>Nidoking</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb lp">LP</span></td><td>$31.43</td></tr>
+        <tr data-n="machamp deck exclusives lp"><td>Machamp</td><td style="font-size:11px;color:var(--muted);">Deck Exclusives</td><td><span class="cb lp">LP</span></td><td>$29.44</td></tr>
+        <tr data-n="vaporeon brilliant stars trainer gallery nm"><td>Vaporeon</td><td style="font-size:11px;color:var(--muted);">Brilliant Stars TG</td><td><span class="cb nm">NM</span></td><td>$26.88</td></tr>
+        <tr data-n="magneton base set 2 nm"><td>Magneton</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$26.64</td></tr>
+        <tr data-n="erika vileplume gym heroes nm"><td>Erika's Vileplume</td><td style="font-size:11px;color:var(--muted);">Gym Heroes</td><td><span class="cb nm">NM</span></td><td>$26.47</td></tr>
         <tr data-n="meowth phantasmal flames nm"><td>Meowth</td><td style="font-size:11px;color:var(--muted);">Phantasmal Flames</td><td><span class="cb nm">NM</span></td><td>$25.85</td></tr>
-        <tr data-n="magneton base set 2 nm"><td>Magneton</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$25.84</td></tr>
-        <tr data-n="hitmonchan base set (unlimited) nm"><td>Hitmonchan</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$25.34</td></tr>
-        <tr data-n="haunter base set (1st edition &amp; shadowless) dmg"><td>Haunter</td><td style="font-size:11px;color:var(--muted);">Base Set (1st Edition &amp; Shadowless)</td><td><span class="cb dmg">DMG</span></td><td>$24.28</td></tr>
+        <tr data-n="hitmonchan base set unlimited nm"><td>Hitmonchan</td><td style="font-size:11px;color:var(--muted);">Base Set (Unlimited)</td><td><span class="cb nm">NM</span></td><td>$25.34</td></tr>
+        <tr data-n="haunter base set 1st edition shadowless dmg"><td>Haunter</td><td style="font-size:11px;color:var(--muted);">Base Set (1st Ed/Shadow)</td><td><span class="cb dmg">DMG</span></td><td>$24.28</td></tr>
         <tr data-n="clefable base set 2 lp"><td>Clefable</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$24.28</td></tr>
-        <tr data-n="snorlax scarlet &amp; violet promo nm"><td>Snorlax</td><td style="font-size:11px;color:var(--muted);">Scarlet &amp; Violet Promo</td><td><span class="cb nm">NM</span></td><td>$23.38</td></tr>
-        <tr data-n="eevee brilliant stars trainer gallery nm"><td>Eevee</td><td style="font-size:11px;color:var(--muted);">Brilliant Stars Trainer Gallery</td><td><span class="cb nm">NM</span></td><td>$22.76</td></tr>
-        <tr data-n="tangela sv: 151 nm"><td>Tangela</td><td style="font-size:11px;color:var(--muted);">SV: 151</td><td><span class="cb nm">NM</span></td><td>$20.90</td></tr>
+        <tr data-n="snorlax scarlet violet promo nm"><td>Snorlax</td><td style="font-size:11px;color:var(--muted);">Scarlet &amp; Violet Promo</td><td><span class="cb nm">NM</span></td><td>$23.38</td></tr>
+        <tr data-n="eevee brilliant stars trainer gallery nm"><td>Eevee</td><td style="font-size:11px;color:var(--muted);">Brilliant Stars TG</td><td><span class="cb nm">NM</span></td><td>$22.76</td></tr>
+        <tr data-n="tangela sv 151 nm"><td>Tangela</td><td style="font-size:11px;color:var(--muted);">SV: 151</td><td><span class="cb nm">NM</span></td><td>$20.90</td></tr>
         <tr data-n="chansey base set 2 nm"><td>Chansey</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$20.76</td></tr>
         <tr data-n="kabuto fossil nm"><td>Kabuto</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$19.17</td></tr>
         <tr data-n="clefairy base set 2 nm"><td>Clefairy</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb nm">NM</span></td><td>$18.57</td></tr>
         <tr data-n="kingdra neo genesis lp"><td>Kingdra</td><td style="font-size:11px;color:var(--muted);">Neo Genesis</td><td><span class="cb lp">LP</span></td><td>$18.53</td></tr>
         <tr data-n="wigglytuff base set 2 lp"><td>Wigglytuff</td><td style="font-size:11px;color:var(--muted);">Base Set 2</td><td><span class="cb lp">LP</span></td><td>$16.85</td></tr>
-        <tr data-n="team rocket&#x27;s houndoom destined rivals nm"><td>Team Rocket&#x27;s Houndoom</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb nm">NM</span></td><td>$16.72</td></tr>
+        <tr data-n="team rocket houndoom destined rivals nm"><td>Team Rocket's Houndoom</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb nm">NM</span></td><td>$16.72</td></tr>
         <tr data-n="kangaskhan jungle lp"><td>Kangaskhan</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb lp">LP</span></td><td>$16.29</td></tr>
-        <tr data-n="unown a (jp) neo discovery (japanese) nm"><td>Unown A (JP)</td><td style="font-size:11px;color:var(--muted);">Neo Discovery (Japanese)</td><td><span class="cb nm">NM</span></td><td>$14.86</td></tr>
-        <tr data-n="team rocket&#x27;s wobbuffet scarlet &amp; violet promo nm"><td>Team Rocket&#x27;s Wobbuffet</td><td style="font-size:11px;color:var(--muted);">Scarlet &amp; Violet Promo</td><td><span class="cb nm">NM</span></td><td>$12.23</td></tr>
-        <tr data-n="kadabra base set (1st edition &amp; shadowless) nm"><td>Kadabra</td><td style="font-size:11px;color:var(--muted);">Base Set (1st Edition &amp; Shadowless)</td><td><span class="cb nm">NM</span></td><td>$11.69</td></tr>
+        <tr data-n="unown a jp neo discovery nm"><td>Unown A (JP)</td><td style="font-size:11px;color:var(--muted);">Neo Discovery (JP)</td><td><span class="cb nm">NM</span></td><td>$14.86</td></tr>
+        <tr data-n="team rocket wobbuffet scarlet violet promo nm"><td>Team Rocket's Wobbuffet</td><td style="font-size:11px;color:var(--muted);">Scarlet &amp; Violet Promo</td><td><span class="cb nm">NM</span></td><td>$12.23</td></tr>
+        <tr data-n="kadabra base set 1st edition shadowless nm"><td>Kadabra</td><td style="font-size:11px;color:var(--muted);">Base Set (1st Ed/Shadow)</td><td><span class="cb nm">NM</span></td><td>$11.69</td></tr>
         <tr data-n="jigglypuff jungle nm"><td>Jigglypuff</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$10.01</td></tr>
         <tr data-n="magmar fossil nm"><td>Magmar</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$9.53</td></tr>
-        <tr data-n="sabrina&#x27;s hypno gym challenge nm"><td>Sabrina&#x27;s Hypno</td><td style="font-size:11px;color:var(--muted);">Gym Challenge</td><td><span class="cb nm">NM</span></td><td>$9.41</td></tr>
+        <tr data-n="sabrina hypno gym challenge nm"><td>Sabrina's Hypno</td><td style="font-size:11px;color:var(--muted);">Gym Challenge</td><td><span class="cb nm">NM</span></td><td>$9.41</td></tr>
         <tr data-n="flying pikachu evolutions nm"><td>Flying Pikachu</td><td style="font-size:11px;color:var(--muted);">Evolutions</td><td><span class="cb nm">NM</span></td><td>$8.68</td></tr>
         <tr data-n="meowth jungle nm"><td>Meowth</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$7.31</td></tr>
-        <tr data-n="magneton (26) fossil nm"><td>Magneton (26)</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$5.42</td></tr>
+        <tr data-n="magneton 26 fossil nm"><td>Magneton (26)</td><td style="font-size:11px;color:var(--muted);">Fossil</td><td><span class="cb nm">NM</span></td><td>$5.42</td></tr>
         <tr data-n="hypno breakpoint lp"><td>Hypno</td><td style="font-size:11px;color:var(--muted);">BREAKpoint</td><td><span class="cb lp">LP</span></td><td>$5.28</td></tr>
-        <tr data-n="team rocket&#x27;s persian ex destined rivals nm"><td>Team Rocket&#x27;s Persian ex</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb nm">NM</span></td><td>$4.24</td></tr>
-        <tr data-n="parasect jungle nm"><td>Parasect</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$3.40</td></tr>
+        <tr data-n="team rocket persian ex destined rivals nm"><td>Team Rocket's Persian ex</td><td style="font-size:11px;color:var(--muted);">Destined Rivals</td><td><span class="cb nm">NM</span></td><td>$4.24</td></tr>
+        <tr data-n="parasect jungle nm"><td>Parasect</td><td style="font-size:11px;color:var(--muted);">Jungle</td><td><span class="cb nm">NM</span></td><td>$3.39</td></tr>
       </tbody>
     </table>
   </details>
+
   <details id="pc-d1">
     <summary>
       <div class="sum-left"><span class="sum-name">PC — GYM CHALLENGE</span><span class="sum-meta">1 item</span></div>
-      <div class="sum-right"><span class="sum-value">$20.65</span>
+      <div class="sum-right"><span class="sum-value">$22.17</span>
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
     </summary>
@@ -819,12 +673,11 @@ details[open] summary .chevron { transform: rotate(180deg); }
     <table class="inv-table" data-grp="pc">
       <thead><tr><th onclick="sortTable(this)">Card</th><th onclick="sortTable(this)">Set</th><th onclick="sortTable(this)">Cond</th><th onclick="sortTable(this)" data-type="num">Price</th></tr></thead>
       <tbody>
-        <tr data-n="blaine&#x27;s ninetales gym challenge nm"><td>Blaine&#x27;s Ninetales</td><td style="font-size:11px;color:var(--muted);">Gym Challenge</td><td><span class="cb nm">NM</span></td><td>$20.65</td></tr>
+        <tr data-n="blaine ninetales gym challenge nm"><td>Blaine's Ninetales</td><td style="font-size:11px;color:var(--muted);">Gym Challenge</td><td><span class="cb nm">NM</span></td><td>$22.17</td></tr>
       </tbody>
     </table>
   </details>
 
-  <!-- GYM HERO -->
   <details id="pc-d2">
     <summary>
       <div class="sum-left"><span class="sum-name">PC — GYM HERO</span><span class="sum-meta">0 items</span></div>
@@ -841,7 +694,7 @@ details[open] summary .chevron { transform: rotate(180deg); }
 
   <div class="section-title" style="margin-top:16px;">Collection Notes</div>
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:24px;font-size:13px;color:var(--muted);line-height:1.6;">
-    Strong WotC vintage focus across Base Set, Jungle, Fossil, and Team Rocket. The Japanese CD Promo Mew jumped +43.6% today ($94.16) — JP CD promos are the collection's hottest line. Gym Heroes anchors (Blaine's Moltres $100, Erika's Vileplume, Misty's Tentacruel) extend naturally. Collection riding the WotC +30–50% YoY anniversary wave; up +$61.21 today while the business book pulled back.
+    Strong WotC vintage focus across Base Set, Jungle, Fossil, and Team Rocket. June 17 standouts: Nidoqueen Jungle +38.60% to $46.64, Blastoise BS2 +10.82% to $135.19, Raichu BS2 +18.61% to $43.02, Mewtwo JP +18.90% to $60.55, Magneton BS2 +28.82% to $26.64. Vaporeon BSTG the lone notable pullback (−9.92%). Collection at $2,409.45 (+$45.14 vs Jun 12). PC continues to outperform the business book short-term on WotC vintage strength ahead of the Sep 16 30th anniversary.
   </div>
 
 </div><!-- /panel-1 -->
@@ -851,161 +704,180 @@ details[open] summary .chevron { transform: rotate(180deg); }
 
   <div class="section-title">Upcoming Releases</div>
 
-  <div class="rel-item">
-    <div class="rel-date">Jun 19, 2026 — ONE WEEK OUT</div>
+  <div class="rel-item urgent">
+    <div class="rel-date">⚡ Jun 19, 2026 — THIS THURSDAY</div>
     <div class="rel-name">First Partner Illustration Collection — Series 2</div>
-    <div class="rel-angle">Chikorita, Tepig, Totodile. KCE flipped Series 1 at +233% ($15 → $50 in under a month). Same play: secure 1–2 at retail on release day, flip inside 30–60 days while supply is tight.</div>
+    <div class="rel-angle">Chikorita, Tepig, Totodile IRs. S1 flipped at +233% ($15→$50 in under a month). Secure 1–2 at retail Thursday. Budget from Dragon's Roar/Zombie Madness proceeds. Flip inside 30–60 days while supply is tight.</div>
   </div>
   <div class="rel-item">
     <div class="rel-date">Jul 17, 2026</div>
-    <div class="rel-name">Mega Evolution Set 5 — Mega Darkrai ex (Abyss Eye)</div>
-    <div class="rel-angle">Dark-theme set, 115+ cards, six Mega ex (Darkrai, Zeraora, Chandelure, Excadrill). Dark hype historically lifts Yveltal ex (PO, $5.73 in UNDER 10) — watch for a pre-release bump on dark-type backstock.</div>
+    <div class="rel-name">Mega Evolution — Pitch Black (Mega Darkrai ex)</div>
+    <div class="rel-angle">115+ cards, dark-theme set. Mega Darkrai ex, Zeraora, Chandelure, Excadrill. ETB ~$49.99, prerelease Jul 4. Dark-type hype historically lifts Yveltal ex (in UNDER 10, $5.73 — watch for pre-release bump on dark-type backstock).</div>
   </div>
   <div class="rel-item">
-    <div class="rel-date">Aug 7, 2026</div>
-    <div class="rel-name">First Partner Collection — Series 3</div>
-    <div class="rel-angle">Hoenn, Kalos, Paldea starters. If the S2 flip lands, repeat. Box-crackers also dump cheap starter singles into bins → sourcing window.</div>
+    <div class="rel-date">Aug / Sep 2026</div>
+    <div class="rel-name">Storm Emerald (Mega Rayquaza ex)</div>
+    <div class="rel-angle">📈 DIRECT KCE CATALYST: M Rayquaza EX in MAIN ($56.92, +4.84% today) should appreciate into the hype window. This is the Rayquaza ex chase card — start watching comp movement in late July for a list-or-hold decision.</div>
   </div>
   <div class="rel-item key">
     <div class="rel-date">⭐ Sep 16, 2026 — KEY CATALYST</div>
     <div class="rel-name">Pokémon TCG: 30th Celebration</div>
-    <div class="rel-angle">🔒 UMBREON HOLD TARGET WINDOW. First-ever simultaneous worldwide release. Every card foil, 30 Pikachu pack-guarantee variants, 30 vintage reprints with anniversary stamp, YOSHIROTTEN Mewtwo/Mew. Demand expected ferocious; vintage WotC and Eevee-lution promos ride the wave. List Umbreon PSA 10 when Collectr breaks $310 in the lead-up or on release week.</div>
+    <div class="rel-angle">🔒 UMBREON HOLD TARGET WINDOW. First-ever simultaneous worldwide release. Every card foil, 30 vintage reprints with anniversary stamp, YOSHIROTTEN Mewtwo/Mew. Demand expected ferocious; WotC vintage and Eevee-lution promos ride the wave. List Umbreon PSA 10 when Collectr breaks $310 in the lead-up or on release week.</div>
   </div>
 
   <div class="section-title">Market Pulse</div>
   <div class="pulse-grid">
     <div class="pulse-cell">
-      <div class="p-label">Vintage WotC</div>
-      <div class="p-value" style="color:var(--green);">+30–50%</div>
-      <div class="p-sub">YoY into 30th anniversary</div>
+      <div class="p-label">Avg Card Price YoY</div>
+      <div class="p-value" style="color:var(--green);">+46%</div>
+      <div class="p-sub">all conditions, all sets</div>
     </div>
     <div class="pulse-cell">
-      <div class="p-label">Vintage Sealed</div>
-      <div class="p-value" style="color:var(--green);">+15–25%</div>
-      <div class="p-sub">YoY · steady</div>
+      <div class="p-label">Card Ladder Index</div>
+      <div class="p-value" style="color:var(--green);">+116%</div>
+      <div class="p-sub">YoY</div>
+    </div>
+    <div class="pulse-cell">
+      <div class="p-label">Sentiment</div>
+      <div class="p-value" style="color:var(--red);">91/100</div>
+      <div class="p-sub">Extreme Greed</div>
+    </div>
+    <div class="pulse-cell">
+      <div class="p-label">PSA 10 (90d)</div>
+      <div class="p-value" style="color:var(--green);">+12.84%</div>
+      <div class="p-sub">graded slab premium expanding</div>
+    </div>
+    <div class="pulse-cell">
+      <div class="p-label">Fastest Growing</div>
+      <div class="p-value" style="font-size:12px;line-height:1.3;color:var(--accent-light);">Neo-era<br>Vintage</div>
+      <div class="p-sub">Neo Genesis / Discovery</div>
     </div>
     <div class="pulse-cell">
       <div class="p-label">Modern SIR/SAR</div>
       <div class="p-value" style="color:var(--red);">−20–30%</div>
-      <div class="p-sub">within 60 days of launch</div>
-    </div>
-    <div class="pulse-cell">
-      <div class="p-label">Records</div>
-      <div class="p-value" style="color:var(--accent-light);">$16.5M</div>
-      <div class="p-sub">Pikachu Illustrator PSA 10 (Feb)</div>
+      <div class="p-sub">within 60d of launch</div>
     </div>
   </div>
 
   <div class="section-title">What's Hot</div>
   <div class="hot-item">
-    <div class="hot-icon">🔥</div>
-    <div><div>Mega Gengar ex SIR — $1,145, most expensive English card of 2026</div><div class="hot-sub">KCE holds the Mega Attack Rare sibling (269/217, $82.60). Set heat lifts the whole Gengar line — don't rush this one out the door.</div></div>
+    <div class="hot-icon">🚀</div>
+    <div><div>Storm Emerald (Mega Rayquaza ex) hype building</div><div class="hot-sub">KCE holds M Rayquaza EX at $56.92 (+4.84% today). Aug/Sep release — watch for significant pre-release appreciation. Comps on Mega Rayquaza ex sealed rising.</div></div>
   </div>
   <div class="hot-item">
     <div class="hot-icon">📈</div>
-    <div><div>WotC vintage holos (Base–Jungle–Fossil–Rocket)</div><div class="hot-sub">30th anniversary demand across all conditions. This is the PC core — and Main's Base Set Gyarados/Mewtwo/Nidoking all green today.</div></div>
+    <div><div>WotC vintage holos (Base–Jungle–Fossil–Rocket)</div><div class="hot-sub">30th anniversary demand lifting all conditions. PC up $45+ today on strength here. Nidoqueen Jungle +38.60% and Raichu BS2 +18.61% confirm the trend.</div></div>
   </div>
   <div class="hot-item">
     <div class="hot-icon">🇯🇵</div>
-    <div><div>Japanese CD Promos</div><div class="hot-sub">Mew JP +43.6% today to $94. MewTwo JP steady at $53. Crossover demand from JP + English collectors.</div></div>
+    <div><div>Japanese CD Promos — Mew + Mewtwo</div><div class="hot-sub">Mew JP steady at $94.16; Mewtwo JP +18.90% to $60.55 today. Crossover collector demand from both JP and English markets.</div></div>
   </div>
   <div class="hot-item">
     <div class="hot-icon">⚡</div>
-    <div><div>Ascended Heroes chase density</div><div class="hot-sub">42 cards over $10; SIR pull rate 1-in-70. Pulls from this set keep printing value — KCE's Mega Eelektross SIR ($44.70) came from here.</div></div>
+    <div><div>Neo-era vintage fastest-growing segment</div><div class="hot-sub">Ursaring JP +27.80% today in business book. Magneton BS2 +28.82% in PC. Neo-era singles across both books are heating up ahead of the anniversary.</div></div>
   </div>
   <div class="hot-item" style="margin-bottom:8px;">
     <div class="hot-icon">💎</div>
-    <div><div>PSA-slabbed WotC + promo rares</div><div class="hot-sub">Slab premiums expanding into September. Umbreon PSA 10 positioned exactly right.</div></div>
+    <div><div>PSA slab premiums expanding through Sep</div><div class="hot-sub">+12.84% on PSA 10s over 90 days. Umbreon PSA 10 positioned exactly right for the Sep 16 catalyst window.</div></div>
   </div>
 
   <div class="section-title">KCE Playbook</div>
   <div class="play-item">
     <div class="play-num">1</div>
     <div>
-      <div><strong>List Dragon's Roar + Zombie Madness this week — cash flow first</strong></div>
-      <div class="play-sub">$310.73 combined at 226%/182% ROI on $102.75 cost. Net cash is −$8.41; one sale flips the whole book positive. CardsHQ first, eBay backup, offer as a vintage YGO pair for premium.</div>
+      <div><strong>First Partner S2 THIS THURSDAY (Jun 19) — act now</strong></div>
+      <div class="play-sub">S1 returned +233% in under 30 days. Secure 1–2 at retail ($30 each). Use Dragon's Roar proceeds to fund. No second-guessing the precedent.</div>
     </div>
   </div>
   <div class="play-item">
     <div class="play-num">2</div>
     <div>
-      <div><strong>Calendar: First Partner S2 on Jun 19 — repeat the +233% S1 flip</strong></div>
-      <div class="play-sub">Vending machine or Pokemon Center at retail (~$30). Your S1 sold $50 against $15 cost in under 30 days. Budget the Dragon's Roar proceeds for 1–2 units.</div>
+      <div><strong>List Dragon's Roar + Zombie Madness this week</strong></div>
+      <div class="play-sub">$310.73 combined, 227%/181% ROI on $102.75 cost. Cash is −$8.41; one deck sale flips the book positive. CardsHQ first, eBay backup, offer as a vintage YGO pair for premium. Proceeds → S2 buy Thursday.</div>
     </div>
   </div>
   <div class="play-item">
     <div class="play-num">3</div>
     <div>
-      <div><strong>Bid plan: LiveAuctioneers LA estate lots close ~Jun 14</strong></div>
-      <div class="play-sub">Two lots clear the ROI bar (400%+ under $50 all-in): ~50 Ultra Rares at $25 and ~50 Rares/Shiny Holos at $20. Max hammer $40/$35; 25% BP + ship keeps all-in under $65 each. See Auction Watch below for links.</div>
+      <div><strong>Watch M Rayquaza EX into Storm Emerald window</strong></div>
+      <div class="play-sub">+4.84% today to $56.92. Storm Emerald (Mega Rayquaza ex) lands Aug/Sep. Monitor comps weekly — list if Collectr hits $80+ before release; hold through release if not.</div>
     </div>
   </div>
   <div class="play-item">
     <div class="play-num">4</div>
     <div>
-      <div><strong>Promote Charizard (Det. Pikachu) out of Under-10</strong></div>
-      <div class="play-sub">+24% today to $11.89. Move to Main in Collectr, list with Ditto Det. Pikachu ($11.10) as a movie-set pair ~$25 on FB.</div>
+      <div><strong>HiBid "Past Chapters" closes June 23 — pre-scan lots</strong></div>
+      <div class="play-sub">Realized comps from the same series: Dark Raichu $52, Umbreon lot $385, Complete Base Set $2,050, Team Rocket complete $825. Strong vintage demand — scan lots Thu/Fri for anything under ROI threshold. Link below.</div>
     </div>
   </div>
   <div class="play-item">
     <div class="play-num">5</div>
     <div>
-      <div><strong>Pause the JP bundle; re-check Jun 19</strong></div>
-      <div class="play-sub">Kabutops JP −25% and Tentacruel JP −22% today vs Erika's Clefable +21% — comps are whipsawing. Don't sell into noise; revisit with 7-day trend next week.</div>
+      <div><strong>Charmander SVP LP — hold, underwater, trending right</strong></div>
+      <div class="play-sub">$60.82 (+3.40% today), cost $66.47. Still −$5.65 underwater but moving the right way. Target $75+; patience window to Aug 1.</div>
     </div>
   </div>
   <div class="play-item" style="margin-bottom:8px;">
     <div class="play-num">6</div>
     <div>
-      <div><strong>Umbreon: hold to the Sep 16 window</strong></div>
-      <div class="play-sub">−$3.85 vs cost today; catalyst unchanged. $310 target = +21% from here. No action until the lead-up.</div>
+      <div><strong>Umbreon: hold to Sep 16 window</strong></div>
+      <div class="play-sub">$253.20 (+2.46% today), −$6.80 vs cost. Target $310+ = +22.4% from here. Catalyst unchanged. No action until lead-up or release week.</div>
     </div>
   </div>
 
   <div class="section-title">🔨 Sourcing — Auction Watch</div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">ROI sliding scale: ~400% under $50 → ~100% over $600 · All-in = hammer + buyer's premium + shipping vs multi-channel comps · Every named lot links directly to the listing</div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">ROI sliding scale: ~400% under $50 → ~100% over $600 · All-in = hammer + buyer's premium + shipping vs multi-channel comps · Every named lot links directly to listing</div>
 
   <div class="auc-item">
-    <div class="auc-header"><span class="auc-name">LiveAuctioneers — LA Estate Auction (Northridge, CA)</span><span class="auc-verdict av-bid">BID</span></div>
-    <div class="auc-status">~30 Pokémon lots, ends ~Jun 14, BP 25%.
-      <a href="https://www.liveauctioneers.com/item/234073648" class="lot-link" target="_blank">~50 Ultra Rares — $25, 2 bids → BID (max $40) →</a>
-      <a href="https://www.liveauctioneers.com/item/234073651" class="lot-link" target="_blank">~50 Rares/Shiny Holos — $20, 1 bid → BID (max $35) →</a>
-      <a href="https://www.liveauctioneers.com/item/234073654" class="lot-link" target="_blank">29 EX/Lv.X/V Cards — $60, 2 bids → WATCH (verify Lv.X photos; Infernape Lv.X comps $51) →</a>
-      <a href="https://www.liveauctioneers.com/item/234073649" class="lot-link" target="_blank">16 JP Vintage Holos — $130, 3 bids → PASS (JP comps correcting in our own book today) →</a>
-      <a href="https://www.liveauctioneers.com/item/234073673" class="lot-link" target="_blank">Phantasmal Flames PC ETB — $130, 3 bids → PASS (≈market after BP) →</a>
+    <div class="auc-header"><span class="auc-name">ShopGoodwill — Live lots ending today</span><span class="auc-verdict av-watch">WATCH</span></div>
+    <div class="auc-status">Scanned ending-soonest. No buyer's premium; ~$12–15 ship. Best today:
+      <br><a href="https://shopgoodwill.com/item/267382380" class="lot-link" target="_blank">4.2 Lbs Pokémon Cards — $25 · 1 bid · ~2h →</a> <strong style="color:#d4a800;">WATCH</strong> if holds under $30 (~$43 all-in needs ~$172+ resale for 400% — viable on bulk vintage)
+      <br><a href="https://shopgoodwill.com/item/267386800" class="lot-link" target="_blank">3.8 Lbs Pokémon Cards — $25 · 1 bid · ~2h →</a> <strong style="color:#d4a800;">WATCH</strong> same logic; max bid $28
+      <br><a href="https://shopgoodwill.com/item/267166687" class="lot-link" target="_blank">Holo Lot (Marill 232/217, N's Zekrom, Luxray EX ×2) — $43 · 7 bids · 6PM PT →</a> <strong style="color:var(--muted);">PASS</strong> (~$53 all-in, est. resale $75–100 — below 400% bar)
+      <br><a href="https://shopgoodwill.com/item/267393390" class="lot-link" target="_blank">8.4 Lbs — $69 · 4 bids →</a> <strong style="color:var(--muted);">PASS</strong> (~$84 all-in, need $336+ for 400%)
+      <br><a href="https://shopgoodwill.com/item/267377256" class="lot-link" target="_blank">3.5 Lbs Assorted — $46 · 3 bids →</a> <strong style="color:var(--muted);">PASS</strong> (expensive per lb)
+      <br><a href="https://shopgoodwill.com/item/267392501" class="lot-link" target="_blank">8.8 Lbs — $63.74 · 4 bids →</a> <strong style="color:var(--muted);">PASS</strong>
+      <br><a href="https://shopgoodwill.com/item/266946459" class="lot-link" target="_blank">Vintage Pokémon Binder — $100 · 11 bids · ~12h →</a> <strong style="color:var(--muted);">PASS</strong> at current price
     </div>
   </div>
+
   <div class="auc-item">
-    <div class="auc-header"><span class="auc-name">ShopGoodwill</span><span class="auc-verdict av-watch">WATCH</span></div>
-    <div class="auc-status">1,463 live Pokémon listings scanned (ending-soonest). No BP; ~$10–15 ship.
-      <a href="https://shopgoodwill.com/item/266625567" class="lot-link" target="_blank">Older Cards in Tin A (1995+) 1.41 lbs — $25, 6 bids, ends today → WATCH (blind vintage; cap $35 all-in) →</a>
-      <a href="https://shopgoodwill.com/item/266501515" class="lot-link" target="_blank">24 Modern Holo Rares — $24.99, 0 bids → WATCH (only if photos show alt-arts) →</a>
-      <a href="https://shopgoodwill.com/item/266617576" class="lot-link" target="_blank">Older Cards in Tin B 1.63 lbs — $61, 7 bids → PASS (discovered) →</a>
-      <a href="https://shopgoodwill.com/item/266414060" class="lot-link" target="_blank">Pikachu V-Union [Set of 4] — $35, 9 bids → comp signal: we hold this card at $46.36 →</a>
-      <a href="https://shopgoodwill.com/item/266495613" class="lot-link" target="_blank">Charizard/Charmander lot — $402, 24 bids → PASS (fully discovered) →</a>
+    <div class="auc-header"><span class="auc-name">HiBid — "Past Chapters" closes Jun 23</span><span class="auc-verdict av-watch">SCAN NOW</span></div>
+    <div class="auc-status">Same auction series as the catalog with Dark Raichu $52 realized, Neo Discovery partial (Umbreon) $385, Complete Base Set SW/1st Ed $2,050, Team Rocket complete $825. Strong vintage demand confirmed. Scan lots Thu/Fri before bidding opens heavy.
+      <br><a href="https://hibid.com/catalog/617152" class="lot-link" target="_blank">Past Chapters — Jun 23 →</a>
+      <a href="https://hibid.com/lots?q=pokemon%20cards&status=OPEN&sort=TIME_LEFT" class="lot-link" target="_blank">Search HiBid →</a>
     </div>
   </div>
+
   <div class="auc-item">
-    <div class="auc-header"><span class="auc-name">HiBid</span><span class="auc-verdict av-pass">PASS TODAY</span></div>
-    <div class="auc-status">5,746 results scanned — front page flooded by a CAD repack seller (mystery boxes, $41 CAD opening bids, 0 bids). No graded/vintage singles near threshold. <a href="https://hibid.com/lots?q=pokemon%20cards&status=OPEN&sort=TIME_LEFT" class="lot-link" target="_blank">Re-scan HiBid →</a></div>
+    <div class="auc-header"><span class="auc-name">LiveAuctioneers</span><span class="auc-verdict av-pass">NO ACTIVE LOTS</span></div>
+    <div class="auc-status">No specific active Pokémon lots surfaced for today. Check back for next estate auction cycle.
+      <a href="https://www.liveauctioneers.com/discover/pokemon/" class="lot-link" target="_blank">Search LiveAuctioneers →</a>
+    </div>
   </div>
+
   <div class="auc-item">
     <div class="auc-header"><span class="auc-name">THS Auctions</span><span class="auc-verdict av-pass">NO LIVE SALES</span></div>
-    <div class="auc-status">Scanned — zero auctions live today (source of the Feb Lugia buy). Watch for next sale announcement. <a href="https://www.thsauctions.com" class="lot-link" target="_blank">THS Auctions →</a></div>
+    <div class="auc-status">Zero auctions live today (source of the Feb Lugia + Dragon's Roar + Zombie Madness buys). Watch for next sale announcement.
+      <a href="https://www.thsauctions.com" class="lot-link" target="_blank">THS Auctions →</a>
+    </div>
   </div>
+
   <div class="auc-item" style="margin-bottom:6px;">
     <div class="auc-header"><span class="auc-name">EBTH</span><span class="auc-verdict av-pass">ZERO LOTS</span></div>
-    <div class="auc-status">Scanned — no Pokémon lots live (search falls through to general browse). <a href="https://www.ebth.com/search?q=pokemon" class="lot-link" target="_blank">Re-check EBTH →</a></div>
+    <div class="auc-status">No Pokémon lots live today.
+      <a href="https://www.ebth.com/search?q=pokemon" class="lot-link" target="_blank">Re-check EBTH →</a>
+    </div>
   </div>
 
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;margin-bottom:8px;">
     <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.4px;">Today's Verdict</div>
-    <div style="font-size:13px;">Selective BID day — first since the spec went live. Two cheap LiveAuctioneers rare lots clear the 400% bar at max-bid discipline ($40/$35 hammer caps); everything else is a pass. Sequence matters: list the YGO decks first, fund bids from proceeds, keep cash above zero.</div>
+    <div style="font-size:13px;">Pass on everything live today — none clear the ROI threshold. Two ShopGoodwill bulk lots worth watching IF they hold near their $25 openings; snipe at $28 max. Real opportunity this week is HiBid Jun 23 — pre-scan lots Thursday. Sequence: list YGO decks first, preserve cash for Jun 23 bids.</div>
   </div>
 
   <div class="sources">
-    <strong>Sources:</strong> Collectr live scrape Jun 12 2026, list view, all 8 portfolios — verified to the cent vs portfolio overview ($2,343.66 PC / $1,916.80 Main) · KCE Expense Tracker (Inventory 85 IDs, Sales 14 records) · <a href="https://www.pokemon.com/us/pokemon-news/the-pokemon-tcg-is-celebrating-30-years-with-special-worldwide-releases" style="color:var(--accent-light);">Pokemon.com 30th Celebration</a> · <a href="https://www.dexerto.com/pokemon/pokemon-tcg-release-2629243/" style="color:var(--accent-light);">Dexerto release calendar</a> · <a href="https://www.pokemonpricetracker.com/blog/posts/vintage-pokemon-card-prices-2026-complete-market-report" style="color:var(--accent-light);">Vintage market report</a> · <a href="https://tcgwatchtower.com/pokemon/sets/mega-evolution/ascended-heroes/cards" style="color:var(--accent-light);">Ascended Heroes price guide</a> · Live auction scans Jun 12: ShopGoodwill, HiBid, LiveAuctioneers, THS, EBTH (all lot links verified this session)<br>
-    <strong>Note:</strong> Every named auction lot above links directly to its listing, per spec. Collectr "Combined Value" header ($4,599) uses NM book prices; this report uses condition-adjusted per-card prices ($4,579 all-8 equivalent) — the numbers reconcile to within $1 of live drift.
+    <strong>Sources:</strong> Collectr live scrape Jun 17 2026, list view, all 8 portfolios (two-sort union for PERSONAL COLLECTION 57-item cap fix; totals reconciled to portfolio overview) · KCE Expense Tracker (Inventory 85 IDs, Sales 14 records, as of Jun 12 workbook snapshot) · <a href="https://www.pokemon.com/us/pokemon-news" style="color:var(--accent-light);">Pokémon.com release calendar</a> · <a href="https://www.dexerto.com/pokemon/pokemon-tcg-release-2629243/" style="color:var(--accent-light);">Dexerto TCG calendar</a> · Market pulse: Card Ladder Index, PSA population data, sentiment composite · Live auction scans Jun 17: ShopGoodwill (lot links verified this session), HiBid, LiveAuctioneers, THS, EBTH<br>
+    <strong>Note:</strong> MAIN and UNDER 10 per-card Δ% shown where scraped today; rows without delta reflect June 12 pricing on lower-value items (movement immaterial vs totals). All portfolio totals are Jun 17 live values from Collectr.
   </div>
 
 </div><!-- /panel-2 -->
@@ -1022,7 +894,7 @@ function filterTables(q, grp) {
   tables.forEach(table => {
     const tbody = table.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
-    const emptyEl = table.previousElementSibling; // .no-results div
+    const emptyEl = table.previousElementSibling;
     let anyMatch = false;
     rows.forEach(row => {
       const text = (row.dataset.n || '') + ' ' + row.innerText.toLowerCase();
@@ -1030,11 +902,9 @@ function filterTables(q, grp) {
       row.classList.toggle('hidden', !show);
       if (show) anyMatch = true;
     });
-    // show/hide no-results
     if (emptyEl && emptyEl.classList.contains('no-results')) {
       emptyEl.classList.toggle('show', q.length > 0 && !anyMatch);
     }
-    // auto-expand when searching
     const det = table.closest('details');
     if (det && q) det.open = anyMatch;
   });
