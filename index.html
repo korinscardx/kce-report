@@ -3,751 +3,580 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>KCE Daily Intel — August 14, 2026</title>
+<title>KCE Daily Intel — August 15, 2026</title>
 <style>
-:root {
-  --bg: #0f1117;
-  --surface: #171a23;
-  --surface-2: #1e2230;
-  --border: #2a2f3f;
-  --text: #eef0f6;
-  --text-dim: #9aa0b4;
-  --text-faint: #656b80;
-  --accent: #7c6cff;
-  --accent-soft: #b3a6ff;
-  --accent-bg: rgba(124,108,255,0.12);
-  --up: #33d39a;
-  --down: #fb6a6a;
-  --radius-s: 8px;
-  --radius-m: 14px;
-  --radius-l: 20px;
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 12px;
-  --sp-4: 16px;
-  --sp-5: 24px;
-  --sp-6: 32px;
-  --sp-7: 48px;
-  --fs-xs: 11px;
-  --fs-s: 13px;
-  --fs-m: 15px;
-  --fs-l: 19px;
-  --fs-xl: 26px;
-  --fs-xxl: 34px;
+:root{
+  --bg:#0f1117; --bg-elev:#161923; --bg-elev2:#1c1f2b; --border:#262a38;
+  --text:#f2f3f7; --text-dim:#9a9fb0; --text-faint:#6b7086;
+  --accent:#7c6cff; --accent-soft:#b3a6ff; --accent-bg:rgba(124,108,255,0.12);
+  --green:#33d39a; --red:#fb6a6a;
+  --radius:14px; --radius-sm:9px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
+  color-scheme: dark;
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin:0; padding:0; background:var(--bg); color:var(--text); }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
-  font-size: var(--fs-m);
-  line-height: 1.5;
-  max-width: 480px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding-bottom: var(--sp-7);
-}
-::selection { background: var(--accent); color: #fff; }
-a { color: var(--accent-soft); }
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:40px;}
 
-header.top {
-  padding: var(--sp-5) var(--sp-4) var(--sp-4);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top:0; z-index: 20;
-  background: rgba(15,17,23,0.92);
-  backdrop-filter: blur(10px);
-}
-header.top h1 {
-  font-size: var(--fs-xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0 0 2px;
-}
-header.top .date {
-  color: var(--text-dim);
-  font-size: var(--fs-s);
-}
-header.top .date .live-dot {
-  display:inline-block; width:6px; height:6px; border-radius:50%;
-  background: var(--up); margin-right:6px; box-shadow: 0 0 6px var(--up);
-}
+/* Header */
+.header{padding:20px 16px 14px;position:sticky;top:0;z-index:20;background:rgba(15,17,23,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.header-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2px;}
+.header h1{font-size:19px;font-weight:700;letter-spacing:-0.01em;margin:0;color:var(--text);}
+.header .date{font-size:12px;color:var(--text-faint);font-variant-numeric:tabular-nums;}
+.header .sub{font-size:12.5px;color:var(--text-dim);margin-top:2px;}
+.reload-btn{background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:8px;padding:4px 8px;font-size:11px;}
 
-nav.tabs {
-  display:flex; gap: var(--sp-2);
-  padding: var(--sp-3) var(--sp-4) 0;
-  position: sticky; top: 64px; z-index: 19;
-  background: var(--bg);
-}
-nav.tabs button {
-  flex:1;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  font-size: var(--fs-s);
-  font-weight: 600;
-  padding: 10px 6px;
-  border-radius: var(--radius-s);
-  cursor: pointer;
-  transition: all .15s ease;
-}
-nav.tabs button.active {
-  background: var(--accent-bg);
-  border-color: var(--accent);
-  color: var(--accent-soft);
-}
-nav.tabs button:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+/* Tabs */
+.tabbar{display:flex;gap:2px;padding:10px 12px 0;background:var(--bg);position:sticky;top:64px;z-index:19;border-bottom:1px solid var(--border);}
+.tab-btn{flex:1;text-align:center;padding:10px 4px;font-size:13px;font-weight:600;color:var(--text-faint);
+  background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;}
+.tab-btn.active{color:var(--accent-soft);border-bottom-color:var(--accent);}
+.tabpanel{display:none;padding:16px;}
+.tabpanel.active{display:block;}
 
-main { padding: var(--sp-4); }
-.tabpanel { display:none; }
-.tabpanel.active { display:block; }
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.kpi-grid.five > .kpi:last-child{grid-column:1 / -1;}
+.kpi{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
+.kpi .label{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;}
+.kpi .value{font-size:20px;font-weight:700;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;}
+.kpi .delta{font-size:12px;margin-top:3px;font-variant-numeric:tabular-nums;}
+.pos{color:var(--green);} .neg{color:var(--red);} .neutral{color:var(--text-dim);}
 
-.section { margin-bottom: var(--sp-6); }
-.section-title {
-  font-size: var(--fs-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-faint);
-  font-weight: 700;
-  margin: 0 0 var(--sp-3);
-}
+/* Section headers */
+.section{margin-bottom:22px;}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px;}
+.section-title{font-size:15px;font-weight:700;letter-spacing:-0.01em;}
+.section-note{font-size:11px;color:var(--text-faint);}
 
-.kpi-grid {
-  display:grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3);
-}
-.kpi-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-m);
-  padding: var(--sp-4);
-}
-.kpi-card.wide { grid-column: 1 / -1; }
-.kpi-label { font-size: var(--fs-xs); color: var(--text-dim); margin-bottom: var(--sp-1); }
-.kpi-value { font-size: var(--fs-xl); font-weight: 700; letter-spacing: -0.01em; }
-.kpi-value.accent { color: var(--accent-soft); }
-.kpi-value.up { color: var(--up); }
-.kpi-sub { font-size: var(--fs-xs); color: var(--text-faint); margin-top: 2px; }
+/* Portfolio breakdown bars */
+.pbar-row{margin-bottom:10px;}
+.pbar-top{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px;}
+.pbar-name{color:var(--text-dim);}
+.pbar-val{font-variant-numeric:tabular-nums;font-weight:600;}
+.pbar-track{height:6px;background:var(--bg-elev2);border-radius:4px;overflow:hidden;}
+.pbar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));border-radius:4px;}
 
-.pf-row { display:flex; align-items:center; gap: var(--sp-3); padding: 7px 0; }
-.pf-label { flex: 0 0 108px; font-size: var(--fs-s); color: var(--text-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.pf-note { color: var(--text-faint); font-size: 10px; }
-.pf-bar-track { flex:1; height:8px; background: var(--surface-2); border-radius: 4px; overflow:hidden; }
-.pf-bar { height:100%; background: linear-gradient(90deg, var(--accent), var(--accent-soft)); border-radius:4px; }
-.pf-bar.pc { background: linear-gradient(90deg, #4d5d8a, #8b9bd9); }
-.pf-val { flex: 0 0 auto; font-size: var(--fs-s); font-weight:600; text-align:right; min-width: 78px; }
-.pf-pct { color: var(--text-faint); font-weight:400; font-size: var(--fs-xs); }
+/* Movers */
+.mover-card{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;background:var(--bg-elev);
+  border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;}
+.mover-left{min-width:0;flex:1;}
+.mover-name{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mover-set{font-size:11px;color:var(--text-faint);margin-top:1px;}
+.mover-right{text-align:right;flex-shrink:0;margin-left:10px;}
+.mover-price{font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums;}
+.mover-delta{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;}
 
-.mover-row {
-  display:flex; justify-content:space-between; align-items:center;
-  padding: var(--sp-3) 0; border-bottom: 1px solid var(--border);
-}
-.mover-row:last-child { border-bottom:none; }
-.mover-name { font-size: var(--fs-s); font-weight:600; display:flex; flex-direction:column; }
-.mover-set { font-size: var(--fs-xs); color: var(--text-faint); font-weight:400; margin-top:1px; }
-.mover-price { text-align:right; font-size: var(--fs-s); font-weight:600; display:flex; flex-direction:column; align-items:flex-end; }
-.mover-delta { font-size: var(--fs-xs); font-weight:700; margin-top:1px; }
-.mover-delta.up { color: var(--up); }
-.mover-delta.down { color: var(--down); }
+/* Alerts */
+.alert{padding:12px;background:var(--bg-elev);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:var(--radius-sm);margin-bottom:8px;}
+.alert-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+  padding:2px 7px;border-radius:5px;margin-bottom:6px;}
+.badge-sell{background:rgba(51,211,154,0.15);color:var(--green);}
+.badge-watch{background:rgba(124,108,255,0.18);color:var(--accent-soft);}
+.badge-hold{background:rgba(154,159,176,0.15);color:var(--text-dim);}
+.badge-bundle{background:rgba(251,106,106,0.12);color:var(--red);}
+.alert-title{font-size:13.5px;font-weight:600;margin-bottom:3px;}
+.alert-reason{font-size:12.5px;color:var(--text-dim);}
 
-.alert {
-  display:flex; gap: var(--sp-3);
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius-s);
-  padding: var(--sp-3) var(--sp-4);
-  margin-bottom: var(--sp-2);
-  font-size: var(--fs-s);
-}
-.alert.sell { border-left-color: var(--up); }
-.alert.watch { border-left-color: var(--accent); }
-.alert.hold { border-left-color: var(--text-faint); }
-.alert .tag {
-  flex: 0 0 auto; font-size: 10px; font-weight:800; text-transform:uppercase;
-  color: var(--accent-soft); letter-spacing:.04em; padding-top:1px;
-}
-.alert.sell .tag { color: var(--up); }
-.alert.hold .tag { color: var(--text-dim); }
-.alert p { margin:0; color: var(--text-dim); }
-.alert b { color: var(--text); }
+/* Filter box */
+.filter-box{display:flex;align-items:center;gap:8px;background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:10px;padding:9px 12px;margin-bottom:12px;}
+.filter-box input{flex:1;background:none;border:none;color:var(--text);font-size:13.5px;outline:none;}
+.filter-box input::placeholder{color:var(--text-faint);}
 
-.filter-bar { display:flex; gap: var(--sp-2); margin-bottom: var(--sp-4); }
-.filter-bar input {
-  flex:1; background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-s); padding: 10px 12px; color: var(--text);
-  font-size: var(--fs-s);
-}
-.filter-bar input:focus { outline: 2px solid var(--accent-soft); outline-offset: -1px; }
-.filter-bar input::placeholder { color: var(--text-faint); }
+/* Portfolio list (collapsible) */
+.plist{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;}
+.plist-head{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;cursor:pointer;}
+.plist-head-left{display:flex;flex-direction:column;gap:2px;}
+.plist-title{font-size:13.5px;font-weight:700;}
+.plist-meta{font-size:11px;color:var(--text-faint);}
+.plist-chev{color:var(--text-faint);font-size:11px;transition:transform 0.15s ease;}
+.plist.open .plist-chev{transform:rotate(90deg);}
+.plist-body{display:none;border-top:1px solid var(--border);}
+.plist.open .plist-body{display:block;}
+.ptable{width:100%;border-collapse:collapse;}
+.ptable th{position:sticky;top:0;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.03em;
+  color:var(--text-faint);padding:8px 10px;background:var(--bg-elev2);cursor:pointer;user-select:none;}
+.ptable th.num{text-align:right;}
+.ptable td{padding:9px 10px;font-size:12.5px;border-top:1px solid var(--border);vertical-align:top;}
+.ptable td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ptable .cname{font-weight:600;}
+.ptable .cset{font-size:10.5px;color:var(--text-faint);margin-top:1px;}
+.ptable .ccond{display:inline-block;font-size:10px;color:var(--accent-soft);margin-top:2px;}
+.status-hold{color:#f2c14e;font-size:10px;}
+.empty-row td{text-align:center;color:var(--text-faint);padding:20px;font-size:12.5px;}
 
-.pf-block {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-m); margin-bottom: var(--sp-3); overflow:hidden;
-}
-.pf-head {
-  display:flex; justify-content:space-between; align-items:center;
-  padding: var(--sp-4); cursor:pointer; user-select:none;
-  min-height: 44px;
-}
-.pf-head-l { display:flex; flex-direction:column; }
-.pf-head-name { font-weight:700; font-size: var(--fs-m); }
-.pf-head-meta { font-size: var(--fs-xs); color: var(--text-faint); margin-top:2px; }
-.pf-head-r { display:flex; align-items:center; gap: var(--sp-3); }
-.pf-head-val { font-weight:700; color: var(--accent-soft); }
-.chevron { width:9px; height:9px; border-right:2px solid var(--text-faint); border-bottom:2px solid var(--text-faint); transform: rotate(45deg); transition: transform .18s ease; }
-.pf-block.open .chevron { transform: rotate(-135deg); }
+/* Private holdings */
+.priv-card{background:linear-gradient(155deg,rgba(124,108,255,0.10),var(--bg-elev));border:1px solid rgba(124,108,255,0.35);
+  border-radius:var(--radius);padding:16px;}
+.priv-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.priv-head .lock{font-size:16px;}
+.priv-head .name{font-size:14.5px;font-weight:700;}
+.priv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.priv-stat .label{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;}
+.priv-stat .value{font-size:14px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
+.priv-note{font-size:12px;color:var(--text-dim);margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
 
-.pf-table-wrap { display:none; border-top: 1px solid var(--border); }
-.pf-block.open .pf-table-wrap { display:block; }
-table.card-table { width:100%; border-collapse:collapse; font-size: 12.5px; }
-table.card-table th {
-  text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:.04em;
-  color: var(--text-faint); padding: 8px 10px; border-bottom: 1px solid var(--border);
-  position: sticky; top:0; background: var(--surface-2); cursor:pointer;
-  white-space:nowrap;
-}
-table.card-table th.num { text-align:right; }
-table.card-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align:top; }
-table.card-table td.num { text-align:right; white-space:nowrap; font-variant-numeric: tabular-nums; }
-table.card-table tr:last-child td { border-bottom:none; }
-table.card-table .cname { font-weight:600; }
-table.card-table .cset { color: var(--text-faint); font-size:11px; display:block; }
-.delta.up { color: var(--up); }
-.delta.down { color: var(--down); }
-.status-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:4px; }
-.status-dot.avail { background: var(--up); }
-.status-dot.hold { background: var(--accent-soft); }
+/* P&L summary */
+.plsum-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.plsum-row:last-child{border-bottom:none;font-weight:700;}
+.plsum-label{color:var(--text-dim);}
+.plsum-val{font-variant-numeric:tabular-nums;font-weight:600;}
 
-.private-card {
-  background: linear-gradient(160deg, var(--accent-bg), var(--surface));
-  border: 1px solid var(--accent); border-radius: var(--radius-m);
-  padding: var(--sp-4);
-}
-.private-card .lock-row { display:flex; align-items:center; gap:6px; font-size: var(--fs-xs); color: var(--accent-soft); font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom: var(--sp-3); }
-.private-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
-.private-grid .item { }
-.private-grid .l { font-size: var(--fs-xs); color: var(--text-dim); }
-.private-grid .v { font-size: var(--fs-l); font-weight:700; margin-top:2px; }
-.private-note { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--border); font-size: var(--fs-s); color: var(--text-dim); }
+/* Channel rates */
+.channel-row{display:flex;justify-content:space-between;padding:9px 12px;background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-sm);margin-bottom:6px;font-size:13px;}
+.channel-name{font-weight:600;}
+.channel-rate{color:var(--accent-soft);font-variant-numeric:tabular-nums;}
 
-table.pnl { width:100%; border-collapse:collapse; font-size: var(--fs-s); }
-table.pnl td { padding: 9px 0; border-bottom: 1px solid var(--border); }
-table.pnl td:last-child { text-align:right; font-weight:700; font-variant-numeric: tabular-nums; }
-table.pnl tr.total td { border-top: 1px solid var(--accent); border-bottom:none; padding-top: 12px; color: var(--accent-soft); font-size: var(--fs-m); }
-table.pnl tr.sub td { color: var(--text-faint); font-size: var(--fs-xs); }
+/* Market intel content blocks */
+.intel-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px;}
+.intel-card h3{font-size:13.5px;margin:0 0 10px;font-weight:700;}
+.release-row{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.release-row:last-child{border-bottom:none;}
+.release-date{flex-shrink:0;width:64px;font-size:11.5px;color:var(--accent-soft);font-weight:700;line-height:1.3;}
+.release-body .rtitle{font-size:12.5px;font-weight:600;}
+.release-body .rangle{font-size:11.5px;color:var(--text-dim);margin-top:2px;}
+.hot-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);gap:10px;}
+.hot-row:last-child{border-bottom:none;}
+.hot-name{font-size:12.5px;font-weight:600;}
+.hot-note{font-size:11.5px;color:var(--text-dim);margin-top:2px;}
+.playbook-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.playbook-item:last-child{border-bottom:none;}
+.playbook-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--accent-bg);color:var(--accent-soft);
+  font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.playbook-text{font-size:12.5px;color:var(--text);line-height:1.5;}
+.stat-line{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:8px;}
+.stat-line b{color:var(--text);}
 
-.channel-row { display:flex; justify-content:space-between; padding: var(--sp-2) 0; font-size: var(--fs-s); border-bottom: 1px solid var(--border); }
-.channel-row:last-child { border-bottom:none; }
-.channel-row .rate { color: var(--accent-soft); font-weight:700; }
+/* Sourcing */
+.lot-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px;}
+.lot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.lot-name{font-size:12.5px;font-weight:600;}
+.lot-meta{font-size:11px;color:var(--text-faint);margin-top:3px;}
+.verdict{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:0.03em;padding:3px 8px;border-radius:6px;text-transform:uppercase;}
+.v-pass{background:rgba(154,159,176,0.15);color:var(--text-dim);}
+.v-watch{background:rgba(124,108,255,0.18);color:var(--accent-soft);}
+.v-bid{background:rgba(51,211,154,0.15);color:var(--green);}
+.v-check{background:rgba(242,193,78,0.15);color:#f2c14e;}
+.lot-link{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--accent-soft);text-decoration:none;border-bottom:1px solid rgba(179,166,255,0.3);}
+.coverage-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid var(--border);}
+.coverage-row:last-child{border-bottom:none;}
+.cov-status{font-weight:600;}
+.cov-live{color:var(--green);} .cov-issue{color:#f2c14e;} .cov-none{color:var(--text-faint);}
 
-.intel-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-m); padding: var(--sp-4); margin-bottom: var(--sp-3);
-}
-.intel-card h3 { margin: 0 0 var(--sp-3); font-size: var(--fs-m); font-weight:700; }
-.release-row { display:flex; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom:1px solid var(--border); }
-.release-row:last-child { border-bottom:none; }
-.release-date { flex: 0 0 62px; font-size: var(--fs-xs); color: var(--accent-soft); font-weight:700; }
-.release-body b { font-size: var(--fs-s); display:block; }
-.release-body span { font-size: var(--fs-xs); color: var(--text-dim); }
-.release-body .angle { color: var(--accent-soft); display:block; margin-top:3px; }
-
-.pulse-stat { display:flex; justify-content:space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-s); }
-.pulse-stat:last-child { border-bottom:none; }
-.pulse-stat .v { font-weight:700; }
-.pulse-stat .v.up { color: var(--up); }
-
-.playbook-item { display:flex; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom:1px solid var(--border); font-size: var(--fs-s); }
-.playbook-item:last-child { border-bottom:none; }
-.playbook-num { flex:0 0 20px; color: var(--accent-soft); font-weight:800; }
-
-.lot-row { padding: var(--sp-3) 0; border-bottom: 1px solid var(--border); }
-.lot-row:last-child { border-bottom: none; }
-.lot-top { display:flex; justify-content:space-between; align-items:flex-start; gap: var(--sp-2); }
-.lot-title { font-size: var(--fs-s); font-weight:600; }
-.lot-meta { font-size: var(--fs-xs); color: var(--text-faint); margin-top:2px; }
-.verdict {
-  flex: 0 0 auto; font-size: 10px; font-weight:800; text-transform:uppercase;
-  padding: 3px 8px; border-radius: 20px; letter-spacing:.03em;
-}
-.verdict.pass { background: rgba(251,106,106,0.12); color: var(--down); }
-.verdict.watch { background: var(--accent-bg); color: var(--accent-soft); }
-.verdict.bid { background: rgba(51,211,154,0.12); color: var(--up); }
-.lot-link { font-size: var(--fs-xs); margin-top: 4px; display:inline-block; }
-.platform-status { font-size: var(--fs-xs); color: var(--text-faint); margin-bottom: var(--sp-3); padding-bottom: var(--sp-3); border-bottom: 1px dashed var(--border); }
-.platform-status b { color: var(--text-dim); }
-
-.sources { font-size: var(--fs-xs); color: var(--text-faint); line-height:1.7; padding-top: var(--sp-3); }
-.sources a { color: var(--text-faint); }
-
-.empty-state { text-align:center; padding: var(--sp-6) var(--sp-4); color: var(--text-faint); font-size: var(--fs-s); }
-
-footer.assumptions {
-  margin: var(--sp-6) var(--sp-4) 0; padding: var(--sp-4);
-  border-top: 1px solid var(--border); font-size: var(--fs-xs); color: var(--text-faint); line-height:1.6;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}
+.sources-line{font-size:10.5px;color:var(--text-faint);margin-top:20px;padding-top:14px;border-top:1px solid var(--border);line-height:1.6;}
 </style>
 </head>
 <body>
+<div class="app">
 
-<header class="top">
-  <h1>KCE Daily Intel</h1>
-  <div class="date"><span class="live-dot"></span>August 14, 2026 · Live Collectr sync</div>
-</header>
-
-<nav class="tabs">
-  <button class="active" data-tab="biz">Business</button>
-  <button data-tab="pc">My Collection</button>
-  <button data-tab="intel">Market Intel</button>
-</nav>
-
-<main>
-
-<!-- ============ TAB 1: BUSINESS ============ -->
-<section class="tabpanel active" id="tab-biz">
-
-  <div class="filter-bar">
-    <input type="text" id="biz-filter" placeholder="Filter cards or sets…" oninput="filterTables('biz')">
+  <div class="header">
+    <div class="header-top">
+      <h1>KCE Daily Intel</h1>
+      <span class="date">August 15, 2026</span>
+    </div>
+    <div class="sub">Korin's Card Exchange — business + collection snapshot</div>
   </div>
 
-  <div class="section">
-    <div class="section-title">Key Metrics</div>
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-label">Live Portfolio Value</div>
-        <div class="kpi-value accent">$4,057.23</div>
-        <div class="kpi-sub">7 FOR SALE portfolios, 100% gross</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Public Holdings</div>
-        <div class="kpi-value">$3,888.49</div>
-        <div class="kpi-sub">excl. 🔒 Hold-Private</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">True Economic Position</div>
-        <div class="kpi-value up">$3,004.35</div>
-        <div class="kpi-sub">WOTC Lot @ 20% KCE share</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Unrealized Gain</div>
-        <div class="kpi-value up">+$2,955.59</div>
-        <div class="kpi-sub">vs $1,000.55 cost basis</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Realized P&amp;L</div>
-        <div class="kpi-value up">+$1,095.06</div>
-        <div class="kpi-sub">49 items sold to date</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Net Cash Position</div>
-        <div class="kpi-value">$475.47</div>
-        <div class="kpi-sub">after $534 payables/IOU</div>
+  <div class="tabbar">
+    <button class="tab-btn active" data-tab="biz">📦 Business</button>
+    <button class="tab-btn" data-tab="pc">🎴 My Collection</button>
+    <button class="tab-btn" data-tab="intel">📊 Market Intel</button>
+  </div>
+
+  <!-- ===================== BUSINESS TAB ===================== -->
+  <div class="tabpanel active" id="tab-biz">
+
+    <div class="section">
+      <div class="kpi-grid five">
+        <div class="kpi"><div class="label">Live Portfolio Value</div><div class="value" id="kpi-live"></div><div class="delta neutral">KCE economic interest</div></div>
+        <div class="kpi"><div class="label">Public Holdings</div><div class="value" id="kpi-public"></div><div class="delta neutral">excl. Hold-Private</div></div>
+        <div class="kpi"><div class="label">Unrealized Gain</div><div class="value pos" id="kpi-unreal"></div><div class="delta neutral" id="kpi-cost"></div></div>
+        <div class="kpi"><div class="label">Realized P&amp;L</div><div class="value pos" id="kpi-realized"></div><div class="delta neutral">lifetime</div></div>
+        <div class="kpi"><div class="label">Net Cash Position</div><div class="value pos" id="kpi-cash"></div><div class="delta neutral">cash in − cash out</div></div>
       </div>
     </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Portfolio Breakdown</span><span class="section-note">7 FOR SALE portfolios</span></div>
+      <div id="portfolio-bars"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Top Movers Today</span></div>
+      <div id="top-movers"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Action Alerts</span></div>
+      <div class="alert"><span class="alert-badge badge-sell">Sell</span>
+        <div class="alert-title">Ursaring (JP) — Neo Discovery · $22.01 (+30.17% today)</div>
+        <div class="alert-reason">Neo-era Japanese vintage is confirmed the fastest-growing TCG segment right now — this spike lines up with that trend. Lock in the pop rather than chase further upside on a $22 common-tier holo.</div></div>
+      <div class="alert"><span class="alert-badge badge-watch">Watch</span>
+        <div class="alert-title">🔒 Umbreon ex-176 PSA 10 — $168.74 (-6.16% today, -35.3% vs $260 cost)</div>
+        <div class="alert-reason">Steady bleed continues with no bounce since mid-July. Both catalysts (Espeon/Umbreon 30th Anniversary Premium Deck Sep 16, 30th Celebration Battle Decks Oct 30) are still ahead — hold through both per standing decision before reacting.</div></div>
+      <div class="alert"><span class="alert-badge badge-hold">Hold</span>
+        <div class="alert-title">Destined Rivals Booster Box — $449.24 (-3.35% today)</div>
+        <div class="alert-reason">Still the single highest line in Main Inventory. Sealed product moves slower than singles — a few-day dip isn't a signal. Note: cost was fronted by a friend ($470 IOU, see Outstanding Purchase Debts) — repay on sale before booking profit.</div></div>
+      <div class="alert"><span class="alert-badge badge-sell">Sell</span>
+        <div class="alert-title">Kingdra (JP) &amp; Furret (JP) — WOTC Lot · +123% / +175% today</div>
+        <div class="alert-reason">Outsized single-day spikes on thin-liquidity Neo Genesis Japanese singles inside David's consigned stock. Flag to David — good window for a quick flip vs. holding for more (his 80% cut applies either way).</div></div>
+      <div class="alert"><span class="alert-badge badge-bundle">Bundle</span>
+        <div class="alert-title">Trainers portfolio — 5 cards, $7.13 combined</div>
+        <div class="alert-reason">Too thin to list solo. Fold into the next mixed FB/eBay lot rather than spending listing effort on sub-$3 singles individually.</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Inventory</span></div>
+      <div class="filter-box"><span>🔍</span><input type="text" id="biz-filter" placeholder="Search name or set…"></div>
+      <div id="biz-lists"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">🔒 Private Holdings</span></div>
+      <div class="priv-card">
+        <div class="priv-head"><span class="lock">🔒</span><span class="name">Umbreon ex - 176 (PSA 10 GEM-MT)</span></div>
+        <div class="priv-grid">
+          <div class="priv-stat"><div class="label">Live Value</div><div class="value">$168.74</div></div>
+          <div class="priv-stat"><div class="label">Cost</div><div class="value">$260.00</div></div>
+          <div class="priv-stat"><div class="label">P&amp;L</div><div class="value neg">-$91.26 (-35.1%)</div></div>
+          <div class="priv-stat"><div class="label">Today</div><div class="value neg">-6.16%</div></div>
+          <div class="priv-stat"><div class="label">Target</div><div class="value">$310.00</div></div>
+          <div class="priv-stat"><div class="label">Read</div><div class="value neutral" style="font-size:12px;">Hold through catalysts</div></div>
+        </div>
+        <div class="priv-note">Catalysts: Espeon &amp; Umbreon 30th Anniversary Premium Deck (Sep 16) and the 30th Celebration Battle Decks — also Espeon ex/Umbreon ex themed (confirmed Oct 30). Hold through both before reacting to the drawdown.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">P&amp;L Summary</span></div>
+      <div class="plist open" style="padding:2px 14px 6px;">
+        <div class="plsum-row"><span class="plsum-label">Cost Basis (on hand, business)</span><span class="plsum-val">$1,000.55</span></div>
+        <div class="plsum-row"><span class="plsum-label">Live Value (KCE interest)</span><span class="plsum-val">$2,968.89</span></div>
+        <div class="plsum-row"><span class="plsum-label">Unrealized Gain</span><span class="plsum-val pos">+$1,968.34</span></div>
+        <div class="plsum-row"><span class="plsum-label">Realized Net Profit (lifetime)</span><span class="plsum-val pos">$1,095.06</span></div>
+        <div class="plsum-row"><span class="plsum-label">Net Cash Position</span><span class="plsum-val pos">$475.47</span></div>
+        <div class="plsum-row"><span class="plsum-label">Less: Consignment Payable (David, 80%)</span><span class="plsum-val neg">-$64.00</span></div>
+        <div class="plsum-row"><span class="plsum-label">Less: Purchase IOU (Booster Box)</span><span class="plsum-val neg">-$470.00</span></div>
+        <div class="plsum-row"><span class="plsum-label">True Economic Position</span><span class="plsum-val">$942.02</span></div>
+      </div>
+      <div class="section-note" style="margin-top:8px;">Workbook cost/cash figures dated 8/9/26 (last edit) — Collectr pricing is live as of today.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Selling Channel Net Rates</span></div>
+      <div class="channel-row"><span class="channel-name">eBay</span><span class="channel-rate">~83%</span></div>
+      <div class="channel-row"><span class="channel-name">CardsHQ</span><span class="channel-rate">70–80%</span></div>
+      <div class="channel-row"><span class="channel-name">Facebook Marketplace</span><span class="channel-rate">80–90%</span></div>
+    </div>
+
   </div>
 
-  <div class="section">
-    <div class="section-title">Portfolio Breakdown</div>
-    <div class="pf-row">
-  <div class="pf-label">Main Inventory</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:100.0%"></div></div>
-  <div class="pf-val">$2,345.90 <span class="pf-pct">58%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">Under 10</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:11.7%"></div></div>
-  <div class="pf-val">$273.79 <span class="pf-pct">7%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">Japanese Poke</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:3.5%"></div></div>
-  <div class="pf-val">$82.57 <span class="pf-pct">2%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">EX & Mega EX</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:0.6%"></div></div>
-  <div class="pf-val">$12.93 <span class="pf-pct">0%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">V Cards</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:0.8%"></div></div>
-  <div class="pf-val">$18.91 <span class="pf-pct">0%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">Trainers</div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:0.3%"></div></div>
-  <div class="pf-val">$7.03 <span class="pf-pct">0%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">WOTC Lot <span class="pf-note">(20% KCE ≈ $263.22)</span></div>
-  <div class="pf-bar-track"><div class="pf-bar" style="width:56.1%"></div></div>
-  <div class="pf-val">$1,316.10 <span class="pf-pct">32%</span></div>
+  <!-- ===================== MY COLLECTION TAB ===================== -->
+  <div class="tabpanel" id="tab-pc">
+
+    <div class="section">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="label">Total PC</div><div class="value" id="kpi-pc-total"></div></div>
+        <div class="kpi"><div class="label">Personal Collection</div><div class="value" id="kpi-pc-main"></div></div>
+        <div class="kpi"><div class="label">Gym Challenge</div><div class="value" id="kpi-pc-gc"></div></div>
+        <div class="kpi"><div class="label">Gym Hero</div><div class="value" id="kpi-pc-gh"></div></div>
+      </div>
+      <div class="section-note" style="margin-top:6px;">PC - Rocket: $618.69 / 61 items (Overview total — full per-card table pending next parity pass, not required by current checklist)</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Top PC Movers</span></div>
+      <div id="pc-movers"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Collection Notes</span></div>
+      <div class="intel-card">
+        <div class="stat-line">These 4 portfolios are Ernesto's personal keepers — never counted in business KPIs, listing queues, or P&amp;L. Highlights: two graded slabs in Personal Collection (Lt. Surge's Raichu $257.75, Rocket's Zapdos $220.34), both Japanese CD Promo Mews ($145.48 / $83.31), and a full Gym Heroes/Gym Challenge common-to-holo run.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">Collection</span></div>
+      <div class="filter-box"><span>🔍</span><input type="text" id="pc-filter" placeholder="Search name or set…"></div>
+      <div id="pc-lists"></div>
+    </div>
+
+  </div>
+
+  <!-- ===================== MARKET INTEL TAB ===================== -->
+  <div class="tabpanel" id="tab-intel">
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">📅 Upcoming Releases</span></div>
+      <div class="intel-card">
+        <div class="release-row"><div class="release-date">Sep 16</div><div class="release-body">
+          <div class="rtitle">30th Celebration — worldwide simultaneous launch (first in TCG history)</div>
+          <div class="rangle">Wave 1: base set + Espeon &amp; Umbreon 30th Anniversary Premium Deck — the Umbreon PSA10 hold's first catalyst.</div></div></div>
+        <div class="release-row"><div class="release-date">Oct 2</div><div class="release-body">
+          <div class="rtitle">30th Celebration Wave 2</div>
+          <div class="rangle">Booster Bundles, Binder Collection, Day &amp; Night Mini Tins.</div></div></div>
+        <div class="release-row"><div class="release-date">Oct 30</div><div class="release-body">
+          <div class="rtitle">30th Celebration Wave 3 — CONFIRMED</div>
+          <div class="rangle">All-foil 60-card Espeon ex / Umbreon ex Battle Decks — the Umbreon hold's second, firmer catalyst.</div></div></div>
+        <div class="release-row"><div class="release-date">Nov 6</div><div class="release-body">
+          <div class="rtitle">30th Celebration Wave 4 (final)</div>
+          <div class="rangle">Ditto Premium Collection, Ultra-Premium Collection, Mew &amp; Mewtwo Figure Collection.</div></div></div>
+        <div class="release-row"><div class="release-date">Live now</div><div class="release-body">
+          <div class="rtitle">Mega Evolution: Pitch Black (since Jul 17)</div>
+          <div class="rangle">Mega Darkrai ex leading chase card of the current cycle — 115+ cards, 6 Mega ex's.</div></div></div>
+      </div>
+      <div class="section-note">Source: Pokémon Center "Estimated Preorder Release Dates" support page + wave-schedule web search. Real-time queue-open alerts are out of scope here — that's PokeNotify's job; this calendar is the forward-looking view.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">📈 Market Pulse</span></div>
+      <div class="intel-card">
+        <div class="stat-line">Tracked market value across 313 sets / 41,000+ cards: <b>$623,711</b>, +4.5% over 30 days, +0.1% over 7 days (as of Aug 7, 2026).</div>
+        <div class="stat-line">Market described as entering <b>maturity/stabilization</b> after 2020–2023 volatility. Long-run TCG market projected $16.26B (2026) → $37.42B (2034), ~11% CAGR.</div>
+        <div class="stat-line"><b>Vintage-up / modern-correcting split confirmed:</b> Neo-era Japanese holo &amp; "Shining" cards (1999–2002) are the fastest-growing segment — tiny PSA10 populations, high-grade Japanese now sometimes exceeding English equivalents. Neo Genesis Lugia PSA10 has climbed past $15,000. Meanwhile some SV-era chase cards are correcting (Charizard ex -8.9%, Mega Darkrai ex -10.6% in early Aug pullbacks).</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">🔥 What's Hot</span></div>
+      <div class="intel-card">
+        <div class="hot-row"><div><div class="hot-name">Neo-era Japanese vintage (WOTC Lot, Japanese Poke)</div><div class="hot-note">Direct match to KCE's Neo Genesis/Discovery (Japanese) singles across both portfolios — the trend driving today's Kingdra/Furret/Skarmory spikes.</div></div></div>
+        <div class="hot-row"><div><div class="hot-name">Mega Darkrai ex — Mega Evolution: Pitch Black</div><div class="hot-note">Current cycle's headline chase card; no KCE holding yet.</div></div></div>
+        <div class="hot-row"><div><div class="hot-name">"Old Back" 1996-97 Japanese classics</div><div class="hot-note">Scarcity + 30th-anniversary attention pushing demand; KCE's oldest JP singles (Neo Discovery/Genesis, 1999-2001) sit adjacent to this wave.</div></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">📋 KCE Playbook</span></div>
+      <div class="intel-card">
+        <div class="playbook-item"><span class="playbook-num">1</span><span class="playbook-text">Sell into today's Neo-JP spikes (Ursaring, Kingdra, Furret) — the vintage-Japanese wave is real per Market Pulse, but single-day +100%+ moves on thin-liquidity commons/uncommons are exit windows, not new floors.</span></div>
+        <div class="playbook-item"><span class="playbook-num">2</span><span class="playbook-text">Hold Umbreon ex-176 through both confirmed catalysts (Sep 16, Oct 30) — the standing decision remains correct; a 6-week-old slow bleed isn't new information.</span></div>
+        <div class="playbook-item"><span class="playbook-num">3</span><span class="playbook-text">Loop David in on the WOTC Lot Neo-JP movers before listing — his 80% share means a quick coordinated flip beats a solo decision.</span></div>
+        <div class="playbook-item"><span class="playbook-num">4</span><span class="playbook-text">Watch for 30th Celebration wave-3 Battle Deck preorders opening in the run-up to Oct 30 — that's the next scarce-drop window after missing 30th Celebration's July preorders.</span></div>
+        <div class="playbook-item"><span class="playbook-num">5</span><span class="playbook-text">Repay the $470 Destined Rivals Booster Box IOU and the $64 David consignment payable promptly once cash allows — both are sitting against an otherwise-positive $475 cash position.</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-title">🔨 Sourcing — Auction Watch</span></div>
+      <div class="intel-card">
+        <h3>Platform coverage</h3>
+        <div class="coverage-row"><span>ShopGoodwill</span><span class="cov-status cov-live">Live — 40 lots scanned</span></div>
+        <div class="coverage-row"><span>EBTH</span><span class="cov-status cov-live">Live — 3 lots scanned</span></div>
+        <div class="coverage-row"><span>HiBid</span><span class="cov-status cov-issue">Search endpoint down (404) — not scanned this run</span></div>
+        <div class="coverage-row"><span>LiveAuctioneers</span><span class="cov-status cov-none">No live-lot search integration yet</span></div>
+        <div class="coverage-row"><span>THS Auctions</span><span class="cov-status cov-none">No live-lot search integration yet</span></div>
+      </div>
+
+      <div class="lot-card">
+        <div class="lot-top"><div><div class="lot-name">40 lbs. Pokémon Trading Cards Lot (Assorted)</div><div class="lot-meta">ShopGoodwill · Current bid $1,011 · 20 bids · ~12h left</div></div><span class="verdict v-pass">Pass</span></div>
+        <div class="lot-meta">Bulk unsorted weight-lot — no set/condition breakdown given. Can't underwrite ROI blind on $1,011+ premium+shipping against unknown contents.</div>
+        <a class="lot-link" href="https://shopgoodwill.com/search?st=pokemon" target="_blank">View search →</a>
+      </div>
+      <div class="lot-card">
+        <div class="lot-top"><div><div class="lot-name">Pokémon TCG Binder Lot — EX/GX/Holo/Reverse Holo, 198 cards</div><div class="lot-meta">ShopGoodwill · Current bid $124 · 9 bids · ~13h left</div></div><span class="verdict v-pass">Pass</span></div>
+        <div class="lot-meta">$0.63/card at current bid before premium+shipping on an unverified modern mixed bulk lot — margin doesn't clear the 400%-under-$50 threshold once landed cost is realistic.</div>
+        <a class="lot-link" href="https://shopgoodwill.com/search?st=pokemon" target="_blank">View search →</a>
+      </div>
+      <div class="lot-card">
+        <div class="lot-top"><div><div class="lot-name">Pokémon 100-Card Collection, 1st Editions &amp; More (1990s–2000s)</div><div class="lot-meta">EBTH · Current bid $160 · 11 bids · ~11h left</div></div><span class="verdict v-check">Check</span></div>
+        <div class="lot-meta">"High grade overall" 1st-edition-era claim is the one listing worth a closer look this week, but no itemized card list or photos of individual cards were surfaced in the scan — worth a manual photo review before bidding, not an automatic pass or bid.</div>
+        <a class="lot-link" href="https://www.ebth.com/items/14567616-pokemon-100-card-collection-featuring-1st-editions-and-more-1990s-2000s" target="_blank">View lot →</a>
+      </div>
+      <div class="lot-card">
+        <div class="lot-top"><div><div class="lot-name">Pokémon Cards w/ Holos — Bulbasaur, Team Rocket's Mimikyu, Eevee, Lapras &amp; more</div><div class="lot-meta">ShopGoodwill · Current bid $200 · 12 bids · ~13h left</div></div><span class="verdict v-pass">Pass</span></div>
+        <div class="lot-meta">Named singles listed but no grades/conditions shown and bidding already at $200 with 12 bids — competitive pricing already reflects fair value, no edge left for KCE.</div>
+        <a class="lot-link" href="https://shopgoodwill.com/search?st=pokemon" target="_blank">View search →</a>
+      </div>
+      <div class="section-note">Today's verdict: no clean BID this run. One EBTH lot (1st-editions, $160) is worth a manual look; everything else scanned is bulk/unverified or already fully priced. Pass decisively rather than force a buy — platform links above go straight to live search/lot pages.</div>
+    </div>
+
+    <div class="sources-line" id="sources-line"></div>
+  </div>
+
 </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Top Movers Today</div>
-    <div class="mover-list">
-      <div class="mover-row"><div class="mover-name">Furret (JP)<span class="mover-set">Neo Genesis (Japanese) · WOTC Lot</span></div><div class="mover-price">$4.00<span class="mover-delta up">+166.7%</span></div></div>
-<div class="mover-row"><div class="mover-name">Weedle (JP)<span class="mover-set">Neo Discovery (Japanese) · Japanese Poke</span></div><div class="mover-price">$2.64<span class="mover-delta up">+86.3%</span></div></div>
-<div class="mover-row"><div class="mover-name">Kingdra (JP)<span class="mover-set">Neo Genesis (Japanese) · WOTC Lot</span></div><div class="mover-price">$15.67<span class="mover-delta up">+59.7%</span></div></div>
-<div class="mover-row"><div class="mover-name">Tool Scrapper<span class="mover-set">Chaos Rising · Trainers</span></div><div class="mover-price">$1.31<span class="mover-delta up">+35.0%</span></div></div>
-<div class="mover-row"><div class="mover-name">Caterpie (JP)<span class="mover-set">Neo Discovery (Japanese) · Japanese Poke</span></div><div class="mover-price">$2.26<span class="mover-delta down">-33.7%</span></div></div>
-<div class="mover-row"><div class="mover-name">Dunsparce (JP)<span class="mover-set">Neo Discovery (Japanese) · Japanese Poke</span></div><div class="mover-price">$1.88<span class="mover-delta down">-30.0%</span></div></div>
-<div class="mover-row"><div class="mover-name">Ursaring (JP)<span class="mover-set">Neo Discovery (Japanese) · Main Inventory</span></div><div class="mover-price">$21.75<span class="mover-delta up">+28.7%</span></div></div>
-<div class="mover-row"><div class="mover-name">Slowpoke (JP)<span class="mover-set">Neo Genesis (Japanese) · WOTC Lot</span></div><div class="mover-price">$4.25<span class="mover-delta down">-27.1%</span></div></div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Action Alerts</div>
-    <div class="alert sell"><span class="tag">Sell</span><p><b>Destined Rivals Booster Box</b> now $468.67 — first time above the $470 friend-fronted cost basis since acquisition. List now to clear the IOU and lock in the spread before it dips again.</p></div>
-    <div class="alert watch"><span class="tag">Watch</span><p><b>Furret (JP)</b> and <b>Kingdra (JP)</b> in WOTC Lot jumped +167% and +60% today — thin-comp Japanese vintage swings hard on single sales. Confirm before relisting at the new price.</p></div>
-    <div class="alert hold"><span class="tag">Hold</span><p><b>Umbreon ex 176 PSA-adjacent</b> (Hold-Private) dipped -6.4% to $168.74 — normal noise for a low-liquidity single, no action per standing hold instruction.</p></div>
-    <div class="alert watch"><span class="tag">Note</span><p><b>WOTC Lot</b> carries $1,316.10 of physical value but only $263.22 (20%) is KCE's true economic interest — the remaining $1,052.88 is owed to David (Wiley & Rum) on sale, per the consignment split.</p></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Inventory — For Sale (7 portfolios)</div>
-    <div id="biz-tables"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">🔒 Private Holdings Monitor</div>
-    <div class="private-card">
-      <div class="lock-row">🔒 Not for public listing</div>
-      <div class="private-grid">
-        <div class="item"><div class="l">Umbreon ex · SVP 176</div><div class="v">$168.74</div></div>
-        <div class="item"><div class="l">Today</div><div class="v" style="color:var(--down)">-6.4%</div></div>
-        <div class="item"><div class="l">Cost</div><div class="v">$184.74</div></div>
-        <div class="item"><div class="l">P&amp;L</div><div class="v" style="color:var(--down)">-$16.00</div></div>
-      </div>
-      <div class="private-note">Investment hold — INV-035, Scarlet &amp; Violet Promo. Tracked here only, never surfaced in public listings or business KPIs. Read: dip is within normal single-sale noise for a low-liquidity card; no target trigger reached.</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">P&amp;L Summary</div>
-    <table class="pnl">
-      <tr><td>Live Portfolio Value (7 FOR SALE, 100%)</td><td>$4,057.23</td></tr>
-      <tr><td>Cost Basis (on hand)</td><td>$1,000.55</td></tr>
-      <tr class="total"><td>Unrealized Gain</td><td>+$2,955.59</td></tr>
-      <tr><td>Realized Net Profit (49 sold)</td><td>+$1,095.06</td></tr>
-      <tr><td>Net Cash Position</td><td>$475.47</td></tr>
-      <tr class="sub"><td>Less: Outstanding Consignment Payable</td><td>-$64.00</td></tr>
-      <tr class="sub"><td>Less: Outstanding Purchase IOU (Booster Box)</td><td>-$470.00</td></tr>
-      <tr class="total"><td>True Economic Position</td><td>$942.02</td></tr>
-    </table>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Selling Channel Net Rates</div>
-    <div class="channel-row"><span>eBay</span><span class="rate">~83%</span></div>
-    <div class="channel-row"><span>CardsHQ (consignment)</span><span class="rate">70–80%</span></div>
-    <div class="channel-row"><span>Facebook Marketplace</span><span class="rate">80–90%</span></div>
-  </div>
-
-</section>
-
-<!-- ============ TAB 2: MY COLLECTION ============ -->
-<section class="tabpanel" id="tab-pc">
-
-  <div class="filter-bar">
-    <input type="text" id="pc-filter" placeholder="Filter cards or sets…" oninput="filterTables('pc')">
-  </div>
-
-  <div class="section">
-    <div class="section-title">Key Metrics</div>
-    <div class="kpi-grid">
-      <div class="kpi-card wide">
-        <div class="kpi-label">Total Personal Collection</div>
-        <div class="kpi-value accent">$4,288.15</div>
-        <div class="kpi-sub">4 PC portfolios · never counted in business KPIs</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Personal Collection</div>
-        <div class="kpi-value">$2,841.64</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Gym Challenge</div>
-        <div class="kpi-value">$323.60</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Gym Hero</div>
-        <div class="kpi-value">$504.92</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Rocket</div>
-        <div class="kpi-value">$617.99</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Portfolio Breakdown</div>
-    <div class="pf-row">
-  <div class="pf-label">Personal Collection</div>
-  <div class="pf-bar-track"><div class="pf-bar pc" style="width:100.0%"></div></div>
-  <div class="pf-val">$2,841.64 <span class="pf-pct">66%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">PC - Gym Hero</div>
-  <div class="pf-bar-track"><div class="pf-bar pc" style="width:17.8%"></div></div>
-  <div class="pf-val">$504.92 <span class="pf-pct">12%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">PC - Gym Challenge</div>
-  <div class="pf-bar-track"><div class="pf-bar pc" style="width:11.4%"></div></div>
-  <div class="pf-val">$323.60 <span class="pf-pct">8%</span></div>
-</div><div class="pf-row">
-  <div class="pf-label">PC - Rocket</div>
-  <div class="pf-bar-track"><div class="pf-bar pc" style="width:21.7%"></div></div>
-  <div class="pf-val">$617.99 <span class="pf-pct">14%</span></div>
-</div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Top PC Movers</div>
-    <div class="mover-list">
-      <div class="mover-row"><div class="mover-name">Imposter Oak's Revenge<span class="mover-set">Team Rocket · PC - Rocket</span></div><div class="mover-price">$5.68<span class="mover-delta up">+46.4%</span></div></div>
-<div class="mover-row"><div class="mover-name">Misty's Staryu<span class="mover-set">Gym Heroes · PC - Gym Hero</span></div><div class="mover-price">$2.00<span class="mover-delta up">+25.8%</span></div></div>
-<div class="mover-row"><div class="mover-name">Raticate<span class="mover-set">Perfect Order · Personal Collection</span></div><div class="mover-price">$2.25<span class="mover-delta down">-24.5%</span></div></div>
-<div class="mover-row"><div class="mover-name">Unown A (JP)<span class="mover-set">Neo Discovery (Japanese) · Personal Collection</span></div><div class="mover-price">$14.27<span class="mover-delta down">-20.8%</span></div></div>
-<div class="mover-row"><div class="mover-name">Blaine's Kangaskhan<span class="mover-set">Gym Heroes · PC - Gym Hero</span></div><div class="mover-price">$5.30<span class="mover-delta down">-19.8%</span></div></div>
-<div class="mover-row"><div class="mover-name">Cyndaquil (57)<span class="mover-set">Neo Genesis · Personal Collection</span></div><div class="mover-price">$13.71<span class="mover-delta down">-17.4%</span></div></div>
-<div class="mover-row"><div class="mover-name">Mew (JP)<span class="mover-set">Japanese CD Promo · Personal Collection</span></div><div class="mover-price">$145.48<span class="mover-delta up">+15.7%</span></div></div>
-<div class="mover-row"><div class="mover-name">Misty's Goldeen (85)<span class="mover-set">Gym Heroes · PC - Gym Hero</span></div><div class="mover-price">$1.45<span class="mover-delta up">+15.1%</span></div></div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Collection Notes</div>
-    <div class="alert watch"><span class="tag">Note</span><p><b>Mew (JP CD Promo)</b> +15.7% to $145.48 — glossy Japanese CD promos are thinly traded; today's print likely a single high comp, worth re-checking before treating as new baseline.</p></div>
-    <div class="alert hold"><span class="tag">Note</span><p><b>MewTwo (JP CD Promo)</b> -12.3% pulled the opposite direction same category — same thin-market caveat applies both ways.</p></div>
-    <div class="alert watch"><span class="tag">Note</span><p>Neo-era Japanese vintage (Personal Collection + PC-Rocket) is the segment web research flags as fastest-growing in the current market (see Market Intel) — this collection is naturally overweight there.</p></div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Collection Inventory (4 portfolios)</div>
-    <div id="pc-tables"></div>
-  </div>
-
-</section>
-
-<!-- ============ TAB 3: MARKET INTEL ============ -->
-<section class="tabpanel" id="tab-intel">
-
-  <div class="intel-card">
-    <h3>📅 Upcoming Releases</h3>
-    <div class="release-row">
-      <div class="release-date">SEP 16</div>
-      <div class="release-body">
-        <b>30th Celebration — worldwide simultaneous launch</b>
-        <span>First-ever same-day global TCG launch. ~150 cards, new "Futuristic Rare" rarity (Mewtwo ex, Mew ex), 30 classic reprints incl. Base Set Charizard. Wave 1 of 7 products ships this date; preorders live on Pokémon Center since 7/15.</span>
-        <span class="angle">→ KCE angle: Premium Deck Set "Espeon &amp; Umbreon" launches the same day — directly relevant to the Hold-Private Umbreon single; expect a demand bump across Umbreon listings market-wide.</span>
-      </div>
-    </div>
-    <div class="release-row">
-      <div class="release-date">OCT 2</div>
-      <div class="release-body">
-        <b>30th Celebration — Wave 2</b>
-        <span>Second of five staged waves running Sept–Dec; premium products deliberately held for the holiday season.</span>
-        <span class="angle">→ More waves confirmed through early December — don't treat Sept 16 as the only date to watch.</span>
-      </div>
-    </div>
-    <div class="release-row">
-      <div class="release-date">NOV 6</div>
-      <div class="release-body">
-        <b>Mega Evolution: Delta Reign</b>
-        <span>Next full mainline expansion after 30th Celebration.</span>
-        <span class="angle">→ KCE holds several Mega Evolution promo singles (Mega Gengar ex, Mega Meganium ex, Mega Eelektross ex) across EX &amp; Mega EX and Personal Collection — watch for reprint-driven price softening as the new set nears.</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="intel-card">
-    <h3>📈 Market Pulse</h3>
-    <div class="pulse-stat"><span>Card Ladder Pokémon Index (YoY)</span><span class="v up">+116%</span></div>
-    <div class="pulse-stat"><span>WOTC holo PSA 9/10</span><span class="v up">Resilient / appreciating</span></div>
-    <div class="pulse-stat"><span>Fastest-growing segment</span><span class="v">Neo-era Japanese vintage ('99–'02)</span></div>
-    <div class="pulse-stat"><span>Modern chase (Vmax/GX/ex)</span><span class="v">Mixed / correcting</span></div>
-    <p style="font-size:var(--fs-xs);color:var(--text-faint);margin:var(--sp-3) 0 0;">Neo-era vintage maps directly to KCE's Japanese Poke + WOTC Lot holdings (Neo Genesis/Discovery singles) — the segment web research repeatedly flags as tightest-supply and fastest-appreciating this cycle.</p>
-  </div>
-
-  <div class="intel-card">
-    <h3>🔥 What's Hot</h3>
-    <div class="pulse-stat"><span>Furret (JP, Neo Genesis)</span><span class="v up">+167% today</span></div>
-    <div class="pulse-stat"><span>Kingdra (JP, Neo Genesis)</span><span class="v up">+60% today</span></div>
-    <div class="pulse-stat"><span>Weedle (JP, Neo Discovery)</span><span class="v up">+86% today</span></div>
-    <div class="pulse-stat"><span>Destined Rivals Booster Box</span><span class="v up">Above cost basis, first time</span></div>
-  </div>
-
-  <div class="intel-card">
-    <h3>♟️ KCE Playbook</h3>
-    <div class="playbook-item"><span class="playbook-num">1</span><p>List the Destined Rivals Booster Box now — it just crossed above the $470 IOU cost for the first time; clearing it retires the friend debt and locks the spread.</p></div>
-    <div class="playbook-item"><span class="playbook-num">2</span><p>Hold Japanese Neo-era singles (Japanese Poke + WOTC Lot) through the 30th Celebration window — thin comps mean today's spikes (Furret, Kingdra, Weedle) could be single-sale noise, but the broader segment thesis supports patience over a quick flip.</p></div>
-    <div class="playbook-item"><span class="playbook-num">3</span><p>Prep an Umbreon-adjacent listing plan ahead of Sept 16 — the Espeon &amp; Umbreon Premium Deck Set launching same-day as 30th Celebration will pull search traffic toward Umbreon singles market-wide.</p></div>
-    <div class="playbook-item"><span class="playbook-num">4</span><p>No auction buys today — nothing on ShopGoodwill or HiBid clears the ROI bar (see Sourcing below); the sourcing budget stays parked.</p></div>
-  </div>
-
-  <div class="intel-card">
-    <h3>🔨 Sourcing — Auction Watch</h3>
-    <div class="platform-status"><b>Coverage today:</b> ShopGoodwill ✅ live-scanned (556 Pokémon results) · HiBid ✅ live-scanned (100 lots) · LiveAuctioneers — no reliable live-lot search method found, not scanned · THS Auctions — same, not scanned. EBTH not reachable this run.</div>
-
-    <div class="lot-row">
-      <div class="lot-top">
-        <div><div class="lot-title">3 lbs Lot of Pokemon Cards</div><div class="lot-meta">ShopGoodwill · $304.51 current · 31 bids · 13h left</div></div>
-        <span class="verdict pass">Pass</span>
-      </div>
-      <p style="font-size:12px;color:var(--text-dim);margin:4px 0 0;">Blind bulk-by-weight lot already bid past blind-lot economics — 31 competing bidders means any real vintage inside is priced in. No per-card ID possible before bidding.</p>
-      <a class="lot-link" href="https://shopgoodwill.com/categories/listing?st=pokemon%20cards" target="_blank">View listing →</a>
-    </div>
-    <div class="lot-row">
-      <div class="lot-top">
-        <div><div class="lot-title">Lot of Pokemon Cards, Mega Construx, Card Album &amp; Mega Evolution</div><div class="lot-meta">ShopGoodwill · $79.00 current · 6 bids · closing in 45m</div></div>
-        <span class="verdict pass">Pass</span>
-      </div>
-      <p style="font-size:12px;color:var(--text-dim);margin:4px 0 0;">Mixed-media lot, no identifiable singles in the listing text matching KCE's WOTC/vintage targets, and closing too soon to research further.</p>
-      <a class="lot-link" href="https://shopgoodwill.com/categories/listing?st=pokemon%20cards" target="_blank">View listing →</a>
-    </div>
-    <div class="lot-row">
-      <div class="lot-top">
-        <div><div class="lot-title">Collectible Trading Cards Pokemon Multicolor Cardstock lot</div><div class="lot-meta">ShopGoodwill · $151.00 current · 6 bids · 11h left</div></div>
-        <span class="verdict pass">Pass</span>
-      </div>
-      <p style="font-size:12px;color:var(--text-dim);margin:4px 0 0;">Vague "cardstock lot" listing with no card-level photos referenced — too much blind risk at this price relative to KCE's identified-single sourcing playbook.</p>
-      <a class="lot-link" href="https://shopgoodwill.com/categories/listing?st=pokemon%20cards" target="_blank">View listing →</a>
-    </div>
-    <div class="lot-row">
-      <div class="lot-top">
-        <div><div class="lot-title">Lot 251 · 2021 Pokemon Unopened Trading Card Pack</div><div class="lot-meta">HiBid · $20.00 high bid · 15 bids · 2d 6h left</div></div>
-        <span class="verdict pass">Pass</span>
-      </div>
-      <p style="font-size:12px;color:var(--text-dim);margin:4px 0 0;">Generic unopened pack already at 15 bids / $20 — priced near retail-adjacent territory for an unidentified 2021 product, doesn't clear the sourcing ROI bar.</p>
-      <a class="lot-link" href="https://hibid.com/lots?q=pokemon%20cards" target="_blank">View listing →</a>
-    </div>
-    <p style="font-size:var(--fs-xs);color:var(--text-faint);margin-top:var(--sp-3);">Today's verdict: <b style="color:var(--down)">PASS across the board.</b> Nothing scanned offers an identifiable vintage/graded single at a cost that clears the 400%-under-$50 → ~100%-over-$600 sliding scale — this run is dominated by blind bulk-weight lots, which don't fit KCE's per-card sourcing model. Re-check tomorrow; ShopGoodwill/HiBid inventory turns over daily.</p>
-    <a class="lot-link" href="https://shopgoodwill.com/categories/listing?st=pokemon%20cards" target="_blank">→ ShopGoodwill: all Pokémon results</a><br>
-    <a class="lot-link" href="https://hibid.com/lots?q=pokemon%20cards" target="_blank">→ HiBid: all Pokémon lots</a><br>
-    <a class="lot-link" href="https://www.liveauctioneers.com/search/?keyword=pokemon" target="_blank">→ LiveAuctioneers: manual search fallback</a>
-  </div>
-
-  <div class="sources">
-    Sources: <a href="https://www.pokemon.com/us/pokemon-news/get-ready-for-pokemon-tcg-30th-celebration" target="_blank">Pokemon.com — 30th Celebration</a> ·
-    <a href="https://www.pokebeach.com/2026/07/30th-celebration-preorders-now-live-on-pokemon-center" target="_blank">PokéBeach — preorders live</a> ·
-    <a href="https://www.trackalacker.com/articles/news/pokemon-30th-celebration-release-date-preorders-price" target="_blank">TrackaLacker — release waves</a> ·
-    <a href="https://www.grale.app/pokemon-market-stats" target="_blank">Grale — market stats</a> ·
-    <a href="https://www.pokemonwizard.com/stats" target="_blank">Pokémon Wizard — trends</a> ·
-    <a href="https://shopgoodwill.com/categories/listing?st=pokemon%20cards" target="_blank">ShopGoodwill</a> ·
-    <a href="https://hibid.com/lots?q=pokemon%20cards" target="_blank">HiBid</a>
-  </div>
-
-</section>
-
-</main>
-
-<footer class="assumptions">
-  Assumptions this run: workbook cost basis/P&amp;L/cash figures reflect the last synced snapshot (lag vs. live Collectr is normal, ~1–2 days); WOTC Lot shown at 100% physical value with a 20%-KCE-share footnote per the consignment split; ShopGoodwill/HiBid bulk lots evaluated as PASS given no per-card visibility pre-bid; LiveAuctioneers/THS not scanned (no reliable live-lot search method available).
-</footer>
 
 <script>
-const DATA = {"fs": {"Main Inventory": [{"n": "Destined Rivals Booster Box", "s": "Destined Rivals", "c": "Sealed", "p": 468.67, "d": 2.14, "q": 1}, {"n": "Zekrom ex", "s": "Black Bolt", "c": "Moderately Played", "p": 216.35, "d": 0.1, "q": 1}, {"n": "Pikachu", "s": "POP Series 5", "c": "Damaged", "p": 173.94, "d": 0.0, "q": 1}, {"n": "Umbreon ex - 176", "s": "Scarlet & Violet Promo", "c": "Near Mint", "p": 168.74, "d": -6.45, "q": 1}, {"n": "Dragon's Roar Structure Deck - 1st Ed", "s": "Structure Deck", "c": "Sealed", "p": 158.17, "d": 0.0, "q": 1}, {"n": "Zombie Madness Structure Deck - 1st Ed", "s": "Structure Deck", "c": "Sealed", "p": 144.63, "d": -2.17, "q": 1}, {"n": "Mew (Secret)", "s": "Celebrations", "c": "Near Mint", "p": 62.41, "d": 2.31, "q": 1}, {"n": "Mewtwo", "s": "Base Set (Unlimited)", "c": "Moderately Played", "p": 53.6, "d": -5.84, "q": 1}, {"n": "Charmander", "s": "Scarlet & Violet Promo", "c": "Lightly Played", "p": 51.96, "d": -0.46, "q": 1}, {"n": "Kabutops (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 50.37, "d": -13.96, "q": 1}, {"n": "Machamp (Base Set Shadowless)", "s": "Deck Exclusives", "c": "Heavily Played", "p": 50.3, "d": 4.12, "q": 1}, {"n": "Gyarados", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 50.29, "d": -1.1, "q": 1}, {"n": "Mega Greninja ex Premium Collection", "s": "Misc", "c": "Sealed", "p": 47.75, "d": -1.47, "q": 1}, {"n": "M Rayquaza EX", "s": "Celebrations: Classic Collection", "c": "Near Mint", "p": 41.14, "d": -2.49, "q": 1}, {"n": "Pitch Black Booster Bundle", "s": "Pitch Black", "c": "Sealed", "p": 39.62, "d": 9.42, "q": 1}, {"n": "Pikachu V-Union [Set of 4]", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 33.46, "d": -3.29, "q": 1}, {"n": "Mega Moonlit Tin [Mega Gengar ex]", "s": "Misc", "c": "Sealed", "p": 33.18, "d": 6.89, "q": 1}, {"n": "Nidoking", "s": "Base Set 2", "c": "Moderately Played", "p": 32.82, "d": 2.51, "q": 1}, {"n": "Greninja V [Set of 4]", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 30.85, "d": -0.45, "q": 1}, {"n": "Minun", "s": "Supreme Victors", "c": "Heavily Played", "p": 29.99, "d": 0.0, "q": 1}, {"n": "Gyarados (#30 Holo)", "s": "HGSS Trainer Kit", "c": "Moderately Played", "p": 29.47, "d": 0.0, "q": 1}, {"n": "Misty's Tentacruel", "s": "Gym Heroes", "c": "Near Mint", "p": 29.21, "d": -0.1, "q": 1}, {"n": "Rayquaza C", "s": "Supreme Victors", "c": "Damaged", "p": 28.2, "d": 0.0, "q": 1}, {"n": "Electrode (Prime)", "s": "Triumphant", "c": "Heavily Played", "p": 27.74, "d": 0.63, "q": 1}, {"n": "Hitmonchan", "s": "Base Set 2", "c": "Near Mint", "p": 23.8, "d": -0.34, "q": 1}, {"n": "Ursaring (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 21.75, "d": 28.68, "q": 1}, {"n": "M Gyarados EX", "s": "BREAKpoint", "c": "Damaged", "p": 20.59, "d": 0.53, "q": 1}, {"n": "Misty's Tentacruel (JP)", "s": "Gym Heroes (Japanese)", "c": "Near Mint", "p": 20.35, "d": -18.99, "q": 1}, {"n": "Gyarados", "s": "Base Set (Unlimited)", "c": "Damaged", "p": 20.12, "d": -1.1, "q": 1}, {"n": "Clefairy", "s": "Base Set 2", "c": "Lightly Played", "p": 19.63, "d": 1.81, "q": 1}, {"n": "Regigigas (Full Art Promo)", "s": "XY Promos", "c": "Damaged", "p": 18.42, "d": 0.0, "q": 2}, {"n": "Erika's Clefable (JP)", "s": "Gym Heroes (Japanese)", "c": "Near Mint", "p": 17.53, "d": 19.7, "q": 1}, {"n": "Jirachi (Magnus Pedersen)", "s": "World Championship Decks", "c": "Near Mint", "p": 13.53, "d": 0.0, "q": 1}, {"n": "Lunala GX", "s": "Sun & Moon Promo", "c": "Lightly Played", "p": 12.89, "d": -0.33, "q": 1}, {"n": "Charizard V", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 12.45, "d": 8.07, "q": 1}, {"n": "Ditto", "s": "Detective Pikachu", "c": "Near Mint", "p": 12.25, "d": 0.49, "q": 1}, {"n": "Charizard", "s": "Detective Pikachu", "c": "Near Mint", "p": 11.97, "d": -1.24, "q": 1}, {"n": "Azumarill (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 11.76, "d": -16.13, "q": 1}, {"n": "Froakie", "s": "Chaos Rising", "c": "Near Mint", "p": 10.25, "d": 13.13, "q": 1}, {"n": "Snorlax", "s": "Boundaries Crossed", "c": "Near Mint", "p": 9.85, "d": 0.92, "q": 1}, {"n": "Charizard V", "s": "Darkness Ablaze", "c": "Near Mint", "p": 9.37, "d": -1.78, "q": 1}, {"n": "N's Zekrom", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 8.11, "d": -11.94, "q": 1}], "Under 10": [{"n": "Unown (R)", "s": "Legends Awakened", "c": "Heavily Played", "p": 9.9, "d": 4.76, "q": 1}, {"n": "Ursaring", "s": "Legendary Treasures: Radiant", "c": "Near Mint", "p": 8.65, "d": 3.22, "q": 1}, {"n": "Pikachu Libre", "s": "XY Trainer Kit", "c": "Damaged", "p": 8.51, "d": 0.0, "q": 1}, {"n": "Gyarados", "s": "Evolutions", "c": "Lightly Played", "p": 7.88, "d": -1.17, "q": 1}, {"n": "Snorlax", "s": "BREAKthrough", "c": "Near Mint", "p": 7.8, "d": 2.63, "q": 1}, {"n": "Gyarados", "s": "Generations", "c": "Near Mint", "p": 7.6, "d": 1.06, "q": 1}, {"n": "Mankey", "s": "McDonald's Promos 2019", "c": "Near Mint", "p": 7.57, "d": -3.2, "q": 1}, {"n": "Dragonite", "s": "McDonald's Promos 2024", "c": "Near Mint", "p": 6.56, "d": 3.31, "q": 1}, {"n": "Koga's Pidgey (49)", "s": "Gym Challenge", "c": "Near Mint", "p": 6.45, "d": 0.62, "q": 1}, {"n": "Scorbunny", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 6.41, "d": -5.6, "q": 1}, {"n": "Grookey", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 6.4, "d": 0.79, "q": 1}, {"n": "Rowlet", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 6.06, "d": -2.88, "q": 1}, {"n": "Dedenne", "s": "Perfect Order", "c": "Near Mint", "p": 6.01, "d": 6.94, "q": 2}, {"n": "Gyarados GX", "s": "Hidden Fates", "c": "Near Mint", "p": 5.98, "d": -2.13, "q": 1}, {"n": "Litten", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.89, "d": -13.13, "q": 1}, {"n": "Sleep!", "s": "Team Rocket", "c": "Near Mint", "p": 5.79, "d": 8.43, "q": 2}, {"n": "Porygon", "s": "Team Rocket", "c": "Near Mint", "p": 5.7, "d": 1.6, "q": 1}, {"n": "Rowlet", "s": "Perfect Order", "c": "Near Mint", "p": 5.38, "d": -0.74, "q": 1}, {"n": "Yveltal ex", "s": "Perfect Order", "c": "Near Mint", "p": 5.29, "d": -8.79, "q": 1}, {"n": "Popplio", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.11, "d": -3.04, "q": 1}, {"n": "Dragonite EX", "s": "Furious Fists", "c": "Damaged", "p": 4.92, "d": -5.1, "q": 1}, {"n": "Litleo", "s": "Mega Evolution", "c": "Near Mint", "p": 4.85, "d": -1.42, "q": 1}, {"n": "Venusaur EX", "s": "Evolutions", "c": "Near Mint", "p": 4.68, "d": 1.96, "q": 1}, {"n": "Sobble", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 4.46, "d": -2.83, "q": 1}, {"n": "Mega Eelektross ex", "s": "Ascended Heroes", "c": "Near Mint", "p": 4.33, "d": -4.42, "q": 1}, {"n": "Lucario (47)", "s": "Fates Collide", "c": "Near Mint", "p": 4.19, "d": 2.45, "q": 1}, {"n": "Magmar", "s": "McDonald's Promos 2019", "c": "Damaged", "p": 4.18, "d": -0.57, "q": 1}, {"n": "Prinplup", "s": "Legendary Treasures", "c": "Lightly Played", "p": 4.13, "d": 0.0, "q": 1}, {"n": "Meowth", "s": "Team Rocket", "c": "Near Mint", "p": 3.96, "d": 2.33, "q": 1}, {"n": "Dratini", "s": "Team Rocket", "c": "Near Mint", "p": 3.83, "d": 7.58, "q": 2}, {"n": "Galarian Obstagoon", "s": "Ascended Heroes", "c": "Near Mint", "p": 3.56, "d": 12.66, "q": 1}, {"n": "Abra", "s": "Team Rocket", "c": "Near Mint", "p": 3.47, "d": 7.43, "q": 1}, {"n": "Minun", "s": "Legendary Treasures", "c": "Near Mint", "p": 3.3, "d": -0.3, "q": 1}, {"n": "Haunter", "s": "BREAKthrough", "c": "Lightly Played", "p": 3.17, "d": 5.07, "q": 1}, {"n": "Venusaur V", "s": "Champion's Path", "c": "Near Mint", "p": 3.15, "d": -2.78, "q": 2}, {"n": "Pikachu", "s": "Sword & Shield Base Set", "c": "Near Mint", "p": 2.95, "d": 7.66, "q": 1}, {"n": "Dragapult", "s": "Shining Fates: Shiny Vault", "c": "Near Mint", "p": 2.69, "d": 1.13, "q": 1}, {"n": "Tyrunt", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 2.65, "d": -8.93, "q": 1}, {"n": "Magikarp", "s": "Call of Legends", "c": "Near Mint", "p": 2.58, "d": 10.73, "q": 1}, {"n": "Diglett", "s": "Team Rocket", "c": "Near Mint", "p": 2.56, "d": 0.0, "q": 1}, {"n": "Electrike (Omega)", "s": "Primal Clash", "c": "Near Mint", "p": 2.52, "d": 0.4, "q": 1}, {"n": "Snover", "s": "Mega Evolution", "c": "Near Mint", "p": 2.48, "d": 6.9, "q": 1}, {"n": "Grimer", "s": "Team Rocket", "c": "Near Mint", "p": 2.39, "d": 2.14, "q": 1}, {"n": "Zubat", "s": "Team Rocket", "c": "Near Mint", "p": 2.35, "d": -1.26, "q": 1}, {"n": "Ambipom", "s": "Phantasmal Flames", "c": "Near Mint", "p": 2.26, "d": -12.74, "q": 1}, {"n": "Mankey", "s": "Team Rocket", "c": "Near Mint", "p": 2.19, "d": -3.95, "q": 1}, {"n": "Koffing", "s": "Team Rocket", "c": "Near Mint", "p": 2.19, "d": 3.3, "q": 1}, {"n": "Blaine's Doduo", "s": "Gym Challenge", "c": "Near Mint", "p": 2.09, "d": -2.34, "q": 1}, {"n": "Ponyta", "s": "Team Rocket", "c": "Near Mint", "p": 2.03, "d": 10.33, "q": 4}, {"n": "Magnemite", "s": "Team Rocket", "c": "Near Mint", "p": 1.97, "d": 5.35, "q": 4}, {"n": "Drowzee", "s": "Team Rocket", "c": "Near Mint", "p": 1.73, "d": 0.0, "q": 1}, {"n": "Voltorb", "s": "Team Rocket", "c": "Near Mint", "p": 1.73, "d": -3.35, "q": 1}, {"n": "Rattata", "s": "Team Rocket", "c": "Near Mint", "p": 1.68, "d": 3.07, "q": 2}, {"n": "Unown [N]", "s": "Neo Discovery", "c": "Near Mint", "p": 1.59, "d": -1.85, "q": 1}, {"n": "Goop Gas Attack", "s": "Team Rocket", "c": "Near Mint", "p": 1.04, "d": 6.12, "q": 1}, {"n": "Probopass", "s": "Perfect Order", "c": "Near Mint", "p": 0.95, "d": -5.0, "q": 1}, {"n": "Unown [O]", "s": "Neo Discovery", "c": "Near Mint", "p": 0.87, "d": 16.0, "q": 1}, {"n": "Charmeleon (Cosmos Holo)", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 0.72, "d": -5.26, "q": 1}], "Japanese Poke": [{"n": "Ruin Wall [Kabuto] (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 6.95, "d": 0.0, "q": 2}, {"n": "Unown U (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 4.48, "d": 0.0, "q": 1}, {"n": "Pineco (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 3.1, "d": -9.23, "q": 3}, {"n": "Unown D (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 3.0, "d": 0.0, "q": 1}, {"n": "Flaaffy (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.98, "d": 0.0, "q": 1}, {"n": "Fossil Egg (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.98, "d": 0.0, "q": 1}, {"n": "Farfetch'd (JP)", "s": "Neo Revelation (Japanese)", "c": "Near Mint", "p": 2.7, "d": 0.0, "q": 1}, {"n": "Weedle (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.64, "d": 86.26, "q": 2}, {"n": "Energy Ark (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.53, "d": 0.0, "q": 2}, {"n": "Sentret (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.44, "d": 0.0, "q": 2}, {"n": "Time Capsule (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.31, "d": 0.0, "q": 1}, {"n": "Metapod (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.3, "d": 0.0, "q": 2}, {"n": "Caterpie (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.26, "d": -33.68, "q": 2}, {"n": "Hoppip (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.25, "d": 0.0, "q": 2}, {"n": "Dunsparce (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.88, "d": -30.03, "q": 2}, {"n": "Girafarig (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.86, "d": 0.0, "q": 1}, {"n": "Kakuna (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.67, "d": 0.0, "q": 1}, {"n": "Stantler (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.4, "d": 0.0, "q": 1}, {"n": "Natu (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.2, "d": 0.0, "q": 2}, {"n": "Hyper Devolution Spray (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 0.99, "d": 0.0, "q": 1}], "EX & Mega EX": [{"n": "Mega Gengar ex", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 4.76, "d": 2.81, "q": 1}, {"n": "Arboliva ex", "s": "Destined Rivals", "c": "Near Mint", "p": 2.01, "d": 3.61, "q": 1}, {"n": "Mega Meganium ex", "s": "Jumbo Cards", "c": "Near Mint", "p": 1.6, "d": -4.19, "q": 2}, {"n": "Mega Meganium ex", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 0.83, "d": 15.28, "q": 2}, {"n": "Ethan's Ho-oh ex", "s": "Destined Rivals", "c": "Near Mint", "p": 0.65, "d": 1.56, "q": 2}], "V Cards": [{"n": "Glaceon V", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 2.79, "d": 5.68, "q": 1}, {"n": "Gyarados V", "s": "Evolving Skies", "c": "Near Mint", "p": 2.29, "d": -12.93, "q": 1}, {"n": "Incineroar V", "s": "Champion's Path", "c": "Near Mint", "p": 1.8, "d": -10.89, "q": 1}, {"n": "Galarian Cursola V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.73, "d": 0.0, "q": 2}, {"n": "Wailord V", "s": "Champion's Path", "c": "Near Mint", "p": 1.42, "d": -19.32, "q": 1}, {"n": "Drednaw V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.34, "d": 4.69, "q": 1}, {"n": "Grapploct V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.28, "d": 2.4, "q": 1}, {"n": "Galarian Cursola V", "s": "Champion's Path", "c": "Near Mint", "p": 1.26, "d": 1.61, "q": 1}, {"n": "Steelix V", "s": "Vivid Voltage", "c": "Near Mint", "p": 0.95, "d": 14.46, "q": 1}, {"n": "Drednaw V", "s": "Champion's Path", "c": "Near Mint", "p": 0.9, "d": -1.1, "q": 1}, {"n": "Grapploct V", "s": "Champion's Path", "c": "Near Mint", "p": 0.72, "d": -7.69, "q": 1}, {"n": "Tornadus V", "s": "Chilling Reign", "c": "Near Mint", "p": 0.7, "d": 16.67, "q": 1}], "Trainers": [{"n": "Counter Gain", "s": "Surging Sparks", "c": "Near Mint", "p": 2.87, "d": -17.05, "q": 1}, {"n": "Energy Retrieval", "s": "Chaos Rising", "c": "Near Mint", "p": 1.6, "d": -19.6, "q": 1}, {"n": "Tool Scrapper", "s": "Chaos Rising", "c": "Near Mint", "p": 1.31, "d": 35.05, "q": 1}, {"n": "Jamming Tower", "s": "Ascended Heroes", "c": "Near Mint", "p": 0.75, "d": 4.17, "q": 1}, {"n": "Counter Gain", "s": "Ascended Heroes", "c": "Near Mint", "p": 0.5, "d": -12.28, "q": 1}], "WOTC Lot": [{"n": "Dragonite (19)", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 101.62, "d": -2.09, "q": 1}, {"n": "Pinsir", "s": "Jungle", "c": "Near Mint 1st Ed Holo", "p": 85.64, "d": 0.0, "q": 1}, {"n": "Wigglytuff", "s": "Jungle", "c": "Near Mint 1st Ed Holo", "p": 78.38, "d": 0.13, "q": 1}, {"n": "Snorlax", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 69.46, "d": 2.48, "q": 1}, {"n": "Electrode", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 50.59, "d": 6.21, "q": 2}, {"n": "Magneton (11)", "s": "Fossil", "c": "Near Mint 1st Ed Holo", "p": 48.27, "d": 3.56, "q": 1}, {"n": "Clefable", "s": "Jungle", "c": "Near Mint Unl Holo", "p": 37.92, "d": 2.68, "q": 1}, {"n": "Moltres (27)", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 29.7, "d": 0.0, "q": 1}, {"n": "Pikachu", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 26.42, "d": -1.6, "q": 7}, {"n": "Kabutops (24)", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 22.24, "d": -1.94, "q": 1}, {"n": "Wigglytuff", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 21.49, "d": 0.0, "q": 1}, {"n": "Kabuto", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 21.09, "d": 1.05, "q": 2}, {"n": "Pidgeot", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 20.65, "d": 0.39, "q": 1}, {"n": "Moo Moo Milk (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 20.39, "d": -8.41, "q": 1}, {"n": "Pinsir", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 18.95, "d": 0.16, "q": 1}, {"n": "Steelix (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint Holo", "p": 16.98, "d": -24.9, "q": 1}, {"n": "Victreebel", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 16.39, "d": 0.0, "q": 1}, {"n": "Vileplume", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 16.32, "d": -1.98, "q": 1}, {"n": "Kingdra (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint Holo", "p": 15.67, "d": 59.72, "q": 1}, {"n": "Clefable", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 14.78, "d": 0.27, "q": 1}, {"n": "Magneton (26)", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 14.03, "d": -0.57, "q": 1}, {"n": "Skarmory (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint Holo", "p": 12.63, "d": 14.63, "q": 1}, {"n": "Psyduck", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 12.11, "d": -1.7, "q": 2}, {"n": "Focus Band (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 9.17, "d": 0.0, "q": 1}, {"n": "Magmar", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 8.77, "d": -2.23, "q": 4}, {"n": "Mr. Mime", "s": "Jungle", "c": "Near Mint Unl", "p": 8.7, "d": -2.68, "q": 1}, {"n": "Pidgeot", "s": "Jungle", "c": "Near Mint Unl", "p": 7.37, "d": -0.67, "q": 1}, {"n": "Dark Gloom", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 6.58, "d": 4.11, "q": 1}, {"n": "Golduck", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 6.5, "d": -1.37, "q": 1}, {"n": "Slowpoke", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 6.48, "d": -17.87, "q": 2}, {"n": "Weezing", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 6.05, "d": 2.72, "q": 3}, {"n": "Omastar", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 5.95, "d": 6.06, "q": 1}, {"n": "Double Gust (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 5.84, "d": 0.0, "q": 1}, {"n": "Magneton (26)", "s": "Fossil", "c": "Near Mint Unl", "p": 5.6, "d": 3.7, "q": 1}, {"n": "Golbat", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 5.21, "d": 1.76, "q": 2}, {"n": "Gambler", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 4.78, "d": -13.25, "q": 4}, {"n": "Slowpoke (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.25, "d": -27.06, "q": 1}, {"n": "Wooper (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.14, "d": 22.92, "q": 2}, {"n": "Furret (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.0, "d": 166.67, "q": 1}, {"n": "Miltank (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.57, "d": -16.0, "q": 1}, {"n": "Omanyte", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 3.54, "d": -9.92, "q": 1}, {"n": "Bill's Teleporter (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.42, "d": 17.9, "q": 3}, {"n": "Horsea", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 3.38, "d": -14.43, "q": 2}, {"n": "Pokemon March (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.37, "d": 10.41, "q": 2}, {"n": "Dark Kadabra", "s": "Team Rocket", "c": "Near Mint Unl", "p": 3.33, "d": 0.0, "q": 2}, {"n": "Horsea (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.19, "d": 20.65, "q": 1}, {"n": "Grimer", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 3.17, "d": -9.94, "q": 2}, {"n": "Geodude", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 3.13, "d": -3.4, "q": 3}, {"n": "Energy Charge (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.08, "d": 0.0, "q": 1}, {"n": "Croconaw (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.05, "d": 0.0, "q": 1}, {"n": "Eevee", "s": "Jungle", "c": "Near Mint Unl", "p": 3.04, "d": -2.25, "q": 1}, {"n": "Super Energy Retrieval (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.91, "d": 0.0, "q": 1}, {"n": "Skiploom (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.86, "d": 0.0, "q": 1}, {"n": "Dodrio", "s": "Jungle", "c": "Near Mint Unl", "p": 2.74, "d": 20.18, "q": 1}, {"n": "Gligar (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.7, "d": 0.0, "q": 1}, {"n": "Spinarak (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.62, "d": 0.0, "q": 3}, {"n": "New Pokedex (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.5, "d": 0.0, "q": 2}, {"n": "Krabby", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 2.49, "d": 18.57, "q": 2}, {"n": "Quagsire (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.47, "d": 0.0, "q": 1}, {"n": "Zubat", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 2.44, "d": 2.95, "q": 1}, {"n": "PokeGear (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.32, "d": 0.0, "q": 1}, {"n": "Sunflora (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.25, "d": 0.0, "q": 1}, {"n": "Oddish (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.22, "d": -14.53, "q": 1}, {"n": "The Boss's Way", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.11, "d": -4.52, "q": 1}, {"n": "Hoppip (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.06, "d": -14.38, "q": 1}, {"n": "Ledyba (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.95, "d": 0.0, "q": 2}, {"n": "Ekans", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 1.89, "d": -6.44, "q": 1}, {"n": "Girafarig (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.86, "d": 0.0, "q": 1}, {"n": "Shellder", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 1.78, "d": -1.66, "q": 1}, {"n": "Tentacool", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 1.73, "d": 0.0, "q": 1}, {"n": "Stantler (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.4, "d": 0.0, "q": 1}, {"n": "Mantine (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.37, "d": 0.0, "q": 1}, {"n": "Jigglypuff", "s": "Jungle", "c": "Near Mint Unl", "p": 1.32, "d": -18.01, "q": 1}, {"n": "Energy Search", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 1.0, "d": -0.99, "q": 2}, {"n": "Seadra (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.0, "d": 0.0, "q": 1}, {"n": "Recycle", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 0.94, "d": -2.08, "q": 2}, {"n": "Zubat", "s": "Fossil", "c": "Near Mint Unl", "p": 0.51, "d": -1.92, "q": 1}, {"n": "Gambler", "s": "Fossil", "c": "Near Mint Unl", "p": 0.46, "d": 4.55, "q": 1}, {"n": "Rhyhorn", "s": "Jungle", "c": "Near Mint Unl", "p": 0.45, "d": 2.27, "q": 1}, {"n": "Bellsprout", "s": "Jungle", "c": "Near Mint Unl", "p": 0.44, "d": -8.33, "q": 1}, {"n": "Paras", "s": "Jungle", "c": "Near Mint Unl", "p": 0.43, "d": 4.88, "q": 1}, {"n": "Exeggcute", "s": "Jungle", "c": "Near Mint Unl", "p": 0.41, "d": -10.87, "q": 2}, {"n": "Recycle", "s": "Fossil", "c": "Near Mint Unl", "p": 0.32, "d": -5.88, "q": 1}]}, "pc": {"Personal Collection": [{"n": "Lt. Surge's Raichu", "s": "Gym Challenge", "c": "--", "p": 257.75, "d": 0.0, "q": 1}, {"n": "Rocket's Zapdos", "s": "Gym Challenge", "c": "--", "p": 220.34, "d": 0.0, "q": 1}, {"n": "Dark Blastoise", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 204.75, "d": 0.0, "q": 1}, {"n": "Blastoise", "s": "Base Set 2", "c": "Near Mint Holo", "p": 150.8, "d": 0.0, "q": 1}, {"n": "Mew (JP)", "s": "Japanese CD Promo", "c": "Near Mint Glossy", "p": 145.48, "d": 15.66, "q": 1}, {"n": "Mew (9)", "s": "WoTC Promo", "c": "Near Mint Holo", "p": 137.36, "d": 2.55, "q": 1}, {"n": "Snorlax", "s": "Jungle", "c": "Lightly Played Unl Holo", "p": 131.71, "d": 2.05, "q": 1}, {"n": "Ancient Mew [2000]", "s": "Misc", "c": "Near Mint Holo", "p": 107.7, "d": 2.12, "q": 1}, {"n": "Jolteon", "s": "Jungle", "c": "Near Mint Unl Holo", "p": 99.08, "d": -0.19, "q": 1}, {"n": "MewTwo (JP)", "s": "Japanese CD Promo", "c": "Near Mint Glossy", "p": 83.31, "d": -12.3, "q": 1}, {"n": "Alakazam", "s": "Base Set (Unlimited)", "c": "Near Mint Holo", "p": 69.57, "d": -3.23, "q": 1}, {"n": "Articuno", "s": "Fossil", "c": "Lightly Played Unl Holo", "p": 65.09, "d": 2.89, "q": 1}, {"n": "Slowking", "s": "Neo Genesis", "c": "Lightly Played Unl Holo", "p": 62.36, "d": 1.02, "q": 1}, {"n": "Mewtwo", "s": "Base Set (Unlimited)", "c": "Lightly Played Holo", "p": 60.75, "d": -5.84, "q": 1}, {"n": "Vaporeon", "s": "Jungle", "c": "Near Mint Unl Holo", "p": 51.07, "d": 6.2, "q": 1}, {"n": "Nidoqueen", "s": "Jungle", "c": "Lightly Played Unl Holo", "p": 49.38, "d": 0.83, "q": 1}, {"n": "Raichu", "s": "Base Set 2", "c": "Lightly Played Holo", "p": 48.03, "d": 1.06, "q": 1}, {"n": "Alakazam", "s": "Base Set 2", "c": "Lightly Played Holo", "p": 46.16, "d": -0.71, "q": 1}, {"n": "Poliwrath", "s": "Base Set (Unlimited)", "c": "Near Mint Holo", "p": 40.98, "d": -0.39, "q": 1}, {"n": "Hypno", "s": "Fossil", "c": "Near Mint Unl Holo", "p": 39.11, "d": -1.36, "q": 1}, {"n": "Zapdos (15)", "s": "Fossil", "c": "Lightly Played Unl Holo", "p": 35.66, "d": 1.65, "q": 1}, {"n": "Ninetales", "s": "Base Set (Unlimited)", "c": "Near Mint Holo", "p": 34.72, "d": -2.25, "q": 1}, {"n": "Scyther", "s": "Base Set 2", "c": "Near Mint Holo", "p": 34.34, "d": -1.91, "q": 1}, {"n": "Misty's Lapras", "s": "Destined Rivals", "c": "Lightly Played Holo", "p": 32.38, "d": -5.01, "q": 1}, {"n": "Nidoking", "s": "Base Set (Unlimited)", "c": "Lightly Played Holo", "p": 31.99, "d": -0.42, "q": 1}, {"n": "Hitmonlee", "s": "Fossil", "c": "Moderately Played Unl Holo", "p": 31.85, "d": -0.35, "q": 1}, {"n": "Gengar (20)", "s": "Fossil", "c": "Moderately Played Unl", "p": 30.74, "d": -0.24, "q": 1}, {"n": "Clefable", "s": "Base Set 2", "c": "Lightly Played Holo", "p": 26.47, "d": 2.5, "q": 1}, {"n": "Haunter", "s": "Base Set (1st/Shadowless)", "c": "Damaged 1st Ed", "p": 24.94, "d": 0.0, "q": 1}, {"n": "Magneton", "s": "Base Set 2", "c": "Near Mint Holo", "p": 24.48, "d": 0.0, "q": 1}, {"n": "Vaporeon", "s": "Brilliant Stars TG", "c": "Near Mint Holo", "p": 23.1, "d": 0.26, "q": 1}, {"n": "Clefairy", "s": "Base Set 2", "c": "Near Mint Holo", "p": 23.09, "d": 1.81, "q": 1}, {"n": "Machamp", "s": "Deck Exclusives", "c": "Lightly Played 1st Ed Holo", "p": 22.53, "d": -4.12, "q": 1}, {"n": "Hitmonchan", "s": "Base Set (Unlimited)", "c": "Near Mint Holo", "p": 21.53, "d": -1.78, "q": 1}, {"n": "Chansey", "s": "Base Set 2", "c": "Near Mint Holo", "p": 21.2, "d": 1.29, "q": 1}, {"n": "Kabuto", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 21.09, "d": 1.05, "q": 1}, {"n": "Articuno", "s": "Journey Together", "c": "Near Mint Holo", "p": 20.95, "d": -2.29, "q": 1}, {"n": "Eevee", "s": "Brilliant Stars TG", "c": "Near Mint Holo", "p": 20.89, "d": -5.82, "q": 1}, {"n": "Snorlax", "s": "Scarlet & Violet Promo", "c": "Near Mint Holo", "p": 19.94, "d": -7.81, "q": 1}, {"n": "Meowth", "s": "Phantasmal Flames", "c": "Near Mint Holo", "p": 19.84, "d": -4.94, "q": 1}, {"n": "Kingdra", "s": "Neo Genesis", "c": "Lightly Played Unl Holo", "p": 19.29, "d": -0.53, "q": 1}, {"n": "Wigglytuff", "s": "Base Set 2", "c": "Lightly Played Holo", "p": 18.5, "d": 5.12, "q": 1}, {"n": "Lapras (10)", "s": "Fossil", "c": "Moderately Played Unl Holo", "p": 16.81, "d": 3.37, "q": 1}, {"n": "Tangela", "s": "SV: 151", "c": "Near Mint Holo", "p": 15.97, "d": -0.25, "q": 1}, {"n": "Kangaskhan", "s": "Jungle", "c": "Lightly Played Unl Holo", "p": 15.24, "d": 2.93, "q": 1}, {"n": "Team Rocket's Houndoom", "s": "Destined Rivals", "c": "Near Mint Holo", "p": 14.66, "d": 1.95, "q": 1}, {"n": "Omanyte", "s": "SV: 151", "c": "Near Mint Holo", "p": 14.4, "d": 2.13, "q": 1}, {"n": "Unown A (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint Holo", "p": 14.27, "d": -20.75, "q": 1}, {"n": "Cyndaquil (57)", "s": "Neo Genesis", "c": "Near Mint 1st Ed", "p": 13.71, "d": -17.36, "q": 1}, {"n": "Totodile (80)", "s": "Neo Genesis", "c": "Near Mint 1st Ed", "p": 13.2, "d": -0.9, "q": 1}, {"n": "Kadabra", "s": "Base Set (1st/Shadowless)", "c": "Near Mint Shadowless", "p": 12.45, "d": 2.64, "q": 1}, {"n": "Flying Pikachu", "s": "Evolutions", "c": "Near Mint", "p": 9.33, "d": 11.07, "q": 1}, {"n": "Magmar", "s": "Fossil", "c": "Near Mint 1st Ed", "p": 8.77, "d": -2.23, "q": 1}, {"n": "Team Rocket's Wobbuffet", "s": "Scarlet & Violet Promo", "c": "Near Mint Holo", "p": 7.92, "d": -0.25, "q": 1}, {"n": "Jigglypuff", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 7.81, "d": -10.33, "q": 1}, {"n": "Hypno", "s": "BREAKpoint", "c": "Lightly Played", "p": 6.97, "d": 0.12, "q": 1}, {"n": "Meowth", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 6.21, "d": -2.2, "q": 1}, {"n": "Donphan", "s": "Neo Genesis", "c": "Near Mint Unl", "p": 5.9, "d": 0.51, "q": 1}, {"n": "Magneton (26)", "s": "Fossil", "c": "Near Mint Unl", "p": 5.6, "d": 3.7, "q": 1}, {"n": "Team Rocket's Persian ex", "s": "Destined Rivals", "c": "Near Mint Holo", "p": 4.42, "d": 6.25, "q": 1}, {"n": "Spearow", "s": "Mega Evolution", "c": "Near Mint Holo", "p": 4.3, "d": 4.62, "q": 1}, {"n": "Parasect", "s": "Jungle", "c": "Near Mint 1st Ed", "p": 3.4, "d": -2.02, "q": 1}, {"n": "Swinub", "s": "Journey Together", "c": "Near Mint Holo", "p": 3.31, "d": 7.12, "q": 1}, {"n": "Cyndaquil (57)", "s": "Neo Genesis", "c": "Near Mint Unl", "p": 2.55, "d": -8.6, "q": 1}, {"n": "Raticate", "s": "Perfect Order", "c": "Near Mint Holo", "p": 2.25, "d": -24.5, "q": 1}, {"n": "Claydol", "s": "Chaos Rising", "c": "Near Mint Holo", "p": 1.89, "d": 0.53, "q": 1}], "PC - Gym Hero": [{"n": "Blaine's Moltres", "s": "Gym Heroes", "c": "Near Mint Unl Holo", "p": 133.05, "d": 2.1, "q": 1}, {"n": "Rocket's Scyther", "s": "Gym Heroes", "c": "Near Mint Unl Holo", "p": 85.01, "d": 0.0, "q": 1}, {"n": "Misty (18)", "s": "Gym Heroes", "c": "Near Mint Unl Holo", "p": 68.81, "d": 1.76, "q": 1}, {"n": "Erika's Clefable", "s": "Gym Heroes", "c": "Lightly Played Unl Holo", "p": 40.37, "d": 0.0, "q": 1}, {"n": "Misty's Tentacruel", "s": "Gym Heroes", "c": "Near Mint Unl Holo", "p": 29.21, "d": -0.1, "q": 1}, {"n": "Erika's Vileplume", "s": "Gym Heroes", "c": "Near Mint Unl Holo", "p": 27.5, "d": 0.0, "q": 1}, {"n": "Sabrina's Haunter", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 22.62, "d": -4.8, "q": 1}, {"n": "Brock's Rhyhorn (22)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 12.05, "d": 1.77, "q": 1}, {"n": "Sabrina's ESP", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 7.57, "d": 4.7, "q": 1}, {"n": "Lt. Surge's Pikachu", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 7.22, "d": 3.44, "q": 1}, {"n": "Blaine's Kangaskhan", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 5.3, "d": -19.82, "q": 1}, {"n": "Erika's Dratini", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 5.3, "d": -6.85, "q": 1}, {"n": "Misty's Starmie", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 4.73, "d": -0.84, "q": 1}, {"n": "Minion of Team Rocket", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 4.55, "d": 1.11, "q": 1}, {"n": "Brock's Lickitung", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 3.66, "d": 1.95, "q": 1}, {"n": "Erika's Gloom (46)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 3.41, "d": 0.89, "q": 1}, {"n": "Erika's Oddish (47)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 3.4, "d": 0.0, "q": 1}, {"n": "Erika's Maids", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 3.12, "d": 5.41, "q": 1}, {"n": "Blaine's Charmander", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 3.02, "d": 11.85, "q": 1}, {"n": "Misty's Tentacool (57)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 2.62, "d": 2.34, "q": 1}, {"n": "Misty's Seaking", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 2.6, "d": 4.84, "q": 1}, {"n": "Misty's Staryu", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 2.0, "d": 25.79, "q": 1}, {"n": "Erika's Gloom (45)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.87, "d": 0.0, "q": 1}, {"n": "Sabrina's Slowpoke", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.84, "d": 1.66, "q": 1}, {"n": "Sabrina's Mr. Mime", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.74, "d": -3.87, "q": 1}, {"n": "Erika's Exeggutor", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.6, "d": -1.84, "q": 1}, {"n": "Blaine's Ponyta", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.6, "d": 0.0, "q": 1}, {"n": "Brock's Mankey (68)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.45, "d": 3.57, "q": 1}, {"n": "Misty's Goldeen (85)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.45, "d": 15.08, "q": 1}, {"n": "Sabrina's Gaze", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.43, "d": -2.05, "q": 1}, {"n": "Sabrina's Venonat", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.39, "d": 2.96, "q": 1}, {"n": "Brock's Sandshrew (71)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.27, "d": -7.3, "q": 1}, {"n": "Erika's Bellsprout (75)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.2, "d": -0.83, "q": 1}, {"n": "Blaine's Tauros", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.19, "d": 0.85, "q": 2}, {"n": "Lt. Surge's Voltorb", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.16, "d": 4.5, "q": 1}, {"n": "Lt. Surge's Spearow (52)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.1, "d": 7.84, "q": 1}, {"n": "Brock's Zubat (74)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.06, "d": 0.95, "q": 1}, {"n": "Celadon City Gym", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 1.04, "d": 1.96, "q": 1}, {"n": "Erika's Tangela", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.81, "d": -5.81, "q": 1}, {"n": "Erika's Bellsprout (76)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.77, "d": 6.94, "q": 1}, {"n": "Lt. Surge's Magnemite (80)", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.77, "d": 4.05, "q": 1}, {"n": "Lt. Surge's Rattata", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.76, "d": 4.11, "q": 1}, {"n": "Blaine's Gamble", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.57, "d": 0.0, "q": 1}, {"n": "Energy Flow", "s": "Gym Heroes", "c": "Near Mint Unl", "p": 0.54, "d": 0.0, "q": 1}], "PC - Gym Challenge": [{"n": "Giovanni's Machamp", "s": "Gym Challenge", "c": "Lightly Played Unl Holo", "p": 68.56, "d": 0.0, "q": 1}, {"n": "Giovanni's Nidoking", "s": "Gym Challenge", "c": "Lightly Played Unl Holo", "p": 64.55, "d": 0.0, "q": 1}, {"n": "Koga's Beedrill", "s": "Gym Challenge", "c": "Lightly Played Unl Holo", "p": 31.19, "d": 0.0, "q": 1}, {"n": "Blaine's Ninetales", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 23.41, "d": 0.0, "q": 1}, {"n": "Erika's Bulbasaur", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 14.96, "d": -0.13, "q": 1}, {"n": "Sabrina's Gastly (97)", "s": "Gym Challenge", "c": "Near Mint 1st Ed", "p": 14.77, "d": 0.0, "q": 1}, {"n": "Sabrina's Psychic Control", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 9.67, "d": 3.09, "q": 1}, {"n": "Sabrina's Hypno", "s": "Gym Challenge", "c": "Near Mint 1st Ed", "p": 9.33, "d": -0.64, "q": 1}, {"n": "Brock's Sandslash", "s": "Gym Challenge", "c": "Near Mint 1st Ed", "p": 8.22, "d": -1.2, "q": 1}, {"n": "Misty's Dewgong", "s": "Gym Challenge", "c": "Near Mint 1st Ed", "p": 7.82, "d": 0.77, "q": 1}, {"n": "Sabrina's Mr. Mime", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 4.25, "d": 2.66, "q": 1}, {"n": "Blaine's Charmander", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 3.99, "d": 2.31, "q": 1}, {"n": "Giovanni's Magikarp", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 3.57, "d": -1.38, "q": 1}, {"n": "Sabrina's Abra (94)", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 3.57, "d": 4.69, "q": 1}, {"n": "Brock's Primeape", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 3.38, "d": -3.43, "q": 1}, {"n": "Koga's Pidgey (49)", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 3.15, "d": -1.56, "q": 1}, {"n": "Giovanni's Machoke", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.93, "d": 0.34, "q": 1}, {"n": "Lt. Surge's Electrode", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.91, "d": -0.68, "q": 1}, {"n": "Sabrina's Abra (93)", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.9, "d": 5.45, "q": 1}, {"n": "Blaine's Vulpix", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.76, "d": -1.78, "q": 1}, {"n": "Erika's Jigglypuff", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.76, "d": -2.13, "q": 2}, {"n": "Erika's Bellsprout", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.68, "d": -2.19, "q": 1}, {"n": "Lt. Surge's Raticate", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.43, "d": -0.41, "q": 1}, {"n": "Blaine's Rapidash", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.27, "d": -3.4, "q": 1}, {"n": "Koga's Weezing", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 2.07, "d": -11.91, "q": 1}, {"n": "Blaine's Dodrio", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.95, "d": 1.56, "q": 1}, {"n": "Koga's Koffing (48)", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.91, "d": -2.55, "q": 1}, {"n": "Giovanni's Machop", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.75, "d": 8.7, "q": 1}, {"n": "Koga's Tangela", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.58, "d": -3.07, "q": 1}, {"n": "Brock's Geodude", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.54, "d": 0.65, "q": 1}, {"n": "Brock's Diglett", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.51, "d": 10.22, "q": 1}, {"n": "Misty's Seel", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.47, "d": 0.0, "q": 1}, {"n": "Koga's Pidgey (80)", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.46, "d": 1.39, "q": 1}, {"n": "Koga's Ekans", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.29, "d": 14.16, "q": 1}, {"n": "Cinnabar City Gym", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.22, "d": -0.81, "q": 1}, {"n": "Koga's Grimer", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.19, "d": 2.59, "q": 1}, {"n": "Blaine's Mankey", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.09, "d": -1.8, "q": 1}, {"n": "Blaine's Ponyta", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.09, "d": 4.81, "q": 1}, {"n": "Giovanni's Nidoran F", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.04, "d": 8.33, "q": 1}, {"n": "Lt. Surge's Voltorb", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.02, "d": 4.08, "q": 1}, {"n": "Lt. Surge's Rattata", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 1.01, "d": -6.48, "q": 1}, {"n": "Blaine's Doduo", "s": "Gym Challenge", "c": "Near Mint Unl", "p": 0.62, "d": -7.46, "q": 1}], "PC - Rocket": [{"n": "Dark Blastoise", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 204.75, "d": 0.0, "q": 1}, {"n": "Dark Raichu", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 119.57, "d": 0.0, "q": 1}, {"n": "Dark Hypno", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 42.65, "d": 1.02, "q": 1}, {"n": "Dark Charmeleon", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 23.11, "d": -3.71, "q": 1}, {"n": "Rocket's Sneak Attack (16)", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 22.07, "d": 2.08, "q": 1}, {"n": "Dark Arbok", "s": "Team Rocket", "c": "Near Mint Unl Holo", "p": 16.37, "d": -3.31, "q": 1}, {"n": "Here Comes Team Rocket! (71)", "s": "Team Rocket", "c": "Near Mint Unl", "p": 9.86, "d": -0.1, "q": 1}, {"n": "Eevee", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 9.58, "d": 1.91, "q": 1}, {"n": "Dark Hypno (26)", "s": "Team Rocket", "c": "Near Mint Unl", "p": 9.31, "d": -0.96, "q": 1}, {"n": "Dark Arbok (19)", "s": "Team Rocket", "c": "Near Mint Unl", "p": 8.72, "d": 1.28, "q": 1}, {"n": "Dark Flareon", "s": "Team Rocket", "c": "Near Mint Unl", "p": 8.44, "d": 11.05, "q": 1}, {"n": "Dark Magneton", "s": "Team Rocket", "c": "Near Mint Unl", "p": 7.96, "d": -0.62, "q": 1}, {"n": "Dark Weezing (31)", "s": "Team Rocket", "c": "Near Mint Unl", "p": 7.84, "d": 1.16, "q": 1}, {"n": "Dark Golbat (24)", "s": "Team Rocket", "c": "Near Mint Unl", "p": 6.97, "d": -0.57, "q": 1}, {"n": "Charmander", "s": "Team Rocket", "c": "Near Mint Unl", "p": 6.97, "d": 11.52, "q": 1}, {"n": "Dark Dragonair", "s": "Team Rocket", "c": "Near Mint Unl", "p": 6.15, "d": 2.16, "q": 1}, {"n": "Dark Machoke", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 6.14, "d": -4.95, "q": 1}, {"n": "Sleep!", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 5.79, "d": 8.43, "q": 1}, {"n": "Porygon", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 5.7, "d": 1.6, "q": 1}, {"n": "Imposter Oak's Revenge", "s": "Team Rocket", "c": "Near Mint Unl", "p": 5.68, "d": 46.39, "q": 2}, {"n": "Dark Electrode", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 4.94, "d": 1.65, "q": 1}, {"n": "Slowpoke", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 4.62, "d": 1.32, "q": 2}, {"n": "Meowth", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 3.96, "d": 2.33, "q": 1}, {"n": "Dratini", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 3.83, "d": 7.58, "q": 1}, {"n": "Dark Rapidash", "s": "Team Rocket", "c": "Near Mint Unl", "p": 3.5, "d": 0.29, "q": 1}, {"n": "Dark Kadabra", "s": "Team Rocket", "c": "Near Mint Unl", "p": 3.33, "d": 0.0, "q": 1}, {"n": "Nightly Garbage Run", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.69, "d": -3.58, "q": 1}, {"n": "Diglett", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.56, "d": 0.0, "q": 1}, {"n": "Dark Persian", "s": "Team Rocket", "c": "Near Mint Unl", "p": 2.45, "d": -1.61, "q": 1}, {"n": "Grimer", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.39, "d": 2.14, "q": 1}, {"n": "Zubat", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.35, "d": -1.26, "q": 1}, {"n": "Dark Muk", "s": "Team Rocket", "c": "Near Mint Unl", "p": 2.3, "d": 3.14, "q": 1}, {"n": "Koffing", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.19, "d": 3.3, "q": 1}, {"n": "Mankey", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.19, "d": -3.95, "q": 1}, {"n": "Challenge!", "s": "Team Rocket", "c": "Near Mint Unl", "p": 2.16, "d": 4.85, "q": 1}, {"n": "Machop", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.04, "d": 5.15, "q": 1}, {"n": "Dark Primeape", "s": "Team Rocket", "c": "Near Mint Unl", "p": 2.03, "d": -5.14, "q": 1}, {"n": "Ponyta", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 2.03, "d": 10.33, "q": 1}, {"n": "Magnemite", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.97, "d": 5.35, "q": 1}, {"n": "Ekans", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.76, "d": -1.12, "q": 1}, {"n": "Drowzee", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.73, "d": 0.0, "q": 1}, {"n": "Voltorb", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.73, "d": -3.35, "q": 1}, {"n": "Rattata", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.68, "d": 3.07, "q": 1}, {"n": "Full Heal Energy", "s": "Team Rocket", "c": "Near Mint Unl", "p": 1.45, "d": 2.11, "q": 1}, {"n": "Meowth", "s": "Team Rocket", "c": "Near Mint Unl", "p": 1.35, "d": -6.9, "q": 1}, {"n": "Digger", "s": "Team Rocket", "c": "Near Mint Unl", "p": 1.27, "d": 2.42, "q": 1}, {"n": "Potion Energy", "s": "Team Rocket", "c": "Near Mint Unl", "p": 1.13, "d": 0.0, "q": 1}, {"n": "Goop Gas Attack", "s": "Team Rocket", "c": "Near Mint 1st Ed", "p": 1.04, "d": 6.12, "q": 1}, {"n": "The Boss's Way", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.78, "d": -6.02, "q": 1}, {"n": "Abra", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.77, "d": -1.28, "q": 1}, {"n": "Ponyta", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.77, "d": -8.33, "q": 1}, {"n": "Rattata", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.77, "d": -2.53, "q": 1}, {"n": "Oddish", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.71, "d": -5.33, "q": 1}, {"n": "Drowzee", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.68, "d": 1.49, "q": 1}, {"n": "Dark Raticate", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.63, "d": 8.62, "q": 1}, {"n": "Mankey", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.62, "d": 3.33, "q": 1}, {"n": "Zubat", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.59, "d": -6.35, "q": 1}, {"n": "Sleep!", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.55, "d": 5.77, "q": 1}, {"n": "Koffing", "s": "Team Rocket", "c": "Near Mint Unl", "p": 0.52, "d": -7.14, "q": 1}]}, "fsOrder": ["Main Inventory", "Under 10", "Japanese Poke", "EX & Mega EX", "V Cards", "Trainers", "WOTC Lot"], "pcOrder": ["Personal Collection", "PC - Gym Hero", "PC - Gym Challenge", "PC - Rocket"], "fsTotals": {"Main Inventory": 2345.9, "Under 10": 273.79, "Japanese Poke": 82.57, "EX & Mega EX": 12.93, "V Cards": 18.91, "Trainers": 7.03, "WOTC Lot": 1316.1}, "pcTotals": {"Personal Collection": 2841.64, "PC - Gym Hero": 504.92, "PC - Gym Challenge": 323.6, "PC - Rocket": 617.99}};
+const DATA = {"business": {"main": {"label": "Main Inventory", "rows": [{"n": "Destined Rivals Booster Box", "s": "Destined Rivals", "c": "Sealed", "p": 449.24, "d": -3.35, "q": 1}, {"n": "Zekrom ex", "s": "Black Bolt", "c": "Moderately Played", "p": 216.38, "d": 0.11, "q": 1}, {"n": "Pikachu", "s": "POP Series 5", "c": "Damaged", "p": 173.94, "d": 0.0, "q": 1}, {"n": "Umbreon ex - 176", "s": "Scarlet & Violet Promo", "c": "PSA 10 \ud83d\udd12", "p": 168.74, "d": -6.16, "q": 1}, {"n": "Dragon's Roar Structure Deck (1st Ed)", "s": "Structure Deck: Dragon's Roar", "c": "Sealed", "p": 158.17, "d": 0.0, "q": 1}, {"n": "Zombie Madness Structure Deck (1st Ed)", "s": "Structure Deck: Zombie Madness", "c": "Sealed", "p": 144.63, "d": -2.17, "q": 1}, {"n": "Mew (Secret)", "s": "Celebrations", "c": "Near Mint", "p": 62.02, "d": 0.62, "q": 1}, {"n": "Kabutops (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 61.0, "d": 4.18, "q": 1}, {"n": "Mewtwo", "s": "Base Set (Unlimited)", "c": "Moderately Played", "p": 53.6, "d": -4.9, "q": 1}, {"n": "Charmander", "s": "Scarlet & Violet Promo", "c": "Lightly Played", "p": 53.15, "d": 0.79, "q": 1}, {"n": "Gyarados", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 50.86, "d": -0.37, "q": 1}, {"n": "Machamp (Shadowless)", "s": "Deck Exclusives", "c": "Heavily Played", "p": 50.3, "d": 4.12, "q": 1}, {"n": "Mega Greninja ex Premium Collection", "s": "Misc Cards & Products", "c": "Sealed", "p": 47.43, "d": -2.69, "q": 1}, {"n": "M Rayquaza EX", "s": "Celebrations: Classic Collection", "c": "Near Mint", "p": 41.17, "d": -2.97, "q": 1}, {"n": "Pikachu V-Union [Set of 4]", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 33.62, "d": -2.58, "q": 1}, {"n": "Mega Moonlit Tin [Mega Gengar ex]", "s": "Misc Cards & Products", "c": "Sealed", "p": 33.27, "d": 5.55, "q": 1}, {"n": "Nidoking", "s": "Base Set 2", "c": "Moderately Played", "p": 32.82, "d": 2.51, "q": 1}, {"n": "Greninja V [Set of 4]", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 30.5, "d": -0.72, "q": 1}, {"n": "Minun", "s": "Supreme Victors", "c": "Heavily Played", "p": 29.99, "d": 0.0, "q": 1}, {"n": "Gyarados (#30 Holo)", "s": "HGSS Trainer Kit", "c": "Moderately Played", "p": 29.47, "d": 0.0, "q": 1}, {"n": "Misty's Tentacruel", "s": "Gym Heroes", "c": "Near Mint", "p": 29.12, "d": -0.38, "q": 1}, {"n": "Misty's Tentacruel (JP)", "s": "Gym Heroes (Japanese)", "c": "Near Mint", "p": 28.72, "d": 14.35, "q": 1}, {"n": "Rayquaza C", "s": "Supreme Victors", "c": "Damaged", "p": 28.2, "d": 0.0, "q": 1}, {"n": "Electrode (Prime)", "s": "Triumphant", "c": "Heavily Played", "p": 27.74, "d": 0.63, "q": 1}, {"n": "Hitmonchan", "s": "Base Set 2", "c": "Near Mint", "p": 23.8, "d": -0.29, "q": 1}, {"n": "Ursaring (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 22.01, "d": 30.17, "q": 1}, {"n": "M Gyarados EX", "s": "BREAKpoint", "c": "Damaged", "p": 20.59, "d": 0.53, "q": 1}, {"n": "Gyarados", "s": "Base Set (Unlimited)", "c": "Damaged", "p": 20.34, "d": -0.37, "q": 1}, {"n": "Clefairy", "s": "Base Set 2", "c": "Lightly Played", "p": 19.52, "d": 1.28, "q": 1}, {"n": "Regigigas (Full Art Promo)", "s": "XY Promos", "c": "Damaged", "p": 18.42, "d": 0.0, "q": 2}, {"n": "Erika's Clefable (JP)", "s": "Gym Heroes (Japanese)", "c": "Near Mint", "p": 17.53, "d": 19.7, "q": 1}, {"n": "Jirachi (Magnus Pedersen)", "s": "World Championship Decks", "c": "Near Mint", "p": 13.53, "d": 0.0, "q": 1}, {"n": "Charizard V", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 12.9, "d": 3.86, "q": 1}, {"n": "Lunala GX", "s": "Sun & Moon Promo", "c": "Lightly Played", "p": 12.89, "d": 0.13, "q": 1}, {"n": "Charizard", "s": "Detective Pikachu", "c": "Near Mint", "p": 12.33, "d": 3.18, "q": 1}, {"n": "Ditto", "s": "Detective Pikachu", "c": "Near Mint", "p": 12.12, "d": -0.82, "q": 1}, {"n": "Azumarill (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 11.74, "d": 20.2, "q": 1}, {"n": "Froakie", "s": "Chaos Rising", "c": "Near Mint", "p": 10.12, "d": -3.16, "q": 1}, {"n": "Snorlax", "s": "Boundaries Crossed", "c": "Near Mint", "p": 9.85, "d": 0.92, "q": 1}, {"n": "Charizard V", "s": "Darkness Ablaze", "c": "Near Mint", "p": 9.33, "d": -3.42, "q": 1}, {"n": "N's Zekrom", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 8.58, "d": 0.59, "q": 1}], "value": 2308.1, "qty": 42}, "under10": {"label": "Under 10", "rows": [{"n": "Unown (R)", "s": "Legends Awakened", "c": "Heavily Played", "p": 9.9, "d": 4.76, "q": 1}, {"n": "Ursaring", "s": "Legendary Treasures: Radiant", "c": "Near Mint", "p": 8.65, "d": 3.22, "q": 1}, {"n": "Pikachu Libre (14)", "s": "XY Trainer Kit", "c": "Damaged", "p": 8.51, "d": 0.0, "q": 1}, {"n": "Snorlax", "s": "BREAKthrough", "c": "Near Mint", "p": 7.85, "d": 3.29, "q": 1}, {"n": "Gyarados", "s": "Evolutions", "c": "Lightly Played", "p": 7.78, "d": -0.65, "q": 1}, {"n": "Gyarados", "s": "Generations", "c": "Near Mint", "p": 7.6, "d": 1.06, "q": 1}, {"n": "Mankey", "s": "McDonald's Promos 2019", "c": "Near Mint", "p": 7.57, "d": -3.2, "q": 1}, {"n": "Koga's Pidgey (49)", "s": "Gym Challenge", "c": "Near Mint", "p": 6.45, "d": 0.62, "q": 1}, {"n": "Dragonite", "s": "McDonald's Promos 2024", "c": "Near Mint", "p": 6.4, "d": 0.47, "q": 1}, {"n": "Gyarados GX", "s": "Hidden Fates", "c": "Near Mint", "p": 6.02, "d": -2.59, "q": 1}, {"n": "Scorbunny", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.95, "d": -8.46, "q": 1}, {"n": "Sleep!", "s": "Team Rocket", "c": "Near Mint", "p": 5.94, "d": 11.24, "q": 2}, {"n": "Litten", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.79, "d": -6.16, "q": 1}, {"n": "Dedenne", "s": "Perfect Order", "c": "Near Mint", "p": 5.77, "d": -5.41, "q": 2}, {"n": "Porygon", "s": "Team Rocket", "c": "Near Mint", "p": 5.7, "d": 1.24, "q": 1}, {"n": "Grookey", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.68, "d": -6.43, "q": 1}, {"n": "Rowlet", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.58, "d": -2.79, "q": 1}, {"n": "Rowlet", "s": "Perfect Order", "c": "Near Mint", "p": 5.39, "d": -5.77, "q": 1}, {"n": "Popplio", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 5.15, "d": 4.25, "q": 1}, {"n": "Venusaur EX", "s": "Evolutions", "c": "Near Mint", "p": 5.05, "d": 11.97, "q": 1}, {"n": "Litleo", "s": "Mega Evolution", "c": "Near Mint", "p": 5.01, "d": -4.21, "q": 1}, {"n": "Dragonite EX", "s": "Furious Fists", "c": "Damaged", "p": 4.82, "d": -2.82, "q": 1}, {"n": "Yveltal ex", "s": "Perfect Order", "c": "Near Mint", "p": 4.78, "d": -12.45, "q": 1}, {"n": "Sobble", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 4.3, "d": -2.49, "q": 1}, {"n": "Mega Eelektross ex", "s": "Ascended Heroes", "c": "Near Mint", "p": 4.2, "d": -2.55, "q": 1}, {"n": "Lucario (47)", "s": "Fates Collide", "c": "Near Mint", "p": 4.19, "d": 2.45, "q": 1}, {"n": "Magmar", "s": "McDonald's Promos 2019", "c": "Damaged", "p": 4.18, "d": -0.19, "q": 1}, {"n": "Prinplup", "s": "Legendary Treasures", "c": "Lightly Played", "p": 4.13, "d": 0.0, "q": 1}, {"n": "Meowth", "s": "Team Rocket", "c": "Near Mint", "p": 4.05, "d": 4.65, "q": 1}, {"n": "Dratini", "s": "Team Rocket", "c": "Near Mint", "p": 3.82, "d": 6.7, "q": 2}, {"n": "Abra", "s": "Team Rocket", "c": "Near Mint", "p": 3.54, "d": 8.26, "q": 1}, {"n": "Minun", "s": "Legendary Treasures", "c": "Near Mint", "p": 3.3, "d": 0.0, "q": 1}, {"n": "Galarian Obstagoon", "s": "Ascended Heroes", "c": "Near Mint", "p": 3.24, "d": -5.54, "q": 1}, {"n": "Haunter", "s": "BREAKthrough", "c": "Lightly Played", "p": 3.24, "d": 7.32, "q": 1}, {"n": "Venusaur V", "s": "Champion's Path", "c": "Near Mint", "p": 3.13, "d": -3.4, "q": 2}, {"n": "Pikachu", "s": "Sword & Shield Base Set", "c": "Near Mint", "p": 2.97, "d": 6.07, "q": 1}, {"n": "Dragapult", "s": "Shining Fates: Shiny Vault", "c": "Near Mint", "p": 2.74, "d": 1.11, "q": 1}, {"n": "Magikarp", "s": "Call of Legends", "c": "Near Mint", "p": 2.58, "d": 10.26, "q": 1}, {"n": "Diglett", "s": "Team Rocket", "c": "Near Mint", "p": 2.56, "d": 0.0, "q": 1}, {"n": "Tyrunt", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 2.55, "d": -21.54, "q": 1}, {"n": "Electrike (Omega)", "s": "Primal Clash", "c": "Near Mint", "p": 2.52, "d": 0.4, "q": 1}, {"n": "Snover", "s": "Mega Evolution", "c": "Near Mint", "p": 2.5, "d": 4.17, "q": 1}, {"n": "Ambipom", "s": "Phantasmal Flames", "c": "Near Mint", "p": 2.46, "d": 2.5, "q": 1}, {"n": "Grimer", "s": "Team Rocket", "c": "Near Mint", "p": 2.42, "d": 3.42, "q": 1}, {"n": "Zubat", "s": "Team Rocket", "c": "Near Mint", "p": 2.33, "d": -1.27, "q": 1}, {"n": "Koffing", "s": "Team Rocket", "c": "Near Mint", "p": 2.22, "d": 4.72, "q": 1}, {"n": "Mankey", "s": "Team Rocket", "c": "Near Mint", "p": 2.2, "d": -3.51, "q": 1}, {"n": "Blaine's Doduo", "s": "Gym Challenge", "c": "Near Mint", "p": 2.09, "d": -2.34, "q": 1}, {"n": "Ponyta", "s": "Team Rocket", "c": "Near Mint", "p": 2.02, "d": 12.85, "q": 4}, {"n": "Magnemite", "s": "Team Rocket", "c": "Near Mint", "p": 2.0, "d": 1.01, "q": 4}, {"n": "Drowzee", "s": "Team Rocket", "c": "Near Mint", "p": 1.8, "d": 4.05, "q": 1}, {"n": "Voltorb", "s": "Team Rocket", "c": "Near Mint", "p": 1.73, "d": -4.42, "q": 1}, {"n": "Rattata", "s": "Team Rocket", "c": "Near Mint", "p": 1.64, "d": -0.61, "q": 2}, {"n": "Unown [N]", "s": "Neo Discovery", "c": "Near Mint", "p": 1.59, "d": -2.45, "q": 1}, {"n": "Goop Gas Attack", "s": "Team Rocket", "c": "Near Mint", "p": 1.18, "d": 19.19, "q": 1}, {"n": "Probopass", "s": "Perfect Order", "c": "Near Mint", "p": 0.96, "d": 0.0, "q": 1}, {"n": "Unown [O]", "s": "Neo Discovery", "c": "Near Mint", "p": 0.87, "d": 16.0, "q": 1}, {"n": "Charmeleon (Cosmos Holo)", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 0.57, "d": -6.56, "q": 1}], "value": 271.52, "qty": 69}, "jpoke": {"label": "Japanese Poke", "rows": [{"n": "Ruin Wall [Kabuto] (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 6.95, "d": 0.0, "q": 2}, {"n": "Unown D (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 4.77, "d": 59.41, "q": 1}, {"n": "Unown U (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 4.48, "d": 0.0, "q": 1}, {"n": "Pineco (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 3.1, "d": -27.72, "q": 3}, {"n": "Flaaffy (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.98, "d": 0.0, "q": 1}, {"n": "Fossil Egg (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.98, "d": 0.0, "q": 1}, {"n": "Caterpie (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.96, "d": -13.44, "q": 2}, {"n": "Farfetch'd (JP)", "s": "Neo Revelation (Japanese)", "c": "Near Mint", "p": 2.7, "d": 0.0, "q": 1}, {"n": "Weedle (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.64, "d": 86.39, "q": 2}, {"n": "Energy Ark (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.53, "d": 0.0, "q": 2}, {"n": "Time Capsule (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.31, "d": 0.0, "q": 1}, {"n": "Metapod (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.3, "d": 0.0, "q": 2}, {"n": "Hoppip (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 2.25, "d": 0.0, "q": 2}, {"n": "Sentret (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.99, "d": -18.34, "q": 2}, {"n": "Girafarig (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.86, "d": 0.0, "q": 1}, {"n": "Dunsparce (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.84, "d": -31.53, "q": 2}, {"n": "Hyper Devolution Spray (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.68, "d": 69.75, "q": 1}, {"n": "Kakuna (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.67, "d": 0.0, "q": 1}, {"n": "Stantler (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.4, "d": 0.0, "q": 1}, {"n": "Natu (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 1.2, "d": 0.0, "q": 2}], "value": 85.45, "qty": 31}, "exmega": {"label": "EX & Mega EX", "rows": [{"n": "Mega Gengar ex", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 4.77, "d": 8.9, "q": 1}, {"n": "Arboliva ex", "s": "Destined Rivals", "c": "Near Mint", "p": 1.88, "d": -1.57, "q": 1}, {"n": "Mega Meganium ex", "s": "Jumbo Cards", "c": "Near Mint", "p": 1.57, "d": -4.85, "q": 2}, {"n": "Ethan's Ho-oh ex", "s": "Destined Rivals", "c": "Near Mint", "p": 0.82, "d": 17.14, "q": 2}, {"n": "Mega Meganium ex", "s": "Mega Evolution Promos", "c": "Near Mint", "p": 0.78, "d": -7.14, "q": 2}], "value": 12.99, "qty": 8}, "vcards": {"label": "V Cards", "rows": [{"n": "Glaceon V", "s": "Sword & Shield Promo", "c": "Near Mint", "p": 2.78, "d": 2.96, "q": 1}, {"n": "Gyarados V", "s": "Evolving Skies", "c": "Near Mint", "p": 2.1, "d": -17.65, "q": 1}, {"n": "Incineroar V", "s": "Champion's Path", "c": "Near Mint", "p": 1.84, "d": 0.55, "q": 1}, {"n": "Galarian Cursola V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.76, "d": 1.73, "q": 2}, {"n": "Wailord V", "s": "Champion's Path", "c": "Near Mint", "p": 1.42, "d": -19.32, "q": 1}, {"n": "Drednaw V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.39, "d": 7.75, "q": 1}, {"n": "Grapploct V (Full Art)", "s": "Champion's Path", "c": "Near Mint", "p": 1.28, "d": 2.4, "q": 1}, {"n": "Galarian Cursola V", "s": "Champion's Path", "c": "Near Mint", "p": 1.23, "d": -2.38, "q": 1}, {"n": "Drednaw V", "s": "Champion's Path", "c": "Near Mint", "p": 0.9, "d": -1.1, "q": 1}, {"n": "Steelix V", "s": "Vivid Voltage", "c": "Near Mint", "p": 0.89, "d": 5.95, "q": 1}, {"n": "Grapploct V", "s": "Champion's Path", "c": "Near Mint", "p": 0.72, "d": -4.0, "q": 1}, {"n": "Tornadus V", "s": "Chilling Reign", "c": "Near Mint", "p": 0.71, "d": 20.34, "q": 1}], "value": 18.78, "qty": 13}, "trainers": {"label": "Trainers", "rows": [{"n": "Counter Gain", "s": "Surging Sparks", "c": "Near Mint", "p": 2.76, "d": -16.87, "q": 1}, {"n": "Energy Retrieval", "s": "Chaos Rising", "c": "Near Mint", "p": 1.83, "d": -12.44, "q": 1}, {"n": "Tool Scrapper", "s": "Chaos Rising", "c": "Near Mint", "p": 1.3, "d": 12.07, "q": 1}, {"n": "Jamming Tower", "s": "Ascended Heroes", "c": "Near Mint", "p": 0.66, "d": -14.29, "q": 1}, {"n": "Counter Gain", "s": "Ascended Heroes", "c": "Near Mint", "p": 0.58, "d": 3.57, "q": 1}], "value": 7.13, "qty": 5}, "wotc": {"label": "WOTC Lot", "rows": [{"n": "Dragonite (19)", "s": "Fossil", "c": "Near Mint", "p": 101.62, "d": 0.03, "q": 1}, {"n": "Pinsir", "s": "Jungle", "c": "Near Mint", "p": 85.64, "d": 0.0, "q": 1}, {"n": "Wigglytuff", "s": "Jungle", "c": "Near Mint", "p": 78.38, "d": 0.0, "q": 1}, {"n": "Snorlax", "s": "Jungle", "c": "Near Mint", "p": 71.3, "d": 5.19, "q": 1}, {"n": "Electrode", "s": "Jungle", "c": "Near Mint", "p": 50.59, "d": 6.21, "q": 2}, {"n": "Magneton (11)", "s": "Fossil", "c": "Near Mint", "p": 48.27, "d": 1.47, "q": 1}, {"n": "Clefable", "s": "Jungle", "c": "Near Mint", "p": 37.92, "d": 2.6, "q": 1}, {"n": "Moltres (27)", "s": "Fossil", "c": "Near Mint", "p": 29.3, "d": -1.35, "q": 1}, {"n": "Pikachu", "s": "Jungle", "c": "Near Mint", "p": 26.52, "d": -0.93, "q": 7}, {"n": "Moo Moo Milk (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 26.44, "d": 22.21, "q": 1}, {"n": "Kabutops (24)", "s": "Fossil", "c": "Near Mint", "p": 22.24, "d": -1.94, "q": 1}, {"n": "Kabuto", "s": "Fossil", "c": "Near Mint", "p": 21.66, "d": 3.79, "q": 2}, {"n": "Wigglytuff (rare)", "s": "Jungle", "c": "Near Mint", "p": 21.49, "d": 0.0, "q": 1}, {"n": "Pidgeot", "s": "Jungle", "c": "Near Mint", "p": 20.61, "d": 0.19, "q": 1}, {"n": "Pinsir (rare)", "s": "Jungle", "c": "Near Mint", "p": 18.54, "d": -0.05, "q": 1}, {"n": "Steelix (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 16.98, "d": -24.9, "q": 1}, {"n": "Vileplume", "s": "Jungle", "c": "Near Mint", "p": 16.32, "d": -1.98, "q": 1}, {"n": "Victreebel", "s": "Jungle", "c": "Near Mint", "p": 16.22, "d": -1.04, "q": 1}, {"n": "Kingdra (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 15.67, "d": 123.41, "q": 1}, {"n": "Clefable (rare)", "s": "Jungle", "c": "Near Mint", "p": 14.78, "d": 0.27, "q": 1}, {"n": "Magneton (26, 1st Ed)", "s": "Fossil", "c": "Near Mint", "p": 13.93, "d": -1.28, "q": 1}, {"n": "Skarmory (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 12.61, "d": 14.46, "q": 1}, {"n": "Psyduck", "s": "Fossil", "c": "Near Mint", "p": 12.5, "d": 1.46, "q": 2}, {"n": "Focus Band (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 9.05, "d": -1.28, "q": 1}, {"n": "Magmar", "s": "Fossil", "c": "Near Mint", "p": 8.77, "d": -0.11, "q": 4}, {"n": "Mr. Mime", "s": "Jungle", "c": "Near Mint", "p": 8.7, "d": -2.36, "q": 1}, {"n": "Pidgeot (Unlimited)", "s": "Jungle", "c": "Near Mint", "p": 7.37, "d": 0.41, "q": 1}, {"n": "Slowpoke", "s": "Fossil", "c": "Near Mint", "p": 6.69, "d": -16.17, "q": 2}, {"n": "Dark Gloom", "s": "Team Rocket", "c": "Near Mint", "p": 6.58, "d": 3.46, "q": 1}, {"n": "Golduck", "s": "Fossil", "c": "Near Mint", "p": 6.5, "d": -1.37, "q": 1}, {"n": "Weezing", "s": "Fossil", "c": "Near Mint", "p": 6.05, "d": 4.67, "q": 3}, {"n": "Omastar", "s": "Fossil", "c": "Near Mint", "p": 6.02, "d": 7.31, "q": 1}, {"n": "Magneton (26, Unlimited)", "s": "Fossil", "c": "Near Mint", "p": 5.92, "d": 9.23, "q": 1}, {"n": "Golbat", "s": "Fossil", "c": "Near Mint", "p": 5.14, "d": 0.39, "q": 2}, {"n": "Gambler", "s": "Fossil", "c": "Near Mint", "p": 4.78, "d": -4.21, "q": 4}, {"n": "Slowpoke (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.26, "d": -15.72, "q": 1}, {"n": "Wooper (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.14, "d": 22.92, "q": 2}, {"n": "Furret (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.12, "d": 174.67, "q": 1}, {"n": "Double Gust (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 4.01, "d": -31.22, "q": 1}, {"n": "Miltank (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.57, "d": -15.89, "q": 1}, {"n": "Omanyte", "s": "Fossil", "c": "Near Mint", "p": 3.57, "d": -9.16, "q": 1}, {"n": "Horsea", "s": "Fossil", "c": "Near Mint", "p": 3.51, "d": -10.23, "q": 2}, {"n": "Bill's Teleporter (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.51, "d": 0.0, "q": 3}, {"n": "Dark Kadabra", "s": "Team Rocket", "c": "Near Mint", "p": 3.41, "d": 2.4, "q": 2}, {"n": "Geodude", "s": "Fossil", "c": "Near Mint", "p": 3.35, "d": 1.52, "q": 3}, {"n": "Grimer", "s": "Fossil", "c": "Near Mint", "p": 3.29, "d": -4.64, "q": 2}, {"n": "Horsea (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.18, "d": 51.41, "q": 1}, {"n": "Energy Charge (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.08, "d": 0.0, "q": 1}, {"n": "Pokemon March (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.08, "d": 0.84, "q": 2}, {"n": "Croconaw (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 3.0, "d": -1.6, "q": 1}, {"n": "Skiploom (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.86, "d": 0.0, "q": 1}, {"n": "Eevee", "s": "Jungle", "c": "Near Mint", "p": 2.82, "d": -7.84, "q": 1}, {"n": "Dodrio", "s": "Jungle", "c": "Near Mint", "p": 2.78, "d": 23.01, "q": 1}, {"n": "Gligar (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.78, "d": 3.06, "q": 1}, {"n": "Zubat (1st Ed)", "s": "Fossil", "c": "Near Mint", "p": 2.65, "d": 6.85, "q": 1}, {"n": "Spinarak (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.62, "d": 0.0, "q": 3}, {"n": "Krabby", "s": "Fossil", "c": "Near Mint", "p": 2.6, "d": 3.17, "q": 2}, {"n": "New Pokedex (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.5, "d": 0.0, "q": 2}, {"n": "Quagsire (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.47, "d": 0.0, "q": 1}, {"n": "PokeGear (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.32, "d": 0.0, "q": 1}, {"n": "Sunflora (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.25, "d": 0.0, "q": 1}, {"n": "Oddish (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.22, "d": -14.53, "q": 1}, {"n": "The Boss's Way", "s": "Team Rocket", "c": "Near Mint", "p": 2.11, "d": -4.52, "q": 1}, {"n": "Hoppip (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.06, "d": 0.0, "q": 1}, {"n": "Super Energy Retrieval (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 2.0, "d": -31.27, "q": 1}, {"n": "Ledyba (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.95, "d": 0.0, "q": 2}, {"n": "Ekans", "s": "Fossil", "c": "Near Mint", "p": 1.88, "d": -5.05, "q": 1}, {"n": "Girafarig (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.86, "d": 0.0, "q": 1}, {"n": "Shellder", "s": "Fossil", "c": "Near Mint", "p": 1.83, "d": 2.81, "q": 1}, {"n": "Tentacool", "s": "Fossil", "c": "Near Mint", "p": 1.79, "d": 3.47, "q": 1}, {"n": "Stantler (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.4, "d": 0.0, "q": 1}, {"n": "Mantine (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.37, "d": 0.0, "q": 1}, {"n": "Jigglypuff", "s": "Jungle", "c": "Near Mint", "p": 1.16, "d": -27.95, "q": 1}, {"n": "Seadra (JP)", "s": "Neo Genesis (Japanese)", "c": "Near Mint", "p": 1.0, "d": 0.0, "q": 1}, {"n": "Energy Search", "s": "Fossil", "c": "Near Mint", "p": 0.97, "d": -3.96, "q": 2}, {"n": "Recycle (1st Ed)", "s": "Fossil", "c": "Near Mint", "p": 0.97, "d": 1.04, "q": 2}, {"n": "Zubat (Unlimited)", "s": "Fossil", "c": "Near Mint", "p": 0.49, "d": 0.0, "q": 1}, {"n": "Rhyhorn", "s": "Jungle", "c": "Near Mint", "p": 0.45, "d": 2.27, "q": 1}, {"n": "Gambler (Unlimited)", "s": "Fossil", "c": "Near Mint", "p": 0.45, "d": 2.27, "q": 1}, {"n": "Bellsprout", "s": "Jungle", "c": "Near Mint", "p": 0.44, "d": -10.2, "q": 1}, {"n": "Paras", "s": "Jungle", "c": "Near Mint", "p": 0.43, "d": 7.5, "q": 1}, {"n": "Exeggcute", "s": "Jungle", "c": "Near Mint", "p": 0.41, "d": -6.82, "q": 2}, {"n": "Recycle (Unlimited)", "s": "Fossil", "c": "Near Mint", "p": 0.31, "d": -6.06, "q": 1}], "value": 1324.62, "qty": 119}}, "pc": {"pc_main": {"label": "Personal Collection", "rows": [{"n": "Lt. Surge's Raichu", "s": "Gym Challenge", "c": "PSA/Graded", "p": 257.75, "d": 0.0, "q": 1}, {"n": "Rocket's Zapdos", "s": "Gym Challenge", "c": "PSA/Graded", "p": 220.34, "d": 0.0, "q": 1}, {"n": "Dark Blastoise", "s": "Team Rocket", "c": "Near Mint", "p": 204.75, "d": 0.0, "q": 1}, {"n": "Blastoise", "s": "Base Set 2", "c": "Near Mint", "p": 150.8, "d": 0.0, "q": 1}, {"n": "Mew (JP)", "s": "Japanese CD Promo", "c": "Near Mint", "p": 145.48, "d": 15.66, "q": 1}, {"n": "Mew (9)", "s": "WoTC Promo", "c": "Near Mint", "p": 137.36, "d": 2.55, "q": 1}, {"n": "Snorlax", "s": "Jungle", "c": "Lightly Played", "p": 131.71, "d": 0.45, "q": 1}, {"n": "Ancient Mew [2000]", "s": "Misc Cards & Products", "c": "Near Mint", "p": 110.73, "d": 3.61, "q": 1}, {"n": "Jolteon", "s": "Jungle", "c": "Near Mint", "p": 99.08, "d": 0.0, "q": 1}, {"n": "MewTwo (JP)", "s": "Japanese CD Promo", "c": "Near Mint", "p": 83.31, "d": -12.3, "q": 1}, {"n": "Alakazam", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 69.57, "d": -2.6, "q": 1}, {"n": "Articuno", "s": "Fossil", "c": "Lightly Played", "p": 65.09, "d": 2.04, "q": 1}, {"n": "Slowking", "s": "Neo Genesis", "c": "Lightly Played", "p": 62.36, "d": 1.02, "q": 1}, {"n": "Mewtwo", "s": "Base Set (Unlimited)", "c": "Lightly Played", "p": 60.75, "d": -4.9, "q": 1}, {"n": "Vaporeon", "s": "Jungle", "c": "Near Mint", "p": 51.07, "d": 3.51, "q": 1}, {"n": "Nidoqueen", "s": "Jungle", "c": "Lightly Played", "p": 49.38, "d": 1.47, "q": 1}, {"n": "Raichu", "s": "Base Set 2", "c": "Lightly Played", "p": 48.03, "d": 1.06, "q": 1}, {"n": "Alakazam", "s": "Base Set 2", "c": "Lightly Played", "p": 46.16, "d": -0.71, "q": 1}, {"n": "Poliwrath", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 40.98, "d": -0.39, "q": 1}, {"n": "Hypno", "s": "Fossil", "c": "Near Mint", "p": 39.47, "d": 0.79, "q": 1}, {"n": "Zapdos (15)", "s": "Fossil", "c": "Lightly Played", "p": 35.91, "d": 2.37, "q": 1}, {"n": "Ninetales", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 35.04, "d": -1.57, "q": 1}, {"n": "Scyther", "s": "Base Set 2", "c": "Near Mint", "p": 34.34, "d": -1.91, "q": 1}, {"n": "Nidoking", "s": "Base Set (Unlimited)", "c": "Lightly Played", "p": 31.99, "d": -0.79, "q": 1}, {"n": "Hitmonlee", "s": "Fossil", "c": "Moderately Played", "p": 31.85, "d": -0.54, "q": 1}, {"n": "Misty's Lapras", "s": "Destined Rivals", "c": "Lightly Played", "p": 31.79, "d": -3.66, "q": 1}, {"n": "Gengar (20)", "s": "Fossil", "c": "Moderately Played", "p": 30.74, "d": -0.02, "q": 1}, {"n": "Clefable", "s": "Base Set 2", "c": "Lightly Played", "p": 26.47, "d": 2.5, "q": 1}, {"n": "Haunter", "s": "Base Set (1st Ed & Shadowless)", "c": "Damaged", "p": 24.94, "d": 0.0, "q": 1}, {"n": "Magneton", "s": "Base Set 2", "c": "Near Mint", "p": 24.48, "d": 0.0, "q": 1}, {"n": "Vaporeon", "s": "Brilliant Stars Trainer Gallery", "c": "Near Mint", "p": 23.06, "d": -0.73, "q": 1}, {"n": "Clefairy", "s": "Base Set 2", "c": "Near Mint", "p": 22.97, "d": 1.28, "q": 1}, {"n": "Machamp", "s": "Deck Exclusives", "c": "Lightly Played", "p": 22.22, "d": -5.12, "q": 1}, {"n": "Eevee", "s": "Brilliant Stars Trainer Gallery", "c": "Near Mint", "p": 21.7, "d": -2.12, "q": 1}, {"n": "Hitmonchan", "s": "Base Set (Unlimited)", "c": "Near Mint", "p": 21.69, "d": -1.05, "q": 1}, {"n": "Kabuto", "s": "Fossil", "c": "Near Mint", "p": 21.66, "d": 3.79, "q": 1}, {"n": "Chansey", "s": "Base Set 2", "c": "Near Mint", "p": 21.2, "d": 0.43, "q": 1}, {"n": "Snorlax", "s": "Scarlet & Violet Promo", "c": "Near Mint", "p": 20.34, "d": -2.16, "q": 1}, {"n": "Articuno", "s": "Journey Together", "c": "Near Mint", "p": 20.23, "d": -3.8, "q": 1}, {"n": "Meowth", "s": "Phantasmal Flames", "c": "Near Mint", "p": 19.33, "d": -6.71, "q": 1}, {"n": "Kingdra", "s": "Neo Genesis", "c": "Lightly Played", "p": 19.29, "d": 0.0, "q": 1}, {"n": "Wigglytuff", "s": "Base Set 2", "c": "Lightly Played", "p": 18.56, "d": 5.51, "q": 1}, {"n": "Lapras (10)", "s": "Fossil", "c": "Moderately Played", "p": 16.81, "d": 3.8, "q": 1}, {"n": "Tangela", "s": "SV: 151", "c": "Near Mint", "p": 15.97, "d": 0.5, "q": 1}, {"n": "Kangaskhan", "s": "Jungle", "c": "Lightly Played", "p": 15.52, "d": 4.76, "q": 1}, {"n": "Omanyte", "s": "SV: 151", "c": "Near Mint", "p": 14.34, "d": 1.56, "q": 1}, {"n": "Unown A (JP)", "s": "Neo Discovery (Japanese)", "c": "Near Mint", "p": 14.3, "d": -20.56, "q": 1}, {"n": "Team Rocket's Houndoom", "s": "Destined Rivals", "c": "Near Mint", "p": 14.25, "d": -2.8, "q": 1}, {"n": "Cyndaquil (57)", "s": "Neo Genesis", "c": "Near Mint", "p": 13.71, "d": -18.34, "q": 1}, {"n": "Totodile (80)", "s": "Neo Genesis", "c": "Near Mint", "p": 12.92, "d": -3.0, "q": 1}, {"n": "Kadabra", "s": "Base Set (1st Ed & Shadowless)", "c": "Near Mint", "p": 12.45, "d": 2.64, "q": 1}, {"n": "Flying Pikachu", "s": "Evolutions", "c": "Near Mint", "p": 9.2, "d": 4.78, "q": 1}, {"n": "Magmar", "s": "Fossil", "c": "Near Mint", "p": 8.77, "d": -0.11, "q": 1}, {"n": "Jigglypuff", "s": "Jungle", "c": "Near Mint", "p": 8.31, "d": -1.77, "q": 1}, {"n": "Team Rocket's Wobbuffet", "s": "Scarlet & Violet Promo", "c": "Near Mint", "p": 8.12, "d": 0.62, "q": 1}, {"n": "Hypno", "s": "BREAKpoint", "c": "Lightly Played", "p": 6.71, "d": -3.66, "q": 1}, {"n": "Meowth", "s": "Jungle", "c": "Near Mint", "p": 6.29, "d": 0.96, "q": 1}, {"n": "Donphan", "s": "Neo Genesis", "c": "Near Mint", "p": 6.1, "d": 3.92, "q": 1}, {"n": "Magneton (26)", "s": "Fossil", "c": "Near Mint", "p": 5.92, "d": 9.23, "q": 1}, {"n": "Spearow", "s": "Mega Evolution", "c": "Near Mint", "p": 4.64, "d": 9.95, "q": 1}, {"n": "Team Rocket's Persian ex", "s": "Destined Rivals", "c": "Near Mint", "p": 4.09, "d": -4.44, "q": 1}, {"n": "Parasect", "s": "Jungle", "c": "Near Mint", "p": 3.5, "d": 0.0, "q": 1}, {"n": "Swinub", "s": "Journey Together", "c": "Near Mint", "p": 3.31, "d": 13.75, "q": 1}, {"n": "Cyndaquil (57, Unlimited)", "s": "Neo Genesis", "c": "Near Mint", "p": 2.55, "d": -8.93, "q": 1}, {"n": "Raticate", "s": "Perfect Order", "c": "Near Mint", "p": 2.37, "d": 5.33, "q": 1}, {"n": "Claydol", "s": "Chaos Rising", "c": "Near Mint", "p": 2.22, "d": -2.2, "q": 1}], "value": 2846.34, "qty": 66}, "pc_gymhero": {"label": "PC - Gym Hero", "rows": [{"n": "Blaine's Moltres", "s": "Gym Heroes", "c": "Near Mint", "p": 133.05, "d": -1.11, "q": 1}, {"n": "Rocket's Scyther", "s": "Gym Heroes", "c": "Near Mint", "p": 85.01, "d": 0.0, "q": 1}, {"n": "Misty (18)", "s": "Gym Heroes", "c": "Near Mint", "p": 68.81, "d": 1.22, "q": 1}, {"n": "Erika's Clefable", "s": "Gym Heroes", "c": "Lightly Played", "p": 40.37, "d": 0.0, "q": 1}, {"n": "Misty's Tentacruel", "s": "Gym Heroes", "c": "Near Mint", "p": 29.12, "d": -0.38, "q": 1}, {"n": "Erika's Vileplume", "s": "Gym Heroes", "c": "Near Mint", "p": 27.5, "d": 0.0, "q": 1}, {"n": "Sabrina's Haunter", "s": "Gym Heroes", "c": "Near Mint", "p": 22.62, "d": -4.8, "q": 1}, {"n": "Brock's Rhyhorn (22)", "s": "Gym Heroes", "c": "Near Mint", "p": 12.05, "d": 1.77, "q": 1}, {"n": "Sabrina's ESP", "s": "Gym Heroes", "c": "Near Mint", "p": 7.64, "d": 8.99, "q": 1}, {"n": "Lt. Surge's Pikachu", "s": "Gym Heroes", "c": "Near Mint", "p": 7.17, "d": 4.82, "q": 1}, {"n": "Blaine's Kangaskhan", "s": "Gym Heroes", "c": "Near Mint", "p": 5.3, "d": 1.92, "q": 1}, {"n": "Erika's Dratini", "s": "Gym Heroes", "c": "Near Mint", "p": 5.3, "d": -6.85, "q": 1}, {"n": "Misty's Starmie", "s": "Gym Heroes", "c": "Near Mint", "p": 4.73, "d": -0.42, "q": 1}, {"n": "Minion of Team Rocket", "s": "Gym Heroes", "c": "Near Mint", "p": 4.55, "d": 1.11, "q": 1}, {"n": "Brock's Lickitung", "s": "Gym Heroes", "c": "Near Mint", "p": 3.76, "d": 3.58, "q": 1}, {"n": "Erika's Gloom (46)", "s": "Gym Heroes", "c": "Near Mint", "p": 3.41, "d": 0.89, "q": 1}, {"n": "Erika's Oddish (47)", "s": "Gym Heroes", "c": "Near Mint", "p": 3.4, "d": 0.0, "q": 1}, {"n": "Erika's Maids", "s": "Gym Heroes", "c": "Near Mint", "p": 3.12, "d": 4.35, "q": 1}, {"n": "Blaine's Charmander", "s": "Gym Heroes", "c": "Near Mint", "p": 3.02, "d": 9.42, "q": 1}, {"n": "Misty's Tentacool (57)", "s": "Gym Heroes", "c": "Near Mint", "p": 2.62, "d": 1.55, "q": 1}, {"n": "Misty's Seaking", "s": "Gym Heroes", "c": "Near Mint", "p": 2.6, "d": 4.84, "q": 1}, {"n": "Misty's Staryu", "s": "Gym Heroes", "c": "Near Mint", "p": 2.0, "d": 9.89, "q": 1}, {"n": "Erika's Gloom (45)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.87, "d": 1.08, "q": 1}, {"n": "Sabrina's Slowpoke", "s": "Gym Heroes", "c": "Near Mint", "p": 1.87, "d": 3.31, "q": 1}, {"n": "Sabrina's Mr. Mime", "s": "Gym Heroes", "c": "Near Mint", "p": 1.79, "d": -1.11, "q": 1}, {"n": "Blaine's Ponyta", "s": "Gym Heroes", "c": "Near Mint", "p": 1.68, "d": 5.0, "q": 1}, {"n": "Erika's Exeggutor", "s": "Gym Heroes", "c": "Near Mint", "p": 1.63, "d": 0.0, "q": 1}, {"n": "Misty's Goldeen (85)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.45, "d": 15.08, "q": 1}, {"n": "Sabrina's Gaze", "s": "Gym Heroes", "c": "Near Mint", "p": 1.45, "d": 0.0, "q": 1}, {"n": "Brock's Mankey (68)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.44, "d": 2.86, "q": 1}, {"n": "Sabrina's Venonat", "s": "Gym Heroes", "c": "Near Mint", "p": 1.41, "d": 4.44, "q": 1}, {"n": "Brock's Sandshrew (71)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.34, "d": -2.19, "q": 1}, {"n": "Erika's Bellsprout (75)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.22, "d": 0.0, "q": 1}, {"n": "Blaine's Tauros", "s": "Gym Heroes", "c": "Near Mint", "p": 1.18, "d": 0.0, "q": 2}, {"n": "Lt. Surge's Voltorb", "s": "Gym Heroes", "c": "Near Mint", "p": 1.16, "d": 4.5, "q": 1}, {"n": "Lt. Surge's Spearow (52)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.1, "d": 7.84, "q": 1}, {"n": "Brock's Zubat (74)", "s": "Gym Heroes", "c": "Near Mint", "p": 1.06, "d": 0.95, "q": 1}, {"n": "Celadon City Gym", "s": "Gym Heroes", "c": "Near Mint", "p": 1.04, "d": 1.96, "q": 1}, {"n": "Erika's Tangela", "s": "Gym Heroes", "c": "Near Mint", "p": 0.81, "d": -5.81, "q": 1}, {"n": "Erika's Bellsprout (76)", "s": "Gym Heroes", "c": "Near Mint", "p": 0.77, "d": 6.94, "q": 1}, {"n": "Lt. Surge's Magnemite (80)", "s": "Gym Heroes", "c": "Near Mint", "p": 0.77, "d": 4.05, "q": 1}, {"n": "Lt. Surge's Rattata", "s": "Gym Heroes", "c": "Near Mint", "p": 0.76, "d": 4.11, "q": 1}, {"n": "Blaine's Gamble", "s": "Gym Heroes", "c": "Near Mint", "p": 0.58, "d": 1.75, "q": 1}, {"n": "Energy Flow", "s": "Gym Heroes", "c": "Near Mint", "p": 0.54, "d": 0.0, "q": 1}], "value": 505.25, "qty": 45}, "pc_gymchal": {"label": "PC - Gym Challenge", "rows": [{"n": "Giovanni's Machamp", "s": "Gym Challenge", "c": "Lightly Played", "p": 68.56, "d": 0.0, "q": 1}, {"n": "Giovanni's Nidoking", "s": "Gym Challenge", "c": "Lightly Played", "p": 64.55, "d": 0.0, "q": 1}, {"n": "Koga's Beedrill", "s": "Gym Challenge", "c": "Lightly Played", "p": 31.19, "d": 0.0, "q": 1}, {"n": "Blaine's Ninetales", "s": "Gym Challenge", "c": "Near Mint", "p": 23.41, "d": 0.0, "q": 1}, {"n": "Erika's Bulbasaur", "s": "Gym Challenge", "c": "Near Mint", "p": 14.96, "d": -0.13, "q": 1}, {"n": "Sabrina's Gastly (97)", "s": "Gym Challenge", "c": "Near Mint", "p": 14.77, "d": 0.0, "q": 1}, {"n": "Sabrina's Psychic Control", "s": "Gym Challenge", "c": "Near Mint", "p": 9.67, "d": 3.76, "q": 1}, {"n": "Sabrina's Hypno", "s": "Gym Challenge", "c": "Near Mint", "p": 9.33, "d": -0.64, "q": 1}, {"n": "Brock's Sandslash", "s": "Gym Challenge", "c": "Near Mint", "p": 8.22, "d": -1.2, "q": 1}, {"n": "Misty's Dewgong", "s": "Gym Challenge", "c": "Near Mint", "p": 7.82, "d": 0.0, "q": 1}, {"n": "Sabrina's Mr. Mime", "s": "Gym Challenge", "c": "Near Mint", "p": 4.25, "d": 2.66, "q": 1}, {"n": "Blaine's Charmander", "s": "Gym Challenge", "c": "Near Mint", "p": 3.99, "d": -0.5, "q": 1}, {"n": "Giovanni's Magikarp", "s": "Gym Challenge", "c": "Near Mint", "p": 3.57, "d": -1.38, "q": 1}, {"n": "Sabrina's Abra (94)", "s": "Gym Challenge", "c": "Near Mint", "p": 3.57, "d": 4.69, "q": 1}, {"n": "Brock's Primeape", "s": "Gym Challenge", "c": "Near Mint", "p": 3.38, "d": -3.43, "q": 1}, {"n": "Koga's Pidgey (49)", "s": "Gym Challenge", "c": "Near Mint", "p": 3.15, "d": -1.56, "q": 1}, {"n": "Giovanni's Machoke", "s": "Gym Challenge", "c": "Near Mint", "p": 2.92, "d": 0.0, "q": 1}, {"n": "Lt. Surge's Electrode", "s": "Gym Challenge", "c": "Near Mint", "p": 2.91, "d": -0.68, "q": 1}, {"n": "Sabrina's Abra (93)", "s": "Gym Challenge", "c": "Near Mint", "p": 2.9, "d": 4.32, "q": 1}, {"n": "Blaine's Vulpix", "s": "Gym Challenge", "c": "Near Mint", "p": 2.83, "d": 0.71, "q": 1}, {"n": "Erika's Jigglypuff", "s": "Gym Challenge", "c": "Near Mint", "p": 2.76, "d": -1.78, "q": 2}, {"n": "Erika's Bellsprout", "s": "Gym Challenge", "c": "Near Mint", "p": 2.68, "d": -2.19, "q": 1}, {"n": "Lt. Surge's Raticate", "s": "Gym Challenge", "c": "Near Mint", "p": 2.43, "d": -0.41, "q": 1}, {"n": "Blaine's Rapidash", "s": "Gym Challenge", "c": "Near Mint", "p": 2.27, "d": -1.3, "q": 1}, {"n": "Koga's Weezing", "s": "Gym Challenge", "c": "Near Mint", "p": 2.07, "d": -6.76, "q": 1}, {"n": "Koga's Koffing (48)", "s": "Gym Challenge", "c": "Near Mint", "p": 1.96, "d": 1.55, "q": 1}, {"n": "Blaine's Dodrio", "s": "Gym Challenge", "c": "Near Mint", "p": 1.95, "d": 2.09, "q": 1}, {"n": "Giovanni's Machop", "s": "Gym Challenge", "c": "Near Mint", "p": 1.79, "d": 5.92, "q": 1}, {"n": "Koga's Tangela", "s": "Gym Challenge", "c": "Near Mint", "p": 1.6, "d": 0.0, "q": 1}, {"n": "Brock's Geodude", "s": "Gym Challenge", "c": "Near Mint", "p": 1.56, "d": 1.96, "q": 1}, {"n": "Brock's Diglett", "s": "Gym Challenge", "c": "Near Mint", "p": 1.51, "d": 10.22, "q": 1}, {"n": "Koga's Pidgey (80)", "s": "Gym Challenge", "c": "Near Mint", "p": 1.5, "d": 4.17, "q": 1}, {"n": "Misty's Seel", "s": "Gym Challenge", "c": "Near Mint", "p": 1.49, "d": 0.68, "q": 1}, {"n": "Koga's Ekans", "s": "Gym Challenge", "c": "Near Mint", "p": 1.29, "d": 6.61, "q": 1}, {"n": "Cinnabar City Gym", "s": "Gym Challenge", "c": "Near Mint", "p": 1.22, "d": -0.81, "q": 1}, {"n": "Koga's Grimer", "s": "Gym Challenge", "c": "Near Mint", "p": 1.18, "d": 2.61, "q": 1}, {"n": "Blaine's Ponyta", "s": "Gym Challenge", "c": "Near Mint", "p": 1.1, "d": 5.77, "q": 1}, {"n": "Blaine's Mankey", "s": "Gym Challenge", "c": "Near Mint", "p": 1.09, "d": -1.8, "q": 1}, {"n": "Giovanni's Nidoran F", "s": "Gym Challenge", "c": "Near Mint", "p": 1.04, "d": 8.33, "q": 1}, {"n": "Lt. Surge's Voltorb", "s": "Gym Challenge", "c": "Near Mint", "p": 1.02, "d": 4.08, "q": 1}, {"n": "Lt. Surge's Rattata", "s": "Gym Challenge", "c": "Near Mint", "p": 1.01, "d": -6.48, "q": 1}, {"n": "Blaine's Doduo", "s": "Gym Challenge", "c": "Near Mint", "p": 0.63, "d": -4.55, "q": 1}], "value": 323.86, "qty": 43}}};
+const KPIS = {"livePortfolioValue": 2968.89, "publicHoldings": 2800.15, "unrealizedGain": 1968.34, "realizedPL": 1095.06, "netCash": 475.47, "costBasis": 1000.55, "wotcFull": 1324.62, "wotcKce": 264.92, "totalPC": 4294.14, "pcRocketValue": 618.69, "pcRocketQty": 61};
+const fmt = n => "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtPct = n => (n>0?"+":"") + n.toFixed(2) + "%";
+const deltaClass = n => n>0?"pos":(n<0?"neg":"neutral");
 
-function fmtMoney(v) { return '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
-
-function renderPortfolio(name, items, total, container, groupKey) {
-  const block = document.createElement('div');
-  block.className = 'pf-block';
-  block.dataset.group = groupKey;
-  block.innerHTML = `
-    <div class="pf-head" onclick="this.parentElement.classList.toggle('open')">
-      <div class="pf-head-l">
-        <div class="pf-head-name">${name}</div>
-        <div class="pf-head-meta">${items.length} lines</div>
-      </div>
-      <div class="pf-head-r">
-        <div class="pf-head-val">${fmtMoney(total)}</div>
-        <div class="chevron"></div>
-      </div>
-    </div>
-    <div class="pf-table-wrap">
-      <table class="card-table">
-        <thead><tr>
-          <th>Card</th><th class="num" data-sort="p">Price</th><th class="num" data-sort="d">Δ%</th><th>Status</th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  `;
-  const tbody = block.querySelector('tbody');
-  items.forEach(it => {
-    const tr = document.createElement('tr');
-    tr.dataset.search = (it.n + ' ' + it.s).toLowerCase();
-    const cls = it.d >= 0 ? 'up' : 'down';
-    const sign = it.d >= 0 ? '+' : '';
-    const qtyTag = it.q > 1 ? ` <span class="cset">Qty ${it.q}</span>` : '';
-    tr.innerHTML = `
-      <td><span class="cname">${it.n}</span><span class="cset">${it.s} · ${it.c}</span>${qtyTag}</td>
-      <td class="num">${fmtMoney(it.p)}</td>
-      <td class="num delta ${cls}">${sign}${it.d.toFixed(1)}%</td>
-      <td><span class="status-dot avail"></span>Available</td>
-    `;
-    tbody.appendChild(tr);
-  });
-  container.appendChild(block);
-
-  // sort handlers
-  block.querySelectorAll('th[data-sort]').forEach(th => {
-    let asc = false;
-    th.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const key = th.dataset.sort;
-      const rows = Array.from(tbody.querySelectorAll('tr'));
-      const idx = items.map((it,i)=>({it,i}));
-      asc = !asc;
-      rows.sort((a,b) => {
-        const av = key==='p' ? parseFloat(a.children[1].textContent.replace(/[$,]/g,'')) : parseFloat(a.children[2].textContent);
-        const bv = key==='p' ? parseFloat(b.children[1].textContent.replace(/[$,]/g,'')) : parseFloat(b.children[2].textContent);
-        return asc ? av-bv : bv-av;
-      });
-      rows.forEach(r => tbody.appendChild(r));
-    });
-  });
-}
-
-function buildAll() {
-  const bizC = document.getElementById('biz-tables');
-  DATA.fsOrder.forEach(name => renderPortfolio(name, DATA.fs[name], DATA.fsTotals[name], bizC, 'biz'));
-  const pcC = document.getElementById('pc-tables');
-  DATA.pcOrder.forEach(name => renderPortfolio(name, DATA.pc[name], DATA.pcTotals[name], pcC, 'pc'));
-}
-buildAll();
-
-function filterTables(scope) {
-  const q = document.getElementById(scope + '-filter').value.trim().toLowerCase();
-  const container = document.getElementById(scope + '-tables');
-  container.querySelectorAll('.pf-block').forEach(block => {
-    let anyMatch = false;
-    block.querySelectorAll('tbody tr').forEach(tr => {
-      const match = !q || tr.dataset.search.includes(q);
-      tr.style.display = match ? '' : 'none';
-      if (match) anyMatch = true;
-    });
-    if (q) {
-      block.style.display = anyMatch ? '' : 'none';
-      if (anyMatch) block.classList.add('open');
-    } else {
-      block.style.display = '';
-      block.classList.remove('open');
-    }
-  });
-}
+document.getElementById("kpi-live").textContent = fmt(KPIS.livePortfolioValue);
+document.getElementById("kpi-public").textContent = fmt(KPIS.publicHoldings);
+document.getElementById("kpi-unreal").textContent = "+"+fmt(KPIS.unrealizedGain);
+document.getElementById("kpi-cost").textContent = "vs " + fmt(KPIS.costBasis) + " cost";
+document.getElementById("kpi-realized").textContent = fmt(KPIS.realizedPL);
+document.getElementById("kpi-cash").textContent = fmt(KPIS.netCash);
+document.getElementById("kpi-pc-total").textContent = fmt(KPIS.totalPC);
+document.getElementById("kpi-pc-main").textContent = fmt(DATA.pc.pc_main.value);
+document.getElementById("kpi-pc-gc").textContent = fmt(DATA.pc.pc_gymchal.value);
+document.getElementById("kpi-pc-gh").textContent = fmt(DATA.pc.pc_gymhero.value);
 
 // Tabs
-document.querySelectorAll('nav.tabs button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tabpanel").forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
   });
 });
-</script>
 
+// Portfolio breakdown bars (business, WOTC shown at 20% KCE interest)
+(function(){
+  const container = document.getElementById("portfolio-bars");
+  const order = [["main","Main Inventory"],["under10","Under 10"],["jpoke","Japanese Poke"],
+    ["exmega","EX & Mega EX"],["vcards","V Cards"],["trainers","Trainers"],["wotc","WOTC Lot (20% KCE)"]];
+  const maxVal = KPIS.livePortfolioValue;
+  order.forEach(([key,label])=>{
+    let val = DATA.business[key].value;
+    let displayVal = key==="wotc" ? KPIS.wotcKce : val;
+    const pct = (displayVal/maxVal*100).toFixed(1);
+    const row = document.createElement("div");
+    row.className = "pbar-row";
+    let extra = key==="wotc" ? ` <span style="color:var(--text-faint)">(full ${fmt(val)}, 20% economic interest)</span>` : "";
+    row.innerHTML = `<div class="pbar-top"><span class="pbar-name">${label}</span><span class="pbar-val">${fmt(displayVal)}${extra}</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:${pct}%"></div></div>`;
+    container.appendChild(row);
+  });
+})();
+
+// Top movers (business) — curated
+(function(){
+  const picks = [
+    {port:"wotc", name:"Kingdra (JP)"},
+    {port:"wotc", name:"Furret (JP)"},
+    {port:"main", name:"Ursaring (JP)"},
+    {port:"main", name:"Erika's Clefable (JP)"},
+    {port:"main", name:"Umbreon ex - 176"},
+    {port:"wotc", name:"Steelix (JP)"},
+    {port:"main", name:"Mewtwo"},
+    {port:"under10", name:"Yveltal ex"},
+  ];
+  const container = document.getElementById("top-movers");
+  picks.forEach(p=>{
+    const row = DATA.business[p.port].rows.find(r=>r.n===p.name);
+    if(!row) return;
+    const el = document.createElement("div");
+    el.className = "mover-card";
+    el.innerHTML = `<div class="mover-left"><div class="mover-name">${row.n}${row.n.includes('Umbreon')?' 🔒':''}</div><div class="mover-set">${row.s} · ${row.c||'Sealed/Graded'}</div></div>
+      <div class="mover-right"><div class="mover-price">${fmt(row.p)}</div><div class="mover-delta ${deltaClass(row.d)}">${fmtPct(row.d)}</div></div>`;
+    container.appendChild(el);
+  });
+})();
+
+// PC movers — curated
+(function(){
+  const picks = [
+    {port:"pc_main", name:"Mew (JP)"},
+    {port:"pc_main", name:"Unown A (JP)"},
+    {port:"pc_main", name:"Cyndaquil (57)"},
+    {port:"pc_main", name:"MewTwo (JP)"},
+  ];
+  const container = document.getElementById("pc-movers");
+  picks.forEach(p=>{
+    const row = DATA.pc[p.port].rows.find(r=>r.n===p.name);
+    if(!row) return;
+    const el = document.createElement("div");
+    el.className = "mover-card";
+    el.innerHTML = `<div class="mover-left"><div class="mover-name">${row.n}</div><div class="mover-set">${row.s} · ${row.c||''}</div></div>
+      <div class="mover-right"><div class="mover-price">${fmt(row.p)}</div><div class="mover-delta ${deltaClass(row.d)}">${fmtPct(row.d)}</div></div>`;
+    container.appendChild(el);
+  });
+})();
+
+// Build collapsible portfolio tables
+function buildList(container, key, obj, filterInputId){
+  const wrap = document.createElement("div");
+  wrap.className = "plist";
+  wrap.dataset.key = key;
+  wrap.innerHTML = `<div class="plist-head">
+      <div class="plist-head-left"><span class="plist-title">${obj.label}</span><span class="plist-meta">${obj.rows.length} listing${obj.rows.length!==1?'s':''} · ${obj.qty} items · ${fmt(obj.value)}</span></div>
+      <span class="plist-chev">▶</span>
+    </div>
+    <div class="plist-body">
+      <table class="ptable">
+        <thead><tr><th data-sort="n">Card</th><th class="num" data-sort="p">Price</th><th class="num" data-sort="d">Δ%</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>`;
+  container.appendChild(wrap);
+  const tbody = wrap.querySelector("tbody");
+  let rows = obj.rows.slice();
+  let sortKey = null, sortDir = 1;
+
+  function render(filterText){
+    tbody.innerHTML = "";
+    let filtered = rows;
+    if(filterText){
+      const ft = filterText.toLowerCase();
+      filtered = rows.filter(r => r.n.toLowerCase().includes(ft) || r.s.toLowerCase().includes(ft));
+    }
+    if(filtered.length===0){
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="3">No cards match your search.</td></tr>';
+      return;
+    }
+    filtered.forEach(r=>{
+      const tr = document.createElement("tr");
+      const condHtml = r.c ? (r.c.includes('PSA')||r.c.includes('Graded') ? `<span class="status-hold">${r.c}</span>` : `<span class="ccond">${r.c}</span>`) : '<span class="ccond">Sealed</span>';
+      tr.innerHTML = `<td><div class="cname">${r.n}${r.n.includes('Umbreon')?' 🔒':''}${r.q>1?' ×'+r.q:''}</div><div class="cset">${r.s}</div>${condHtml}</td>
+        <td class="num">${fmt(r.p)}</td>
+        <td class="num ${deltaClass(r.d)}">${fmtPct(r.d)}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  render("");
+
+  wrap.querySelector(".plist-head").addEventListener("click", ()=>{
+    wrap.classList.toggle("open");
+  });
+  wrap.querySelectorAll("th[data-sort]").forEach(th=>{
+    th.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const key = th.dataset.sort;
+      if(sortKey===key){ sortDir = -sortDir; } else { sortKey = key; sortDir = key==='n'?1:-1; }
+      rows.sort((a,b)=>{
+        if(key==='n') return sortDir*(a.n.localeCompare(b.n));
+        return sortDir*(a[key]-b[key]);
+      });
+      render(document.getElementById(filterInputId).value);
+    });
+  });
+  wrap._render = render;
+}
+
+const bizContainer = document.getElementById("biz-lists");
+Object.keys(DATA.business).forEach(key=>buildList(bizContainer, key, DATA.business[key], "biz-filter"));
+
+const pcContainer = document.getElementById("pc-lists");
+Object.keys(DATA.pc).forEach(key=>buildList(pcContainer, key, DATA.pc[key], "pc-filter"));
+
+function wireFilter(inputId, container){
+  const input = document.getElementById(inputId);
+  input.addEventListener("input", ()=>{
+    const val = input.value;
+    container.querySelectorAll(".plist").forEach(wrap=>{
+      wrap._render(val);
+      if(val && !wrap.classList.contains("open")) wrap.classList.add("open");
+    });
+  });
+}
+wireFilter("biz-filter", bizContainer);
+wireFilter("pc-filter", pcContainer);
+
+document.getElementById("sources-line").innerHTML =
+  "Sources: Collectr (live portfolio pricing, Products view, condition-adjusted) · korins_expense_tracker.xlsx (cost/P&L/cash, last edited 8/9/26) · " +
+  "<a href='https://support.pokemoncenter.com/hc/en-us/articles/4407702295572-Estimated-Preorder-Release-Dates' style='color:inherit' target='_blank'>Pokémon Center preorder calendar</a> · web search (market pulse, chase cards, 30th Celebration wave dates) · " +
+  "<a href='https://shopgoodwill.com/search?st=pokemon' style='color:inherit' target='_blank'>ShopGoodwill</a> · " +
+  "<a href='https://www.ebth.com/browse?q=pokemon' style='color:inherit' target='_blank'>EBTH</a>.";
+</script>
 </body>
 </html>
