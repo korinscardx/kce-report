@@ -2,479 +2,1465 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#0a0a0d">
-<title>Korin&#39;s Card Exchange &mdash; Daily Intel</title>
-</head>
-<body style="margin:0;background:#0a0a0d;">
-<div id="app">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Korin's Card Exchange — Daily Intel</title>
 <style>
-:root{color-scheme:dark;
---bg:#0a0a0d;--surface:#15151c;--surface2:#1d1d26;--border:#2a2a35;
---text:#f1f1f6;--text-dim:#9797a8;--text-faint:#6b6b7a;
---accent:#7c6cff;--accent-soft:#b3a6ff;--accent-wash:rgba(124,108,255,.12);
---green:#33d39a;--red:#fb6a6a;
---radius:14px;--radius-sm:9px;
---sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;
-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;
+  html,body{margin:0;padding:0;background:#0f1117;min-height:100vh;}
+  body{padding:12px 0;}
+</style>
+</head>
+<body>
+<div class="kce-root">
+<style>
+.kce-root {
+  --bg:#0f1117; --surface:#171a24; --surface2:#1e2230; --border:#2a2f3f;
+  --text:#e8e9ee; --text-dim:#9a9fb0; --text-faint:#666c80;
+  --accent:#7c6cff; --accent-light:#b3a6ff; --green:#33d39a; --red:#fb6a6a;
+  --radius:14px; --radius-sm:8px;
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:24px; --sp6:32px;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;
+  background:var(--bg); color:var(--text); max-width:480px; margin:0 auto;
+  border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
-*{box-sizing:border-box;}
-#app{background:var(--bg);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto;
-padding-bottom:64px;-webkit-font-smoothing:antialiased;}
-h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em;}
-p{margin:0;}
-.header{padding:20px 16px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;
-background:rgba(10,10,13,.92);backdrop-filter:blur(10px);z-index:20;}
-.header-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
-.brand{font-size:19px;font-weight:700;letter-spacing:-.02em;}
-.brand span{color:var(--accent-soft);}
-.date{font-size:12px;color:var(--text-dim);font-variant-numeric:tabular-nums;}
-.tabs{display:flex;gap:4px;margin-top:14px;background:var(--surface);border-radius:10px;padding:3px;}
-.tab-btn{flex:1;border:none;background:transparent;color:var(--text-dim);font-size:13px;font-weight:600;
-padding:9px 4px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;}
-.tab-btn.active{background:var(--accent);color:#fff;}
-.panel{display:none;padding:16px;}
-.panel.active{display:block;}
-.banner{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent-soft);
-border-radius:var(--radius-sm);padding:12px 14px;font-size:12.5px;line-height:1.5;color:var(--text-dim);
-margin-bottom:18px;}
-.banner b{color:var(--text);}
-.banner.warn{border-left-color:#e0a94e;}
-.section-title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);
-font-weight:700;margin:28px 0 10px;}
-.section-title:first-of-type{margin-top:0;}
-.filter-wrap{position:relative;margin-bottom:16px;}
-.filter-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;
-color:var(--text);font-size:15px;padding:11px 14px;outline:none;transition:border-color .15s;}
-.filter-input:focus{border-color:var(--accent);}
-.filter-input::placeholder{color:var(--text-faint);}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
-.kpi-label{font-size:11px;color:var(--text-dim);font-weight:600;margin-bottom:6px;}
-.kpi-val{font-size:21px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
-.kpi-val.pos{color:var(--green);}
-.kpi-val.neg{color:var(--red);}
-.kpi-sub{font-size:11px;color:var(--text-faint);margin-top:3px;}
-.pf-bar-row{margin-bottom:10px;}
-.pf-bar-top{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px;}
-.pf-bar-name{color:var(--text);font-weight:600;}
-.pf-bar-val{color:var(--text-dim);font-variant-numeric:tabular-nums;}
-.pf-bar-track{height:6px;background:var(--surface2);border-radius:4px;overflow:hidden;}
-.pf-bar-fill{height:100%;background:var(--accent);border-radius:4px;}
-.card-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-overflow:hidden;margin-bottom:12px;}
-.card-list-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;
-cursor:pointer;user-select:none;}
-.card-list-head-l{display:flex;flex-direction:column;gap:2px;}
-.card-list-title{font-size:14.5px;font-weight:650;}
-.card-list-meta{font-size:11.5px;color:var(--text-dim);}
-.card-list-r{display:flex;align-items:center;gap:10px;}
-.card-list-total{font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums;}
-.chevron{width:9px;height:9px;border-right:1.6px solid var(--text-dim);border-bottom:1.6px solid var(--text-dim);
-transform:rotate(45deg);transition:transform .18s;}
-.card-list.open .chevron{transform:rotate(-135deg);}
-.card-list-body{max-height:0;overflow:hidden;transition:max-height .22s ease;}
-.card-list.open .card-list-body{max-height:4000px;}
-table{width:100%;border-collapse:collapse;}
-thead th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-faint);
-padding:8px 14px;border-top:1px solid var(--border);font-weight:700;cursor:pointer;white-space:nowrap;}
-thead th.num{text-align:right;}
-tbody td{padding:9px 14px;font-size:13px;border-top:1px solid var(--border);}
-tbody td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
-tbody tr:hover{background:var(--surface2);}
-.cond{font-size:11px;color:var(--text-dim);}
-.empty-row td{color:var(--text-faint);text-align:center;padding:20px;font-size:12.5px;}
-.alert-list{display:flex;flex-direction:column;gap:8px;}
-.alert{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
-padding:11px 13px;display:flex;gap:10px;align-items:flex-start;}
-.alert-tag{font-size:10px;font-weight:800;letter-spacing:.04em;padding:3px 7px;border-radius:5px;
-flex-shrink:0;margin-top:1px;}
-.tag-sell{background:rgba(51,211,154,.15);color:var(--green);}
-.tag-watch{background:rgba(224,169,78,.15);color:#e0a94e;}
-.tag-hold{background:var(--accent-wash);color:var(--accent-soft);}
-.tag-bundle{background:rgba(124,108,255,.15);color:var(--accent-soft);}
-.alert-body{font-size:12.5px;line-height:1.45;}
-.alert-body b{color:var(--text);}
-.lock-card{background:linear-gradient(145deg,var(--surface2),var(--surface));border:1px solid var(--border);
-border-radius:var(--radius);padding:16px;}
-.lock-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.lock-icon{font-size:15px;}
-.lock-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.lock-item-label{font-size:10.5px;color:var(--text-dim);margin-bottom:2px;}
-.lock-item-val{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;}
-.lock-note{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;
-color:var(--text-dim);line-height:1.5;}
-.pl-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-.pl-row{display:flex;justify-content:space-between;padding:11px 14px;font-size:13px;border-top:1px solid var(--border);}
-.pl-row:first-child{border-top:none;}
-.pl-row.total{font-weight:700;background:var(--surface2);}
-.rate-grid{display:flex;flex-direction:column;gap:8px;}
-.rate-row{display:flex;justify-content:space-between;align-items:center;background:var(--surface);
-border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 13px;font-size:13px;}
-.rate-row b{font-variant-numeric:tabular-nums;color:var(--accent-soft);}
-.empty-state{text-align:center;padding:40px 20px;color:var(--text-dim);}
-.empty-state-icon{font-size:26px;margin-bottom:10px;opacity:.6;}
-.empty-state p{font-size:13px;line-height:1.6;max-width:320px;margin:0 auto;}
-.empty-state .small{font-size:11.5px;color:var(--text-faint);margin-top:10px;}
-.release-item{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--border);}
-.release-item:first-child{border-top:none;}
-.release-date{flex-shrink:0;width:64px;font-size:11.5px;font-weight:700;color:var(--accent-soft);
-line-height:1.3;}
-.release-body b{font-size:13.5px;}
-.release-body p{font-size:12px;color:var(--text-dim);margin-top:3px;line-height:1.5;}
-.release-tag{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;color:var(--accent-soft);
-background:var(--accent-wash);padding:2px 7px;border-radius:5px;}
-.prose{font-size:13px;line-height:1.65;color:var(--text-dim);}
-.prose b{color:var(--text);}
-.prose-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-padding:14px 15px;margin-bottom:12px;}
-.prose-card h3{font-size:13.5px;margin-bottom:8px;}
-ol.playbook{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px;}
-ol.playbook li{font-size:13px;line-height:1.55;color:var(--text-dim);}
-ol.playbook li b{color:var(--text);}
-.src-line{font-size:10.5px;color:var(--text-faint);margin-top:24px;line-height:1.7;}
-.src-line a{color:var(--text-dim);}
-.footer-note{text-align:center;font-size:10.5px;color:var(--text-faint);padding:18px 16px 4px;}
+.kce-root *{box-sizing:border-box;}
+.kce-scroll{max-height:900px; overflow-y:auto; padding-bottom:40px;}
+.kce-header{padding:var(--sp5) var(--sp4) var(--sp4); background:linear-gradient(160deg,#191c28,#12141d); border-bottom:1px solid var(--border);}
+.kce-title{font-size:20px; font-weight:700; letter-spacing:-.01em; display:flex; align-items:center; gap:8px;}
+.kce-date{color:var(--text-dim); font-size:13px; margin-top:2px;}
+.kce-banner{margin:var(--sp3) var(--sp4) 0; padding:var(--sp3) var(--sp3); border-radius:var(--radius-sm); font-size:12.5px; line-height:1.5;}
+.kce-banner.warn{background:rgba(251,106,106,.1); border:1px solid rgba(251,106,106,.35); color:#ffb3b3;}
+.kce-banner.info{background:rgba(124,108,255,.1); border:1px solid rgba(124,108,255,.35); color:var(--accent-light);}
+.kce-tabs{display:flex; gap:4px; padding:var(--sp3) var(--sp4) 0; background:#12141d; position:sticky; top:0; z-index:5;}
+.kce-tab{flex:1; text-align:center; padding:10px 4px; font-size:12.5px; font-weight:600; color:var(--text-faint); border-bottom:2px solid transparent; cursor:pointer; transition:.15s;}
+.kce-tab.active{color:var(--accent-light); border-bottom-color:var(--accent);}
+.kce-panel{display:none; padding:var(--sp4);}
+.kce-panel.active{display:block;}
+.kce-filter{width:100%; padding:11px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:14px; margin-bottom:var(--sp4);}
+.kce-filter::placeholder{color:var(--text-faint);}
+.kce-kpi-grid{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp3); margin-bottom:var(--sp5);}
+.kce-kpi{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:var(--sp4);}
+.kce-kpi-label{font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+.kce-kpi-val{font-size:22px; font-weight:700; letter-spacing:-.01em;}
+.kce-kpi-sub{font-size:11px; color:var(--text-faint); margin-top:4px;}
+.kce-section-title{font-size:15px; font-weight:700; margin:var(--sp5) 0 var(--sp3); display:flex; align-items:center; gap:6px;}
+.kce-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:var(--sp3); overflow:hidden;}
+.kce-bar-row{padding:var(--sp3) var(--sp4);}
+.kce-bar-row+.kce-bar-row{border-top:1px solid var(--border);}
+.kce-bar-top{display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;}
+.kce-bar-name{font-weight:600; display:flex; align-items:center; gap:6px;}
+.kce-bar-val{color:var(--text-dim); font-variant-numeric:tabular-nums;}
+.kce-bar-track{height:6px; background:var(--surface2); border-radius:4px; overflow:hidden;}
+.kce-bar-fill{height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-light)); border-radius:4px;}
+.kce-alert{padding:var(--sp3) var(--sp4); border-left:3px solid var(--accent); background:var(--surface); border-radius:var(--radius-sm); margin-bottom:var(--sp2); font-size:13px; line-height:1.5;}
+.kce-alert.sell{border-left-color:var(--green);}
+.kce-alert.watch{border-left-color:#f5c563;}
+.kce-alert.hold{border-left-color:var(--accent);}
+.kce-alert-badge{display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:2px 7px; border-radius:20px; margin-right:6px; background:var(--surface2);}
+.kce-alert.sell .kce-alert-badge{color:var(--green);}
+.kce-alert.watch .kce-alert-badge{color:#f5c563;}
+.kce-alert.hold .kce-alert-badge{color:var(--accent-light);}
+.kce-plist{border:1px solid var(--border); border-radius:var(--radius); margin-bottom:var(--sp3); overflow:hidden; background:var(--surface);}
+.kce-plist-head{display:flex; justify-content:space-between; align-items:center; padding:var(--sp4); cursor:pointer; user-select:none;}
+.kce-plist-head:active{background:var(--surface2);}
+.kce-plist-title{font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px;}
+.kce-plist-meta{color:var(--text-dim); font-size:12px;}
+.kce-plist-chevron{color:var(--text-faint); transition:transform .2s; font-size:12px;}
+.kce-plist.open .kce-plist-chevron{transform:rotate(90deg);}
+.kce-plist-body{display:none; border-top:1px solid var(--border);}
+.kce-plist.open .kce-plist-body{display:block;}
+table.kce-table{width:100%; border-collapse:collapse; font-size:12px;}
+.kce-table th{text-align:left; padding:9px 10px; color:var(--text-faint); font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; border-bottom:1px solid var(--border); cursor:pointer; white-space:nowrap;}
+.kce-table th.num{text-align:right;}
+.kce-table th:hover{color:var(--accent-light);}
+.kce-table td{padding:9px 10px; border-bottom:1px solid var(--border); vertical-align:top;}
+.kce-table td.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.kce-table tr:last-child td{border-bottom:none;}
+.kce-name{font-weight:600;}
+.kce-set{color:var(--text-dim); font-size:10.5px;}
+.kce-cond{color:var(--text-dim); font-size:11px;}
+.kce-badge-status{font-size:9.5px; padding:2px 6px; border-radius:20px; background:var(--surface2); color:var(--text-dim); white-space:nowrap;}
+.kce-empty{padding:var(--sp5) var(--sp4); text-align:center; color:var(--text-faint); font-size:13px; line-height:1.6;}
+.kce-private{background:linear-gradient(160deg,#211a2e,#171a24); border:1px solid rgba(124,108,255,.35);}
+.kce-lock{font-size:13px;}
+.kce-pnl-table{width:100%; font-size:13px; border-collapse:collapse;}
+.kce-pnl-table td{padding:8px 4px; border-bottom:1px solid var(--border);}
+.kce-pnl-table td:last-child{text-align:right; font-variant-numeric:tabular-nums; font-weight:600;}
+.kce-pnl-table tr:last-child td{border-bottom:none; padding-top:12px; font-weight:700; font-size:14px;}
+.kce-channels{display:flex; flex-direction:column; gap:8px;}
+.kce-channel-row{display:flex; justify-content:space-between; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); font-size:13px;}
+.kce-release{padding:var(--sp3) var(--sp4); border-radius:var(--radius-sm); background:var(--surface); border:1px solid var(--border); margin-bottom:var(--sp2);}
+.kce-release-date{font-size:11px; font-weight:700; color:var(--accent-light); text-transform:uppercase; letter-spacing:.04em;}
+.kce-release-title{font-weight:600; font-size:13.5px; margin:3px 0;}
+.kce-release-angle{font-size:12px; color:var(--text-dim); line-height:1.5;}
+.kce-playbook{counter-reset:pb;}
+.kce-pb-item{display:flex; gap:10px; padding:var(--sp3) 0; border-bottom:1px solid var(--border);}
+.kce-pb-item:last-child{border-bottom:none;}
+.kce-pb-num{flex:none; width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.kce-pb-text{font-size:13px; line-height:1.55;}
+.kce-sources{font-size:11px; color:var(--text-faint); margin-top:var(--sp6); padding-top:var(--sp4); border-top:1px solid var(--border); line-height:1.6;}
+.kce-sources a{color:var(--accent-light); text-decoration:none;}
+.pos{color:var(--green);} .neg{color:var(--red);}
 </style>
 
-<div class="header">
-  <div class="header-row">
-    <div class="brand">Korin's <span>Card Exchange</span></div>
-    <div class="date">Sep 2, 2026</div>
+<div class="kce-scroll">
+  <div class="kce-header">
+    <div class="kce-title">🃏 Korin's Card Exchange</div>
+    <div class="kce-date">Daily Intel &middot; 2026-09-03</div>
   </div>
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="biz">Business</button>
-    <button class="tab-btn" data-tab="pc">My Collection</button>
-    <button class="tab-btn" data-tab="intel">Market Intel</button>
-  </div>
-</div>
-
-<!-- ===================== BUSINESS TAB ===================== -->
-<div class="panel active" id="panel-biz">
-  <div class="banner warn">
-    <b>Live refresh unavailable today.</b> Both the Chrome extension and the in-app browser are unreachable this run
-    &mdash; same outage as earlier today. Prices below are the <b>last successful Collectr sync (8/26/26)</b> pulled
-    from the workbook, condition-adjusted, Available items only. Daily &Delta; and Top Movers need a live scrape and
-    are empty-stated rather than guessed. Cost basis, realized P&amp;L and cash are live from the workbook (always
-    current, no browser needed).
+  <div class="kce-banner warn">
+    <strong>⚠ Live Collectr pricing unavailable this run.</strong> Both Claude in Chrome and the in-app browser were unreachable (retried, consistent with the 9/2 outage pattern) &mdash; no live per-card scrape was possible. Business &amp; Private Holdings figures below are <strong>workbook-sourced</strong> and reflect Collectr prices as of <strong>2026-08-26</strong> (8 days stale). Per-card daily deltas, all 4 My Collection tables, and the Sourcing scan could not be produced honestly and are shown as empty states rather than guessed. Market Intel (Tab 3) is fully live via web search.
   </div>
 
-  <div class="section-title">Filter Inventory</div>
-  <div class="filter-wrap">
-    <input class="filter-input" id="biz-filter" placeholder="Search name or set&hellip;" oninput="filterLists('biz')">
+  <div class="kce-tabs">
+    <div class="kce-tab active" data-tab="biz">📦 Business</div>
+    <div class="kce-tab" data-tab="pc">🎴 My Collection</div>
+    <div class="kce-tab" data-tab="market">📊 Market Intel</div>
   </div>
 
-  <div class="section-title">Overview</div>
-  <div class="kpi-grid">
-    <div class="kpi">
-      <div class="kpi-label">Live Portfolio Value</div>
-      <div class="kpi-val">$2,737.00</div>
-      <div class="kpi-sub">KCE economic interest &mdash; WOTC Lot at 20%, incl. 1 Hold-Private item</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Public Holdings</div>
-      <div class="kpi-val">$2,542.87</div>
-      <div class="kpi-sub">excl. 1 Hold-Private item</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Unrealized Gain</div>
-      <div class="kpi-val pos">+$1,763.39</div>
-      <div class="kpi-sub">vs. $973.61 cost on hand</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Realized P&amp;L</div>
-      <div class="kpi-val pos">+$1,151.12</div>
-      <div class="kpi-sub">135 items sold to date</div>
-    </div>
-    <div class="kpi" style="grid-column:1/-1;">
-      <div class="kpi-label">Net Cash Position</div>
-      <div class="kpi-val">$494.47</div>
-      <div class="kpi-sub">cash in $2,435.07 sales &minus; cash out $1,940.60 expenses &middot; True Economic Position (after $470 IOU) $998.08</div>
-    </div>
-  </div>
+  <!-- BUSINESS TAB -->
+  <div class="kce-panel active" id="panel-biz">
+    <input class="kce-filter" id="filter-biz" placeholder="Filter by card or set name…" oninput="kceFilter('biz', this.value)">
 
-  <div class="section-title">Portfolio Breakdown</div>
-  <div id="pf-breakdown"></div>
-
-  <div class="section-title">Top Movers Today</div>
-  <div class="empty-state" style="padding:24px 16px;">
-    <div class="empty-state-icon">&#128268;</div>
-    <p>No live delta data &mdash; Collectr couldn't be reached this run. Movers resume next successful sync.</p>
-  </div>
-
-  <div class="section-title">Action Alerts</div>
-  <div class="alert-list">
-    <div class="alert">
-      <span class="alert-tag tag-sell">SELL</span>
-      <div class="alert-body"><b>2005 Yu-Gi-Oh! Structure Deck Dragon's Roar</b> (1st Ed Sealed) &mdash; $155.00 vs. $47.52 cost, <b>+226% ROI</b>. Best margin in the book; list now.</div>
+    <div class="kce-kpi-grid">
+      <div class="kce-kpi"><div class="kce-kpi-label">Live Portfolio Value</div><div class="kce-kpi-val">$3,866.32</div><div class="kce-kpi-sub">7 FOR SALE portfolios, WOTC Lot @ 100% physical</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Public Holdings</div><div class="kce-kpi-val">$3,672.19</div><div class="kce-kpi-sub">Excludes 🔒 Umbreon Hold-Private</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Unrealized Gain</div><div class="kce-kpi-val pos">+$2,892.71</div><div class="kce-kpi-sub">vs $973.61 cost basis</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Realized P&amp;L</div><div class="kce-kpi-val pos">+$1,151.12</div><div class="kce-kpi-sub">63 items sold to date</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Net Cash Position</div><div class="kce-kpi-val">$494.47</div><div class="kce-kpi-sub">True economic (cash view): $998.08</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">WOTC Lot True Equity</div><div class="kce-kpi-val">$255.87</div><div class="kce-kpi-sub">20% of $1,279.37 (80% = David's, $1,023.50)</div></div>
     </div>
-    <div class="alert">
-      <span class="alert-tag tag-sell">SELL</span>
-      <div class="alert-body"><b>2005 Yu-Gi-Oh! Structure Deck Zombie Madness</b> (1st Ed Sealed) &mdash; $157.15 vs. $55.23 cost, <b>+184% ROI</b>. Bundle both decks in one listing for shipping efficiency.</div>
-    </div>
-    <div class="alert">
-      <span class="alert-tag tag-watch">WATCH</span>
-      <div class="alert-body"><b>Destined Rivals Booster Box</b> (INV-278, Sealed) &mdash; $464.80 live, still $5.20 under the $470 owed on the friend IOU. Hold the flip until it clears breakeven.</div>
-    </div>
-    <div class="alert">
-      <span class="alert-tag tag-bundle">BUNDLE</span>
-      <div class="alert-body"><b>Pikachu [x7] (Jungle)</b> &mdash; WOTC Lot's single largest line at $190.68 ($27.24/ea). Consider a 7-card vintage Jungle Pikachu lot listing instead of singles &mdash; remember 80% of proceeds are David's per the consignment split.</div>
-    </div>
-    <div class="alert">
-      <span class="alert-tag tag-hold">HOLD</span>
-      <div class="alert-body"><b>Umbreon ex SVP 176 PSA 10</b> &mdash; sitting $65.87 below its $260 cost. Investment hold, not a loss to realize. See Private Holdings below and the Oct 30 Umbreon ex Battle Deck note in Market Intel.</div>
-    </div>
-  </div>
 
-  <div class="section-title">Inventory by Portfolio</div>
-  <div id="biz-lists"></div>
-
-  <div class="section-title">&#128274; Private Holdings</div>
-  <div class="lock-card">
-    <div class="lock-head"><span class="lock-icon">&#128274;</span><b>Umbreon ex &mdash; 176 #SVP 176 (Scarlet &amp; Violet Promo)</b></div>
-    <div class="lock-grid">
-      <div><div class="lock-item-label">Grade</div><div class="lock-item-val" style="font-size:13px;">PSA 10 GEM-MT</div></div>
-      <div><div class="lock-item-label">Today</div><div class="lock-item-val" style="font-size:13px;color:var(--text-faint);">&mdash; no live data</div></div>
-      <div><div class="lock-item-label">Market (last sync)</div><div class="lock-item-val">$194.13</div></div>
-      <div><div class="lock-item-label">Cost</div><div class="lock-item-val">$260.00</div></div>
-      <div><div class="lock-item-label">Unrealized P&amp;L</div><div class="lock-item-val neg">&minus;$65.87</div></div>
-      <div><div class="lock-item-label">Target</div><div class="lock-item-val" style="font-size:13px;color:var(--text-faint);">not set</div></div>
-    </div>
-    <div class="lock-note">Investment hold &mdash; acquired 5/31/26 via trade-up consolidation (Slurpuff + Latias + Psyduck + ~$10 cash). Never shown in public listings. Read: Neo/vintage-era demand is rising and Espeon ex / Umbreon ex Battle Decks ship 10/30/26 &mdash; watch for secondary-market lift on Umbreon promos heading into that wave.</div>
-  </div>
-
-  <div class="section-title">P&amp;L Summary</div>
-  <div class="pl-table">
-    <div class="pl-row"><span>Live portfolio value</span><span>$2,737.00</span></div>
-    <div class="pl-row"><span>Cost on hand</span><span>$973.61</span></div>
-    <div class="pl-row"><span>Unrealized gain</span><span style="color:var(--green);">+$1,763.39</span></div>
-    <div class="pl-row"><span>Realized P&amp;L (135 sold)</span><span style="color:var(--green);">+$1,151.12</span></div>
-    <div class="pl-row"><span>Net cash position</span><span>$494.47</span></div>
-    <div class="pl-row"><span>Outstanding consignment payables</span><span>$0.00</span></div>
-    <div class="pl-row"><span>Outstanding IOU (Destined Rivals box)</span><span style="color:var(--red);">&minus;$470.00</span></div>
-    <div class="pl-row total"><span>True economic position</span><span>$998.08</span></div>
-  </div>
-
-  <div class="section-title">Selling Channel Net Rates</div>
-  <div class="rate-grid">
-    <div class="rate-row"><span>eBay</span><b>~83%</b></div>
-    <div class="rate-row"><span>CardsHQ</span><b>70&ndash;80%</b></div>
-    <div class="rate-row"><span>Facebook Marketplace</span><b>80&ndash;90%</b></div>
-  </div>
-</div>
-
-<!-- ===================== MY COLLECTION TAB ===================== -->
-<div class="panel" id="panel-pc">
-  <div class="empty-state" style="padding-top:60px;">
-    <div class="empty-state-icon">&#128230;</div>
-    <p><b>My Collection can't be refreshed today.</b> All four PC portfolios (Personal Collection, Gym Hero, Gym
-    Challenge, Rocket) live only in Collectr &mdash; the expense workbook doesn't independently track them, and both
-    Chrome and the in-app browser are unreachable this run.</p>
-    <p class="small">Rather than show stale or invented numbers, this tab is intentionally empty. It will repopulate
-    automatically once a live Collectr scrape succeeds.</p>
-  </div>
-</div>
-
-<!-- ===================== MARKET INTEL TAB ===================== -->
-<div class="panel" id="panel-intel">
-
-  <div class="section-title">Upcoming Releases</div>
-  <div class="prose-card">
-    <div class="release-item">
-      <div class="release-date">SEP 16</div>
-      <div class="release-body"><b>30th Celebration</b> &mdash; first-ever simultaneous worldwide release. All-foil
-        packs (6 foils/pack), guaranteed Pikachu per pack (30 illustrations), new "Futuristic Rare" Mewtwo ex / Mew ex,
-        Classic Collection reprints incl. Base Set Charizard.
-        <p>Ships day-one with ETB, Poster Collection, Tech Sticker Collection, Knock Out Collection, 2-pack blister,
-        and a Sylveon ex / Greninja ex box.</p>
-        <span class="release-tag">KCE angle: reprint chase drives short-term vintage comps &mdash; watch WOTC Lot &amp; Japanese Poke comps for a bump</span>
+    <div class="kce-section-title">📊 Portfolio Breakdown</div>
+    <div class="kce-card">
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">📦 Main Inventory <span class="kce-set">(+ 1 Hold-Private, see 🔒 below)</span></span><span class="kce-bar-val">$1,930.02 &middot; 38 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:100.0%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">🪙 Under $10</span><span class="kce-bar-val">$236.10 &middot; 54 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:12.2%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">🇯🇵 Japanese Poke</span><span class="kce-bar-val">$96.18 &middot; 20 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:5.0%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">✨ EX & Mega EX</span><span class="kce-bar-val">$4.45 &middot; 3 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:0.2%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">🔹 V Cards</span><span class="kce-bar-val">$20.25 &middot; 12 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:1.0%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">🎮 Trainers <span class="kce-set">(sold out 8/19)</span></span><span class="kce-bar-val">$0.00 &middot; 0 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:0.0%"></div></div>
+      </div>
+      <div class="kce-bar-row">
+        <div class="kce-bar-top"><span class="kce-bar-name">🤝 WOTC Lot (Consignment) <span class="kce-set">(consignment, KCE = 20%)</span></span><span class="kce-bar-val">$1,279.37 &middot; 81 items</span></div>
+        <div class="kce-bar-track"><div class="kce-bar-fill" style="width:66.3%"></div></div>
       </div>
     </div>
-    <div class="release-item">
-      <div class="release-date">OCT 2</div>
-      <div class="release-body"><b>30th Celebration &mdash; wave 2</b><p>Binder Collection, Booster Bundle, Mini Tins.</p></div>
-    </div>
-    <div class="release-item">
-      <div class="release-date">OCT 30</div>
-      <div class="release-body"><b>30th Celebration &mdash; wave 3</b><p>Espeon ex &amp; <b>Umbreon ex</b> Battle Decks.</p>
-        <span class="release-tag">KCE angle: directly touches the Umbreon ex SVP 176 PSA 10 Hold-Private &mdash; monitor secondary demand into this date</span>
+
+    <div class="kce-section-title">📈 Top Movers Today</div>
+    <div class="kce-empty">No live same-day Collectr pull was possible this run (browser outage) &mdash; per-card daily deltas need a fresh scrape to diff against. Will resume next run Chrome reconnects.</div>
+
+    <div class="kce-section-title">🚨 Action Alerts</div>
+    <div class="kce-alert hold"><span class="kce-alert-badge">HOLD</span>🔒 Umbreon ex-176 PSA 10 (INV-035): $194.13 live (workbook, 8/26) vs $260.00 cost &mdash; still down ~25% vs cost, ~37% vs the $310 target. Both catalysts remain on the calendar: the JP Espeon &amp; Umbreon 30th Anniversary Premium Deck ships <strong>Sept 16</strong> (13 days out) and the English Battle Decks land <strong>Oct 30</strong> as 30th Celebration Wave 3. Hold through both before reacting to the drawdown.</div>
+    <div class="kce-alert watch"><span class="kce-alert-badge">WATCH</span>WOTC Lot consignment grew to 81 lines / $1,279.37 physical &mdash; remember only $255.87 (20%) is KCE's real equity. David's 80% share ($1,023.50) is a liability, not KCE profit, if it all sold today.</div>
+    <div class="kce-alert watch"><span class="kce-alert-badge">IOU</span>Destined Rivals Booster Box (INV-278): $470.00 still owed to the friend who fronted it, unrepaid. Prioritize selling/flipping this box to clear the debt.</div>
+    <div class="kce-alert hold"><span class="kce-alert-badge">DATA</span>Workbook is 8 days stale (last edit 8/26) &mdash; the 3 'Unmatched &mdash; verify' items ($105.82) and Trainers-empty status need a live Collectr session to confirm/refresh once the browser reconnects.</div>
+    <div class="kce-alert sell"><span class="kce-alert-badge">SELL-READY</span>Japanese Poke + WOTC Lot sit in Neo-era vintage &mdash; the single fastest-growing Pokemon TCG segment right now (see Market Intel). Consider pushing listings for the Neo Genesis/Discovery singles in these two portfolios while the trend is hot.</div>
+
+    <div class="kce-section-title">🃏 Full Inventory by Portfolio</div>
+    <div id="biz-lists">
+      <div class="kce-plist" data-listname="Main Inventory">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">📦 Main Inventory</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">38 &middot; $1,930.02</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="Main Inventory">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="destined rivals booster box —" data-price="464.8">
+          <td><div class="kce-name">Destined Rivals Booster Box</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Sealed</td>
+          <td class="num">$464.80</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="zekrom ex black bolt" data-price="213.08">
+          <td><div class="kce-name">Zekrom ex</div><div class="kce-set">Black Bolt</div></td>
+          <td class="kce-cond">Moderately Played</td>
+          <td class="num">$213.08</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="2005 yu-gi-oh! structure deck zombie madness 1st ed english sealed —" data-price="157.15">
+          <td><div class="kce-name">2005 Yu-Gi-Oh! Structure Deck Zombie Madness 1st Ed English Sealed</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">1st Ed Sealed</td>
+          <td class="num">$157.15</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="2005 yu-gi-oh! structure deck dragon&#x27;s roar 1st ed english sealed —" data-price="155">
+          <td><div class="kce-name">2005 Yu-Gi-Oh! Structure Deck Dragon&#x27;s Roar 1st Ed English Sealed</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">1st Ed Sealed</td>
+          <td class="num">$155.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mew (secret) #025/025 celebrations" data-price="68.77">
+          <td><div class="kce-name">Mew (Secret) #025/025</div><div class="kce-set">Celebrations</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$68.77</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mewtwo #10 (base set (unlimited)) —" data-price="66.92">
+          <td><div class="kce-name">Mewtwo #10 (Base Set (Unlimited))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$66.92</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="charmander #044 scarlet &amp; violet promo" data-price="54.68">
+          <td><div class="kce-name">Charmander #044</div><div class="kce-set">Scarlet &amp; Violet Promo</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$54.68</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mega greninja ex premium collection —" data-price="50.17">
+          <td><div class="kce-name">Mega Greninja ex Premium Collection</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Sealed</td>
+          <td class="num">$50.17</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="m rayquaza ex #76/108 celebrations: classic collection" data-price="47.44">
+          <td><div class="kce-name">M Rayquaza EX #76/108</div><div class="kce-set">Celebrations: Classic Collection</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$47.44</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="machamp (base set shadowless) #008/102 deck exclusives" data-price="46.29">
+          <td><div class="kce-name">Machamp (Base Set Shadowless) #008/102</div><div class="kce-set">Deck Exclusives</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$46.29</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="kabutops (jp) #141 (neo discovery (japanese)) —" data-price="41.03">
+          <td><div class="kce-name">Kabutops (JP) #141 (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$41.03</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="greninja v[set of 4] sword &amp; shield promo" data-price="32.99">
+          <td><div class="kce-name">Greninja V[Set of 4]</div><div class="kce-set">Sword &amp; Shield Promo</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$32.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pikachu v-union [set of 4] sword &amp; shield promo" data-price="32.41">
+          <td><div class="kce-name">Pikachu V-Union [Set of 4]</div><div class="kce-set">Sword &amp; Shield Promo</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$32.41</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mega moonlit tin [mega gengar ex] —" data-price="32.16">
+          <td><div class="kce-name">Mega Moonlit Tin [Mega Gengar ex]</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Sealed</td>
+          <td class="num">$32.16</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="misty&#x27;s tentacruel #10 gym heroes" data-price="31.85">
+          <td><div class="kce-name">Misty&#x27;s Tentacruel #10</div><div class="kce-set">Gym Heroes</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$31.85</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="nidoking #11 base set 2" data-price="31.54">
+          <td><div class="kce-name">Nidoking #11</div><div class="kce-set">Base Set 2</div></td>
+          <td class="kce-cond">Moderately Played</td>
+          <td class="num">$31.54</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados (#30 holo) #30 hgss trainer kit: gyarados &amp; raichu" data-price="30.04">
+          <td><div class="kce-name">Gyarados (#30 Holo) #30</div><div class="kce-set">HGSS Trainer Kit: Gyarados &amp; Raichu</div></td>
+          <td class="kce-cond">Moderately Played</td>
+          <td class="num">$30.04</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados #6 (base set (unlimited)) —" data-price="30">
+          <td><div class="kce-name">Gyarados #6 (Base Set (Unlimited))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$30.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="minun #71 (supreme victors) [x2] —" data-price="29.99">
+          <td><div class="kce-name">Minun #71 (Supreme Victors) [x2]</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$29.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="rayquaza c #8 supreme victors" data-price="28.74">
+          <td><div class="kce-name">Rayquaza C #8</div><div class="kce-set">Supreme Victors</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$28.74</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="electrode (prime) #93 triumphant" data-price="25.48">
+          <td><div class="kce-name">Electrode (Prime) #93</div><div class="kce-set">Triumphant</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$25.48</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="hitmonchan #8 base set 2" data-price="23.27">
+          <td><div class="kce-name">Hitmonchan #8</div><div class="kce-set">Base Set 2</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$23.27</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="erika&#x27;s clefable (jp) #036 (gym heroes (japanese)) —" data-price="20.08">
+          <td><div class="kce-name">Erika&#x27;s Clefable (JP) #036 (Gym Heroes (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$20.08</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados #6 (base set (unlimited)) —" data-price="20">
+          <td><div class="kce-name">Gyarados #6 (Base Set (Unlimited))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$20.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="m gyarados ex #27 breakpoint" data-price="19.27">
+          <td><div class="kce-name">M Gyarados EX #27</div><div class="kce-set">BREAKpoint</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$19.27</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="misty&#x27;s tentacruel (jp) #073 (gym heroes (japanese)) —" data-price="19.24">
+          <td><div class="kce-name">Misty&#x27;s Tentacruel (JP) #073 (Gym Heroes (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$19.24</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="clefairy #6 base set 2" data-price="17.9">
+          <td><div class="kce-name">Clefairy #6</div><div class="kce-set">Base Set 2</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$17.90</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="regigigas (full art promo) #xy82 (xy promos) [x2] —" data-price="17.44">
+          <td><div class="kce-name">Regigigas (Full Art Promo) #XY82 (XY Promos) [x2]</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$17.44</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="azumarill (jp) #184 (neo genesis (japanese)) —" data-price="16.39">
+          <td><div class="kce-name">Azumarill (JP) #184 (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$16.39</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="charizard v #swsh050 sword &amp; shield promo" data-price="13.41">
+          <td><div class="kce-name">Charizard V #SWSH050</div><div class="kce-set">Sword &amp; Shield Promo</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.41</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="lunala gx #sm103a sun &amp; moon promo" data-price="13.03">
+          <td><div class="kce-name">Lunala GX #SM103a</div><div class="kce-set">Sun &amp; Moon Promo</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.03</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ursaring (jp) #217 (neo discovery (japanese)) —" data-price="12.9">
+          <td><div class="kce-name">Ursaring (JP) #217 (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$12.90</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="jirachi (magnus pedersen) world championship decks" data-price="12.88">
+          <td><div class="kce-name">Jirachi (Magnus Pedersen)</div><div class="kce-set">World Championship Decks</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$12.88</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="charizard #5 detective pikachu" data-price="11.7">
+          <td><div class="kce-name">Charizard #5</div><div class="kce-set">Detective Pikachu</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$11.70</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ditto #17 detective pikachu" data-price="11.64">
+          <td><div class="kce-name">Ditto #17</div><div class="kce-set">Detective Pikachu</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$11.64</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="froakie chaos rising" data-price="10.84">
+          <td><div class="kce-name">Froakie</div><div class="kce-set">Chaos Rising</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$10.84</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="snorlax boundaries crossed" data-price="9.93">
+          <td><div class="kce-name">Snorlax</div><div class="kce-set">Boundaries Crossed</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$9.93</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="charizard v #019/189 darkness ablaze" data-price="9.57">
+          <td><div class="kce-name">Charizard V #019/189</div><div class="kce-set">Darkness Ablaze</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$9.57</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
+      </div>
+      <div class="kce-plist" data-listname="Under 10">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">🪙 Under $10</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">54 &middot; $236.10</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="Under 10">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="sleep! [x2] team rocket" data-price="10.28">
+          <td><div class="kce-name">Sleep! [x2]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$10.28</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="unown (r) #77 legends awakened" data-price="9.45">
+          <td><div class="kce-name">Unown (R) #77</div><div class="kce-set">Legends Awakened</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$9.45</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pikachu libre (14 #14 xy trainer kit: pikachu libre &amp; suicune" data-price="8.42">
+          <td><div class="kce-name">Pikachu Libre (14 #14</div><div class="kce-set">XY Trainer Kit: Pikachu Libre &amp; Suicune</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$8.42</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ursaring legendary treasures: radiant collections" data-price="8.41">
+          <td><div class="kce-name">Ursaring</div><div class="kce-set">Legendary Treasures: Radiant Collections</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.41</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magnemite [x4] team rocket" data-price="8.16">
+          <td><div class="kce-name">Magnemite [x4]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.16</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dratini [x2] team rocket" data-price="7.78">
+          <td><div class="kce-name">Dratini [x2]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.78</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="snorlax breakthrough" data-price="7.74">
+          <td><div class="kce-name">Snorlax</div><div class="kce-set">BREAKthrough</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.74</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ponyta [x4] team rocket" data-price="7.64">
+          <td><div class="kce-name">Ponyta [x4]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.64</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados #34/108 evolutions" data-price="7.38">
+          <td><div class="kce-name">Gyarados #34/108</div><div class="kce-set">Evolutions</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$7.38</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dragonite ex furious fists" data-price="7.31">
+          <td><div class="kce-name">Dragonite EX</div><div class="kce-set">Furious Fists</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$7.31</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mankey mcdonald&#x27;s promos 2019" data-price="7.27">
+          <td><div class="kce-name">Mankey</div><div class="kce-set">McDonald&#x27;s Promos 2019</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.27</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados #23 generations" data-price="7.18">
+          <td><div class="kce-name">Gyarados #23</div><div class="kce-set">Generations</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.18</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dragonite #012/015 mcdonald&#x27;s promos 2024" data-price="6.37">
+          <td><div class="kce-name">Dragonite #012/015</div><div class="kce-set">McDonald&#x27;s Promos 2024</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.37</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="koga&#x27;s pidgey (49) #49 gym challenge" data-price="6.14">
+          <td><div class="kce-name">Koga&#x27;s Pidgey (49) #49</div><div class="kce-set">Gym Challenge</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.14</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dedenne shiny rare 093/088 —" data-price="5.57">
+          <td><div class="kce-name">Dedenne Shiny Rare 093/088</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Raw Holofoil NM</td>
+          <td class="num">$5.57</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dedenne #093/088 perfect order" data-price="5.57">
+          <td><div class="kce-name">Dedenne #093/088</div><div class="kce-set">Perfect Order</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.57</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="porygon team rocket" data-price="5.5">
+          <td><div class="kce-name">Porygon</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.50</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="rowlet #090/088 perfect order" data-price="5.42">
+          <td><div class="kce-name">Rowlet #090/088</div><div class="kce-set">Perfect Order</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.42</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="venusaur ex #1/108 evolutions" data-price="5.11">
+          <td><div class="kce-name">Venusaur EX #1/108</div><div class="kce-set">Evolutions</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.11</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados gx hidden fates" data-price="4.96">
+          <td><div class="kce-name">Gyarados GX</div><div class="kce-set">Hidden Fates</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.96</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="litleo #139/132 mega evolution" data-price="4.91">
+          <td><div class="kce-name">Litleo #139/132</div><div class="kce-set">Mega Evolution</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.91</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mega eelektross ex #278/217 ascended heroes" data-price="4.43">
+          <td><div class="kce-name">Mega Eelektross ex #278/217</div><div class="kce-set">Ascended Heroes</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.43</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mega eelektross ex #266/217 ascended heroes" data-price="4.43">
+          <td><div class="kce-name">Mega Eelektross ex #266/217</div><div class="kce-set">Ascended Heroes</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.43</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="prinplup legendary treasures" data-price="4.13">
+          <td><div class="kce-name">Prinplup</div><div class="kce-set">Legendary Treasures</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$4.13</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magmar mcdonald&#x27;s promos 2019" data-price="4.01">
+          <td><div class="kce-name">Magmar</div><div class="kce-set">McDonald&#x27;s Promos 2019</div></td>
+          <td class="kce-cond">Damaged</td>
+          <td class="num">$4.01</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="lucario (47) #47 fates collide" data-price="3.94">
+          <td><div class="kce-name">Lucario (47) #47</div><div class="kce-set">Fates Collide</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.94</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="yveltal ex #105/088 perfect order" data-price="3.94">
+          <td><div class="kce-name">Yveltal ex #105/088</div><div class="kce-set">Perfect Order</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.94</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="meowth team rocket" data-price="3.87">
+          <td><div class="kce-name">Meowth</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.87</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="galarian obstagoon #245/217 ascended heroes" data-price="3.68">
+          <td><div class="kce-name">Galarian Obstagoon #245/217</div><div class="kce-set">Ascended Heroes</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.68</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="minun #48 legendary treasures" data-price="3.36">
+          <td><div class="kce-name">Minun #48</div><div class="kce-set">Legendary Treasures</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.36</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="abra team rocket" data-price="3.35">
+          <td><div class="kce-name">Abra</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.35</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="haunter breakthrough" data-price="3.09">
+          <td><div class="kce-name">Haunter</div><div class="kce-set">BREAKthrough</div></td>
+          <td class="kce-cond">Lightly Played</td>
+          <td class="num">$3.09</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pikachu #065/202 sword &amp; shield base set" data-price="3.07">
+          <td><div class="kce-name">Pikachu #065/202</div><div class="kce-set">Sword &amp; Shield Base Set</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.07</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="venusaur v #01/73 (champion&#x27;s path) [x2] —" data-price="3.06">
+          <td><div class="kce-name">Venusaur V #01/73 (Champion&#x27;s Path) [x2]</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.06</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="rattata [x2] team rocket" data-price="2.96">
+          <td><div class="kce-name">Rattata [x2]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.96</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="tyrunt mega evolution promos" data-price="2.78">
+          <td><div class="kce-name">Tyrunt</div><div class="kce-set">Mega Evolution Promos</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.78</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dragapult shining fates: shiny vault" data-price="2.75">
+          <td><div class="kce-name">Dragapult</div><div class="kce-set">Shining Fates: Shiny Vault</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.75</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="diglett team rocket" data-price="2.65">
+          <td><div class="kce-name">Diglett</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.65</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ambipom phantasmal flames" data-price="2.54">
+          <td><div class="kce-name">Ambipom</div><div class="kce-set">Phantasmal Flames</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.54</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="grimer team rocket" data-price="2.51">
+          <td><div class="kce-name">Grimer</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.51</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="electrike (omega) primal clash" data-price="2.48">
+          <td><div class="kce-name">Electrike (Omega)</div><div class="kce-set">Primal Clash</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.48</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mankey team rocket" data-price="2.47">
+          <td><div class="kce-name">Mankey</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.47</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="snover #140/132 mega evolution" data-price="2.41">
+          <td><div class="kce-name">Snover #140/132</div><div class="kce-set">Mega Evolution</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.41</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="koffing team rocket" data-price="2.13">
+          <td><div class="kce-name">Koffing</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.13</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="blaine&#x27;s doduo #61 gym challenge" data-price="2.12">
+          <td><div class="kce-name">Blaine&#x27;s Doduo #61</div><div class="kce-set">Gym Challenge</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.12</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="zubat team rocket" data-price="2.11">
+          <td><div class="kce-name">Zubat</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.11</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magikarp #61 call of legends" data-price="2.08">
+          <td><div class="kce-name">Magikarp #61</div><div class="kce-set">Call of Legends</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.08</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="voltorb team rocket" data-price="1.93">
+          <td><div class="kce-name">Voltorb</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.93</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="unown [n] neo discovery" data-price="1.7">
+          <td><div class="kce-name">Unown [N]</div><div class="kce-set">Neo Discovery</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.70</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="drowzee team rocket" data-price="1.68">
+          <td><div class="kce-name">Drowzee</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.68</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="probopass perfect order" data-price="1.09">
+          <td><div class="kce-name">Probopass</div><div class="kce-set">Perfect Order</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.09</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="goop gas attack team rocket" data-price="0.97">
+          <td><div class="kce-name">Goop Gas Attack</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.97</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="charmeleon - 079 (cosmos holo) #079 mega evolution promos" data-price="0.94">
+          <td><div class="kce-name">Charmeleon - 079 (Cosmos Holo) #079</div><div class="kce-set">Mega Evolution Promos</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.94</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="unown [o] neo discovery" data-price="0.87">
+          <td><div class="kce-name">Unown [O]</div><div class="kce-set">Neo Discovery</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.87</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
+      </div>
+      <div class="kce-plist" data-listname="Japanese Poke">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">🇯🇵 Japanese Poke</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">20 &middot; $96.18</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="Japanese Poke">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="ruin wall [kabuto] (jp) [x2] (neo discovery (japanese)) —" data-price="13.9">
+          <td><div class="kce-name">Ruin Wall [Kabuto] (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.90</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="metapod (jp) [x2] (neo discovery (japanese)) —" data-price="8.56">
+          <td><div class="kce-name">Metapod (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.56</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="caterpie (jp) [x2] (neo discovery (japanese)) —" data-price="6.78">
+          <td><div class="kce-name">Caterpie (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.78</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pineco (jp) [x3] (neo discovery (japanese)) —" data-price="6.75">
+          <td><div class="kce-name">Pineco (JP) [x3] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.75</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="weedle (jp) [x2] (neo discovery (japanese)) —" data-price="6.22">
+          <td><div class="kce-name">Weedle (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.22</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="unown u (jp) (neo discovery (japanese)) —" data-price="5.99">
+          <td><div class="kce-name">Unown U (JP) (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="hoppip (jp) [x2] (neo discovery (japanese)) —" data-price="5.98">
+          <td><div class="kce-name">Hoppip (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.98</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dunsparce (jp) [x2] (neo discovery (japanese)) —" data-price="5.36">
+          <td><div class="kce-name">Dunsparce (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.36</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="energy ark (jp) [x2] (neo discovery (japanese)) —" data-price="5.06">
+          <td><div class="kce-name">Energy Ark (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.06</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="sentret (jp) [x2] (neo discovery (japanese)) —" data-price="4.88">
+          <td><div class="kce-name">Sentret (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.88</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="girafarig (jp) (neo genesis (japanese)) —" data-price="4">
+          <td><div class="kce-name">Girafarig (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="flaaffy (jp) #180 (neo genesis (japanese)) —" data-price="3.67">
+          <td><div class="kce-name">Flaaffy (JP) #180 (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.67</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="unown d (jp) (neo discovery (japanese)) —" data-price="3">
+          <td><div class="kce-name">Unown D (JP) (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="farfetch&#x27;d (jp) #083 (base set (japanese)) —" data-price="2.99">
+          <td><div class="kce-name">Farfetch&#x27;d (JP) #083 (Base Set (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="fossil egg (jp) (neo discovery (japanese)) —" data-price="2.99">
+          <td><div class="kce-name">Fossil Egg (JP) (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="time capsule (jp) (neo genesis (japanese)) —" data-price="2.62">
+          <td><div class="kce-name">Time Capsule (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.62</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="kakuna (jp) (neo discovery (japanese)) —" data-price="2.47">
+          <td><div class="kce-name">Kakuna (JP) (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.47</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="stantler (jp) #234 (neo genesis (japanese)) —" data-price="1.99">
+          <td><div class="kce-name">Stantler (JP) #234 (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="natu (jp) [x2] (neo discovery (japanese)) —" data-price="1.98">
+          <td><div class="kce-name">Natu (JP) [x2] (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.98</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="hyper devolution spray (jp) (neo discovery (japanese)) —" data-price="0.99">
+          <td><div class="kce-name">Hyper Devolution Spray (JP) (Neo Discovery (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
+      </div>
+      <div class="kce-plist" data-listname="EX & Mega EX">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">✨ EX & Mega EX</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">3 &middot; $4.45</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="EX & Mega EX">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="arboliva ex destined rivals" data-price="2.34">
+          <td><div class="kce-name">Arboliva ex</div><div class="kce-set">Destined Rivals</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.34</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mega meganium ex [x2] mega evolution promos" data-price="1.56">
+          <td><div class="kce-name">Mega Meganium ex [x2]</div><div class="kce-set">Mega Evolution Promos</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.56</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="yanmega ex (003/182) destined rivals" data-price="0.55">
+          <td><div class="kce-name">Yanmega ex (003/182)</div><div class="kce-set">Destined Rivals</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.55</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
+      </div>
+      <div class="kce-plist" data-listname="V Cards">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">🔹 V Cards</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">12 &middot; $20.25</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="V Cards">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="galarian cursola v (full art) [x2] champion&#x27;s path" data-price="3.6">
+          <td><div class="kce-name">Galarian Cursola V (Full Art) [x2]</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.60</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="glaceon v sword &amp; shield promo" data-price="3.09">
+          <td><div class="kce-name">Glaceon V</div><div class="kce-set">Sword &amp; Shield Promo</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.09</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gyarados v evolving skies" data-price="2.61">
+          <td><div class="kce-name">Gyarados V</div><div class="kce-set">Evolving Skies</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.61</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="incineroar v champion&#x27;s path" data-price="1.63">
+          <td><div class="kce-name">Incineroar V</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.63</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="wailord v champion&#x27;s path" data-price="1.58">
+          <td><div class="kce-name">Wailord V</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.58</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="drednaw v (full art) champion&#x27;s path" data-price="1.48">
+          <td><div class="kce-name">Drednaw V (Full Art)</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.48</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="galarian cursola v champion&#x27;s path" data-price="1.37">
+          <td><div class="kce-name">Galarian Cursola V</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.37</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="grapploct v (full art) champion&#x27;s path" data-price="1.35">
+          <td><div class="kce-name">Grapploct V (Full Art)</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.35</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="steelix v vivid voltage" data-price="0.97">
+          <td><div class="kce-name">Steelix V</div><div class="kce-set">Vivid Voltage</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.97</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="drednaw v champion&#x27;s path" data-price="0.96">
+          <td><div class="kce-name">Drednaw V</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.96</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="grapploct v champion&#x27;s path" data-price="0.83">
+          <td><div class="kce-name">Grapploct V</div><div class="kce-set">Champion&#x27;s Path</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.83</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="tornadus v chilling reign" data-price="0.78">
+          <td><div class="kce-name">Tornadus V</div><div class="kce-set">Chilling Reign</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.78</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
+      </div>
+      <div class="kce-plist" data-listname="Trainers">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">🎮 Trainers</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">0 &middot; $0.00</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><div class="kce-empty">No available items in this portfolio right now.</div></div>
+      </div>
+      <div class="kce-plist" data-listname="WOTC LOT">
+        <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+          <div class="kce-plist-title">🤝 WOTC Lot (Consignment)</div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">81 &middot; $1,279.37</span><span class="kce-plist-chevron">❯</span></div>
+        </div>
+        <div class="kce-plist-body"><table class="kce-table" data-list="WOTC LOT">
+          <thead><tr><th onclick="kceSort(this)">Card</th><th>Condition</th><th class="num" onclick="kceSort(this)" data-sort="price">Price ↕</th><th>Status</th></tr></thead>
+          <tbody><tr data-search="pikachu [x7] jungle" data-price="190.68">
+          <td><div class="kce-name">Pikachu [x7]</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$190.68</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dragonite (19) fossil" data-price="99.37">
+          <td><div class="kce-name">Dragonite (19)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$99.37</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="electrode [x2] jungle" data-price="93.42">
+          <td><div class="kce-name">Electrode [x2]</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$93.42</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pinsir jungle" data-price="84.7">
+          <td><div class="kce-name">Pinsir</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$84.70</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="wigglytuff jungle" data-price="78.38">
+          <td><div class="kce-name">Wigglytuff</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$78.38</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="snorlax jungle" data-price="67.59">
+          <td><div class="kce-name">Snorlax</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$67.59</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magneton (11) fossil" data-price="44.9">
+          <td><div class="kce-name">Magneton (11)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$44.90</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magmar [x4] fossil" data-price="36.76">
+          <td><div class="kce-name">Magmar [x4]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$36.76</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="clefable jungle" data-price="36.45">
+          <td><div class="kce-name">Clefable</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$36.45</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="moltres (27) fossil" data-price="27.73">
+          <td><div class="kce-name">Moltres (27)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$27.73</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gambler (1st ed) [x4] fossil" data-price="24.44">
+          <td><div class="kce-name">Gambler (1st Ed) [x4]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$24.44</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="psyduck [x2] fossil" data-price="23">
+          <td><div class="kce-name">Psyduck [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$23.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="kabutops (24) fossil" data-price="22.07">
+          <td><div class="kce-name">Kabutops (24)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$22.07</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="wigglytuff (32) jungle" data-price="21.4">
+          <td><div class="kce-name">Wigglytuff (32)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$21.40</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="moo moo milk (jp) (neo genesis (japanese)) —" data-price="21.13">
+          <td><div class="kce-name">Moo Moo Milk (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$21.13</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pidgeot (24, 1st ed) jungle" data-price="20.57">
+          <td><div class="kce-name">Pidgeot (24, 1st Ed)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$20.57</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pinsir (25) jungle" data-price="18.98">
+          <td><div class="kce-name">Pinsir (25)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$18.98</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="weezing (fossil) [x3] fossil" data-price="18.48">
+          <td><div class="kce-name">Weezing (Fossil) [x3]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$18.48</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="kingdra (jp) (neo genesis (japanese)) —" data-price="17.29">
+          <td><div class="kce-name">Kingdra (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$17.29</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="vileplume jungle" data-price="16.86">
+          <td><div class="kce-name">Vileplume</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$16.86</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="victreebel jungle" data-price="16.23">
+          <td><div class="kce-name">Victreebel</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$16.23</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="clefable (17) jungle" data-price="14.84">
+          <td><div class="kce-name">Clefable (17)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$14.84</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="steelix (jp) (neo genesis (japanese)) —" data-price="13.84">
+          <td><div class="kce-name">Steelix (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.84</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="skarmory (jp) (neo genesis (japanese)) —" data-price="13.81">
+          <td><div class="kce-name">Skarmory (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.81</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magneton (26) fossil" data-price="13.46">
+          <td><div class="kce-name">Magneton (26)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.46</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="slowpoke (fossil) [x2] fossil" data-price="13.1">
+          <td><div class="kce-name">Slowpoke (Fossil) [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$13.10</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="geodude (fossil) [x3] fossil" data-price="11.4">
+          <td><div class="kce-name">Geodude (Fossil) [x3]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$11.40</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="golbat (fossil) [x2] fossil" data-price="11">
+          <td><div class="kce-name">Golbat (Fossil) [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$11.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pokemon march (jp) [x2] (neo genesis (japanese)) —" data-price="10.18">
+          <td><div class="kce-name">Pokemon March (JP) [x2] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$10.18</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="double gust (jp) (neo genesis (japanese)) —" data-price="9.67">
+          <td><div class="kce-name">Double Gust (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$9.67</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="focus band (jp) (neo genesis (japanese)) —" data-price="9.57">
+          <td><div class="kce-name">Focus Band (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$9.57</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="bill&#x27;s teleporter (jp) [x3] (neo genesis (japanese)) —" data-price="8.7">
+          <td><div class="kce-name">Bill&#x27;s Teleporter (JP) [x3] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.70</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pidgeot (24, unlimited) jungle" data-price="8.51">
+          <td><div class="kce-name">Pidgeot (24, Unlimited)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.51</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mr. mime (jungle) jungle" data-price="8.14">
+          <td><div class="kce-name">Mr. Mime (Jungle)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.14</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="spinarak (jp) [x3] (neo genesis (japanese)) —" data-price="8.04">
+          <td><div class="kce-name">Spinarak (JP) [x3] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$8.04</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="grimer (fossil) [x2] fossil" data-price="7.34">
+          <td><div class="kce-name">Grimer (Fossil) [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$7.34</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="golduck (fossil) fossil" data-price="6.58">
+          <td><div class="kce-name">Golduck (Fossil)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.58</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="horsea (fossil) [x2] fossil" data-price="6.3">
+          <td><div class="kce-name">Horsea (Fossil) [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.30</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="slowpoke (jp) (neo genesis (japanese)) —" data-price="6.07">
+          <td><div class="kce-name">Slowpoke (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.07</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="magneton (26, unlimited) fossil" data-price="6.03">
+          <td><div class="kce-name">Magneton (26, Unlimited)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$6.03</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dark gloom team rocket" data-price="5.95">
+          <td><div class="kce-name">Dark Gloom</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.95</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="oddish (jp) (neo genesis (japanese)) —" data-price="5.3">
+          <td><div class="kce-name">Oddish (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.30</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="omastar (fossil) fossil" data-price="5.02">
+          <td><div class="kce-name">Omastar (Fossil)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.02</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="new pokedex (jp) [x2] (neo genesis (japanese)) —" data-price="5">
+          <td><div class="kce-name">New Pokedex (JP) [x2] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$5.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dark kadabra [x2] team rocket" data-price="4.82">
+          <td><div class="kce-name">Dark Kadabra [x2]</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.82</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="quagsire (jp) (neo genesis (japanese)) —" data-price="4.52">
+          <td><div class="kce-name">Quagsire (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.52</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="wooper (jp) [x2] (neo genesis (japanese)) —" data-price="4.5">
+          <td><div class="kce-name">Wooper (JP) [x2] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.50</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gligar (jp) (neo genesis (japanese)) —" data-price="4.41">
+          <td><div class="kce-name">Gligar (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.41</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="krabby [x2] fossil" data-price="4.14">
+          <td><div class="kce-name">Krabby [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.14</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="omanyte (fossil) fossil" data-price="4.06">
+          <td><div class="kce-name">Omanyte (Fossil)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.06</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="miltank (jp) (neo genesis (japanese)) —" data-price="4.02">
+          <td><div class="kce-name">Miltank (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.02</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="girafarig (jp) (neo genesis (japanese)) —" data-price="4">
+          <td><div class="kce-name">Girafarig (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="hoppip (jp) (neo genesis (japanese)) —" data-price="3.73">
+          <td><div class="kce-name">Hoppip (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.73</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="croconaw (jp) (neo genesis (japanese)) —" data-price="3.72">
+          <td><div class="kce-name">Croconaw (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.72</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="eevee (jungle) jungle" data-price="3.69">
+          <td><div class="kce-name">Eevee (Jungle)</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.69</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ledyba (jp) [x2] (neo genesis (japanese)) —" data-price="3.64">
+          <td><div class="kce-name">Ledyba (JP) [x2] (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.64</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="horsea (jp) (neo genesis (japanese)) —" data-price="3.21">
+          <td><div class="kce-name">Horsea (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$3.21</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="sunflora (jp) (neo genesis (japanese)) —" data-price="2.99">
+          <td><div class="kce-name">Sunflora (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="skiploom (jp) (neo genesis (japanese)) —" data-price="2.86">
+          <td><div class="kce-name">Skiploom (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.86</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="super energy retrieval (jp) (neo genesis (japanese)) —" data-price="2.83">
+          <td><div class="kce-name">Super Energy Retrieval (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.83</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="energy charge (jp) (neo genesis (japanese)) —" data-price="2.66">
+          <td><div class="kce-name">Energy Charge (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.66</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="zubat (1st ed) fossil" data-price="2.53">
+          <td><div class="kce-name">Zubat (1st Ed)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.53</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="energy search [x2] fossil" data-price="2.1">
+          <td><div class="kce-name">Energy Search [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.10</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="the boss&#x27;s way team rocket" data-price="2.09">
+          <td><div class="kce-name">The Boss&#x27;s Way</div><div class="kce-set">Team Rocket</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.09</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="ekans fossil" data-price="2.08">
+          <td><div class="kce-name">Ekans</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$2.08</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="shellder fossil" data-price="1.99">
+          <td><div class="kce-name">Shellder</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.99</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="pokegear (jp) (neo genesis (japanese)) —" data-price="1.89">
+          <td><div class="kce-name">PokeGear (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.89</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="mantine (jp) (neo genesis (japanese)) —" data-price="1.81">
+          <td><div class="kce-name">Mantine (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.81</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="tentacool fossil" data-price="1.77">
+          <td><div class="kce-name">Tentacool</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.77</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="furret (jp) (neo genesis (japanese)) —" data-price="1.75">
+          <td><div class="kce-name">Furret (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.75</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="recycle (1st ed) [x2] fossil" data-price="1.72">
+          <td><div class="kce-name">Recycle (1st Ed) [x2]</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.72</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="jigglypuff jungle" data-price="1.63">
+          <td><div class="kce-name">Jigglypuff</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.63</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="dodrio jungle" data-price="1.3">
+          <td><div class="kce-name">Dodrio</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.30</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="exeggcute [x2] jungle" data-price="1.1">
+          <td><div class="kce-name">Exeggcute [x2]</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.10</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="seadra (jp) (neo genesis (japanese)) —" data-price="1">
+          <td><div class="kce-name">Seadra (JP) (Neo Genesis (Japanese))</div><div class="kce-set">—</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$1.00</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="zubat (unlimited) fossil" data-price="0.51">
+          <td><div class="kce-name">Zubat (Unlimited)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.51</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="paras jungle" data-price="0.49">
+          <td><div class="kce-name">Paras</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.49</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="bellsprout jungle" data-price="0.44">
+          <td><div class="kce-name">Bellsprout</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.44</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="gambler (unlimited) fossil" data-price="0.4">
+          <td><div class="kce-name">Gambler (Unlimited)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.40</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="rhyhorn jungle" data-price="0.38">
+          <td><div class="kce-name">Rhyhorn</div><div class="kce-set">Jungle</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.38</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="recycle (unlimited) fossil" data-price="0.31">
+          <td><div class="kce-name">Recycle (Unlimited)</div><div class="kce-set">Fossil</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$0.31</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody>
+        </table></div>
       </div>
     </div>
-    <div class="release-item">
-      <div class="release-date">NOV 6</div>
-      <div class="release-body"><b>30th Celebration &mdash; wave 4 (final)</b><p>Day &amp; Night Ultra Premium Collections, Ditto &amp; Figure Collections.</p></div>
+
+    <div class="kce-plist" data-listname="Unmatched">
+      <div class="kce-plist-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="kce-plist-title">❓ Uncategorized (3)</div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="kce-plist-meta">$105.82</span><span class="kce-plist-chevron">❯</span></div>
+      </div>
+      <div class="kce-plist-body">
+        <table class="kce-table" data-list="Unmatched"><thead><tr><th>Card</th><th>Condition</th><th class="num">Price</th><th>Status</th></tr></thead>
+        <tbody><tr data-search="jolteon #26 rising rivals" data-price="93.06">
+          <td><div class="kce-name">Jolteon #26</div><div class="kce-set">Rising Rivals</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$93.06</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="espeon e4 #18 rising rivals" data-price="8.48">
+          <td><div class="kce-name">Espeon E4 #18</div><div class="kce-set">Rising Rivals</div></td>
+          <td class="kce-cond">Heavily Played</td>
+          <td class="num">$8.48</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr><tr data-search="arven&#x27;s greedent #205/182 destined rivals" data-price="4.28">
+          <td><div class="kce-name">Arven&#x27;s Greedent #205/182</div><div class="kce-set">Destined Rivals</div></td>
+          <td class="kce-cond">Near Mint</td>
+          <td class="num">$4.28</td>
+          <td><span class="kce-badge-status">Available</span></td>
+        </tr></tbody></table>
+        <div class="kce-empty" style="padding:12px 16px;text-align:left">Included in Public Holdings totals but not yet assigned to a specific FOR SALE portfolio in Collectr &mdash; searched against the full 8/26 live scrape and found nowhere, likely already sold. Ask Ernesto to confirm sale status.</div>
+      </div>
     </div>
-    <div class="release-item">
-      <div class="release-date">NOV 6</div>
-      <div class="release-body"><b>Mega Evolution: Delta Reign</b><p>Next mainline expansion, same day as 30th Celebration's final wave.</p></div>
+
+    <div class="kce-section-title">🔒 Private Holdings</div>
+    <div class="kce-card kce-private" style="padding:16px">
+      <div class="kce-lock">🔒 <strong>Umbreon ex - 176 #SVP 176</strong> &middot; Scarlet &amp; Violet Promo</div>
+      <div class="kce-set" style="margin:4px 0 12px">PSA 10.0 GEM - MT &middot; Investment hold, never publicly listed</div>
+      <div class="kce-kpi-grid" style="margin-bottom:0">
+        <div><div class="kce-kpi-label">Live Value (8/26)</div><div class="kce-kpi-val" style="font-size:18px">$194.13</div></div>
+        <div><div class="kce-kpi-label">Cost</div><div class="kce-kpi-val" style="font-size:18px">$260.00</div></div>
+        <div><div class="kce-kpi-label">Unrealized</div><div class="kce-kpi-val neg" style="font-size:18px">-$65.87</div></div>
+        <div><div class="kce-kpi-label">Target</div><div class="kce-kpi-val" style="font-size:18px">$310.00</div></div>
+      </div>
+      <div class="kce-set" style="margin-top:12px;line-height:1.6">Catalysts: JP Espeon &amp; Umbreon 30th Anniversary Premium Deck <strong>Sept 16, 2026</strong> (13 days out) &middot; English Battle Decks (30th Celebration Wave 3) <strong>Oct 30, 2026</strong>. Hold through both.</div>
+    </div>
+
+    <div class="kce-section-title">💰 P&amp;L Summary</div>
+    <div class="kce-card" style="padding:16px">
+      <table class="kce-pnl-table">
+        <tr><td>Cost Basis (on hand)</td><td>$973.61</td></tr>
+        <tr><td>Market Value (on hand, workbook 8/26)</td><td>$3,866.32</td></tr>
+        <tr><td>Unrealized Gain</td><td class="pos">+$2,892.71</td></tr>
+        <tr><td>Realized Net Profit (63 sold)</td><td class="pos">+$1,151.12</td></tr>
+        <tr><td>Net Cash Position</td><td>$494.47</td></tr>
+        <tr><td>Less: Outstanding Consignment Payable</td><td>$0.00</td></tr>
+        <tr><td>Less: Outstanding Purchase IOU</td><td class="neg">-$470.00</td></tr>
+        <tr><td>True Economic Position</td><td>$998.08</td></tr>
+      </table>
+    </div>
+
+    <div class="kce-section-title">💳 Selling Channel Net Rates</div>
+    <div class="kce-channels">
+      <div class="kce-channel-row"><span>eBay</span><span>~83% net (after fees + shipping)</span></div>
+      <div class="kce-channel-row"><span>CardsHQ</span><span>70&ndash;80% net</span></div>
+      <div class="kce-channel-row"><span>Facebook Marketplace</span><span>80&ndash;90% net (local, no shipping)</span></div>
     </div>
   </div>
-  <p class="prose" style="margin:-4px 0 0;">Four-wave rollout means more preorder windows are still coming after
-  today &mdash; don't treat Sept 16 as the only date to watch.</p>
 
-  <div class="section-title">Market Pulse</div>
-  <div class="prose-card">
-    <p class="prose">Modern singles have corrected <b>20&ndash;30%</b> from 2024 peaks while vintage and sealed
-    product climbs <b>15&ndash;25%</b> annually. <b>Neo-era holo (1999&ndash;2002)</b> is the fastest-growing segment,
-    driven by thin PSA 10 populations &mdash; this maps directly onto KCE's Japanese Poke and WOTC Lot holdings
-    (Neo Genesis / Neo Discovery Japanese singles, Jungle &amp; Fossil vintage). Base Set, Neo Genesis and Skyridge
-    graded copies remain the strongest vintage tier. Overall market read: maturity phase with a clear vintage/modern
-    split, not a broad correction.</p>
+  <!-- PC TAB -->
+  <div class="kce-panel" id="panel-pc">
+    <input class="kce-filter" id="filter-pc" placeholder="Filter by card or set name…" oninput="kceFilter('pc', this.value)">
+    <div class="kce-banner warn">
+      <strong>My Collection unavailable this run.</strong> PC portfolios (Personal Collection, PC-Gym Hero, PC-Gym Challenge, PC-Rocket) live only in Collectr &mdash; the workbook doesn't track them. With both browsers down, there's no data source to pull from. Will refresh automatically once Chrome/in-app browser reconnects.
+    </div>
+    <div class="kce-kpi-grid">
+      <div class="kce-kpi"><div class="kce-kpi-label">Total PC</div><div class="kce-kpi-val">&mdash;</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Personal Collection</div><div class="kce-kpi-val">&mdash;</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Gym Challenge</div><div class="kce-kpi-val">&mdash;</div></div>
+      <div class="kce-kpi"><div class="kce-kpi-label">Gym Hero</div><div class="kce-kpi-val">&mdash;</div></div>
+    </div>
+    <div class="kce-section-title">📝 Collection Notes</div>
+    <div class="kce-card" style="padding:16px">
+      <div class="kce-set" style="line-height:1.6">Last live snapshot (8/26/26): Personal Collection 66 lines/$2,827.67, PC-Gym Hero 44 lines/$510.59, PC-Gym Challenge 42 lines/$324.76, PC-Rocket 59 lines/$626.78 &mdash; PC total ~$4,289.80. These are historical, not live &mdash; treat as context only until the next successful scrape.</div>
+    </div>
   </div>
 
-  <div class="section-title">What's Hot</div>
-  <div class="prose-card">
-    <p class="prose"><b>30th Celebration chase cards:</b> Futuristic Rare Mewtwo ex &amp; Mew ex, the 30-illustration
-    Pikachu run, and Base Set Charizard reprints are driving pre-release buzz. <b>Still moving:</b> Mega Darkrai ex
-    (Pitch Black, ME05, released 7/17) remains that set's chase card. <b>Tied to KCE:</b> the Oct 30 Umbreon ex
-    Battle Deck wave is the clearest near-term catalyst for the Umbreon SVP 176 Hold-Private &mdash; and continued
-    Neo-era strength supports the WOTC Lot / Japanese Poke vintage base.</p>
-  </div>
+  <!-- MARKET TAB -->
+  <div class="kce-panel" id="panel-market">
+    <div class="kce-banner info">This tab is fully live &mdash; sourced via web search, unaffected by the browser outage.</div>
 
-  <div class="section-title">KCE Playbook</div>
-  <div class="prose-card">
-    <ol class="playbook">
-      <li><b>Ship the two Yu-Gi-Oh! 1st Ed structure decks now</b> &mdash; 184&ndash;226% ROI is the best margin in
-      the book and doesn't depend on any Pokemon-market timing.</li>
-      <li><b>Hold the Destined Rivals Booster Box</b> a little longer &mdash; it's $5.20 short of clearing the $470
-      IOU; selling today locks in a loss on someone else's money.</li>
-      <li><b>Package the WOTC Lot Jungle/Fossil vintage as small bundles</b> (Pikachu x7, Electrode x2, Magmar x4)
-      rather than singles &mdash; Neo-era demand favors set-runs and it cuts David's per-listing overhead on the
-      80/20 split.</li>
-      <li><b>Don't touch the Umbreon Hold-Private before Oct 30</b> &mdash; the Battle Deck wave is the natural
-      demand catalyst; selling into today's soft price locks in an avoidable paper loss.</li>
-      <li><b>Re-run this report once Chrome/the in-app browser recover</b> &mdash; today's business figures are
-      7 days stale (last live sync 8/26/26) and My Collection + Movers + Sourcing are fully blind until then.</li>
-    </ol>
-  </div>
+    <div class="kce-section-title">🗓 Upcoming Releases</div>
+    <div class="kce-release"><div class="kce-release-date">SEP 16, 2026 &middot; 13 days</div><div class="kce-release-title">30th Celebration &mdash; Wave 1 (worldwide simultaneous launch)</div><div class="kce-release-angle">Standard &amp; Pokémon Center ETBs, ex Boxes, Knock Out Collections, 2-Pack Blisters. Same day: the JP-exclusive Espeon &amp; Umbreon 30th Anniversary Premium Deck &mdash; the first catalyst for 🔒 Umbreon (INV-035).</div></div>
+    <div class="kce-release"><div class="kce-release-date">OCT 2, 2026</div><div class="kce-release-title">30th Celebration &mdash; Wave 2</div><div class="kce-release-angle">Booster Bundle, Binder Collection, Mini Tins.</div></div>
+    <div class="kce-release"><div class="kce-release-date">OCT 30, 2026</div><div class="kce-release-title">30th Celebration &mdash; Wave 3 (Battle Decks)</div><div class="kce-release-angle">All-foil Espeon ex / Umbreon ex Battle Decks &mdash; the second, English-market catalyst for 🔒 Umbreon. Firm date.</div></div>
+    <div class="kce-release"><div class="kce-release-date">NOV 6, 2026</div><div class="kce-release-title">30th Celebration &mdash; Wave 4</div><div class="kce-release-angle">Ultra-Premium Collection, Figure Collection, Ditto Premium Collection.</div></div>
+    <div class="kce-release"><div class="kce-release-date">DEC 4, 2026</div><div class="kce-release-title">30th Celebration &mdash; Wave 5 (final)</div><div class="kce-release-angle">ex Tins close out the rollout.</div></div>
 
-  <div class="section-title">&#128296; Sourcing &mdash; Auction Watch</div>
-  <div class="empty-state" style="padding:32px 16px;">
-    <div class="empty-state-icon">&#128268;</div>
-    <p><b>No sourcing scan today.</b> ShopGoodwill is client-rendered and requires Chrome; EBTH, HiBid,
-    LiveAuctioneers and THS Auctions were not reachable either. Rather than force a verdict without live bids and
-    time-left data, this section is empty-stated.</p>
-    <p class="small">Normal coverage: ShopGoodwill (shopgoodwill.com/search?st=pokemon, sort ending soonest),
-    EBTH (ebth.com/browse?q=pokemon), HiBid, LiveAuctioneers, and a THS Auctions check. Verdicts run PASS/WATCH/BID
-    off an ROI sliding scale (400%+ under $50 &rarr; ~100% over $600) on all-in cost vs. multi-channel resale comps.</p>
-  </div>
+    <div class="kce-section-title">📉 Market Pulse</div>
+    <div class="kce-card" style="padding:16px">
+      <div style="font-size:13px;line-height:1.7">
+      TCGIndex Pokémon market value index sits around <strong>$987K</strong> (as of late Aug), +0.2%/7-day and +1.8%/30-day &mdash; growth has <strong>cooled sharply</strong> from January's watershed moment, when the Card Ladder Pokémon Index was up 116% YoY and average card prices were up 46% YoY. Read: the explosive run-up has stabilized into a slower grind, not reversed.<br><br>
+      Split by segment: modern singles have <strong>corrected 20&ndash;30%</strong> from 2024 peaks, while <strong>vintage sealed product keeps climbing 15&ndash;25% annually</strong>. Neo Genesis specifically is up <strong>27.5% YTD</strong> and <strong>156% all-time</strong>, with Lugia 009/111 the set's benchmark card at ~$519.
+      </div>
+    </div>
 
-  <div class="src-line">
-    Sources: <a href="https://www.dexerto.com/pokemon/pokemon-tcg-release-2629243/">Dexerto &mdash; Sept 2026 releases</a> &middot;
-    <a href="https://dashboard.houseofcarts.io/resources/pokemon-30th-celebration-release-guide">House of Carts &mdash; 30th Celebration wave dates</a> &middot;
-    <a href="https://seller.tcgplayer.com/blog/price-trends-pok%C3%A9mon-cards-climbing-in-price-09-01-2026">TCGplayer Seller &mdash; price trends 9/1/26</a> &middot;
-    <a href="https://samuraiswordtokyo.com/blogs/news/japanese-pokemon-card-market-trends-2026">Samurai Sword Tokyo &mdash; JP market trends</a> &middot;
-    <a href="https://www.beckett.com/news/five-confirmed-chase-cards-in-the-pokemon-tcg-30th-celebration/">Beckett &mdash; 30th Celebration chase cards</a> &middot;
-    korins_expense_tracker.xlsx (workbook, live) &middot; Collectr last sync 8/26/26 (stale, browser down)
+    <div class="kce-section-title">🔥 What's Hot</div>
+    <div class="kce-card" style="padding:16px">
+      <div style="font-size:13px;line-height:1.7">
+      <strong>30th Celebration chase cards:</strong> the new "Futuristic Rare" treatment on Mewtwo ex / Mew ex (by artist YOSHIROTTEN), 30 different Pikachu illustrations, and a Base Set Charizard reprint are the set's headline pulls &mdash; every pack guarantees a Pikachu and carries 6 foils instead of the usual 5.<br><br>
+      <strong>Directly on KCE's holdings:</strong> Neo-era Japanese vintage (1999&ndash;2002) is the named fastest-growing segment &mdash; maps straight onto Japanese Poke ($96.18 live) and the Neo Genesis/Jungle/Fossil/Team Rocket portion of WOTC Lot.
+      </div>
+    </div>
+
+    <div class="kce-section-title">🎯 KCE Playbook</div>
+    <div class="kce-card" style="padding:16px 16px 4px">
+      <div class="kce-playbook">
+        <div class="kce-pb-item"><div class="kce-pb-num">1</div><div class="kce-pb-text">Hold 🔒 Umbreon through both catalysts (Sept 16 JP deck, Oct 30 EN Battle Decks) &mdash; don't react to the current drawdown vs. the $310 target.</div></div>
+        <div class="kce-pb-item"><div class="kce-pb-num">2</div><div class="kce-pb-text">Get Chrome/in-app browser reconnected ASAP &mdash; this is the 3rd outage in under a week and it's now blocked 2 straight days of live pricing, per-card deltas, PC tracking, and sourcing.</div></div>
+        <div class="kce-pb-item"><div class="kce-pb-num">3</div><div class="kce-pb-text">Prioritize clearing the $470 Destined Rivals Booster Box IOU (INV-278) &mdash; sell/flip and repay the friend who fronted it.</div></div>
+        <div class="kce-pb-item"><div class="kce-pb-num">4</div><div class="kce-pb-text">Lean into Japanese Poke + WOTC Lot's Neo-era vintage listings while that segment is the market's named fastest mover.</div></div>
+        <div class="kce-pb-item"><div class="kce-pb-num">5</div><div class="kce-pb-text">Resolve the 3 Uncategorized items ($105.82) &mdash; confirm with Ernesto whether they're sold (likely, per the 8/26 full-scrape miss) so the workbook can close them out.</div></div>
+      </div>
+    </div>
+
+    <div class="kce-section-title">🔨 Sourcing &mdash; Auction Watch</div>
+    <div class="kce-card" style="padding:16px">
+      <div class="kce-empty" style="padding:8px 0">
+      <strong>No live scan possible this run.</strong> ShopGoodwill, EBTH, HiBid, LiveAuctioneers and THS Auctions all require a live browser session for current bid / time-left data &mdash; with Chrome and the in-app browser both unreachable, forcing a PASS/WATCH/BID verdict without real bid data would just be a guess. Per standing policy, showing this honestly empty rather than reusing stale lot data.<br><br>
+      <span style="color:var(--text-dim)">Platform coverage: ShopGoodwill &middot; EBTH &middot; HiBid &middot; LiveAuctioneers &middot; THS Auctions &mdash; all unavailable.</span>
+      </div>
+    </div>
+
+    <div class="kce-sources">
+      Sources: <a href="https://support.pokemoncenter.com/hc/en-us/articles/4407702295572-Estimated-Preorder-Release-Dates" target="_blank">Pokémon Center &mdash; Estimated Preorder Release Dates</a> &middot;
+      <a href="https://dashboard.houseofcarts.io/resources/pokemon-30th-celebration-release-guide" target="_blank">House of Carts &mdash; 30th Celebration Release Guide</a> &middot;
+      <a href="https://tcgindex.io/pokemon/market-report" target="_blank">TCGIndex &mdash; Pokémon Market Report</a> &middot;
+      <a href="https://www.pokemonwizard.com/sets/1396/neo-genesis" target="_blank">Pokémon Wizard &mdash; Neo Genesis Price Trends</a> &middot;
+      <a href="https://www.beckett.com/news/five-confirmed-chase-cards-in-the-pokemon-tcg-30th-celebration/" target="_blank">Beckett &mdash; 30th Celebration Chase Cards</a>
+    </div>
   </div>
 </div>
-
-<div class="footer-note">Korin's Card Exchange &middot; auto-generated daily &middot; korinscardx.github.io/kce-report</div>
 </div>
 
 <script>
-var DATA = {"Main Inventory":[{"n":"Destined Rivals Booster Box","c":"Sealed","p":464.8},{"n":"Zekrom ex (Black Bolt)","c":"Moderately Played","p":213.08},{"n":"2005 Yu-Gi-Oh! Structure Deck Zombie Madness 1st Ed English Sealed","c":"1st Ed Sealed","p":157.15},{"n":"2005 Yu-Gi-Oh! Structure Deck Dragon's Roar 1st Ed English Sealed","c":"1st Ed Sealed","p":155},{"n":"Mew (Secret) #025/025 (Celebrations)","c":"Near Mint","p":68.77},{"n":"Mewtwo #10 (Base Set (Unlimited))","c":"Lightly Played","p":66.92},{"n":"Charmander #044 (Scarlet & Violet Promo)","c":"Lightly Played","p":54.68},{"n":"Mega Greninja ex Premium Collection","c":"Sealed","p":50.17},{"n":"M Rayquaza EX #76/108 (Celebrations: Classic Collection)","c":"Near Mint","p":47.44},{"n":"Machamp (Base Set Shadowless) #008/102 (Deck Exclusives)","c":"Heavily Played","p":46.29},{"n":"Kabutops (JP) #141 (Neo Discovery (Japanese))","c":"Near Mint","p":41.03},{"n":"Greninja V[Set of 4] (Sword & Shield Promo)","c":"Near Mint","p":32.99},{"n":"Pikachu V-Union [Set of 4] (Sword & Shield Promo)","c":"Near Mint","p":32.41},{"n":"Mega Moonlit Tin [Mega Gengar ex]","c":"Sealed","p":32.16},{"n":"Misty's Tentacruel #10 (Gym Heroes)","c":"Near Mint","p":31.85},{"n":"Nidoking #11 (Base Set 2)","c":"Moderately Played","p":31.54},{"n":"Gyarados (#30 Holo) #30 (HGSS Trainer Kit: Gyarados & Raichu)","c":"Moderately Played","p":30.04},{"n":"Gyarados #6 (Base Set (Unlimited))","c":"Heavily Played","p":30},{"n":"Minun #71 (Supreme Victors) [x2]","c":"Heavily Played","p":29.99},{"n":"Rayquaza C #8 (Supreme Victors)","c":"Damaged","p":28.74},{"n":"Electrode (Prime) #93 (Triumphant)","c":"Heavily Played","p":25.48},{"n":"Hitmonchan #8 (Base Set 2)","c":"Near Mint","p":23.27},{"n":"Erika's Clefable (JP) #036 (Gym Heroes (Japanese))","c":"Near Mint","p":20.08},{"n":"Gyarados #6 (Base Set (Unlimited))","c":"Damaged","p":20},{"n":"M Gyarados EX #27 (BREAKpoint)","c":"Damaged","p":19.27},{"n":"Misty's Tentacruel (JP) #073 (Gym Heroes (Japanese))","c":"Near Mint","p":19.24},{"n":"Clefairy #6 (Base Set 2)","c":"Lightly Played","p":17.9},{"n":"Regigigas (Full Art Promo) #XY82 (XY Promos) [x2]","c":"Damaged","p":17.44},{"n":"Azumarill (JP) #184 (Neo Genesis (Japanese))","c":"Near Mint","p":16.39},{"n":"Charizard V #SWSH050 (Sword & Shield Promo)","c":"Near Mint","p":13.41},{"n":"Lunala GX #SM103a (Sun & Moon Promo)","c":"Near Mint","p":13.03},{"n":"Ursaring (JP) #217 (Neo Discovery (Japanese))","c":"Near Mint","p":12.9},{"n":"Jirachi (Magnus Pedersen) (World Championship Decks)","c":"Near Mint","p":12.88},{"n":"Charizard #5 (Detective Pikachu)","c":"Near Mint","p":11.7},{"n":"Ditto #17 (Detective Pikachu)","c":"Near Mint","p":11.64},{"n":"Froakie (Chaos Rising)","c":"Near Mint","p":10.84},{"n":"Snorlax (Boundaries Crossed)","c":"Near Mint","p":9.93},{"n":"Charizard V #019/189 (Darkness Ablaze)","c":"Near Mint","p":9.57}],"Under 10":[{"n":"Sleep! [x2] (Team Rocket)","c":"Near Mint","p":10.28},{"n":"Unown (R) #77 (Legends Awakened)","c":"Heavily Played","p":9.45},{"n":"Pikachu Libre (14 #14 (XY Trainer Kit: Pikachu Libre & Suicune)","c":"Damaged","p":8.42},{"n":"Ursaring (Legendary Treasures: Radiant Collections)","c":"Near Mint","p":8.41},{"n":"Magnemite [x4] (Team Rocket)","c":"Near Mint","p":8.16},{"n":"Dratini [x2] (Team Rocket)","c":"Near Mint","p":7.78},{"n":"Snorlax (BREAKthrough)","c":"Near Mint","p":7.74},{"n":"Ponyta [x4] (Team Rocket)","c":"Near Mint","p":7.64},{"n":"Gyarados #34/108 (Evolutions)","c":"Lightly Played","p":7.38},{"n":"Dragonite EX (Furious Fists)","c":"Damaged","p":7.31},{"n":"Mankey (McDonald's Promos 2019)","c":"Near Mint","p":7.27},{"n":"Gyarados #23 (Generations)","c":"Near Mint","p":7.18},{"n":"Dragonite #012/015 (McDonald's Promos 2024)","c":"Near Mint","p":6.37},{"n":"Koga's Pidgey (49) #49 (Gym Challenge)","c":"Near Mint","p":6.14},{"n":"Dedenne Shiny Rare 093/088","c":"Raw Holofoil NM","p":5.57},{"n":"Dedenne #093/088 (Perfect Order)","c":"Near Mint","p":5.57},{"n":"Porygon (Team Rocket)","c":"Near Mint","p":5.5},{"n":"Rowlet #090/088 (Perfect Order)","c":"Near Mint","p":5.42},{"n":"Venusaur EX #1/108 (Evolutions)","c":"Near Mint","p":5.11},{"n":"Gyarados GX (Hidden Fates)","c":"Near Mint","p":4.96},{"n":"Litleo #139/132 (Mega Evolution)","c":"Near Mint","p":4.91},{"n":"Mega Eelektross ex #278/217 (Ascended Heroes)","c":"Near Mint","p":4.43},{"n":"Mega Eelektross ex #266/217 (Ascended Heroes)","c":"Near Mint","p":4.43},{"n":"Prinplup (Legendary Treasures)","c":"Lightly Played","p":4.13},{"n":"Magmar (McDonald's Promos 2019)","c":"Damaged","p":4.01},{"n":"Lucario (47) #47 (Fates Collide)","c":"Near Mint","p":3.94},{"n":"Yveltal ex #105/088 (Perfect Order)","c":"Near Mint","p":3.94},{"n":"Meowth (Team Rocket)","c":"Near Mint","p":3.87},{"n":"Galarian Obstagoon #245/217 (Ascended Heroes)","c":"Near Mint","p":3.68},{"n":"Minun #48 (Legendary Treasures)","c":"Near Mint","p":3.36},{"n":"Abra (Team Rocket)","c":"Near Mint","p":3.35},{"n":"Haunter (BREAKthrough)","c":"Lightly Played","p":3.09},{"n":"Pikachu #065/202 (Sword & Shield Base Set)","c":"Near Mint","p":3.07},{"n":"Venusaur V #01/73 (Champion's Path) [x2]","c":"Near Mint","p":3.06},{"n":"Rattata [x2] (Team Rocket)","c":"Near Mint","p":2.96},{"n":"Tyrunt (Mega Evolution Promos)","c":"Near Mint","p":2.78},{"n":"Dragapult (Shining Fates: Shiny Vault)","c":"Near Mint","p":2.75},{"n":"Diglett (Team Rocket)","c":"Near Mint","p":2.65},{"n":"Ambipom (Phantasmal Flames)","c":"Near Mint","p":2.54},{"n":"Grimer (Team Rocket)","c":"Near Mint","p":2.51},{"n":"Electrike (Omega) (Primal Clash)","c":"Near Mint","p":2.48},{"n":"Mankey (Team Rocket)","c":"Near Mint","p":2.47},{"n":"Snover #140/132 (Mega Evolution)","c":"Near Mint","p":2.41},{"n":"Koffing (Team Rocket)","c":"Near Mint","p":2.13},{"n":"Blaine's Doduo #61 (Gym Challenge)","c":"Near Mint","p":2.12},{"n":"Zubat (Team Rocket)","c":"Near Mint","p":2.11},{"n":"Magikarp #61 (Call of Legends)","c":"Near Mint","p":2.08},{"n":"Voltorb (Team Rocket)","c":"Near Mint","p":1.93},{"n":"Unown [N] (Neo Discovery)","c":"Near Mint","p":1.7},{"n":"Drowzee (Team Rocket)","c":"Near Mint","p":1.68},{"n":"Probopass (Perfect Order)","c":"Near Mint","p":1.09},{"n":"Goop Gas Attack (Team Rocket)","c":"Near Mint","p":0.97},{"n":"Charmeleon - 079 (Cosmos Holo) #079 (Mega Evolution Promos)","c":"Near Mint","p":0.94},{"n":"Unown [O] (Neo Discovery)","c":"Near Mint","p":0.87}],"Japanese Poke":[{"n":"Ruin Wall [Kabuto] (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":13.9},{"n":"Metapod (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":8.56},{"n":"Caterpie (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":6.78},{"n":"Pineco (JP) [x3] (Neo Discovery (Japanese))","c":"Near Mint","p":6.75},{"n":"Weedle (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":6.22},{"n":"Unown U (JP) (Neo Discovery (Japanese))","c":"Near Mint","p":5.99},{"n":"Hoppip (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":5.98},{"n":"Dunsparce (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":5.36},{"n":"Energy Ark (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":5.06},{"n":"Sentret (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":4.88},{"n":"Girafarig (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":4},{"n":"Flaaffy (JP) #180 (Neo Genesis (Japanese))","c":"Near Mint","p":3.67},{"n":"Unown D (JP) (Neo Discovery (Japanese))","c":"Near Mint","p":3},{"n":"Farfetch'd (JP) #083 (Base Set (Japanese))","c":"Near Mint","p":2.99},{"n":"Fossil Egg (JP) (Neo Discovery (Japanese))","c":"Near Mint","p":2.99},{"n":"Time Capsule (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":2.62},{"n":"Kakuna (JP) (Neo Discovery (Japanese))","c":"Near Mint","p":2.47},{"n":"Stantler (JP) #234 (Neo Genesis (Japanese))","c":"Near Mint","p":1.99},{"n":"Natu (JP) [x2] (Neo Discovery (Japanese))","c":"Near Mint","p":1.98},{"n":"Hyper Devolution Spray (JP) (Neo Discovery (Japanese))","c":"Near Mint","p":0.99}],"EX & Mega EX":[{"n":"Arboliva ex (Destined Rivals)","c":"Near Mint","p":2.34},{"n":"Mega Meganium ex [x2] (Mega Evolution Promos)","c":"Near Mint","p":1.56},{"n":"Yanmega ex (003/182) (Destined Rivals)","c":"Near Mint","p":0.55}],"V Cards":[{"n":"Galarian Cursola V (Full Art) [x2] (Champion's Path)","c":"Near Mint","p":3.6},{"n":"Glaceon V (Sword & Shield Promo)","c":"Near Mint","p":3.09},{"n":"Gyarados V (Evolving Skies)","c":"Near Mint","p":2.61},{"n":"Incineroar V (Champion's Path)","c":"Near Mint","p":1.63},{"n":"Wailord V (Champion's Path)","c":"Near Mint","p":1.58},{"n":"Drednaw V (Full Art) (Champion's Path)","c":"Near Mint","p":1.48},{"n":"Galarian Cursola V (Champion's Path)","c":"Near Mint","p":1.37},{"n":"Grapploct V (Full Art) (Champion's Path)","c":"Near Mint","p":1.35},{"n":"Steelix V (Vivid Voltage)","c":"Near Mint","p":0.97},{"n":"Drednaw V (Champion's Path)","c":"Near Mint","p":0.96},{"n":"Grapploct V (Champion's Path)","c":"Near Mint","p":0.83},{"n":"Tornadus V (Chilling Reign)","c":"Near Mint","p":0.78}],"Trainers":[],"WOTC LOT":[{"n":"Pikachu [x7] (Jungle)","c":"Near Mint","p":190.68},{"n":"Dragonite (19) (Fossil)","c":"Near Mint","p":99.37},{"n":"Electrode [x2] (Jungle)","c":"Near Mint","p":93.42},{"n":"Pinsir (Jungle)","c":"Near Mint","p":84.7},{"n":"Wigglytuff (Jungle)","c":"Near Mint","p":78.38},{"n":"Snorlax (Jungle)","c":"Near Mint","p":67.59},{"n":"Magneton (11) (Fossil)","c":"Near Mint","p":44.9},{"n":"Magmar [x4] (Fossil)","c":"Near Mint","p":36.76},{"n":"Clefable (Jungle)","c":"Near Mint","p":36.45},{"n":"Moltres (27) (Fossil)","c":"Near Mint","p":27.73},{"n":"Gambler (1st Ed) [x4] (Fossil)","c":"Near Mint","p":24.44},{"n":"Psyduck [x2] (Fossil)","c":"Near Mint","p":23},{"n":"Kabutops (24) (Fossil)","c":"Near Mint","p":22.07},{"n":"Wigglytuff (32) (Jungle)","c":"Near Mint","p":21.4},{"n":"Moo Moo Milk (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":21.13},{"n":"Pidgeot (24, 1st Ed) (Jungle)","c":"Near Mint","p":20.57},{"n":"Pinsir (25) (Jungle)","c":"Near Mint","p":18.98},{"n":"Weezing (Fossil) [x3] (Fossil)","c":"Near Mint","p":18.48},{"n":"Kingdra (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":17.29},{"n":"Vileplume (Jungle)","c":"Near Mint","p":16.86},{"n":"Victreebel (Jungle)","c":"Near Mint","p":16.23},{"n":"Clefable (17) (Jungle)","c":"Near Mint","p":14.84},{"n":"Steelix (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":13.84},{"n":"Skarmory (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":13.81},{"n":"Magneton (26) (Fossil)","c":"Near Mint","p":13.46},{"n":"Slowpoke (Fossil) [x2] (Fossil)","c":"Near Mint","p":13.1},{"n":"Geodude (Fossil) [x3] (Fossil)","c":"Near Mint","p":11.4},{"n":"Golbat (Fossil) [x2] (Fossil)","c":"Near Mint","p":11},{"n":"Pokemon March (JP) [x2] (Neo Genesis (Japanese))","c":"Near Mint","p":10.18},{"n":"Double Gust (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":9.67},{"n":"Focus Band (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":9.57},{"n":"Bill's Teleporter (JP) [x3] (Neo Genesis (Japanese))","c":"Near Mint","p":8.7},{"n":"Pidgeot (24, Unlimited) (Jungle)","c":"Near Mint","p":8.51},{"n":"Mr. Mime (Jungle) (Jungle)","c":"Near Mint","p":8.14},{"n":"Spinarak (JP) [x3] (Neo Genesis (Japanese))","c":"Near Mint","p":8.04},{"n":"Grimer (Fossil) [x2] (Fossil)","c":"Near Mint","p":7.34},{"n":"Golduck (Fossil) (Fossil)","c":"Near Mint","p":6.58},{"n":"Horsea (Fossil) [x2] (Fossil)","c":"Near Mint","p":6.3},{"n":"Slowpoke (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":6.07},{"n":"Magneton (26, Unlimited) (Fossil)","c":"Near Mint","p":6.03},{"n":"Dark Gloom (Team Rocket)","c":"Near Mint","p":5.95},{"n":"Oddish (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":5.3},{"n":"Omastar (Fossil) (Fossil)","c":"Near Mint","p":5.02},{"n":"New Pokedex (JP) [x2] (Neo Genesis (Japanese))","c":"Near Mint","p":5},{"n":"Dark Kadabra [x2] (Team Rocket)","c":"Near Mint","p":4.82},{"n":"Quagsire (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":4.52},{"n":"Wooper (JP) [x2] (Neo Genesis (Japanese))","c":"Near Mint","p":4.5},{"n":"Gligar (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":4.41},{"n":"Krabby [x2] (Fossil)","c":"Near Mint","p":4.14},{"n":"Omanyte (Fossil) (Fossil)","c":"Near Mint","p":4.06},{"n":"Miltank (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":4.02},{"n":"Girafarig (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":4},{"n":"Hoppip (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":3.73},{"n":"Croconaw (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":3.72},{"n":"Eevee (Jungle) (Jungle)","c":"Near Mint","p":3.69},{"n":"Ledyba (JP) [x2] (Neo Genesis (Japanese))","c":"Near Mint","p":3.64},{"n":"Horsea (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":3.21},{"n":"Sunflora (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":2.99},{"n":"Skiploom (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":2.86},{"n":"Super Energy Retrieval (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":2.83},{"n":"Energy Charge (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":2.66},{"n":"Zubat (1st Ed) (Fossil)","c":"Near Mint","p":2.53},{"n":"Energy Search [x2] (Fossil)","c":"Near Mint","p":2.1},{"n":"The Boss's Way (Team Rocket)","c":"Near Mint","p":2.09},{"n":"Ekans (Fossil)","c":"Near Mint","p":2.08},{"n":"Shellder (Fossil)","c":"Near Mint","p":1.99},{"n":"PokeGear (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":1.89},{"n":"Mantine (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":1.81},{"n":"Tentacool (Fossil)","c":"Near Mint","p":1.77},{"n":"Furret (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":1.75},{"n":"Recycle (1st Ed) [x2] (Fossil)","c":"Near Mint","p":1.72},{"n":"Jigglypuff (Jungle)","c":"Near Mint","p":1.63},{"n":"Dodrio (Jungle)","c":"Near Mint","p":1.3},{"n":"Exeggcute [x2] (Jungle)","c":"Near Mint","p":1.1},{"n":"Seadra (JP) (Neo Genesis (Japanese))","c":"Near Mint","p":1},{"n":"Zubat (Unlimited) (Fossil)","c":"Near Mint","p":0.51},{"n":"Paras (Jungle)","c":"Near Mint","p":0.49},{"n":"Bellsprout (Jungle)","c":"Near Mint","p":0.44},{"n":"Gambler (Unlimited) (Fossil)","c":"Near Mint","p":0.4},{"n":"Rhyhorn (Jungle)","c":"Near Mint","p":0.38},{"n":"Recycle (Unlimited) (Fossil)","c":"Near Mint","p":0.31}]};
-var PF_ORDER = ["Main Inventory", "Under 10", "Japanese Poke", "EX & Mega EX", "V Cards", "Trainers", "WOTC LOT"];
-var PF_LABEL = {"Main Inventory": "Main Inventory", "Under 10": "Under 10", "Japanese Poke": "Japanese Poke", "EX & Mega EX": "EX & Mega EX", "V Cards": "V Cards", "Trainers": "Trainers", "WOTC LOT": "WOTC Lot (consignment \u2014 20% KCE interest)"};
-var PF_TOTALS = {"Main Inventory": 1930.02, "Under 10": 236.1, "Japanese Poke": 96.18, "EX & Mega EX": 4.45, "V Cards": 20.25, "Trainers": 0, "WOTC LOT": 1279.37};
-var GROSS_TOTAL = 3566.37;
-
-function fmt(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
-
-function switchTab(name){
-  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active', b.dataset.tab===name);});
-  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active', p.id==='panel-'+name);});
-}
-document.querySelectorAll('.tab-btn').forEach(function(b){
-  b.addEventListener('click', function(){switchTab(b.dataset.tab);});
-});
-
-function renderBreakdown(){
-  var el = document.getElementById('pf-breakdown');
-  var html = '';
-  PF_ORDER.forEach(function(pf){
-    var val = PF_TOTALS[pf] || 0;
-    var pct = GROSS_TOTAL ? (val/GROSS_TOTAL*100) : 0;
-    html += '<div class="pf-bar-row"><div class="pf-bar-top"><span class="pf-bar-name">'+PF_LABEL[pf]+'</span>'+
-      '<span class="pf-bar-val">'+fmt(val)+'</span></div>'+
-      '<div class="pf-bar-track"><div class="pf-bar-fill" style="width:'+pct.toFixed(1)+'%"></div></div></div>';
-  });
-  el.innerHTML = html;
-}
-
-function cardRowsHtml(items){
-  if(!items.length) return '<tr class="empty-row"><td colspan="2">All sold &mdash; nothing currently available in this portfolio.</td></tr>';
-  return items.map(function(i){
-    return '<tr data-name="'+(i.n+' '+i.c).toLowerCase().replace(/"/g,'&quot;')+'">'+
-      '<td>'+i.n+'<div class="cond">'+i.c+'</div></td>'+
-      '<td class="num">'+fmt(i.p)+'</td></tr>';
-  }).join('');
-}
-
-function renderLists(){
-  var el = document.getElementById('biz-lists');
-  var html = '';
-  PF_ORDER.forEach(function(pf, idx){
-    var items = DATA[pf] || [];
-    var total = PF_TOTALS[pf] || 0;
-    html += '<div class="card-list" id="list-'+idx+'">'+
-      '<div class="card-list-head" onclick="toggleList(\'list-'+idx+'\')">'+
-        '<div class="card-list-head-l"><div class="card-list-title">'+PF_LABEL[pf]+'</div>'+
-          '<div class="card-list-meta">'+items.length+' items</div></div>'+
-        '<div class="card-list-r"><div class="card-list-total">'+fmt(total)+'</div><div class="chevron"></div></div>'+
-      '</div>'+
-      '<div class="card-list-body"><table><thead><tr>'+
-        '<th onclick="event.stopPropagation();sortTable(this)">Card / Condition</th>'+
-        '<th class="num" onclick="event.stopPropagation();sortTable(this)">Price</th>'+
-        '</tr></thead><tbody>'+cardRowsHtml(items)+'</tbody></table></div>'+
-    '</div>';
-  });
-  el.innerHTML = html;
-}
-
-function toggleList(id){
-  document.getElementById(id).classList.toggle('open');
-}
-
-function filterLists(scope){
-  var q = document.getElementById(scope+'-filter').value.trim().toLowerCase();
-  var container = document.getElementById(scope==='biz' ? 'biz-lists' : 'pc-lists');
-  if(!container) return;
-  container.querySelectorAll('.card-list').forEach(function(list){
-    var rows = list.querySelectorAll('tbody tr');
-    var anyMatch = false;
-    rows.forEach(function(r){
-      var name = r.getAttribute('data-name') || '';
-      var match = !q || name.indexOf(q) !== -1;
-      r.style.display = match ? '' : 'none';
-      if(match) anyMatch = true;
+(function(){
+  var root = document.currentScript.closest('.kce-root');
+  root.querySelectorAll('.kce-tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      root.querySelectorAll('.kce-tab').forEach(function(x){x.classList.remove('active')});
+      root.querySelectorAll('.kce-panel').forEach(function(x){x.classList.remove('active')});
+      t.classList.add('active');
+      root.querySelector('#panel-'+t.dataset.tab).classList.add('active');
     });
-    if(q){ list.classList.toggle('open', anyMatch); list.style.display = anyMatch ? '' : 'none'; }
-    else { list.style.display=''; }
   });
-}
-
-function sortTable(th){
-  var table = th.closest('table');
-  var tbody = table.querySelector('tbody');
-  var idx = Array.from(th.parentNode.children).indexOf(th);
-  var isNum = th.classList.contains('num');
-  var asc = th.getAttribute('data-asc') !== 'true';
-  th.parentNode.querySelectorAll('th').forEach(function(t){t.removeAttribute('data-asc');});
-  th.setAttribute('data-asc', asc);
-  var rows = Array.from(tbody.querySelectorAll('tr'));
-  rows.sort(function(a,b){
-    var av = a.children[idx].innerText.replace(/[^0-9.\-]/g,'');
-    var bv = b.children[idx].innerText.replace(/[^0-9.\-]/g,'');
-    if(isNum){ av=parseFloat(av)||0; bv=parseFloat(bv)||0; return asc ? av-bv : bv-av; }
-    av = a.children[idx].innerText.toLowerCase(); bv = b.children[idx].innerText.toLowerCase();
-    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-  });
-  rows.forEach(function(r){tbody.appendChild(r);});
-}
-
-renderBreakdown();
-renderLists();
+  window.kceFilter = function(scope, q){
+    q = q.trim().toLowerCase();
+    var panel = root.querySelector('#panel-'+scope);
+    panel.querySelectorAll('.kce-plist').forEach(function(list){
+      var rows = list.querySelectorAll('tbody tr');
+      var anyMatch = false;
+      rows.forEach(function(r){
+        var m = !q || (r.dataset.search||'').indexOf(q) !== -1;
+        r.style.display = m ? '' : 'none';
+        if(m) anyMatch = true;
+      });
+      if(q){ if(anyMatch){ list.classList.add('open'); list.style.display=''; } else { list.style.display='none'; } }
+      else { list.style.display=''; }
+    });
+  };
+  window.kceSort = function(th){
+    var table = th.closest('table');
+    var tbody = table.querySelector('tbody');
+    var idx = Array.from(th.parentElement.children).indexOf(th);
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var asc = th.dataset.dir !== 'asc';
+    th.parentElement.querySelectorAll('th').forEach(function(x){delete x.dataset.dir});
+    th.dataset.dir = asc ? 'asc' : 'desc';
+    rows.sort(function(a,b){
+      var av = parseFloat(a.dataset.price)||0, bv = parseFloat(b.dataset.price)||0;
+      return asc ? av-bv : bv-av;
+    });
+    rows.forEach(function(r){tbody.appendChild(r)});
+  };
+})();
 </script>
 
 </body>
