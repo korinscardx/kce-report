@@ -2,532 +2,781 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title>KCE Daily Intel — 2026-09-12</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korin's Card Exchange — Daily Intel</title>
 <style>
 :root{
-  --bg:#0b0b10; --bg-elev:#13131b; --bg-card:#171720; --border:#26262f;
-  --text:#e9e9f0; --text-dim:#9c9ca8; --text-faint:#6a6a76;
-  --accent:#7c6cff; --accent-soft:#b3a6ff; --accent-bg:rgba(124,108,255,0.12);
-  --green:#33d39a; --red:#fb6a6a;
-  --radius:14px; --radius-sm:9px;
-  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px;
-  --fs-xs:11px; --fs-sm:13px; --fs-base:15px; --fs-md:17px; --fs-lg:22px; --fs-xl:30px; --fs-xxl:38px;
+  color-scheme: dark;
+  --bg:#0f1117; --bg-raised:#161923; --bg-card:#1a1e2a; --bg-inset:#12151e;
+  --border:#252a3a; --border-soft:#1e2230;
+  --text:#eef0f6; --text-dim:#9aa0b4; --text-faint:#6b7086;
+  --accent:#7c6cff; --accent-soft:#b3a6ff; --accent-wash:rgba(124,108,255,0.14);
+  --green:#33d39a; --green-wash:rgba(51,211,154,0.13);
+  --red:#fb6a6a; --red-wash:rgba(251,106,106,0.13);
+  --amber:#e0b84e;
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:28px; --sp-7:36px;
+  --font: -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,sans-serif;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
-body{max-width:480px;margin:0 auto;padding-bottom:60px;}
-a{color:var(--accent-soft);text-decoration:none;}
-.header{position:sticky;top:0;z-index:50;background:rgba(11,11,16,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:var(--sp-4) var(--sp-4) var(--sp-2);}
-.header-top{display:flex;align-items:baseline;justify-content:space-between;}
-.brand{font-size:var(--fs-md);font-weight:700;letter-spacing:-0.01em;}
-.brand span{color:var(--accent-soft);}
-.report-date{font-size:var(--fs-xs);color:var(--text-faint);}
-.tabs{display:flex;gap:var(--sp-2);margin-top:var(--sp-3);}
-.tab-btn{flex:1;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);font-size:var(--fs-sm);font-weight:600;padding:9px 4px;border-radius:var(--radius-sm);cursor:pointer;transition:all .15s ease;}
-.tab-btn.active{background:var(--accent-bg);border-color:var(--accent);color:var(--accent-soft);}
-.banner{margin:var(--sp-3) var(--sp-4) 0;padding:var(--sp-3);border-radius:var(--radius-sm);background:rgba(124,108,255,0.08);border:1px solid rgba(124,108,255,0.25);font-size:var(--fs-xs);color:var(--text-dim);line-height:1.5;}
-.panel{display:none;padding:var(--sp-4);}
-.panel.active{display:block;}
-.section-title{font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-faint);margin:var(--sp-6) 0 var(--sp-3);}
-.section-title:first-child{margin-top:var(--sp-4);}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);}
-.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-4);}
-.kpi-card.wide{grid-column:1/-1;}
-.kpi-label{font-size:var(--fs-xs);color:var(--text-faint);margin-bottom:6px;}
-.kpi-val{font-size:var(--fs-xl);font-weight:700;letter-spacing:-0.02em;}
-.kpi-sub{font-size:var(--fs-xs);color:var(--text-dim);margin-top:4px;}
-.kpi-val.green{color:var(--green);} .kpi-val.red{color:var(--red);} .kpi-val.accent{color:var(--accent-soft);}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:var(--sp-4);margin-bottom:var(--sp-3);}
-.bar-row{display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-3);}
-.bar-label{width:38%;font-size:var(--fs-xs);color:var(--text-dim);}
-.bar-track{flex:1;height:8px;background:var(--bg-elev);border-radius:6px;overflow:hidden;}
-.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));border-radius:6px;}
-.bar-val{width:78px;text-align:right;font-size:var(--fs-xs);font-weight:600;color:var(--text);}
-.mover-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);}
-.mover-row:last-child{border-bottom:none;}
-.mover-name{font-size:var(--fs-sm);font-weight:600;}
-.mover-set{display:block;font-size:var(--fs-xs);color:var(--text-faint);font-weight:400;}
-.mover-price{font-size:var(--fs-sm);color:var(--text-dim);margin:0 var(--sp-3);}
-.mover-delta{font-size:var(--fs-sm);font-weight:700;min-width:64px;text-align:right;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  -webkit-font-smoothing:antialiased; font-size:15px; line-height:1.45;}
+.wrap{max-width:480px;margin:0 auto;padding:0 var(--sp-4) 80px;}
+a{color:var(--accent-soft);}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-0.01em;}
+.header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 80%,transparent);
+  padding:var(--sp-5) 0 var(--sp-3);backdrop-filter:blur(6px);}
+.header .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent-soft);font-weight:700;}
+.header h1{font-size:22px;margin-top:2px;}
+.header .meta{font-size:12px;color:var(--text-faint);margin-top:4px;}
+.tabs{display:flex;gap:var(--sp-2);margin-top:var(--sp-4);border-bottom:1px solid var(--border);}
+.tab-btn{flex:1;background:none;border:none;color:var(--text-dim);font-size:13px;font-weight:600;
+  padding:var(--sp-3) var(--sp-1);cursor:pointer;border-bottom:2px solid transparent;
+  transition:color .15s ease,border-color .15s ease;}
+.tab-btn.active{color:var(--text);border-color:var(--accent);}
+.tab-panel{display:none;padding-top:var(--sp-5);}
+.tab-panel.active{display:block;animation:fadein .18s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:none;}}
+
+.filter-box{position:relative;margin-bottom:var(--sp-5);}
+.filter-box input{width:100%;background:var(--bg-raised);border:1px solid var(--border);
+  color:var(--text);border-radius:var(--radius-md);padding:11px 14px;font-size:14px;
+  font-family:var(--font);}
+.filter-box input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+.filter-box input::placeholder{color:var(--text-faint);}
+
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-6);}
+.kpi{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  padding:var(--sp-4);}
+.kpi.wide{grid-column:1 / -1;}
+.kpi .label{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+.kpi .value{font-size:21px;font-weight:800;margin-top:6px;letter-spacing:-0.02em;}
+.kpi .sub{font-size:11.5px;color:var(--text-dim);margin-top:4px;}
 .pos{color:var(--green);} .neg{color:var(--red);}
-.alert{display:flex;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--border);}
-.alert:last-child{border-bottom:none;}
-.alert-tag{flex-shrink:0;font-size:var(--fs-xs);font-weight:700;padding:3px 8px;border-radius:6px;height:20px;line-height:14px;}
-.tag-sell{background:rgba(251,106,106,0.15);color:var(--red);}
-.tag-watch{background:rgba(124,108,255,0.15);color:var(--accent-soft);}
-.tag-hold{background:rgba(51,211,154,0.15);color:var(--green);}
-.tag-bundle{background:rgba(255,193,7,0.13);color:#e0b84a;}
-.alert-body{font-size:var(--fs-sm);line-height:1.5;}
-.alert-title{font-weight:600;margin-bottom:2px;}
-.alert-reason{color:var(--text-dim);font-size:var(--fs-xs);}
-.filter-bar{display:flex;gap:var(--sp-2);margin-bottom:var(--sp-4);}
-.filter-input{flex:1;background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;color:var(--text);font-size:var(--fs-sm);}
-.filter-input:focus{outline:none;border-color:var(--accent);}
-.sort-select{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-dim);font-size:var(--fs-xs);padding:0 8px;}
-.portfolio-block{margin-bottom:var(--sp-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-.portfolio-head{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-3) var(--sp-4);background:var(--bg-card);cursor:pointer;}
-.portfolio-head-left{display:flex;align-items:center;gap:8px;}
-.portfolio-name{font-size:var(--fs-sm);font-weight:700;}
-.portfolio-count{font-size:var(--fs-xs);color:var(--text-faint);}
-.portfolio-total{font-size:var(--fs-sm);font-weight:700;color:var(--accent-soft);}
-.chev{transition:transform .2s ease;color:var(--text-faint);}
-.portfolio-block.collapsed .chev{transform:rotate(-90deg);}
-.portfolio-body{max-height:2000px;overflow:hidden;transition:max-height .25s ease;}
-.portfolio-block.collapsed .portfolio-body{max-height:0;}
-table{width:100%;border-collapse:collapse;}
-th{position:sticky;top:0;background:var(--bg-card);text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-faint);padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
-th.num,td.num{text-align:right;}
-td{padding:9px 10px;font-size:var(--fs-xs);border-bottom:1px solid var(--border);}
-tr:last-child td{border-bottom:none;}
-.card-name{font-weight:600;color:var(--text);}
-.card-set{display:block;color:var(--text-faint);font-size:10px;}
-.cond{font-size:10px;color:var(--text-dim);}
-.hold-badge{display:inline-block;margin-left:4px;font-size:10px;}
-.status-avail{color:var(--green);}
-.status-hold{color:var(--accent-soft);}
-.empty-state{text-align:center;padding:var(--sp-6) var(--sp-4);color:var(--text-faint);font-size:var(--fs-sm);}
-.private-card{background:linear-gradient(135deg,rgba(124,108,255,0.12),rgba(124,108,255,0.03));border:1px solid rgba(124,108,255,0.3);}
-.private-row{display:flex;justify-content:space-between;padding:6px 0;font-size:var(--fs-sm);}
-.private-row .l{color:var(--text-dim);}
-.private-row .v{font-weight:600;}
-.channel-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:var(--fs-sm);}
-.channel-row:last-child{border-bottom:none;}
-.channel-rate{color:var(--accent-soft);font-weight:700;}
-.pl-table td{font-size:var(--fs-sm);}
-.release-item{padding:var(--sp-3) 0;border-bottom:1px solid var(--border);}
-.release-item:last-child{border-bottom:none;}
-.release-date{font-size:var(--fs-xs);color:var(--accent-soft);font-weight:700;}
-.release-name{font-size:var(--fs-sm);font-weight:600;margin:2px 0 4px;}
-.release-angle{font-size:var(--fs-xs);color:var(--text-dim);line-height:1.5;}
-.playbook-item{display:flex;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--border);}
-.playbook-item:last-child{border-bottom:none;}
-.playbook-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent-bg);color:var(--accent-soft);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.playbook-body{font-size:var(--fs-sm);line-height:1.5;}
-.lot{border:1px solid var(--border);border-radius:var(--radius-sm);padding:var(--sp-3);margin-bottom:var(--sp-2);}
-.lot-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
-.lot-name{font-size:var(--fs-sm);font-weight:600;}
-.verdict{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;flex-shrink:0;margin-left:8px;}
-.v-pass{background:rgba(154,154,160,0.15);color:var(--text-dim);}
-.v-watch{background:rgba(124,108,255,0.15);color:var(--accent-soft);}
-.v-bid{background:rgba(51,211,154,0.15);color:var(--green);}
-.lot-meta{font-size:var(--fs-xs);color:var(--text-dim);line-height:1.5;}
-.lot-link{font-size:var(--fs-xs);margin-top:6px;display:inline-block;}
-.platform-status{display:flex;justify-content:space-between;padding:6px 0;font-size:var(--fs-xs);border-bottom:1px solid var(--border);}
+
+.section{margin-bottom:var(--sp-6);}
+.section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--text-dim);margin-bottom:var(--sp-3);display:flex;align-items:center;gap:6px;}
+
+.bars{display:flex;flex-direction:column;gap:var(--sp-3);}
+.bar-row{}
+.bar-row .bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;}
+.bar-row .bar-label .nm{font-weight:600;color:var(--text);}
+.bar-row .bar-label .vv{color:var(--text-dim);font-variant-numeric:tabular-nums;}
+.bar-track{background:var(--bg-inset);border-radius:99px;height:8px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));border-radius:99px;}
+.bar-note{font-size:11px;color:var(--text-faint);margin-top:3px;}
+
+.mover-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);}
+.mover-col .mover-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.mover-col.g .mover-col-title{color:var(--green);}
+.mover-col.l .mover-col-title{color:var(--red);}
+.mover-item{padding:9px 0;border-bottom:1px solid var(--border-soft);}
+.mover-item:last-child{border-bottom:none;}
+.mover-item .mn{font-size:12.5px;font-weight:600;line-height:1.3;}
+.mover-item .ms{font-size:10.5px;color:var(--text-faint);}
+.mover-item .md{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px;}
+
+.alert{background:var(--bg-card);border:1px solid var(--border-soft);border-left:3px solid var(--accent);
+  border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);margin-bottom:var(--sp-2);}
+.alert.sell{border-left-color:var(--green);}
+.alert.watch{border-left-color:var(--amber);}
+.alert.hold{border-left-color:var(--text-faint);}
+.alert .badge{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+  padding:2px 7px;border-radius:99px;background:var(--accent-wash);color:var(--accent-soft);display:inline-block;margin-bottom:5px;}
+.alert.sell .badge{background:var(--green-wash);color:var(--green);}
+.alert.watch .badge{background:rgba(224,184,78,0.15);color:var(--amber);}
+.alert.hold .badge{background:rgba(107,112,134,0.15);color:var(--text-dim);}
+.alert .at{font-size:13px;font-weight:700;}
+.alert .ar{font-size:12px;color:var(--text-dim);margin-top:2px;}
+
+.portfolio{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  margin-bottom:var(--sp-3);overflow:hidden;}
+.portfolio-head{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-4);
+  cursor:pointer;user-select:none;}
+.portfolio-head .ph-l{display:flex;flex-direction:column;gap:2px;}
+.portfolio-head .ph-name{font-size:14px;font-weight:700;}
+.portfolio-head .ph-count{font-size:11px;color:var(--text-faint);}
+.portfolio-head .ph-r{display:flex;align-items:center;gap:10px;}
+.portfolio-head .ph-val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;}
+.portfolio-head .chev{color:var(--text-faint);transition:transform .15s ease;font-size:11px;}
+.portfolio.open .chev{transform:rotate(180deg);}
+.portfolio-note{font-size:11.5px;color:var(--text-faint);padding:0 var(--sp-4) var(--sp-3);margin-top:-6px;}
+.portfolio-body{display:none;border-top:1px solid var(--border-soft);}
+.portfolio.open .portfolio-body{display:block;}
+.ptable{width:100%;border-collapse:collapse;font-size:12.5px;}
+.ptable th{position:sticky;top:0;background:var(--bg-raised);text-align:left;font-size:10px;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--text-faint);padding:8px 10px;
+  cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);}
+.ptable th.num{text-align:right;}
+.ptable th .sort-ind{opacity:0.4;margin-left:2px;}
+.ptable th.sorted .sort-ind{opacity:1;color:var(--accent-soft);}
+.ptable td{padding:8px 10px;border-bottom:1px solid var(--border-soft);vertical-align:top;}
+.ptable td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ptable tr:last-child td{border-bottom:none;}
+.ptable .cn{font-weight:600;}
+.ptable .cs{font-size:10.5px;color:var(--text-faint);}
+.ptable .cc{font-size:10.5px;color:var(--text-dim);}
+.empty-state{padding:var(--sp-5) var(--sp-4);text-align:center;color:var(--text-faint);font-size:12.5px;}
+
+.private-box{background:linear-gradient(160deg,rgba(124,108,255,0.10),var(--bg-card));
+  border:1px solid rgba(124,108,255,0.35);border-radius:var(--radius-lg);padding:var(--sp-4);}
+.private-box .pb-tag{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--accent-soft);
+  text-transform:uppercase;margin-bottom:6px;}
+.private-box .pb-name{font-size:14.5px;font-weight:700;}
+.private-box .pb-grade{font-size:11.5px;color:var(--text-dim);margin-top:1px;}
+.private-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-3);}
+.private-grid .pg-item .pg-l{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.04em;}
+.private-grid .pg-item .pg-v{font-size:15px;font-weight:700;margin-top:2px;}
+.private-box .pb-notes{font-size:11.5px;color:var(--text-dim);margin-top:var(--sp-3);
+  border-top:1px solid var(--border-soft);padding-top:var(--sp-3);}
+
+.pl-table{width:100%;border-collapse:collapse;font-size:13px;}
+.pl-table td{padding:7px 0;border-bottom:1px solid var(--border-soft);}
+.pl-table td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+.pl-table tr.total td{font-weight:800;border-top:1px solid var(--border);border-bottom:none;padding-top:10px;}
+.pl-table tr.sub td{color:var(--text-faint);font-size:11.5px;}
+.pl-subhead td{padding-top:14px;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--text-faint);font-weight:700;border-bottom:none;}
+
+.rate-grid{display:flex;flex-direction:column;gap:var(--sp-2);}
+.rate-row{display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);
+  border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 14px;font-size:13px;}
+.rate-row .rn{font-weight:600;}
+.rate-row .rv{color:var(--accent-soft);font-weight:700;font-variant-numeric:tabular-nums;}
+
+.notes-box{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  padding:var(--sp-4);font-size:13px;color:var(--text-dim);line-height:1.6;}
+
+.calendar-item{display:flex;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--border-soft);}
+.calendar-item:last-child{border-bottom:none;}
+.calendar-item .cal-date{flex:0 0 62px;font-size:11.5px;font-weight:800;color:var(--accent-soft);line-height:1.3;}
+.calendar-item .cal-body .cal-t{font-size:13.5px;font-weight:700;}
+.calendar-item .cal-body .cal-a{font-size:12px;color:var(--text-dim);margin-top:3px;}
+.tag{display:inline-block;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  padding:2px 6px;border-radius:5px;background:var(--accent-wash);color:var(--accent-soft);margin-left:6px;}
+
+.stat-strip{display:flex;gap:var(--sp-3);overflow-x:auto;padding-bottom:2px;margin-bottom:var(--sp-4);}
+.stat-chip{flex:0 0 auto;background:var(--bg-card);border:1px solid var(--border-soft);
+  border-radius:var(--radius-md);padding:10px 14px;min-width:112px;}
+.stat-chip .sc-l{font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.05em;}
+.stat-chip .sc-v{font-size:16px;font-weight:800;margin-top:3px;}
+
+.hot-item{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;
+  border-bottom:1px solid var(--border-soft);gap:var(--sp-3);}
+.hot-item:last-child{border-bottom:none;}
+.hot-item .hn{font-size:13px;font-weight:700;}
+.hot-item .hd{font-size:11.5px;color:var(--text-dim);margin-top:2px;}
+.hot-item .hv{font-size:12px;font-weight:700;white-space:nowrap;}
+
+.playbook{counter-reset:pb;}
+.pb-item{display:flex;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--border-soft);}
+.pb-item:last-child{border-bottom:none;}
+.pb-item .pb-num{flex:0 0 24px;height:24px;border-radius:50%;background:var(--accent-wash);
+  color:var(--accent-soft);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.pb-item .pb-t{font-size:13.5px;font-weight:700;}
+.pb-item .pb-d{font-size:12px;color:var(--text-dim);margin-top:2px;}
+
+.lot-card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-md);
+  padding:var(--sp-3) var(--sp-4);margin-bottom:var(--sp-2);}
+.lot-card .lc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-2);}
+.lot-card .lc-name{font-size:13px;font-weight:700;}
+.lot-card .lc-meta{font-size:11.5px;color:var(--text-dim);margin-top:3px;}
+.verdict{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+  padding:3px 8px;border-radius:99px;white-space:nowrap;}
+.verdict.PASS{background:rgba(107,112,134,0.15);color:var(--text-dim);}
+.verdict.WATCH{background:rgba(224,184,78,0.15);color:var(--amber);}
+.verdict.BID{background:var(--green-wash);color:var(--green);}
+.lot-card .lc-link{font-size:11.5px;margin-top:6px;display:inline-block;}
+.platform-status{display:flex;justify-content:space-between;align-items:center;font-size:12px;
+  padding:8px 0;border-bottom:1px solid var(--border-soft);}
 .platform-status:last-child{border-bottom:none;}
-.ps-ok{color:var(--green);} .ps-partial{color:#e0b84a;} .ps-none{color:var(--text-faint);}
-.sources{font-size:10px;color:var(--text-faint);line-height:1.6;margin-top:var(--sp-6);padding-top:var(--sp-4);border-top:1px solid var(--border);}
-.footnote{font-size:10px;color:var(--text-faint);margin-top:var(--sp-2);line-height:1.5;}
-.small-note{font-size:var(--fs-xs);color:var(--text-dim);margin-bottom:var(--sp-3);line-height:1.5;}
-::-webkit-scrollbar{width:0;height:0;}
+.platform-status .ps-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:7px;}
+.platform-status .ps-dot.up{background:var(--green);} .platform-status .ps-dot.down{background:var(--red);}
+.verdict-banner{background:var(--accent-wash);border:1px solid rgba(124,108,255,0.35);
+  border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);font-size:12.5px;color:var(--text);
+  margin-top:var(--sp-3);line-height:1.5;}
+
+.sources{font-size:10.5px;color:var(--text-faint);line-height:1.7;margin-top:var(--sp-6);
+  padding-top:var(--sp-4);border-top:1px solid var(--border-soft);}
+.sources a{color:var(--text-faint);text-decoration:underline;}
+
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+
+@media (max-width:360px){.kpi-grid{grid-template-columns:1fr;} .mover-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="header">
-  <div class="header-top">
-    <div class="brand">Korin's <span>Card Exchange</span></div>
-    <div class="report-date">Sat, Sep 12, 2026</div>
-  </div>
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="business">Business</button>
-    <button class="tab-btn" data-tab="collection">My Collection</button>
-    <button class="tab-btn" data-tab="market">Market Intel</button>
-  </div>
-</div>
-
-<div class="banner">Live Collectr scrape completed this run (all 12 portfolios, Products view, condition-adjusted). Workbook (cost basis / realized P&amp;L / cash) last synced 8/26/26 — 17 days stale, unchanged since. HiBid/EBTH live this run; ShopGoodwill returned bulk/mixed lots only (no vintage/graded standouts); LiveAuctioneers &amp; THS have no working live-lot method yet.</div>
-
-<!-- ===================== BUSINESS TAB ===================== -->
-<div class="panel active" id="panel-business">
-
-  <div class="section-title">Key Metrics</div>
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-label">Live Portfolio Value</div>
-      <div class="kpi-val">$3,881.14</div>
-      <div class="kpi-sub">7 FOR SALE portfolios, WOTC Lot @ 100% physical</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Public Holdings</div>
-      <div class="kpi-val accent">$3,725.35</div>
-      <div class="kpi-sub">Excl. 🔒 Umbreon Hold-Private</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Unrealized Gain</div>
-      <div class="kpi-val green">+$2,907.53</div>
-      <div class="kpi-sub">vs $973.61 cost basis (workbook, 8/26)</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Realized P&amp;L</div>
-      <div class="kpi-val green">+$1,151.12</div>
-      <div class="kpi-sub">63 items sold, 89.6% avg ROI</div>
-    </div>
-    <div class="kpi-card wide">
-      <div class="kpi-label">Net Cash Position</div>
-      <div class="kpi-val">$494.47</div>
-      <div class="kpi-sub">True economic position (cash view, incl. IOU &amp; consignment): $998.08 · WOTC Lot true economic interest (20% KCE): $264.04 of $1,320.18 physical value</div>
+  <div class="header">
+    <div class="eyebrow">Korin's Card Exchange</div>
+    <h1>Daily Intel Report</h1>
+    <div class="meta" id="report-date">—</div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="biz">📦 Business</button>
+      <button class="tab-btn" data-tab="pc">🎴 Collection</button>
+      <button class="tab-btn" data-tab="intel">🔎 Market Intel</button>
     </div>
   </div>
 
-  <div class="section-title">Portfolio Breakdown</div>
-  <div class="card">
-    <div class="bar-row"><div class="bar-label">WOTC Lot (100%, 20% KCE econ.)</div><div class="bar-track"><div class="bar-fill" style="width:60.3%"></div></div><div class="bar-val">$1,320.18</div></div>
-<div class="bar-row"><div class="bar-label">Main Inventory</div><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><div class="bar-val">$2,187.94</div></div>
-<div class="bar-row"><div class="bar-label">Under 10</div><div class="bar-track"><div class="bar-fill" style="width:11.8%"></div></div><div class="bar-val">$258.27</div></div>
-<div class="bar-row"><div class="bar-label">Japanese Poke</div><div class="bar-track"><div class="bar-fill" style="width:4.0%"></div></div><div class="bar-val">$88.31</div></div>
-<div class="bar-row"><div class="bar-label">EX & Mega EX</div><div class="bar-track"><div class="bar-fill" style="width:0.3%"></div></div><div class="bar-val">$6.23</div></div>
-<div class="bar-row"><div class="bar-label">V Cards</div><div class="bar-track"><div class="bar-fill" style="width:0.9%"></div></div><div class="bar-val">$20.21</div></div>
-<div class="bar-row"><div class="bar-label">Trainers</div><div class="bar-track"><div class="bar-fill" style="width:0.0%"></div></div><div class="bar-val">$0.00</div></div>
-    <div class="footnote">WOTC Lot shown at 100% physical value above — David (Wiley &amp; Rum) holds 80% consignor interest ($1,056.14); KCE's true economic share is $264.04. Trainers portfolio has been empty since 8/19/26 (all 5 remaining items sold).</div>
+  <!-- ========================= TAB 1: BUSINESS ========================= -->
+  <div class="tab-panel active" id="tab-biz">
+
+    <div class="filter-box">
+      <input type="text" id="biz-filter" placeholder="Search business inventory…" autocomplete="off">
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">Live Portfolio Value</div>
+        <div class="value" id="kpi-live-value">—</div>
+        <div class="sub" id="kpi-live-value-sub">—</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Public Holdings</div>
+        <div class="value" id="kpi-public-holdings">—</div>
+        <div class="sub">Excludes 🔒 Hold-Private</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Unrealized Gain</div>
+        <div class="value" id="kpi-unrealized">—</div>
+        <div class="sub" id="kpi-unrealized-sub">—</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Realized P&amp;L</div>
+        <div class="value pos" id="kpi-realized">—</div>
+        <div class="sub" id="kpi-realized-sub">—</div>
+      </div>
+      <div class="kpi wide">
+        <div class="label">Net Cash Position</div>
+        <div class="value" id="kpi-cash">—</div>
+        <div class="sub" id="kpi-cash-sub">—</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Portfolio Breakdown</div>
+      <div class="bars" id="portfolio-bars"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Top Movers Today</div>
+      <div class="mover-grid">
+        <div class="mover-col g"><div class="mover-col-title">Gainers</div><div id="biz-gainers"></div></div>
+        <div class="mover-col l"><div class="mover-col-title">Losers</div><div id="biz-losers"></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Action Alerts</div>
+      <div id="action-alerts"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Inventory — 7 For-Sale Portfolios</div>
+      <div id="biz-portfolios"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Uncategorized — Needs Review</div>
+      <div id="uncategorized-portfolio"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔒 Private Holdings Monitor</div>
+      <div class="private-box" id="private-box"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">P&amp;L Summary</div>
+      <table class="pl-table" id="pl-table"></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Selling Channel Net Rates</div>
+      <div class="rate-grid">
+        <div class="rate-row"><span class="rn">eBay</span><span class="rv">~83% net</span></div>
+        <div class="rate-row"><span class="rn">CardsHQ (consign)</span><span class="rv">70–80% net</span></div>
+        <div class="rate-row"><span class="rn">Facebook Marketplace</span><span class="rv">80–90% net</span></div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="section-title">Top Movers Today</div>
-  <div class="card">
-    <div class="mover-row"><div class="mover-name">Unown D (JP)<span class="mover-set">Neo Discovery (Japanese)</span></div><div class="mover-price">$4.55</div><div class="mover-delta pos">+38.74%</div></div>
-<div class="mover-row"><div class="mover-name">Steelix (JP)<span class="mover-set">Neo Genesis (Japanese)</span></div><div class="mover-price">$10.12</div><div class="mover-delta neg">-37.67%</div></div>
-<div class="mover-row"><div class="mover-name">Caterpie (JP)<span class="mover-set">Neo Discovery (Japanese)</span></div><div class="mover-price">$4.59</div><div class="mover-delta neg">-29.38%</div></div>
-<div class="mover-row"><div class="mover-name">Kabutops (JP)<span class="mover-set">Neo Discovery (Japanese)</span></div><div class="mover-price">$34.02</div><div class="mover-delta neg">-29.24%</div></div>
-<div class="mover-row"><div class="mover-name">Pineco (JP)<span class="mover-set">Neo Discovery (Japanese)</span></div><div class="mover-price">$1.74</div><div class="mover-delta neg">-25.78%</div></div>
-<div class="mover-row"><div class="mover-name">Hoppip (JP)<span class="mover-set">Neo Discovery (Japanese)</span></div><div class="mover-price">$1.23</div><div class="mover-delta pos">+24.54%</div></div>
-<div class="mover-row"><div class="mover-name">Erika's Clefable (JP)<span class="mover-set">Gym Heroes (Japanese)</span></div><div class="mover-price">$16.23</div><div class="mover-delta neg">-24.14%</div></div>
-<div class="mover-row"><div class="mover-name">Azumarill (JP)<span class="mover-set">Neo Genesis (Japanese)</span></div><div class="mover-price">$18.20</div><div class="mover-delta neg">-23.14%</div></div>
-<div class="mover-row"><div class="mover-name">Froakie<span class="mover-set">Chaos Rising</span></div><div class="mover-price">$6.03</div><div class="mover-delta neg">-22.99%</div></div>
-<div class="mover-row"><div class="mover-name">Moo Moo Milk (JP)<span class="mover-set">Neo Genesis (Japanese)</span></div><div class="mover-price">$20.02</div><div class="mover-delta neg">-22.75%</div></div>
-    <div class="footnote">Movers computed from today's live Collectr scrape vs. each card's own recorded prior price (Main Inventory, Japanese Poke, EX &amp; Mega EX, V Cards, David Consign portfolios — the only portfolios where per-card day-over-day % is exposed in list view). Bulk portfolios (WOTC Lot, Under 10) don't expose per-card Δ in list view this run.</div>
+  <!-- ========================= TAB 2: MY COLLECTION ========================= -->
+  <div class="tab-panel" id="tab-pc">
+
+    <div class="filter-box">
+      <input type="text" id="pc-filter" placeholder="Search personal collection…" autocomplete="off">
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi wide">
+        <div class="label">Total Personal Collection</div>
+        <div class="value" id="kpi-pc-total">—</div>
+        <div class="sub">4 PC portfolios · excluded from business KPIs</div>
+      </div>
+      <div class="kpi"><div class="label">Personal Collection</div><div class="value" id="kpi-pc-personal">—</div></div>
+      <div class="kpi"><div class="label">PC — Rocket</div><div class="value" id="kpi-pc-rocket">—</div></div>
+      <div class="kpi"><div class="label">Gym Hero</div><div class="value" id="kpi-pc-gymhero">—</div></div>
+      <div class="kpi"><div class="label">Gym Challenge</div><div class="value" id="kpi-pc-gymchallenge">—</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Top PC Movers</div>
+      <div class="mover-grid">
+        <div class="mover-col g"><div class="mover-col-title">Gainers</div><div id="pc-gainers"></div></div>
+        <div class="mover-col l"><div class="mover-col-title">Losers</div><div id="pc-losers"></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Collection Notes</div>
+      <div class="notes-box" id="collection-notes"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Collection — 4 PC Portfolios</div>
+      <div id="pc-portfolios"></div>
+    </div>
+
   </div>
 
-  <div class="section-title">Action Alerts</div>
-  <div class="card">
-    <div class="alert">
-      <div class="alert-tag tag-watch">WATCH</div>
-      <div class="alert-body"><div class="alert-title">Destined Rivals Booster Box (INV-278) — friend-fronted IOU</div><div class="alert-reason">Live $434.46 vs $470 owed — gap improved to -$35.54 (was -$53.15 on 8/26) as the box's market price recovered. Still underwater; hold until it clears $470 before flipping to repay the friend.</div></div>
-    </div>
-    <div class="alert">
-      <div class="alert-tag tag-sell">SELL WINDOW</div>
-      <div class="alert-body"><div class="alert-title">Mewtwo (Base Set Unlimited, Moderately Played) — INV Main Inventory</div><div class="alert-reason">+11.51% today to $64.52, the single largest % gain in Main Inventory this run. No obvious news catalyst found — likely short-term demand spike; consider taking profit if it holds through next check-in.</div></div>
-    </div>
-    <div class="alert">
-      <div class="alert-tag tag-hold">HOLD</div>
-      <div class="alert-body"><div class="alert-title">🔒 Umbreon ex SVP176 (PSA 10) — Private Holdings</div><div class="alert-reason">Down to $155.79 (-0.94% today, -$17.51 since 8/26's $173.30). 30th Celebration's Sept 16 wave leans heavily Eeveelution (Sylveon ex, Eevee Knock Out Collection) — worth watching for a secondary-market lift into/after launch before deciding whether to sell into strength.</div></div>
-    </div>
-    <div class="alert">
-      <div class="alert-tag tag-bundle">BUNDLE CANDIDATE</div>
-      <div class="alert-body"><div class="alert-title">Japanese Neo-era commons (Japanese Poke + David Consign portfolios)</div><div class="alert-reason">Both portfolios showed broad double-digit % declines today (Kabutops JP -29%, Erika's Clefable JP -24%, Azumarill JP -23%, Steelix JP -38%, Moo Moo Milk JP -23%). Individually these are all sub-$20 commons/uncommons — bundling into a themed Neo-era lot (eBay or FB) likely nets more than piecemeal listing at today's depressed single-card prices.</div></div>
-    </div>
-    <div class="alert">
-      <div class="alert-tag tag-watch">WATCH</div>
-      <div class="alert-body"><div class="alert-title">David Consign - Side List (uncategorized, $47.10)</div><div class="alert-reason">Still not assigned to a business or PC bucket — excluded from all KPI totals above. Down from $61.04 on 8/26. Needs Ernesto's call on how to categorize before it can be folded into a KPI.</div></div>
-    </div>
-  </div>
+  <!-- ========================= TAB 3: MARKET INTEL ========================= -->
+  <div class="tab-panel" id="tab-intel">
 
-  <div class="section-title">Inventory — FOR SALE Portfolios</div>
-  <div class="filter-bar">
-    <input class="filter-input" id="biz-filter" placeholder="Filter by card or set name…" oninput="applyFilter('business')">
-  </div>
-  <div id="biz-portfolios"></div>
-
-  <div class="section-title">🔒 Private Holdings Monitor</div>
-  <div class="card private-card">
-    <div class="private-row"><span class="l">Umbreon ex SVP176 (PSA 10)</span><span class="v">$155.79</span></div>
-    <div class="private-row"><span class="l">Today's move</span><span class="v neg">-0.94% (-$1.48)</span></div>
-    <div class="private-row"><span class="l">Since 8/26</span><span class="v neg">-$17.51 (from $173.30)</span></div>
-    <div class="private-row"><span class="l">Cost basis</span><span class="v">Unconfirmed (INV-035)</span></div>
-    <div class="private-row"><span class="l">Held status</span><span class="v status-hold">Hold - Private (excluded from public views)</span></div>
-    <div class="private-row"><span class="l">Target / read</span><span class="v">Hold through 30th Celebration Eeveelution wave (Sept 16 launch) before revisiting sell decision</span></div>
-  </div>
-
-  <div class="section-title">P&amp;L Summary</div>
-  <div class="card">
-    <table class="pl-table">
-      <tr><td>Cost Basis (on hand, workbook)</td><td class="num">$973.61</td></tr>
-      <tr><td>Live Portfolio Value (today)</td><td class="num">$3,881.14</td></tr>
-      <tr><td>Unrealized Gain</td><td class="num green">+$2,907.53</td></tr>
-      <tr><td>Realized Net Profit (63 items sold)</td><td class="num green">+$1,151.12</td></tr>
-      <tr><td>Net Cash Position</td><td class="num">$494.47</td></tr>
-      <tr><td>Outstanding Consignment Payable (David)</td><td class="num">$0.00 (fully paid)</td></tr>
-      <tr><td>Outstanding Purchase IOU (Destined Rivals box)</td><td class="num red">-$470.00</td></tr>
-      <tr><td>True Economic Position (cash view)</td><td class="num accent">$998.08</td></tr>
-    </table>
-    <div class="footnote">Cost basis, realized P&amp;L, and cash figures are from korins_expense_tracker.xlsx, last synced 8/26/26 (17 days stale, file unchanged since) — Live Portfolio Value above is today's live Collectr scrape, not workbook-sourced.</div>
-  </div>
-
-  <div class="section-title">Selling Channel Net Rates</div>
-  <div class="card">
-    <div class="channel-row"><span>eBay</span><span class="channel-rate">~83%</span></div>
-    <div class="channel-row"><span>CardsHQ (consignment)</span><span class="channel-rate">70–80%</span></div>
-    <div class="channel-row"><span>Facebook Marketplace</span><span class="channel-rate">80–90%</span></div>
-  </div>
-
-</div>
-
-<!-- ===================== MY COLLECTION TAB ===================== -->
-<div class="panel" id="panel-collection">
-
-  <div class="section-title">Key Metrics</div>
-  <div class="kpi-grid">
-    <div class="kpi-card wide">
-      <div class="kpi-label">Total Personal Collection</div>
-      <div class="kpi-val accent">$4,434.05</div>
-      <div class="kpi-sub">4 portfolios, live Collectr — not counted toward business KPIs</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Personal Collection</div>
-      <div class="kpi-val">$2,961.84</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">PC - Gym Challenge</div>
-      <div class="kpi-val">$328.00</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">PC - Gym Hero</div>
-      <div class="kpi-val">$513.14</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">PC - Rocket</div>
-      <div class="kpi-val">$631.07</div>
-    </div>
-  </div>
-
-  <div class="section-title">Portfolio Breakdown</div>
-  <div class="card"><div class="bar-row"><div class="bar-label">Personal Collection</div><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><div class="bar-val">$2,961.84</div></div>
-<div class="bar-row"><div class="bar-label">PC - Gym Hero</div><div class="bar-track"><div class="bar-fill" style="width:17.3%"></div></div><div class="bar-val">$513.14</div></div>
-<div class="bar-row"><div class="bar-label">PC - Gym Challenge</div><div class="bar-track"><div class="bar-fill" style="width:11.1%"></div></div><div class="bar-val">$328.00</div></div>
-<div class="bar-row"><div class="bar-label">PC - Rocket</div><div class="bar-track"><div class="bar-fill" style="width:21.3%"></div></div><div class="bar-val">$631.07</div></div></div>
-
-  <div class="section-title">Top PC Movers</div>
-  <div class="card">
-    <div class="empty-state">No per-card day-over-day % available this run — the 4 PC portfolios were captured via bulk list scrape (name/price/qty only), which doesn't expose Collectr's Δ badge. Cross-portfolio value deltas since 8/26 are in Collection Notes below.</div>
-  </div>
-
-  <div class="section-title">Collection Notes</div>
-  <div class="card">
-    <div class="small-note">Personal Collection: $2,961.84, up from $2,827.67 on 8/26 (+4.7%). Headline items unchanged: Lt. Surge's Raichu $307.56, Rocket's Zapdos $220.34, Dark Blastoise $201.48, Blastoise $157.01, Mew (9) $151.64.</div>
-    <div class="small-note">PC-Gym Hero: $513.14 (was $510.59 on 8/26). Blaine's Moltres remains the anchor piece at $135.03.</div>
-    <div class="small-note">PC-Gym Challenge: $328.00 (was $324.76 on 8/26). Giovanni's Machamp ($71.70) and Giovanni's Nidoking ($64.58) are the two largest holdings.</div>
-    <div class="small-note">PC-Rocket: $631.07 (was $626.78 on 8/26). Dark Blastoise ($201.48) and Dark Raichu ($128.63) anchor this portfolio — note Dark Blastoise appears in both Personal Collection and PC-Rocket at the same $201.48 price; confirm with Ernesto whether these are two physical copies or a cross-portfolio duplicate before treating combined PC totals as fully deduplicated.</div>
-  </div>
-
-  <div class="section-title">Collection — Personal Portfolios</div>
-  <div class="filter-bar">
-    <input class="filter-input" id="pc-filter" placeholder="Filter by card name…" oninput="applyFilter('collection')">
-  </div>
-  <div id="pc-portfolios"></div>
-
-</div>
-
-<!-- ===================== MARKET INTEL TAB ===================== -->
-<div class="panel" id="panel-market">
-
-  <div class="section-title">Upcoming Releases</div>
-  <div class="card">
-    <div class="release-item">
-      <div class="release-date">Sept 16, 2026 (4 days out)</div>
-      <div class="release-name">30th Celebration — First Wave (global simultaneous launch)</div>
-      <div class="release-angle">7 products: Elite Trainer Box, Pokémon Center-exclusive ETB, 2× Tech Sticker Collections, Eevee 2-Pack Blister, Eevee Knock Out Collection, Poster Collection, Sylveon ex &amp; Greninja ex boxes. Every card in the set is foil, including basic energy. KCE angle: heavy Eeveelution theming (Sylveon ex, Eevee Knock Out Collection) — watch for secondary-market lift on 🔒 Umbreon ex SVP176 (Hold-Private) as Eeveelution demand rises into launch.</div>
-    </div>
-    <div class="release-item">
-      <div class="release-date">Nov 6, 2026 (~8 weeks out)</div>
-      <div class="release-name">30th Celebration — Second Wave</div>
-      <div class="release-angle">Additional 30th Celebration products roll out through this date — more waves than the official Pokémon Center page currently lists in full, so expect further drop announcements between now and then. Set a reminder to re-check closer to late October.</div>
-    </div>
-  </div>
-
-  <div class="section-title">Market Pulse</div>
-  <div class="card">
-    <div class="small-note">Pokemon Wizard's index (314 sets, 41,000+ cards, refreshed 9/5/26) shows vintage cards posting stronger, steadier gains than modern this cycle, while modern stays more volatile and liquid — PSA 10 vintage iconics range $500–$550k+, modern ranges $20–$5,000.</div>
-    <div class="small-note">This directly favors KCE's WOTC Lot (Neo-era 1999–2002 Japanese/English vintage) and the Neo Discovery/Neo Genesis Japanese singles inside Main Inventory and David Consign — the segment the index flags as most stable. It's also consistent with this run's HiBid sourcing scan, where dozens of modern CGC-graded secret rares/full arts sat at $10–30 with 0–1 bids — high supply, thin demand, not the stable-vintage profile.</div>
-  </div>
-
-  <div class="section-title">What's Hot</div>
-  <div class="card">
-    <div class="small-note"><strong>Mewtwo (Base Set Unlimited)</strong> +11.51% today in Main Inventory ($64.52) — largest single-day mover across all business portfolios this run, no clear news catalyst identified.</div>
-    <div class="small-note"><strong>Unown D (JP, Neo Discovery)</strong> +38.74% and <strong>Hoppip (JP)</strong> +24.54% — both small-dollar Japanese Poke holdings, likely thin-liquidity noise rather than a real trend given sub-$5 prices.</div>
-    <div class="small-note"><strong>Neo-era Japanese vintage broadly soft today</strong> — Kabutops JP -29%, Steelix JP -38%, Erika's Clefable JP -24%, Azumarill JP -23% all fell hard in the same session. Worth monitoring whether this is a data/pricing-source blip or a real short-term dip in an otherwise-strong vintage segment (see Market Pulse above) before reacting.</div>
-  </div>
-
-  <div class="section-title">KCE Playbook</div>
-  <div class="card">
-    <div class="playbook-item"><div class="playbook-num">1</div><div class="playbook-body">Hold 🔒 Umbreon ex SVP176 through the Sept 16 30th Celebration launch — Eeveelution-heavy product mix is a plausible near-term demand catalyst; re-check price action the week after launch before deciding to sell.</div></div>
-    <div class="playbook-item"><div class="playbook-num">2</div><div class="playbook-body">Bundle today's beaten-down Neo-era Japanese commons (Kabutops, Erika's Clefable, Azumarill, Steelix, Moo Moo Milk — all JP, all down 20%+ today) into one themed vintage lot rather than listing individually at today's depressed prices.</div></div>
-    <div class="playbook-item"><div class="playbook-num">3</div><div class="playbook-body">Resolve the David Consign - Side List categorization ($47.10, 3 Neo Genesis JP singles) — it's sat uncategorized since 8/26 and is excluded from every KPI until Ernesto assigns it to a bucket.</div></div>
-    <div class="playbook-item"><div class="playbook-num">4</div><div class="playbook-body">Destined Rivals Booster Box (INV-278) is $35.54 under its $470 IOU breakeven but closing the gap ($53.15 under on 8/26) — hold, don't flip yet.</div></div>
-    <div class="playbook-item"><div class="playbook-num">5</div><div class="playbook-body">Confirm whether the Dark Blastoise appearing in both Personal Collection and PC-Rocket at an identical $201.48 is two physical copies or a duplicate Collectr entry — affects the true PC total.</div></div>
-  </div>
-
-  <div class="section-title">🔨 Sourcing — Auction Watch</div>
-  <div class="card">
-    <div class="small-note">Platform coverage this run:</div>
-    <div class="platform-status"><span>ShopGoodwill</span><span class="ps-partial">547 live results — bulk/mixed lots only, no individually graded or vintage standouts found</span></div>
-    <div class="platform-status"><span>HiBid</span><span class="ps-ok">Worked cleanly (in-page search box) — several low-bid CGC-graded singles surfaced</span></div>
-    <div class="platform-status"><span>EBTH</span><span class="ps-ok">Worked cleanly — 2 Fossil-vintage lots directly relevant to WOTC Lot holdings</span></div>
-    <div class="platform-status"><span>LiveAuctioneers</span><span class="ps-none">No working live-lot search method identified yet</span></div>
-    <div class="platform-status"><span>THS Auctions</span><span class="ps-none">No working live-lot search method identified yet</span></div>
-
-    <div class="section-title" style="margin-top:20px;">HiBid — notable lots</div>
-    <div class="lot">
-      <div class="lot-head"><span class="lot-name">Lunala #017 CGC Gem Mint 10 Japanese 25th Anniversary</span><span class="verdict v-watch">WATCH</span></div>
-      <div class="lot-meta">Lot 233 · High bid $0 (0 bids) · next bid $10 · All-in est. ~$22–24 (bid + ~20% BP + shipping). Japanese 25th Anniv. CGC 10 promos typically resell in the $40–70 range depending on exact card — plausible 100%+ ROI but below this size's 400% threshold without a confirmed comp; not a confident BID yet.</div>
-      <a class="lot-link" href="https://hibid.com/lot/318899765/lunala--017-cgc-gem-mint-10-japanese-25th---?ref=lot-list" target="_blank">View lot →</a>
-    </div>
-    <div class="lot">
-      <div class="lot-head"><span class="lot-name">Charizard #017 CGC Pristine 10 Japanese V-Max</span><span class="verdict v-watch">WATCH</span></div>
-      <div class="lot-meta">Lot 152 · High bid $20 (1 bid) · next bid $30 · All-in est. ~$36–40. Charizard commands a premium over other Japanese V-Max CGC 10 promos in this run (comps commonly $60–100+) — worth monitoring as the bid climbs, but current price point is close enough to fair value that it's not a clear-cut BID yet.</div>
-      <a class="lot-link" href="https://hibid.com/lot/318899684/charizard--017-cgc-pristine-10-japanese-v-max---?ref=lot-list" target="_blank">View lot →</a>
-    </div>
-    <div class="lot">
-      <div class="lot-head"><span class="lot-name">Pokemon Dark Muk (JP) 89 CGC 10</span><span class="verdict v-pass">PASS</span></div>
-      <div class="lot-meta">Lot 36c · High bid $2 (1 bid) · Modern Japanese common CGC slab — resale ceiling likely under $10 even at CGC 10. All-in cost after BP + shipping likely exceeds resale. Pass.</div>
-    </div>
-    <div class="footnote">Broader HiBid sweep this run surfaced ~15 more $10–30 modern CGC-graded secret rares/full arts (Scarlet &amp; Violet, Sun &amp; Moon, XY era) with 0–1 bids each — none tie to current KCE holdings and none clear the ROI bar once buyer's premium + shipping are added on a sub-$30 lot. All PASS.</div>
-
-    <div class="section-title" style="margin-top:20px;">EBTH — notable lots</div>
-    <div class="lot">
-      <div class="lot-head"><span class="lot-name">1st Edition Holo Fossil Set — Gengar w/ Light Dragonite &amp; More</span><span class="verdict v-watch">WATCH</span></div>
-      <div class="lot-meta">Current bid $375. Directly relevant to WOTC Lot's Fossil-set vintage holdings — but a multi-card 1st Ed Fossil lot at $375 is likely already close to fair value for the pieces described; would need a per-card breakdown before committing further. Not a confirmed BID.</div>
-      <a class="lot-link" href="https://www.ebth.com/items/14605936-1st-edition-holo-fossil-set-gengar-with-light-dragonite-and-more-pokemon-cards" target="_blank">View lot →</a>
-    </div>
-    <div class="lot">
-      <div class="lot-head"><span class="lot-name">CGC Graded 1st Edition Holo Articuno &amp; Lapras Fossil Set</span><span class="verdict v-watch">WATCH</span></div>
-      <div class="lot-meta">Current bid $162. Same read as above — Fossil-era vintage directly on-thesis for WOTC Lot, but bid already reflects real graded value; would need per-card comps before treating as a high-ROI buy.</div>
-      <a class="lot-link" href="https://www.ebth.com/items/14605889-cgc-graded-1st-edition-holo-articuno-lapras-fossil-set-pokemon-cards-with-more" target="_blank">View lot →</a>
+    <div class="section">
+      <div class="section-title">📅 Upcoming Releases</div>
+      <div id="release-calendar"></div>
     </div>
 
-    <div class="section-title" style="margin-top:20px;">ShopGoodwill — today's verdict</div>
-    <div class="small-note">547 live "pokemon cards" results, sorted by relevance — entirely bulk/mixed lots and sealed product, no individually graded or vintage singles worth flagging. <strong>PASS across the board this run.</strong> <a href="https://shopgoodwill.com/search?st=pokemon%20cards" target="_blank">Search link →</a></div>
+    <div class="section">
+      <div class="section-title">📈 Market Pulse</div>
+      <div class="stat-strip" id="market-stats"></div>
+      <div class="notes-box" id="market-pulse-text"></div>
+    </div>
 
-    <div class="footnote">ROI framework: 400%+ all-in-cost-to-resale-comp threshold for sub-$50 lots, scaling down to ~100% for $600+ lots, on hammer + buyer's premium + shipping vs. multi-channel resale comps. Verdicts above reflect judgment calls without a hard confirmed resale comp in every case — treat WATCH as "worth checking comps before bidding," not a standing buy order.</div>
-  </div>
+    <div class="section">
+      <div class="section-title">🔥 What's Hot</div>
+      <div id="whats-hot"></div>
+    </div>
 
-  <div class="sources">
-    Sources: <a href="https://support.pokemoncenter.com/hc/en-us/articles/4407702295572-Estimated-Preorder-Release-Dates" target="_blank">Pokémon Center — Estimated Preorder Release Dates</a> · <a href="https://dashboard.houseofcarts.io/resources/pokemon-30th-celebration-release-guide" target="_blank">House of Carts — 30th Celebration Release Guide</a> · <a href="https://mypokescan.com/blog/30th-celebration-release-guide" target="_blank">PokeScan — 30th Celebration Release Guide</a> · <a href="https://www.pokemonwizard.com/stats" target="_blank">Pokémon Wizard — Market Stats</a> · <a href="https://hibid.com/lots?q=pokemon" target="_blank">HiBid — Pokemon lots</a> · <a href="https://www.ebth.com/browse?q=pokemon" target="_blank">EBTH — Pokemon browse</a> · <a href="https://shopgoodwill.com/search?st=pokemon%20cards" target="_blank">ShopGoodwill — Pokemon cards search</a>
+    <div class="section">
+      <div class="section-title">♟️ KCE Playbook</div>
+      <div class="playbook" id="playbook"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔨 Sourcing — Auction Watch</div>
+      <div id="platform-coverage"></div>
+      <div id="auction-lots" style="margin-top:var(--sp-3)"></div>
+      <div class="verdict-banner" id="sourcing-verdict"></div>
+    </div>
+
+    <div class="sources" id="sources-line"></div>
+
   </div>
 
 </div>
 
 <script>
-const DATA = {"wotcLot": [{"card": "Dragonite (19)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 97.74, "delta": null, "qty": 1}, {"card": "Pinsir", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 88.13, "delta": null, "qty": 1}, {"card": "Wigglytuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 78.38, "delta": null, "qty": 1}, {"card": "Snorlax", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 77.85, "delta": null, "qty": 1}, {"card": "Magneton (11)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 61.31, "delta": null, "qty": 1}, {"card": "Electrode", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 50.54, "delta": null, "qty": 2}, {"card": "Clefable", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 38.05, "delta": null, "qty": 1}, {"card": "Moltres (27)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 30.52, "delta": null, "qty": 1}, {"card": "Pikachu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 26.12, "delta": null, "qty": 6}, {"card": "Kabutops (24)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 23.43, "delta": null, "qty": 1}, {"card": "Pidgeot", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 21.7, "delta": null, "qty": 1}, {"card": "Wigglytuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 21.53, "delta": null, "qty": 1}, {"card": "Pinsir", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 19.0, "delta": null, "qty": 1}, {"card": "Vileplume", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.4, "delta": null, "qty": 1}, {"card": "Kabuto", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.08, "delta": null, "qty": 1}, {"card": "Vaporeon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.08, "delta": null, "qty": 1}, {"card": "Victreebel", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 15.65, "delta": null, "qty": 1}, {"card": "Clefable", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 15.45, "delta": null, "qty": 1}, {"card": "Skarmory (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 13.07, "delta": null, "qty": 1}, {"card": "Psyduck", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 11.66, "delta": null, "qty": 2}, {"card": "Aerodactyl (16)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 10.2, "delta": null, "qty": 1}, {"card": "Mr. Mime", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.77, "delta": null, "qty": 1}, {"card": "Gligar (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.51, "delta": null, "qty": 1}, {"card": "Pidgeot", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.21, "delta": null, "qty": 1}, {"card": "Pikachu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.03, "delta": null, "qty": 3}, {"card": "Golduck", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.66, "delta": null, "qty": 1}, {"card": "Golbat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.0, "delta": null, "qty": 2}, {"card": "Slowpoke (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.83, "delta": null, "qty": 1}, {"card": "Focus Band (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.76, "delta": null, "qty": 1}, {"card": "Energy Charge (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.74, "delta": null, "qty": 1}, {"card": "Slowpoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.59, "delta": null, "qty": 2}, {"card": "Magmar", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.54, "delta": null, "qty": 4}, {"card": "Kangaskhan", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.02, "delta": null, "qty": 1}, {"card": "Omastar", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.91, "delta": null, "qty": 1}, {"card": "Dark Gloom", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.83, "delta": null, "qty": 1}, {"card": "Weezing", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.46, "delta": null, "qty": 3}, {"card": "Gambler", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.26, "delta": null, "qty": 4}, {"card": "PokeGear (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.78, "delta": null, "qty": 1}, {"card": "Furret (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.76, "delta": null, "qty": 1}, {"card": "Sunflora (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.65, "delta": null, "qty": 1}, {"card": "Wooper (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.19, "delta": null, "qty": 2}, {"card": "Bill's Teleporter (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.99, "delta": null, "qty": 3}, {"card": "Seadra (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.66, "delta": null, "qty": 1}, {"card": "Geodude", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.47, "delta": null, "qty": 3}, {"card": "Omanyte", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.38, "delta": null, "qty": 1}, {"card": "Grimer", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.33, "delta": null, "qty": 2}, {"card": "New Pokedex (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.19, "delta": null, "qty": 2}, {"card": "Double Gust (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.04, "delta": null, "qty": 1}, {"card": "Miltank (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.89, "delta": null, "qty": 1}, {"card": "Horsea", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.86, "delta": null, "qty": 2}, {"card": "Croconaw (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.78, "delta": null, "qty": 1}, {"card": "Pokemon March (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.73, "delta": null, "qty": 2}, {"card": "Eevee", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.7, "delta": null, "qty": 1}, {"card": "Super Energy Retrieval (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.66, "delta": null, "qty": 1}, {"card": "Spinarak (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.61, "delta": null, "qty": 3}, {"card": "Girafarig (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.59, "delta": null, "qty": 1}, {"card": "Dark Kadabra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.52, "delta": null, "qty": 2}, {"card": "Oddish (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.48, "delta": null, "qty": 1}, {"card": "Skiploom (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.47, "delta": null, "qty": 1}, {"card": "Rapidash", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.43, "delta": null, "qty": 1}, {"card": "Ledyba (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.42, "delta": null, "qty": 2}, {"card": "Zubat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.38, "delta": null, "qty": 1}, {"card": "The Boss's Way", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.33, "delta": null, "qty": 1}, {"card": "Horsea (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.99, "delta": null, "qty": 1}, {"card": "Hoppip (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.97, "delta": null, "qty": 1}, {"card": "Cubone", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.94, "delta": null, "qty": 2}, {"card": "Shellder", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.92, "delta": null, "qty": 1}, {"card": "Krabby", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.91, "delta": null, "qty": 2}, {"card": "Ekans", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.82, "delta": null, "qty": 1}, {"card": "Golem", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.64, "delta": null, "qty": 1}, {"card": "Lickitung", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.57, "delta": null, "qty": 2}, {"card": "Tentacool", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.55, "delta": null, "qty": 1}, {"card": "Quagsire (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.55, "delta": null, "qty": 1}, {"card": "Dodrio", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.52, "delta": null, "qty": 2}, {"card": "Primeape", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.51, "delta": null, "qty": 4}, {"card": "Jigglypuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.37, "delta": null, "qty": 1}, {"card": "Stantler (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.25, "delta": null, "qty": 1}, {"card": "Tentacruel", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.19, "delta": null, "qty": 2}, {"card": "Energy Search", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.15, "delta": null, "qty": 2}, {"card": "Sandslash", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.14, "delta": null, "qty": 1}, {"card": "Fearow", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.05, "delta": null, "qty": 2}, {"card": "Mantine (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.04, "delta": null, "qty": 1}, {"card": "Slowpoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.04, "delta": null, "qty": 1}, {"card": "Meowth", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.99, "delta": null, "qty": 1}, {"card": "Seadra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.94, "delta": null, "qty": 1}, {"card": "Recycle", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.93, "delta": null, "qty": 2}, {"card": "Gloom", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.8, "delta": null, "qty": 1}, {"card": "Golbat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.74, "delta": null, "qty": 1}, {"card": "Weepinbell", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.72, "delta": null, "qty": 1}, {"card": "Nidorina", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.58, "delta": null, "qty": 2}, {"card": "Goldeen", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.54, "delta": null, "qty": 3}, {"card": "Grimer", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.54, "delta": null, "qty": 1}, {"card": "Ekans", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.53, "delta": null, "qty": 1}, {"card": "Paras", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.52, "delta": null, "qty": 1}, {"card": "Zubat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.52, "delta": null, "qty": 2}, {"card": "Tentacool", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.5, "delta": null, "qty": 2}, {"card": "Krabby", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.5, "delta": null, "qty": 1}, {"card": "Horsea", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.5, "delta": null, "qty": 1}, {"card": "Shellder", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.49, "delta": null, "qty": 1}, {"card": "Exeggcute", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.48, "delta": null, "qty": 3}, {"card": "Mankey", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.48, "delta": null, "qty": 5}, {"card": "Oddish", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.48, "delta": null, "qty": 1}, {"card": "Venonat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.47, "delta": null, "qty": 2}, {"card": "Rhyhorn", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.45, "delta": null, "qty": 3}, {"card": "Bellsprout", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.42, "delta": null, "qty": 1}, {"card": "Nidoran F", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.4, "delta": null, "qty": 1}, {"card": "Gambler", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.36, "delta": null, "qty": 1}, {"card": "Recycle", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.35, "delta": null, "qty": 2}, {"card": "Mysterious Fossil", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.35, "delta": null, "qty": 1}, {"card": "Poke Ball", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.32, "delta": null, "qty": 3}], "mainInventory": [{"card": "Destined Rivals Booster Box", "set": "Destined Rivals", "num": "\u2014", "cond": "Sealed", "price": 434.46, "delta": 2.59, "qty": 1}, {"card": "Zekrom ex", "set": "Black Bolt", "num": "166/086", "cond": "Moderately Played", "price": 212.1, "delta": -0.56, "qty": 1}, {"card": "Pikachu", "set": "POP Series 5", "num": "12", "cond": "Damaged", "price": 173.94, "delta": 0.0, "qty": 1}, {"card": "Dragon's Roar Structure Deck - 1st Edition", "set": "Structure Deck: Dragon's Roar", "num": "\u2014", "cond": "Sealed", "price": 157.11, "delta": 0.0, "qty": 1}, {"card": "Umbreon ex - 176", "set": "Scarlet & Violet Promo", "num": "SVP 176", "cond": "PSA 10 (Graded)", "price": 155.79, "delta": -0.94, "qty": 1}, {"card": "Zombie Madness Structure Deck - 1st Edition", "set": "Structure Deck: Zombie Madness", "num": "\u2014", "cond": "Sealed", "price": 144.45, "delta": 0.0, "qty": 1}, {"card": "Mewtwo", "set": "Base Set (Unlimited)", "num": "10", "cond": "Moderately Played", "price": 64.52, "delta": 11.51, "qty": 1}, {"card": "Mew (Secret)", "set": "Celebrations", "num": "025/025", "cond": "Near Mint", "price": 64.19, "delta": -0.57, "qty": 1}, {"card": "Machamp (Base Set Shadowless)", "set": "Deck Exclusives", "num": "008/102", "cond": "Heavily Played (1st Ed)", "price": 52.88, "delta": 2.75, "qty": 1}, {"card": "Mega Greninja ex Premium Collection", "set": "Misc. Cards & Products", "num": "\u2014", "cond": "Sealed", "price": 51.52, "delta": 6.56, "qty": 1}, {"card": "Charmander", "set": "Scarlet & Violet Promo", "num": "044", "cond": "Lightly Played", "price": 48.08, "delta": -3.25, "qty": 1}, {"card": "M Rayquaza EX", "set": "Celebrations: Classic Collection", "num": "76/108", "cond": "Near Mint", "price": 40.79, "delta": -7.34, "qty": 1}, {"card": "Kabutops (JP)", "set": "Neo Discovery (Japanese)", "num": "141", "cond": "Near Mint", "price": 34.02, "delta": -29.24, "qty": 1}, {"card": "Mega Moonlit Tin [Mega Gengar ex]", "set": "Misc. Cards & Products", "num": "\u2014", "cond": "Sealed", "price": 32.32, "delta": -9.34, "qty": 1}, {"card": "Nidoking", "set": "Base Set 2", "num": "11", "cond": "Moderately Played", "price": 32.05, "delta": 2.4, "qty": 1}, {"card": "Gyarados (#30 Holo)", "set": "HGSS Trainer Kit", "num": "30", "cond": "Moderately Played", "price": 31.64, "delta": 5.56, "qty": 1}, {"card": "Greninja V [Set of 4]", "set": "Sword & Shield Promo", "num": "\u2014", "cond": "Near Mint", "price": 30.44, "delta": 0.33, "qty": 1}, {"card": "Minun", "set": "Supreme Victors", "num": "71", "cond": "Heavily Played", "price": 29.99, "delta": 0.0, "qty": 1}, {"card": "Pikachu V-Union [Set of 4]", "set": "Sword & Shield Promo", "num": "\u2014", "cond": "Near Mint", "price": 29.05, "delta": -3.04, "qty": 1}, {"card": "Rayquaza C", "set": "Supreme Victors", "num": "8", "cond": "Damaged", "price": 28.25, "delta": 0.0, "qty": 1}, {"card": "Electrode (Prime)", "set": "Triumphant", "num": "93", "cond": "Heavily Played", "price": 28.17, "delta": 1.16, "qty": 1}, {"card": "Misty's Tentacruel", "set": "Gym Heroes", "num": "10", "cond": "Near Mint", "price": 27.78, "delta": -0.54, "qty": 1}, {"card": "Clefairy", "set": "Base Set 2", "num": "6", "cond": "Lightly Played", "price": 24.73, "delta": 0.59, "qty": 1}, {"card": "Hitmonchan", "set": "Base Set 2", "num": "8", "cond": "Near Mint", "price": 24.29, "delta": 1.34, "qty": 1}, {"card": "M Gyarados EX", "set": "BREAKpoint", "num": "27", "cond": "Damaged", "price": 20.4, "delta": -0.39, "qty": 1}, {"card": "Regigigas (Full Art Promo)", "set": "XY Promos", "num": "XY82", "cond": "Damaged", "price": 18.58, "delta": 0.0, "qty": 2}, {"card": "Gyarados", "set": "Base Set (Unlimited)", "num": "6", "cond": "Damaged", "price": 18.47, "delta": -3.63, "qty": 1}, {"card": "Ursaring (JP)", "set": "Neo Discovery (Japanese)", "num": "217", "cond": "Near Mint", "price": 18.3, "delta": 0.0, "qty": 1}, {"card": "Azumarill (JP)", "set": "Neo Genesis (Japanese)", "num": "184", "cond": "Near Mint", "price": 18.2, "delta": -23.14, "qty": 1}, {"card": "Erika's Clefable (JP)", "set": "Gym Heroes (Japanese)", "num": "036", "cond": "Near Mint", "price": 16.23, "delta": -24.14, "qty": 1}, {"card": "Misty's Tentacruel (JP)", "set": "Gym Heroes (Japanese)", "num": "073", "cond": "Near Mint", "price": 14.95, "delta": -0.3, "qty": 1}, {"card": "Ditto", "set": "Detective Pikachu", "num": "17", "cond": "Near Mint", "price": 13.88, "delta": 3.74, "qty": 1}, {"card": "Jirachi (Magnus Pedersen)", "set": "World Championship Decks", "num": "XY67", "cond": "Near Mint", "price": 13.53, "delta": 0.0, "qty": 1}, {"card": "Charizard", "set": "Detective Pikachu", "num": "5", "cond": "Near Mint", "price": 13.52, "delta": 1.81, "qty": 1}, {"card": "Charizard V", "set": "Sword & Shield Promo", "num": "SWSH050", "cond": "Near Mint", "price": 12.77, "delta": -8.26, "qty": 1}, {"card": "Lunala GX", "set": "Sun & Moon Promo", "num": "SM103a", "cond": "Lightly Played", "price": 12.66, "delta": -2.1, "qty": 1}, {"card": "Snorlax", "set": "Boundaries Crossed", "num": "109", "cond": "Near Mint", "price": 10.21, "delta": 0.59, "qty": 1}, {"card": "Charizard V", "set": "Darkness Ablaze", "num": "019/189", "cond": "Near Mint", "price": 9.07, "delta": 1.0, "qty": 1}, {"card": "Froakie", "set": "Chaos Rising", "num": "088/086", "cond": "Near Mint", "price": 6.03, "delta": -22.99, "qty": 1}], "under10": [{"card": "Sleep!", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 14.71, "delta": null, "qty": 2}, {"card": "Unown (R)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 10.95, "delta": null, "qty": 1}, {"card": "Ursaring", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.62, "delta": null, "qty": 1}, {"card": "Pikachu Libre (14", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.03, "delta": null, "qty": 1}, {"card": "Gyarados Generations", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.81, "delta": null, "qty": 1}, {"card": "Snorlax BREAKthrough", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.54, "delta": null, "qty": 1}, {"card": "Mankey McD19", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.0, "delta": null, "qty": 1}, {"card": "Gyarados Evolutions", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.76, "delta": null, "qty": 1}, {"card": "Dragonite EX", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.28, "delta": null, "qty": 1}, {"card": "Koga's Pidgey (49)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.2, "delta": null, "qty": 1}, {"card": "Dragonite McD24", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.14, "delta": null, "qty": 1}, {"card": "Gyarados GX", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.86, "delta": null, "qty": 1}, {"card": "Dedenne", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.26, "delta": null, "qty": 2}, {"card": "Porygon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.18, "delta": null, "qty": 1}, {"card": "Litleo", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.96, "delta": null, "qty": 1}, {"card": "Venusaur EX", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.95, "delta": null, "qty": 1}, {"card": "Lucario (47)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.85, "delta": null, "qty": 1}, {"card": "Rowlet", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.61, "delta": null, "qty": 1}, {"card": "Yveltal ex", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.48, "delta": null, "qty": 1}, {"card": "Magmar", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.22, "delta": null, "qty": 1}, {"card": "Mega Eelektross ex", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.15, "delta": null, "qty": 1}, {"card": "Prinplup", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.13, "delta": null, "qty": 1}, {"card": "Meowth", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.01, "delta": null, "qty": 1}, {"card": "Dratini", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.75, "delta": null, "qty": 2}, {"card": "Galarian Obstagoon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.54, "delta": null, "qty": 1}, {"card": "Minun", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.49, "delta": null, "qty": 1}, {"card": "Haunter", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.46, "delta": null, "qty": 1}, {"card": "Abra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.39, "delta": null, "qty": 1}, {"card": "Pikachu SWSH", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.0, "delta": null, "qty": 1}, {"card": "Dragapult", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.91, "delta": null, "qty": 1}, {"card": "Venusaur V", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.74, "delta": null, "qty": 2}, {"card": "Grimer", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.72, "delta": null, "qty": 1}, {"card": "Diglett", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.7, "delta": null, "qty": 1}, {"card": "Magikarp", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.68, "delta": null, "qty": 1}, {"card": "Electrike", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.66, "delta": null, "qty": 1}, {"card": "Tyrunt", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.59, "delta": null, "qty": 1}, {"card": "Snover", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.19, "delta": null, "qty": 1}, {"card": "Mankey TR", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.19, "delta": null, "qty": 1}, {"card": "Ambipom", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.13, "delta": null, "qty": 1}, {"card": "Blaine's Doduo", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.12, "delta": null, "qty": 1}, {"card": "Zubat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.08, "delta": null, "qty": 1}, {"card": "Koffing", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.02, "delta": null, "qty": 1}, {"card": "Ponyta", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.96, "delta": null, "qty": 4}, {"card": "Drowzee", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.94, "delta": null, "qty": 1}, {"card": "Magnemite", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.74, "delta": null, "qty": 4}, {"card": "Rattata", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.53, "delta": null, "qty": 2}, {"card": "Voltorb", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.49, "delta": null, "qty": 1}, {"card": "Unown [N]", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.48, "delta": null, "qty": 1}, {"card": "Goop Gas Attack", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.15, "delta": null, "qty": 1}, {"card": "Probopass", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.07, "delta": null, "qty": 1}, {"card": "Charmeleon Cosmos", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.94, "delta": null, "qty": 1}, {"card": "Unown [O]", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.82, "delta": null, "qty": 1}], "japanesePoke": [{"card": "Ruin Wall [Kabuto] (JP)", "set": "Neo Discovery (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 6.95, "delta": 0.0, "qty": 2}, {"card": "Caterpie (JP)", "set": "Neo Discovery (Japanese)", "num": "010", "cond": "Near Mint", "price": 4.59, "delta": -29.38, "qty": 2}, {"card": "Unown D (JP)", "set": "Neo Discovery (Japanese)", "num": "201", "cond": "Near Mint", "price": 4.55, "delta": 38.74, "qty": 1}, {"card": "Fossil Egg (JP)", "set": "Neo Discovery (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 3.79, "delta": 0.0, "qty": 1}, {"card": "Unown U (JP)", "set": "Neo Discovery (Japanese)", "num": "201", "cond": "Near Mint", "price": 3.77, "delta": 0.0, "qty": 1}, {"card": "Flaaffy (JP)", "set": "Neo Genesis (Japanese)", "num": "180", "cond": "Near Mint", "price": 3.65, "delta": 0.0, "qty": 1}, {"card": "Natu (JP)", "set": "Neo Discovery (Japanese)", "num": "177", "cond": "Near Mint", "price": 3.13, "delta": 0.0, "qty": 2}, {"card": "Energy Ark (JP)", "set": "Neo Discovery (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 2.99, "delta": 0.0, "qty": 2}, {"card": "Time Capsule (JP)", "set": "Neo Genesis (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 2.99, "delta": 0.0, "qty": 1}, {"card": "Metapod (JP)", "set": "Neo Discovery (Japanese)", "num": "011", "cond": "Near Mint", "price": 2.89, "delta": -11.14, "qty": 2}, {"card": "Girafarig (JP)", "set": "Neo Genesis (Japanese)", "num": "203", "cond": "Near Mint", "price": 2.59, "delta": -3.54, "qty": 1}, {"card": "Farfetch'd (JP)", "set": "Neo Revelation (Japanese)", "num": "083", "cond": "Near Mint", "price": 2.54, "delta": 9.42, "qty": 1}, {"card": "Hyper Devolution Spray (JP)", "set": "Neo Discovery (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 2.47, "delta": 1.17, "qty": 1}, {"card": "Weedle (JP)", "set": "Neo Discovery (Japanese)", "num": "013", "cond": "Near Mint", "price": 1.97, "delta": -0.78, "qty": 2}, {"card": "Pineco (JP)", "set": "Neo Discovery (Japanese)", "num": "204", "cond": "Near Mint", "price": 1.74, "delta": -25.78, "qty": 3}, {"card": "Dunsparce (JP)", "set": "Neo Discovery (Japanese)", "num": "206", "cond": "Near Mint", "price": 1.73, "delta": -12.86, "qty": 2}, {"card": "Sentret (JP)", "set": "Neo Discovery (Japanese)", "num": "161", "cond": "Near Mint", "price": 1.64, "delta": -10.08, "qty": 2}, {"card": "Kakuna (JP)", "set": "Neo Discovery (Japanese)", "num": "014", "cond": "Near Mint", "price": 1.25, "delta": 0.0, "qty": 1}, {"card": "Stantler (JP)", "set": "Neo Genesis (Japanese)", "num": "234", "cond": "Near Mint", "price": 1.25, "delta": 0.0, "qty": 1}, {"card": "Hoppip (JP)", "set": "Neo Discovery (Japanese)", "num": "187", "cond": "Near Mint", "price": 1.23, "delta": 24.54, "qty": 2}], "exMegaEx": [{"card": "Arboliva ex", "set": "Destined Rivals", "num": "207/182", "cond": "Near Mint", "price": 1.99, "delta": -5.24, "qty": 1}, {"card": "Mega Meganium ex", "set": "Jumbo Cards", "num": "034", "cond": "Near Mint", "price": 1.38, "delta": -2.82, "qty": 2}, {"card": "Ethan's Ho-oh ex", "set": "Destined Rivals", "num": "039/182", "cond": "Near Mint", "price": 0.81, "delta": -3.57, "qty": 1}, {"card": "Mega Meganium ex", "set": "Mega Evolution Promos", "num": "034", "cond": "Near Mint", "price": 0.67, "delta": -20.24, "qty": 1}], "vCards": [{"card": "Glaceon V", "set": "Sword & Shield Promo", "num": "SWSH196", "cond": "Near Mint", "price": 2.78, "delta": 6.11, "qty": 1}, {"card": "Gyarados V", "set": "Evolving Skies", "num": "028/203", "cond": "Near Mint", "price": 2.46, "delta": 5.58, "qty": 1}, {"card": "Galarian Cursola V (Full Art)", "set": "Champion's Path", "num": "71/73", "cond": "Near Mint", "price": 1.85, "delta": 4.52, "qty": 2}, {"card": "Incineroar V", "set": "Champion's Path", "num": "08/73", "cond": "Near Mint", "price": 1.82, "delta": 5.2, "qty": 1}, {"card": "Wailord V", "set": "Champion's Path", "num": "13/73", "cond": "Near Mint", "price": 1.78, "delta": 14.84, "qty": 1}, {"card": "Drednaw V (Full Art)", "set": "Champion's Path", "num": "69/73", "cond": "Near Mint", "price": 1.57, "delta": 2.61, "qty": 1}, {"card": "Grapploct V (Full Art)", "set": "Champion's Path", "num": "72/73", "cond": "Near Mint", "price": 1.46, "delta": -8.18, "qty": 1}, {"card": "Galarian Cursola V", "set": "Champion's Path", "num": "21/73", "cond": "Near Mint", "price": 1.2, "delta": 0.84, "qty": 1}, {"card": "Drednaw V", "set": "Champion's Path", "num": "14/73", "cond": "Near Mint", "price": 0.91, "delta": -5.21, "qty": 1}, {"card": "Steelix V", "set": "Vivid Voltage", "num": "115/185", "cond": "Near Mint", "price": 0.9, "delta": -15.89, "qty": 1}, {"card": "Tornadus V", "set": "Chilling Reign", "num": "124/198", "cond": "Near Mint", "price": 0.84, "delta": 9.09, "qty": 1}, {"card": "Grapploct V", "set": "Champion's Path", "num": "32/73", "cond": "Near Mint", "price": 0.79, "delta": 11.27, "qty": 1}], "trainers": [], "davidConsign": [{"card": "Moo Moo Milk (JP)", "set": "Neo Genesis (Japanese)", "num": "\u2014", "cond": "Near Mint", "price": 20.02, "delta": -22.75, "qty": 1}, {"card": "Kingdra (JP)", "set": "Neo Genesis (Japanese)", "num": "230", "cond": "Near Mint", "price": 16.96, "delta": -15.92, "qty": 1}, {"card": "Steelix (JP)", "set": "Neo Genesis (Japanese)", "num": "208", "cond": "Near Mint", "price": 10.12, "delta": -37.67, "qty": 1}], "personalCollection": [{"card": "Lt. Surge's Raichu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 307.56, "delta": null, "qty": 1}, {"card": "Rocket's Zapdos", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 220.34, "delta": null, "qty": 1}, {"card": "Dark Blastoise", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 201.48, "delta": null, "qty": 1}, {"card": "Blastoise", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 157.01, "delta": null, "qty": 1}, {"card": "Mew (9)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 151.64, "delta": null, "qty": 1}, {"card": "Mew (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 141.71, "delta": null, "qty": 1}, {"card": "Snorlax", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 128.4, "delta": null, "qty": 1}, {"card": "Ancient Mew [2000]", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 113.94, "delta": null, "qty": 1}, {"card": "MewTwo (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 112.3, "delta": null, "qty": 1}, {"card": "Jolteon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 99.06, "delta": null, "qty": 1}, {"card": "Mewtwo", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 73.12, "delta": null, "qty": 1}, {"card": "Alakazam", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 69.36, "delta": null, "qty": 1}, {"card": "Slowking", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 67.24, "delta": null, "qty": 1}, {"card": "Articuno", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 66.49, "delta": null, "qty": 1}, {"card": "Raichu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 53.57, "delta": null, "qty": 1}, {"card": "Vaporeon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 50.24, "delta": null, "qty": 1}, {"card": "Alakazam (BS2)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 48.03, "delta": null, "qty": 1}, {"card": "Hypno", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 41.87, "delta": null, "qty": 1}, {"card": "Zapdos (15)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 41.06, "delta": null, "qty": 1}, {"card": "Nidoqueen", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 37.76, "delta": null, "qty": 1}, {"card": "Poliwrath", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 35.0, "delta": null, "qty": 1}, {"card": "Ninetales", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 33.9, "delta": null, "qty": 1}, {"card": "Nidoking", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 33.69, "delta": null, "qty": 1}, {"card": "Scyther", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 32.53, "delta": null, "qty": 1}, {"card": "Hitmonlee", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 32.2, "delta": null, "qty": 1}, {"card": "Gengar (20)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 31.7, "delta": null, "qty": 1}, {"card": "Clefairy", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 29.09, "delta": null, "qty": 1}, {"card": "Clefable", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 28.58, "delta": null, "qty": 1}, {"card": "Haunter", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 27.54, "delta": null, "qty": 1}, {"card": "Magneton", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 25.7, "delta": null, "qty": 1}, {"card": "Misty's Lapras", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 25.53, "delta": null, "qty": 1}, {"card": "Machamp", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 23.16, "delta": null, "qty": 1}, {"card": "Vaporeon TG", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 22.94, "delta": null, "qty": 1}, {"card": "Chansey", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 22.54, "delta": null, "qty": 1}, {"card": "Articuno JT", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 21.05, "delta": null, "qty": 1}, {"card": "Hitmonchan", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 20.78, "delta": null, "qty": 1}, {"card": "Unown A (JP)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 20.14, "delta": null, "qty": 1}, {"card": "Wigglytuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 20.05, "delta": null, "qty": 1}, {"card": "Lapras (10)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 19.94, "delta": null, "qty": 1}, {"card": "Eevee TG", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 19.72, "delta": null, "qty": 1}, {"card": "Snorlax SV", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 19.3, "delta": null, "qty": 1}, {"card": "Kingdra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 18.77, "delta": null, "qty": 1}, {"card": "Tangela", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 18.56, "delta": null, "qty": 1}, {"card": "Meowth PF", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 17.36, "delta": null, "qty": 1}, {"card": "Kabuto", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.08, "delta": null, "qty": 1}, {"card": "Kangaskhan", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 15.95, "delta": null, "qty": 1}, {"card": "Omanyte", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 15.39, "delta": null, "qty": 1}, {"card": "Cyndaquil57 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 14.18, "delta": null, "qty": 1}, {"card": "Totodile80", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 13.94, "delta": null, "qty": 1}, {"card": "Kadabra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 12.58, "delta": null, "qty": 1}, {"card": "Team Rocket's Houndoom", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 12.24, "delta": null, "qty": 1}, {"card": "Flying Pikachu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 11.91, "delta": null, "qty": 1}, {"card": "Jigglypuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.14, "delta": null, "qty": 1}, {"card": "Team Rocket's Wobbuffet", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.93, "delta": null, "qty": 1}, {"card": "Magneton26", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.87, "delta": null, "qty": 1}, {"card": "Magmar", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.54, "delta": null, "qty": 1}, {"card": "Hypno BP", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.33, "delta": null, "qty": 1}, {"card": "Donphan", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.14, "delta": null, "qty": 1}, {"card": "Meowth Jungle", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.08, "delta": null, "qty": 1}, {"card": "Team Rocket's Persian ex", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.9, "delta": null, "qty": 1}, {"card": "Spearow", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.22, "delta": null, "qty": 1}, {"card": "Swinub", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.26, "delta": null, "qty": 1}, {"card": "Parasect", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.05, "delta": null, "qty": 1}, {"card": "Cyndaquil57 Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.73, "delta": null, "qty": 1}, {"card": "Raticate", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.51, "delta": null, "qty": 1}, {"card": "Claydol", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.92, "delta": null, "qty": 1}], "gymHero": [{"card": "Blaine's Moltres", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 135.03, "delta": null, "qty": 1}, {"card": "Rocket's Scyther", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 87.26, "delta": null, "qty": 1}, {"card": "Misty (18)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 70.1, "delta": null, "qty": 1}, {"card": "Erika's Clefable", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 42.57, "delta": null, "qty": 1}, {"card": "Misty's Tentacruel", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 27.78, "delta": null, "qty": 1}, {"card": "Erika's Vileplume", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 27.7, "delta": null, "qty": 1}, {"card": "Sabrina's Haunter", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 22.6, "delta": null, "qty": 1}, {"card": "Brock's Rhyhorn (22)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 12.77, "delta": null, "qty": 1}, {"card": "Lt. Surge's Pikachu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.54, "delta": null, "qty": 1}, {"card": "Blaine's Kangaskhan", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.65, "delta": null, "qty": 1}, {"card": "Erika's Dratini", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.41, "delta": null, "qty": 1}, {"card": "Sabrina's ESP", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.97, "delta": null, "qty": 1}, {"card": "Minion of Team Rocket", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.89, "delta": null, "qty": 1}, {"card": "Misty's Starmie", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.34, "delta": null, "qty": 1}, {"card": "Brock's Lickitung", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.82, "delta": null, "qty": 1}, {"card": "Erika's Gloom (46)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.56, "delta": null, "qty": 1}, {"card": "Erika's Oddish (47)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.32, "delta": null, "qty": 1}, {"card": "Sabrina's Slowpoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.03, "delta": null, "qty": 1}, {"card": "Blaine's Charmander", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.94, "delta": null, "qty": 1}, {"card": "Erika's Maids", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.83, "delta": null, "qty": 1}, {"card": "Misty's Seaking", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.67, "delta": null, "qty": 1}, {"card": "Misty's Tentacool (57)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.48, "delta": null, "qty": 1}, {"card": "Misty's Staryu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.1, "delta": null, "qty": 1}, {"card": "Sabrina's Mr. Mime", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.85, "delta": null, "qty": 1}, {"card": "Erika's Gloom (45)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.84, "delta": null, "qty": 1}, {"card": "Erika's Exeggutor", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.74, "delta": null, "qty": 1}, {"card": "Misty's Goldeen (85)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.66, "delta": null, "qty": 1}, {"card": "Blaine's Ponyta", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.45, "delta": null, "qty": 1}, {"card": "Sabrina's Venonat", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.42, "delta": null, "qty": 1}, {"card": "Brock's Mankey (68)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.37, "delta": null, "qty": 1}, {"card": "Brock's Sandshrew (71)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.3, "delta": null, "qty": 1}, {"card": "Erika's Bellsprout (75)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.29, "delta": null, "qty": 1}, {"card": "Blaine's Tauros", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.25, "delta": null, "qty": 2}, {"card": "Sabrina's Gaze", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.11, "delta": null, "qty": 1}, {"card": "Lt. Surge's Spearow (52)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.08, "delta": null, "qty": 1}, {"card": "Brock's Zubat (74)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.97, "delta": null, "qty": 1}, {"card": "Lt. Surge's Voltorb", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.93, "delta": null, "qty": 1}, {"card": "Erika's Tangela", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.92, "delta": null, "qty": 1}, {"card": "Lt. Surge's Magnemite (80)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.88, "delta": null, "qty": 1}, {"card": "Lt. Surge's Rattata", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.83, "delta": null, "qty": 1}, {"card": "Celadon City Gym", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.8, "delta": null, "qty": 1}, {"card": "Erika's Bellsprout (76)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.76, "delta": null, "qty": 1}, {"card": "Blaine's Gamble", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.54, "delta": null, "qty": 1}, {"card": "Energy Flow", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.54, "delta": null, "qty": 1}], "gymChallenge": [{"card": "Giovanni's Machamp", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 71.7, "delta": null, "qty": 1}, {"card": "Giovanni's Nidoking", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 64.58, "delta": null, "qty": 1}, {"card": "Koga's Beedrill", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 33.37, "delta": null, "qty": 1}, {"card": "Blaine's Ninetales", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 22.43, "delta": null, "qty": 1}, {"card": "Sabrina's Gastly (97)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.39, "delta": null, "qty": 1}, {"card": "Erika's Bulbasaur", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 13.15, "delta": null, "qty": 1}, {"card": "Sabrina's Psychic Control", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.88, "delta": null, "qty": 1}, {"card": "Sabrina's Hypno", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.26, "delta": null, "qty": 1}, {"card": "Brock's Sandslash", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.27, "delta": null, "qty": 1}, {"card": "Misty's Dewgong", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.09, "delta": null, "qty": 1}, {"card": "Sabrina's Mr. Mime", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.52, "delta": null, "qty": 1}, {"card": "Blaine's Charmander", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.86, "delta": null, "qty": 1}, {"card": "Giovanni's Magikarp", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.78, "delta": null, "qty": 1}, {"card": "Brock's Primeape", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.62, "delta": null, "qty": 1}, {"card": "Sabrina's Abra (94)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.3, "delta": null, "qty": 1}, {"card": "Blaine's Rapidash", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.98, "delta": null, "qty": 1}, {"card": "Koga's Pidgey (49)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.97, "delta": null, "qty": 1}, {"card": "Erika's Jigglypuff", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.84, "delta": null, "qty": 2}, {"card": "Giovanni's Machoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.8, "delta": null, "qty": 1}, {"card": "Sabrina's Abra (93)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.76, "delta": null, "qty": 1}, {"card": "Lt. Surge's Electrode", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.74, "delta": null, "qty": 1}, {"card": "Erika's Bellsprout", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.6, "delta": null, "qty": 1}, {"card": "Lt. Surge's Raticate", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.34, "delta": null, "qty": 1}, {"card": "Blaine's Vulpix", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.09, "delta": null, "qty": 1}, {"card": "Koga's Weezing", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.03, "delta": null, "qty": 1}, {"card": "Blaine's Dodrio", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.92, "delta": null, "qty": 1}, {"card": "Koga's Koffing (48)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.88, "delta": null, "qty": 1}, {"card": "Brock's Diglett", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.83, "delta": null, "qty": 1}, {"card": "Giovanni's Machop", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.78, "delta": null, "qty": 1}, {"card": "Koga's Pidgey (80)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.51, "delta": null, "qty": 1}, {"card": "Koga's Tangela", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.38, "delta": null, "qty": 1}, {"card": "Brock's Geodude", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.28, "delta": null, "qty": 1}, {"card": "Blaine's Mankey", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.26, "delta": null, "qty": 1}, {"card": "Misty's Seel", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.26, "delta": null, "qty": 1}, {"card": "Koga's Ekans", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.24, "delta": null, "qty": 1}, {"card": "Giovanni's Nidoran F", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.22, "delta": null, "qty": 1}, {"card": "Cinnabar City Gym", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.19, "delta": null, "qty": 1}, {"card": "Blaine's Ponyta", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.12, "delta": null, "qty": 1}, {"card": "Koga's Grimer", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.1, "delta": null, "qty": 1}, {"card": "Lt. Surge's Rattata", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.08, "delta": null, "qty": 1}, {"card": "Lt. Surge's Voltorb", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.04, "delta": null, "qty": 1}, {"card": "Blaine's Doduo", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.72, "delta": null, "qty": 1}], "rocket": [{"card": "Dark Blastoise", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 201.48, "delta": null, "qty": 1}, {"card": "Dark Raichu", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 128.63, "delta": null, "qty": 1}, {"card": "Dark Hypno", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 46.09, "delta": null, "qty": 1}, {"card": "Dark Charmeleon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 24.22, "delta": null, "qty": 1}, {"card": "Rocket's Sneak Attack (16)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 22.24, "delta": null, "qty": 1}, {"card": "Dark Arbok", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 16.13, "delta": null, "qty": 1}, {"card": "Sleep! 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 14.71, "delta": null, "qty": 1}, {"card": "Here Comes Team Rocket! (71)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.83, "delta": null, "qty": 1}, {"card": "Dark Hypno (26)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 9.38, "delta": null, "qty": 1}, {"card": "Dark Flareon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.67, "delta": null, "qty": 1}, {"card": "Dark Arbok (19)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 8.64, "delta": null, "qty": 1}, {"card": "Dark Magneton", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.85, "delta": null, "qty": 1}, {"card": "Dark Weezing (31)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.61, "delta": null, "qty": 1}, {"card": "Eevee", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 7.53, "delta": null, "qty": 1}, {"card": "Dark Dragonair", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.85, "delta": null, "qty": 1}, {"card": "Dark Machoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.75, "delta": null, "qty": 1}, {"card": "Dark Golbat (24)", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 6.66, "delta": null, "qty": 1}, {"card": "Charmander", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.63, "delta": null, "qty": 1}, {"card": "Porygon", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.18, "delta": null, "qty": 1}, {"card": "Dark Electrode", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.13, "delta": null, "qty": 1}, {"card": "Slowpoke", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 5.01, "delta": null, "qty": 2}, {"card": "Meowth 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 4.01, "delta": null, "qty": 1}, {"card": "Dratini", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.75, "delta": null, "qty": 1}, {"card": "Imposter Oak's Revenge", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.71, "delta": null, "qty": 2}, {"card": "Dark Rapidash", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 3.28, "delta": null, "qty": 1}, {"card": "Nightly Garbage Run", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.79, "delta": null, "qty": 1}, {"card": "Grimer", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.72, "delta": null, "qty": 1}, {"card": "Diglett", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.7, "delta": null, "qty": 1}, {"card": "Dark Kadabra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.52, "delta": null, "qty": 1}, {"card": "Challenge!", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.3, "delta": null, "qty": 1}, {"card": "Machop", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.26, "delta": null, "qty": 1}, {"card": "Dark Persian", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.22, "delta": null, "qty": 1}, {"card": "Mankey 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.19, "delta": null, "qty": 1}, {"card": "Zubat 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.08, "delta": null, "qty": 1}, {"card": "Dark Primeape", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.05, "delta": null, "qty": 1}, {"card": "Koffing 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 2.02, "delta": null, "qty": 1}, {"card": "Ponyta 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.96, "delta": null, "qty": 1}, {"card": "Drowzee 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.94, "delta": null, "qty": 1}, {"card": "Dark Muk", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.77, "delta": null, "qty": 1}, {"card": "Meowth Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.77, "delta": null, "qty": 1}, {"card": "Magnemite", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.74, "delta": null, "qty": 1}, {"card": "Ekans", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.73, "delta": null, "qty": 1}, {"card": "Full Heal Energy", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.63, "delta": null, "qty": 1}, {"card": "Rattata 1st", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.53, "delta": null, "qty": 1}, {"card": "Voltorb", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.49, "delta": null, "qty": 1}, {"card": "Digger", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.29, "delta": null, "qty": 1}, {"card": "Potion Energy", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.21, "delta": null, "qty": 1}, {"card": "Goop Gas Attack", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 1.15, "delta": null, "qty": 1}, {"card": "Ponyta Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.98, "delta": null, "qty": 1}, {"card": "Oddish", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.86, "delta": null, "qty": 1}, {"card": "Rattata Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.86, "delta": null, "qty": 1}, {"card": "The Boss's Way", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.82, "delta": null, "qty": 1}, {"card": "Dark Raticate", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.78, "delta": null, "qty": 1}, {"card": "Drowzee Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.74, "delta": null, "qty": 1}, {"card": "Zubat Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.7, "delta": null, "qty": 1}, {"card": "Abra", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.67, "delta": null, "qty": 1}, {"card": "Mankey Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.64, "delta": null, "qty": 1}, {"card": "Sleep! Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.64, "delta": null, "qty": 1}, {"card": "Koffing Unl", "set": "\u2014", "num": "\u2014", "cond": "Bulk / Unrated", "price": 0.63, "delta": null, "qty": 1}]};
+const KCE = {"generated":"2026-09-13","kpis":{"live_value":2816.32,"live_value_physical":3875.3,"public_holdings":2666.82,"unrealized_gain":1842.71,"cost_basis_on_hand":973.61,"realized_pl":1151.12,"net_cash":494.47,"true_economic_position":998.08,"outstanding_iou":470.0},"biz_portfolios":[{"key":"main","label":"Main Inventory","rows":[{"name":"Destined Rivals Booster Box","set":"Destined Rivals","price":431.41,"deltaabs":13.84,"deltapct":"(3.31%)","qty":1},{"name":"Zekrom ex","set":"Black Bolt / Special Illustration Rare / 166/086 / Moderately Played / \u2022 / Holofoil","price":212.1,"deltaabs":-1.2,"deltapct":"(-0.56%)","qty":1},{"name":"Pikachu","set":"POP Series 5 / Common / 12 / Damaged / \u2022 / Holofoil","price":173.94,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Dragon's Roar Structure Deck - 1st Edition","set":"Structure Deck: Dragon's Roar","price":157.11,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Umbreon ex - 176","set":"Scarlet & Violet Promo / Promo / SVP 176","price":149.5,"deltaabs":-9.99,"deltapct":"(-6.27%)","qty":1},{"name":"Zombie Madness Structure Deck - 1st Edition","set":"Structure Deck: Zombie Madness","price":144.45,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Mewtwo","set":"Base Set (Unlimited) / Holo Rare / 10 / Moderately Played / \u2022 / Holofoil","price":69.3,"deltaabs":10.78,"deltapct":"(18.42%)","qty":1},{"name":"Mew (Secret)","set":"Celebrations / Secret Rare / 025/025 / Near Mint / \u2022 / Holofoil","price":64.19,"deltaabs":-0.36,"deltapct":"(-0.56%)","qty":1},{"name":"Machamp (Base Set Shadowless)","set":"Deck Exclusives / Holo Rare / 008/102 / Heavily Played / \u2022 / 1st Edition Holofoil","price":52.88,"deltaabs":0.64,"deltapct":"(1.23%)","qty":1},{"name":"Mega Greninja ex Premium Collection","set":"Miscellaneous Cards & Products","price":51.69,"deltaabs":3.44,"deltapct":"(7.13%)","qty":1},{"name":"Charmander","set":"Scarlet & Violet Promo / Promo / 044 / Lightly Played / \u2022 / Holofoil","price":47.69,"deltaabs":-2.33,"deltapct":"(-4.66%)","qty":1},{"name":"M Rayquaza EX","set":"Celebrations: Classic Collection / Classic Collection / 76/108 / Near Mint / \u2022 / Holofoil","price":40.15,"deltaabs":-3.33,"deltapct":"(-7.66%)","qty":1},{"name":"Mega Moonlit Tin [Mega Gengar ex]","set":"Miscellaneous Cards & Products","price":32.4,"deltaabs":-2.86,"deltapct":"(-8.11%)","qty":1},{"name":"Nidoking","set":"Base Set 2 / Holo Rare / 11 / Moderately Played / \u2022 / Holofoil","price":32.05,"deltaabs":0.75,"deltapct":"(2.40%)","qty":1},{"name":"Gyarados (#30 Holo)","set":"HGSS Trainer Kit: Gyarados & Raichu / Common / 30 / Moderately Played / \u2022 / Holofoil","price":31.64,"deltaabs":1.67,"deltapct":"(5.56%)","qty":1},{"name":"Kabutops (JP)","set":"Neo Discovery (Japanese) / Rare / 141 / Near Mint / \u2022 / Holofoil","price":30.86,"deltaabs":-7.48,"deltapct":"(-19.51%)","qty":1},{"name":"Greninja V[Set of 4]","set":"Sword & Shield Promo / Near Mint / \u2022 / Holofoil","price":30.44,"deltaabs":0.08,"deltapct":"(0.26%)","qty":1},{"name":"Minun","set":"Supreme Victors / Uncommon / 71 / Heavily Played / \u2022 / Reverse Holofoil","price":29.99,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Pikachu V-Union [Set of 4]","set":"Sword & Shield Promo / Near Mint / \u2022 / Holofoil","price":28.87,"deltaabs":-0.85,"deltapct":"(-2.86%)","qty":1},{"name":"Electrode (Prime)","set":"Triumphant / Ultra Rare / 93 / Heavily Played / \u2022 / Holofoil","price":28.51,"deltaabs":0.66,"deltapct":"(2.37%)","qty":1},{"name":"Rayquaza C","set":"Supreme Victors / Holo Rare / 8 / Damaged / \u2022 / Holofoil","price":28.25,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Tentacruel","set":"Gym Heroes / Holo Rare / 10 / Near Mint / \u2022 / Unlimited Holofoil","price":27.78,"deltaabs":-0.16,"deltapct":"(-0.57%)","qty":1},{"name":"Clefairy","set":"Base Set 2 / Holo Rare / 6 / Lightly Played / \u2022 / Holofoil","price":24.73,"deltaabs":0.14,"deltapct":"(0.59%)","qty":1},{"name":"Hitmonchan","set":"Base Set 2 / Holo Rare / 8 / Near Mint / \u2022 / Holofoil","price":24.29,"deltaabs":-0.01,"deltapct":"(-0.04%)","qty":1},{"name":"M Gyarados EX","set":"BREAKpoint / Ultra Rare / 27 / Damaged / \u2022 / Holofoil","price":20.4,"deltaabs":-0.08,"deltapct":"(-0.39%)","qty":1},{"name":"Regigigas (Full Art Promo)","set":"XY Promos / Promo / XY82 / Damaged / \u2022 / Holofoil","price":18.58,"deltaabs":0.0,"deltapct":"(0.00%)","qty":2},{"name":"Gyarados","set":"Base Set (Unlimited) / Holo Rare / 6 / Damaged / \u2022 / Holofoil","price":18.34,"deltaabs":-0.58,"deltapct":"(-3.05%)","qty":1},{"name":"Ursaring (JP)","set":"Neo Discovery (Japanese) / Rare / 217 / Near Mint / \u2022 / Holofoil","price":18.3,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Erika's Clefable (JP)","set":"Gym Heroes (Japanese) / Rare / 036 / Near Mint / \u2022 / Holofoil","price":16.61,"deltaabs":-5.12,"deltapct":"(-23.57%)","qty":1},{"name":"Misty's Tentacruel (JP)","set":"Gym Heroes (Japanese) / Rare / 073 / Near Mint / \u2022 / Holofoil","price":14.95,"deltaabs":-2.55,"deltapct":"(-14.54%)","qty":1},{"name":"Azumarill (JP)","set":"Neo Genesis (Japanese) / Rare / 184 / Near Mint / \u2022 / Holofoil","price":14.77,"deltaabs":2.72,"deltapct":"(22.59%)","qty":1},{"name":"Ditto","set":"Detective Pikachu / Holo Rare / 17 / Near Mint / \u2022 / Holofoil","price":13.88,"deltaabs":0.59,"deltapct":"(4.44%)","qty":1},{"name":"Charizard","set":"Detective Pikachu / Holo Rare / 5 / Near Mint / \u2022 / Holofoil","price":13.64,"deltaabs":0.36,"deltapct":"(2.71%)","qty":1},{"name":"Jirachi (Magnus Pedersen)","set":"World Championship Decks / Promo / XY67 / Near Mint / \u2022 / Normal","price":13.53,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Charizard V","set":"Sword & Shield Promo / Promo / SWSH050 / Near Mint / \u2022 / Holofoil","price":13.07,"deltaabs":-0.89,"deltapct":"(-6.38%)","qty":1},{"name":"Lunala GX","set":"Sun & Moon Promo / Promo / SM103a / Lightly Played / \u2022 / Holofoil","price":12.66,"deltaabs":-0.12,"deltapct":"(-0.93%)","qty":1},{"name":"Snorlax","set":"Boundaries Crossed / Uncommon / 109 / Near Mint / \u2022 / Normal","price":10.21,"deltaabs":0.06,"deltapct":"(0.59%)","qty":1},{"name":"Charizard V","set":"Darkness Ablaze / Ultra Rare / 019/189 / Near Mint / \u2022 / Holofoil","price":9.13,"deltaabs":0.33,"deltapct":"(3.75%)","qty":1},{"name":"Froakie","set":"Chaos Rising / Illustration Rare / 088/086 / Near Mint / \u2022 / Holofoil","price":6.18,"deltaabs":-0.98,"deltapct":"(-13.69%)","qty":1}],"value":2177.05,"qty":40,"note":null},{"key":"under10","label":"Under 10","rows":[{"name":"Unown [O]","set":"Neo Discovery / Common / 69 / Near Mint / \u2022 / Unlimited","price":0.82,"deltaabs":0.02,"deltapct":"(2.50%)","qty":1},{"name":"Charmeleon (Cosmos Holo)","set":"Mega Evolution Promos / Promo / 079 / Near Mint / \u2022 / Holofoil","price":0.92,"deltaabs":0.18,"deltapct":"(24.32%)","qty":1},{"name":"Probopass","set":"Perfect Order / Illustration Rare / 096/088 / Near Mint / \u2022 / Holofoil","price":1.04,"deltaabs":-0.11,"deltapct":"(-9.57%)","qty":1},{"name":"Goop Gas Attack","set":"Team Rocket / Common / 78 / Near Mint / \u2022 / 1st Edition","price":1.15,"deltaabs":-0.03,"deltapct":"(-2.54%)","qty":1},{"name":"Unown [N]","set":"Neo Discovery / Uncommon / 50 / Near Mint / \u2022 / Unlimited","price":1.44,"deltaabs":-0.06,"deltapct":"(-4.00%)","qty":1},{"name":"Voltorb","set":"Team Rocket / Common / 69 / Near Mint / \u2022 / 1st Edition","price":1.49,"deltaabs":-0.04,"deltapct":"(-2.61%)","qty":1},{"name":"Rattata","set":"Team Rocket / Common / 66 / Near Mint / \u2022 / 1st Edition","price":1.53,"deltaabs":-0.03,"deltapct":"(-1.92%)","qty":2},{"name":"Magnemite","set":"Team Rocket / Common / 60 / Near Mint / \u2022 / 1st Edition","price":1.74,"deltaabs":-0.06,"deltapct":"(-3.33%)","qty":4},{"name":"Drowzee","set":"Team Rocket / Common / 54 / Near Mint / \u2022 / 1st Edition","price":1.92,"deltaabs":-0.06,"deltapct":"(-3.03%)","qty":1},{"name":"Ponyta","set":"Team Rocket / Common / 64 / Near Mint / \u2022 / 1st Edition","price":1.97,"deltaabs":-0.08,"deltapct":"(-3.90%)","qty":4},{"name":"Koffing","set":"Team Rocket / Common / 58 / Near Mint / \u2022 / 1st Edition","price":2.06,"deltaabs":-0.07,"deltapct":"(-3.29%)","qty":1},{"name":"Ambipom","set":"Phantasmal Flames / Illustration Rare / 107/094 / Near Mint / \u2022 / Holofoil","price":2.08,"deltaabs":-0.29,"deltapct":"(-12.24%)","qty":1},{"name":"Zubat","set":"Team Rocket / Common / 70 / Near Mint / \u2022 / 1st Edition","price":2.08,"deltaabs":-0.02,"deltapct":"(-0.95%)","qty":1},{"name":"Mankey","set":"Team Rocket / Common / 61 / Near Mint / \u2022 / 1st Edition","price":2.1,"deltaabs":-0.08,"deltapct":"(-3.67%)","qty":1},{"name":"Blaine's Doduo","set":"Gym Challenge / Common / 61 / Near Mint / \u2022 / 1st Edition","price":2.12,"deltaabs":0.03,"deltapct":"(1.44%)","qty":1},{"name":"Snover","set":"Mega Evolution / Illustration Rare / 140/132 / Near Mint / \u2022 / Holofoil","price":2.34,"deltaabs":0.09,"deltapct":"(4.00%)","qty":1},{"name":"Tyrunt","set":"Mega Evolution Promos / Promo / 070 / Near Mint / \u2022 / Holofoil","price":2.61,"deltaabs":0.07,"deltapct":"(2.76%)","qty":1},{"name":"Diglett","set":"Team Rocket / Common / 52 / Near Mint / \u2022 / 1st Edition","price":2.61,"deltaabs":-0.16,"deltapct":"(-5.78%)","qty":1},{"name":"Magikarp","set":"Call of Legends / Common / 61 / Near Mint / \u2022 / Normal","price":2.66,"deltaabs":0.03,"deltapct":"(1.14%)","qty":1},{"name":"Electrike (Omega)","set":"Primal Clash / Uncommon / 60 / Near Mint / \u2022 / Reverse Holofoil","price":2.66,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Venusaur V","set":"Champion's Path / Ultra Rare / 01/73 / Near Mint / \u2022 / Holofoil","price":2.71,"deltaabs":-0.24,"deltapct":"(-8.14%)","qty":2},{"name":"Grimer","set":"Team Rocket / Common / 57 / Near Mint / \u2022 / 1st Edition","price":2.72,"deltaabs":-0.09,"deltapct":"(-3.20%)","qty":1},{"name":"Dragapult","set":"Shining Fates: Shiny Vault / Shiny Holo Rare / SV062/SV122 / Near Mint / \u2022 / Holofoil","price":2.94,"deltaabs":0.02,"deltapct":"(0.68%)","qty":1},{"name":"Pikachu","set":"Sword & Shield Base Set / Common / 065/202 / Near Mint / \u2022 / Reverse Holofoil","price":3.13,"deltaabs":0.18,"deltapct":"(6.10%)","qty":1},{"name":"Abra","set":"Team Rocket / Common / 49 / Near Mint / \u2022 / 1st Edition","price":3.37,"deltaabs":-0.25,"deltapct":"(-6.91%)","qty":1},{"name":"Haunter","set":"BREAKthrough / Uncommon / 59 / Lightly Played / \u2022 / Reverse Holofoil","price":3.46,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Galarian Obstagoon","set":"Ascended Heroes / Illustration Rare / 245/217 / Near Mint / \u2022 / Holofoil","price":3.48,"deltaabs":0.08,"deltapct":"(2.35%)","qty":1},{"name":"Minun","set":"Legendary Treasures / Uncommon / 48 / Near Mint / \u2022 / Normal","price":3.49,"deltaabs":0.06,"deltapct":"(1.75%)","qty":1},{"name":"Dratini","set":"Team Rocket / Common / 53 / Near Mint / \u2022 / 1st Edition","price":3.75,"deltaabs":-0.09,"deltapct":"(-2.34%)","qty":2},{"name":"Meowth","set":"Team Rocket / Common / 62 / Near Mint / \u2022 / 1st Edition","price":4.07,"deltaabs":0.06,"deltapct":"(1.50%)","qty":1},{"name":"Prinplup","set":"Legendary Treasures / Uncommon / 34 / Lightly Played / \u2022 / Reverse Holofoil","price":4.13,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Magmar","set":"McDonald's Promos 2019 / Promo / 3/12 / Damaged / \u2022 / Holofoil","price":4.22,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Mega Eelektross ex","set":"Ascended Heroes / Mega Attack Rare / 266/217 / Near Mint / \u2022 / Holofoil","price":4.49,"deltaabs":0.68,"deltapct":"(17.85%)","qty":1},{"name":"Yveltal ex","set":"Perfect Order / Ultra Rare / 105/088 / Near Mint / \u2022 / Holofoil","price":4.5,"deltaabs":-0.33,"deltapct":"(-6.83%)","qty":1},{"name":"Rowlet","set":"Perfect Order / Illustration Rare / 090/088 / Near Mint / \u2022 / Holofoil","price":4.6,"deltaabs":-0.4,"deltapct":"(-8.00%)","qty":1},{"name":"Litleo","set":"Mega Evolution / Illustration Rare / 139/132 / Near Mint / \u2022 / Holofoil","price":4.83,"deltaabs":-0.18,"deltapct":"(-3.59%)","qty":1},{"name":"Lucario (47)","set":"Fates Collide / Rare / 47 / Near Mint / \u2022 / Reverse Holofoil","price":4.85,"deltaabs":-0.4,"deltapct":"(-7.62%)","qty":1},{"name":"Venusaur EX","set":"Evolutions / Ultra Rare / 1/108 / Near Mint / \u2022 / Holofoil","price":4.95,"deltaabs":-0.02,"deltapct":"(-0.40%)","qty":1},{"name":"Porygon","set":"Team Rocket / Uncommon / 48 / Near Mint / \u2022 / 1st Edition","price":5.18,"deltaabs":0.16,"deltapct":"(3.19%)","qty":1},{"name":"Gyarados GX","set":"Hidden Fates / Ultra Rare / 16/68 / Near Mint / \u2022 / Holofoil","price":5.82,"deltaabs":-0.28,"deltapct":"(-4.59%)","qty":1},{"name":"Dragonite","set":"McDonald's Promos 2024 / Promo / 012/015 / Near Mint / \u2022 / Holofoil","price":6.14,"deltaabs":-0.31,"deltapct":"(-4.81%)","qty":1},{"name":"Koga's Pidgey (49)","set":"Gym Challenge / Uncommon / 49 / Near Mint / \u2022 / 1st Edition","price":6.2,"deltaabs":-0.13,"deltapct":"(-2.05%)","qty":1},{"name":"Dragonite EX","set":"Furious Fists / Ultra Rare / 74 / Damaged / \u2022 / Holofoil","price":6.28,"deltaabs":0.03,"deltapct":"(0.45%)","qty":1},{"name":"Dedenne","set":"Perfect Order / Illustration Rare / 093/088 / Near Mint / \u2022 / Holofoil","price":6.39,"deltaabs":0.23,"deltapct":"(3.73%)","qty":2},{"name":"Gyarados","set":"Evolutions / Holo Rare / 34/108 / Lightly Played / \u2022 / Holofoil","price":7.76,"deltaabs":0.07,"deltapct":"(0.88%)","qty":1},{"name":"Mankey","set":"McDonald's Promos 2019 / Promo / 8/12 / Near Mint / \u2022 / Holofoil","price":8.0,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Snorlax","set":"BREAKthrough / Uncommon / 118 / Near Mint / \u2022 / Normal","price":8.53,"deltaabs":0.26,"deltapct":"(3.14%)","qty":1},{"name":"Gyarados","set":"Generations / Rare / 23 / Near Mint / \u2022 / Reverse Holofoil","price":8.81,"deltaabs":0.17,"deltapct":"(1.97%)","qty":1},{"name":"Pikachu Libre (14","set":"XY Trainer Kit: Pikachu Libre & Suicune / Common / 14 / Damaged / \u2022 / Normal","price":9.03,"deltaabs":0.13,"deltapct":"(1.44%)","qty":1},{"name":"Ursaring","set":"Legendary Treasures: Radiant Collections / Common / RC16 / Near Mint / \u2022 / Holofoil","price":9.35,"deltaabs":-0.05,"deltapct":"(-0.53%)","qty":1},{"name":"Unown (R)","set":"Legends Awakened / Uncommon / 77 / Heavily Played / \u2022 / Reverse Holofoil","price":10.95,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Sleep!","set":"Team Rocket / Common / 79 / Near Mint / \u2022 / 1st Edition","price":14.46,"deltaabs":0.29,"deltapct":"(2.05%)","qty":2}],"value":259.9,"qty":63,"note":null},{"key":"japanese","label":"Japanese Poke","rows":[{"name":"Hoppip (JP)","set":"Neo Discovery (Japanese) / Common / 187 / Near Mint / \u2022 / Normal","price":1.23,"deltaabs":0.24,"deltapct":"(24.54%)","qty":2},{"name":"Kakuna (JP)","set":"Neo Discovery (Japanese) / Uncommon / 014 / Near Mint / \u2022 / Normal","price":1.25,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Stantler (JP)","set":"Neo Genesis (Japanese) / Common / 234 / Near Mint / \u2022 / Normal","price":1.25,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Sentret (JP)","set":"Neo Discovery (Japanese) / Common / 161 / Near Mint / \u2022 / Normal","price":1.64,"deltaabs":-0.18,"deltapct":"(-10.08%)","qty":2},{"name":"Dunsparce (JP)","set":"Neo Discovery (Japanese) / Common / 206 / Near Mint / \u2022 / Normal","price":1.73,"deltaabs":-0.26,"deltapct":"(-12.86%)","qty":2},{"name":"Pineco (JP)","set":"Neo Discovery (Japanese) / Common / 204 / Near Mint / \u2022 / Normal","price":1.74,"deltaabs":-0.6,"deltapct":"(-25.78%)","qty":3},{"name":"Weedle (JP)","set":"Neo Discovery (Japanese) / Common / 013 / Near Mint / \u2022 / Normal","price":1.97,"deltaabs":-0.02,"deltapct":"(-0.78%)","qty":2},{"name":"Hyper Devolution Spray (JP)","set":"Neo Discovery (Japanese) / Near Mint / \u2022 / Normal","price":2.47,"deltaabs":0.03,"deltapct":"(1.17%)","qty":1},{"name":"Farfetch'd (JP)","set":"Neo Revelation (Japanese) / Common / 083 / Near Mint / \u2022 / Normal","price":2.54,"deltaabs":0.22,"deltapct":"(9.42%)","qty":1},{"name":"Girafarig (JP)","set":"Neo Genesis (Japanese) / Common / 203 / Near Mint / \u2022 / Normal","price":2.59,"deltaabs":-0.1,"deltapct":"(-3.54%)","qty":1},{"name":"Metapod (JP)","set":"Neo Discovery (Japanese) / Uncommon / 011 / Near Mint / \u2022 / Normal","price":2.89,"deltaabs":-0.36,"deltapct":"(-11.14%)","qty":2},{"name":"Energy Ark (JP)","set":"Neo Discovery (Japanese) / Near Mint / \u2022 / Normal","price":2.99,"deltaabs":0.0,"deltapct":"(0.00%)","qty":2},{"name":"Time Capsule (JP)","set":"Neo Genesis (Japanese) / Near Mint / \u2022 / Normal","price":2.99,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Natu (JP)","set":"Neo Discovery (Japanese) / Common / 177 / Near Mint / \u2022 / Normal","price":3.13,"deltaabs":0.0,"deltapct":"(0.00%)","qty":2},{"name":"Flaaffy (JP)","set":"Neo Genesis (Japanese) / Uncommon / 180 / Near Mint / \u2022 / Normal","price":3.65,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Unown U (JP)","set":"Neo Discovery (Japanese) / Uncommon / 201 / Near Mint / \u2022 / Normal","price":3.77,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Fossil Egg (JP)","set":"Neo Discovery (Japanese) / Near Mint / \u2022 / Normal","price":3.79,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Unown D (JP)","set":"Neo Discovery (Japanese) / Uncommon / 201 / Near Mint / \u2022 / Normal","price":4.55,"deltaabs":1.27,"deltapct":"(38.74%)","qty":1},{"name":"Caterpie (JP)","set":"Neo Discovery (Japanese) / Common / 010 / Near Mint / \u2022 / Normal","price":4.59,"deltaabs":-1.91,"deltapct":"(-29.38%)","qty":2},{"name":"Ruin Wall [Kabuto] (JP)","set":"Neo Discovery (Japanese) / Near Mint / \u2022 / Normal","price":6.95,"deltaabs":0.0,"deltapct":"(0.00%)","qty":2}],"value":88.31,"qty":31,"note":null},{"key":"exmega","label":"EX & Mega EX","rows":[{"name":"Mega Meganium ex","set":"Mega Evolution Promos / Promo / 034 / Near Mint / \u2022 / Holofoil","price":0.59,"deltaabs":-0.15,"deltapct":"(-20.27%)","qty":1},{"name":"Ethan's Ho-oh ex","set":"Destined Rivals / Double Rare / 039/182 / Near Mint / \u2022 / Holofoil","price":0.81,"deltaabs":-0.02,"deltapct":"(-2.41%)","qty":1},{"name":"Mega Meganium ex","set":"Jumbo Cards / Promo / 034 / Near Mint / \u2022 / Holofoil","price":1.4,"deltaabs":-0.04,"deltapct":"(-2.78%)","qty":2},{"name":"Arboliva ex","set":"Destined Rivals / Ultra Rare / 207/182 / Near Mint / \u2022 / Holofoil","price":1.91,"deltaabs":-0.13,"deltapct":"(-6.37%)","qty":1}],"value":6.11,"qty":5,"note":null},{"key":"vcards","label":"V Cards","rows":[{"name":"Grapploct V","set":"Champion's Path / Ultra Rare / 32/73 / Near Mint / \u2022 / Holofoil","price":0.8,"deltaabs":0.07,"deltapct":"(9.59%)","qty":1},{"name":"Tornadus V","set":"Chilling Reign / Ultra Rare / 124/198 / Near Mint / \u2022 / Holofoil","price":0.86,"deltaabs":0.1,"deltapct":"(13.16%)","qty":1},{"name":"Steelix V","set":"Vivid Voltage / Ultra Rare / 115/185 / Near Mint / \u2022 / Holofoil","price":0.9,"deltaabs":-0.14,"deltapct":"(-13.46%)","qty":1},{"name":"Drednaw V","set":"Champion's Path / Ultra Rare / 14/73 / Near Mint / \u2022 / Holofoil","price":0.91,"deltaabs":-0.05,"deltapct":"(-5.21%)","qty":1},{"name":"Galarian Cursola V","set":"Champion's Path / Ultra Rare / 21/73 / Near Mint / \u2022 / Holofoil","price":1.18,"deltaabs":0.06,"deltapct":"(5.36%)","qty":1},{"name":"Grapploct V (Full Art)","set":"Champion's Path / Ultra Rare / 72/73 / Near Mint / \u2022 / Holofoil","price":1.46,"deltaabs":-0.04,"deltapct":"(-2.67%)","qty":1},{"name":"Drednaw V (Full Art)","set":"Champion's Path / Ultra Rare / 69/73 / Near Mint / \u2022 / Holofoil","price":1.57,"deltaabs":0.03,"deltapct":"(1.95%)","qty":1},{"name":"Wailord V","set":"Champion's Path / Ultra Rare / 13/73 / Near Mint / \u2022 / Holofoil","price":1.79,"deltaabs":0.21,"deltapct":"(13.29%)","qty":1},{"name":"Incineroar V","set":"Champion's Path / Ultra Rare / 08/73 / Near Mint / \u2022 / Holofoil","price":1.8,"deltaabs":0.04,"deltapct":"(2.27%)","qty":1},{"name":"Galarian Cursola V (Full Art)","set":"Champion's Path / Ultra Rare / 71/73 / Near Mint / \u2022 / Holofoil","price":1.83,"deltaabs":0.06,"deltapct":"(3.39%)","qty":2},{"name":"Gyarados V","set":"Evolving Skies / Ultra Rare / 028/203 / Near Mint / \u2022 / Holofoil","price":2.51,"deltaabs":0.06,"deltapct":"(2.45%)","qty":1},{"name":"Glaceon V","set":"Sword & Shield Promo / Promo / SWSH196 / Near Mint / \u2022 / Holofoil","price":2.76,"deltaabs":0.01,"deltapct":"(0.36%)","qty":1}],"value":20.2,"qty":13,"note":null},{"key":"trainers","label":"Trainers","rows":[],"value":0,"qty":0,"note":"Sold out \u2014 6 items all sold as of last workbook sync. No live inventory."},{"key":"wotc","label":"WOTC Lot","rows":[{"name":"Dragonite (19)","set":"Fossil / Rare / 19 / Near Mint / \u2022 / 1st Edition","price":98.66,"deltaabs":0.73,"deltapct":"(0.75%)","qty":1},{"name":"Pinsir","set":"Jungle / Holo Rare / 9 / Near Mint / \u2022 / 1st Edition Holofoil","price":88.13,"deltaabs":0.89,"deltapct":"(1.02%)","qty":1},{"name":"Wigglytuff","set":"Jungle / Holo Rare / 16 / Near Mint / \u2022 / 1st Edition Holofoil","price":78.38,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Snorlax","set":"Jungle / Rare / 27 / Near Mint / \u2022 / 1st Edition","price":77.85,"deltaabs":3.8,"deltapct":"(5.13%)","qty":1},{"name":"Magneton (11)","set":"Fossil / Holo Rare / 11 / Near Mint / \u2022 / 1st Edition Holofoil","price":61.31,"deltaabs":0.29,"deltapct":"(0.48%)","qty":1},{"name":"Electrode","set":"Jungle / Rare / 18 / Near Mint / \u2022 / 1st Edition","price":50.54,"deltaabs":-0.05,"deltapct":"(-0.10%)","qty":2},{"name":"Clefable","set":"Jungle / Holo Rare / 1 / Near Mint / \u2022 / Unlimited Holofoil","price":38.05,"deltaabs":0.11,"deltapct":"(0.29%)","qty":1},{"name":"Moltres (27)","set":"Fossil / Rare / 27 / Near Mint / \u2022 / 1st Edition","price":30.52,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Pikachu","set":"Jungle / Common / 60 / Near Mint / \u2022 / 1st Edition","price":26.06,"deltaabs":0.12,"deltapct":"(0.46%)","qty":6},{"name":"Kabutops (24)","set":"Fossil / Rare / 24 / Near Mint / \u2022 / 1st Edition","price":23.53,"deltaabs":0.28,"deltapct":"(1.20%)","qty":1},{"name":"Pidgeot","set":"Jungle / Rare / 24 / Near Mint / \u2022 / 1st Edition","price":21.7,"deltaabs":0.53,"deltapct":"(2.50%)","qty":1},{"name":"Wigglytuff","set":"Jungle / Rare / 32 / Near Mint / \u2022 / 1st Edition","price":21.53,"deltaabs":-0.14,"deltapct":"(-0.65%)","qty":1},{"name":"Pinsir","set":"Jungle / Rare / 25 / Near Mint / \u2022 / 1st Edition","price":19.0,"deltaabs":0.02,"deltapct":"(0.11%)","qty":1},{"name":"Vileplume","set":"Jungle / Rare / 31 / Near Mint / \u2022 / 1st Edition","price":16.4,"deltaabs":0.09,"deltapct":"(0.55%)","qty":1},{"name":"Kabuto","set":"Fossil / Common / 50 / Near Mint / \u2022 / 1st Edition","price":16.08,"deltaabs":-2.1,"deltapct":"(-11.55%)","qty":1},{"name":"Vaporeon","set":"Jungle / Rare / 28 / Near Mint / \u2022 / Unlimited","price":16.08,"deltaabs":0.07,"deltapct":"(0.44%)","qty":1},{"name":"Victreebel","set":"Jungle / Rare / 30 / Near Mint / \u2022 / 1st Edition","price":15.65,"deltaabs":-0.04,"deltapct":"(-0.25%)","qty":1},{"name":"Clefable","set":"Jungle / Rare / 17 / Near Mint / \u2022 / 1st Edition","price":15.46,"deltaabs":0.53,"deltapct":"(3.55%)","qty":1},{"name":"Skarmory (JP)","set":"Neo Genesis (Japanese) / Rare / 227 / Near Mint / \u2022 / Holofoil","price":15.33,"deltaabs":3.18,"deltapct":"(26.20%)","qty":1},{"name":"Psyduck","set":"Fossil / Common / 53 / Near Mint / \u2022 / 1st Edition","price":11.72,"deltaabs":-1.62,"deltapct":"(-12.14%)","qty":2},{"name":"Aerodactyl (16)","set":"Fossil / Rare / 16 / Near Mint / \u2022 / Unlimited","price":10.2,"deltaabs":0.3,"deltapct":"(3.03%)","qty":1},{"name":"Mr. Mime","set":"Jungle / Rare / 22 / Near Mint / \u2022 / Unlimited","price":9.77,"deltaabs":-0.07,"deltapct":"(-0.71%)","qty":1},{"name":"Gligar (JP)","set":"Neo Genesis (Japanese) / Common / 207 / Near Mint / \u2022 / Normal","price":8.51,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1}],"value":1323.73,"qty":170,"note":"David\u2019s (Wiley & Rum) consigned vintage stock \u2014 20% KCE / 80% consignor split. Counted at ~20% KCE economic interest ($264.75) in headline KPIs. Top 24 holdings by price shown below (170 total lines)."}],"uncategorized":{"key":"david","label":"David Consign \u2014 Side List","rows":[{"name":"Moo Moo Milk (JP)","set":"Neo Genesis (Japanese) / Near Mint / \u2022 / Normal","price":35.74,"deltaabs":13.8,"deltapct":"(62.93%)","qty":1},{"name":"Kingdra (JP)","set":"Neo Genesis (Japanese) / Rare / 230 / Near Mint / \u2022 / Holofoil","price":15.38,"deltaabs":-0.31,"deltapct":"(-1.95%)","qty":1},{"name":"Steelix (JP)","set":"Neo Genesis (Japanese) / Rare / 208 / Near Mint / \u2022 / Holofoil","price":13.94,"deltaabs":-0.31,"deltapct":"(-2.20%)","qty":1}],"value":65.06,"qty":3,"note":"Uncategorized 12th portfolio, not one of the 7 official FOR SALE portfolios. Excluded from headline Live Portfolio Value pending confirmation with Ernesto. 3 items, all Japanese Neo Genesis."},"pc_portfolios":[{"key":"personal","label":"Personal Collection","rows":[{"name":"Lt. Surge's Raichu","set":"Gym Challenge / Holo Rare / 11","price":307.56,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Rocket's Zapdos","set":"Gym Challenge / Holo Rare / 15","price":258.28,"deltaabs":37.93,"deltapct":"(17.21%)","qty":1},{"name":"Dark Blastoise","set":"Team Rocket / Holo Rare / 3 / Near Mint / \u2022 / Unlimited Holofoil","price":201.48,"deltaabs":5.69,"deltapct":"(2.91%)","qty":1},{"name":"Mew (JP)","set":"Japanese CD Promo / Rare / 151 / Near Mint / \u2022 / Glossy","price":162.26,"deltaabs":52.15,"deltapct":"(47.35%)","qty":1},{"name":"Blastoise","set":"Base Set 2 / Holo Rare / 2 / Near Mint / \u2022 / Holofoil","price":157.01,"deltaabs":2.27,"deltapct":"(1.47%)","qty":1},{"name":"Mew (9)","set":"WoTC Promo / Promo / 09/53 / Near Mint / \u2022 / Holofoil","price":151.64,"deltaabs":2.92,"deltapct":"(1.96%)","qty":1},{"name":"Snorlax","set":"Jungle / Holo Rare / 11 / Lightly Played / \u2022 / Unlimited Holofoil","price":130.27,"deltaabs":2.21,"deltapct":"(1.73%)","qty":1},{"name":"Ancient Mew [2000]","set":"Miscellaneous Cards & Products / Promo / 1 / Near Mint / \u2022 / Holofoil","price":113.69,"deltaabs":0.05,"deltapct":"(0.04%)","qty":1},{"name":"Jolteon","set":"Jungle / Holo Rare / 4 / Near Mint / \u2022 / Unlimited Holofoil","price":99.06,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"MewTwo (JP)","set":"Japanese CD Promo / Rare / 150 / Near Mint / \u2022 / Glossy","price":95.99,"deltaabs":16.34,"deltapct":"(20.52%)","qty":1},{"name":"Mewtwo","set":"Base Set (Unlimited) / Holo Rare / 10 / Lightly Played / \u2022 / Holofoil","price":78.54,"deltaabs":12.21,"deltapct":"(18.42%)","qty":1},{"name":"Alakazam","set":"Base Set (Unlimited) / Holo Rare / 1 / Near Mint / \u2022 / Holofoil","price":69.36,"deltaabs":0.02,"deltapct":"(0.03%)","qty":1},{"name":"Slowking","set":"Neo Genesis / Holo Rare / 14 / Lightly Played / \u2022 / Unlimited Holofoil","price":67.97,"deltaabs":0.73,"deltapct":"(1.09%)","qty":1},{"name":"Articuno","set":"Fossil / Holo Rare / 2 / Lightly Played / \u2022 / Unlimited Holofoil","price":66.49,"deltaabs":-1.87,"deltapct":"(-2.74%)","qty":1},{"name":"Raichu","set":"Base Set 2 / Holo Rare / 16 / Lightly Played / \u2022 / Holofoil","price":53.57,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Vaporeon","set":"Jungle / Holo Rare / 12 / Near Mint / \u2022 / Unlimited Holofoil","price":50.24,"deltaabs":0.2,"deltapct":"(0.40%)","qty":1},{"name":"Alakazam","set":"Base Set 2 / Holo Rare / 1 / Lightly Played / \u2022 / Holofoil","price":48.03,"deltaabs":0.85,"deltapct":"(1.80%)","qty":1},{"name":"Hypno","set":"Fossil / Holo Rare / 8 / Near Mint / \u2022 / Unlimited Holofoil","price":41.87,"deltaabs":-0.09,"deltapct":"(-0.21%)","qty":1},{"name":"Zapdos (15)","set":"Fossil / Holo Rare / 15 / Lightly Played / \u2022 / Unlimited Holofoil","price":41.06,"deltaabs":1.59,"deltapct":"(4.03%)","qty":1},{"name":"Nidoqueen","set":"Jungle / Holo Rare / 7 / Lightly Played / \u2022 / Unlimited Holofoil","price":37.76,"deltaabs":0.16,"deltapct":"(0.43%)","qty":1},{"name":"Ninetales","set":"Base Set (Unlimited) / Holo Rare / 12 / Near Mint / \u2022 / Holofoil","price":36.9,"deltaabs":2.97,"deltapct":"(8.75%)","qty":1},{"name":"Poliwrath","set":"Base Set (Unlimited) / Holo Rare / 13 / Near Mint / \u2022 / Holofoil","price":34.99,"deltaabs":-0.17,"deltapct":"(-0.48%)","qty":1},{"name":"Nidoking","set":"Base Set (Unlimited) / Holo Rare / 11 / Lightly Played / \u2022 / Holofoil","price":33.63,"deltaabs":-0.31,"deltapct":"(-0.93%)","qty":1},{"name":"Scyther","set":"Base Set 2 / Holo Rare / 17 / Near Mint / \u2022 / Holofoil","price":32.53,"deltaabs":-0.19,"deltapct":"(-0.58%)","qty":1},{"name":"Hitmonlee","set":"Fossil / Holo Rare / 7 / Moderately Played / \u2022 / Unlimited Holofoil","price":32.2,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Gengar (20)","set":"Fossil / Rare / 20 / Moderately Played / \u2022 / Unlimited","price":31.7,"deltaabs":1.33,"deltapct":"(4.37%)","qty":1},{"name":"Clefairy","set":"Base Set 2 / Holo Rare / 6 / Near Mint / \u2022 / Holofoil","price":29.09,"deltaabs":0.17,"deltapct":"(0.59%)","qty":1},{"name":"Clefable","set":"Base Set 2 / Holo Rare / 5 / Lightly Played / \u2022 / Holofoil","price":28.58,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Haunter","set":"Base Set (1st Edition & Shadowless) / Uncommon / 29 / Damaged / \u2022 / 1st Edition","price":27.54,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Lapras","set":"Destined Rivals / Illustration Rare / 194/182 / Lightly Played / \u2022 / Holofoil","price":26.32,"deltaabs":-0.9,"deltapct":"(-3.31%)","qty":1},{"name":"Magneton","set":"Base Set 2 / Holo Rare / 9 / Near Mint / \u2022 / Holofoil","price":25.7,"deltaabs":0.75,"deltapct":"(3.01%)","qty":1},{"name":"Machamp","set":"Deck Exclusives / Holo Rare / 008/102 / Lightly Played / \u2022 / 1st Edition Holofoil","price":23.16,"deltaabs":2.38,"deltapct":"(11.45%)","qty":1},{"name":"Vaporeon","set":"Brilliant Stars Trainer Gallery / Ultra Rare / TG02/TG30 / Near Mint / \u2022 / Holofoil","price":22.9,"deltaabs":-0.65,"deltapct":"(-2.76%)","qty":1},{"name":"Chansey","set":"Base Set 2 / Holo Rare / 3 / Near Mint / \u2022 / Holofoil","price":22.54,"deltaabs":0.38,"deltapct":"(1.71%)","qty":1},{"name":"Articuno","set":"Journey Together / Illustration Rare / 161/159 / Near Mint / \u2022 / Holofoil","price":20.97,"deltaabs":1.27,"deltapct":"(6.45%)","qty":1},{"name":"Hitmonchan","set":"Base Set (Unlimited) / Holo Rare / 7 / Near Mint / \u2022 / Holofoil","price":20.2,"deltaabs":0.34,"deltapct":"(1.71%)","qty":1},{"name":"Eevee","set":"Brilliant Stars Trainer Gallery / Ultra Rare / TG11/TG30 / Near Mint / \u2022 / Holofoil","price":20.2,"deltaabs":0.2,"deltapct":"(1.00%)","qty":1},{"name":"Unown A (JP)","set":"Neo Discovery (Japanese) / Rare / 201 / Near Mint / \u2022 / Holofoil","price":20.14,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Wigglytuff","set":"Base Set 2 / Holo Rare / 19 / Lightly Played / \u2022 / Holofoil","price":20.05,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Lapras (10)","set":"Fossil / Holo Rare / 10 / Moderately Played / \u2022 / Unlimited Holofoil","price":20.03,"deltaabs":0.27,"deltapct":"(1.37%)","qty":1},{"name":"Snorlax","set":"Scarlet & Violet Promo / Promo / 051 / Near Mint / \u2022 / Holofoil","price":19.51,"deltaabs":-1.81,"deltapct":"(-8.49%)","qty":1},{"name":"Kingdra","set":"Neo Genesis / Holo Rare / 8 / Lightly Played / \u2022 / Unlimited Holofoil","price":18.77,"deltaabs":-0.94,"deltapct":"(-4.79%)","qty":1},{"name":"Tangela","set":"SV: 151 / Illustration Rare / 178/165 / Near Mint / \u2022 / Holofoil","price":18.24,"deltaabs":1.71,"deltapct":"(10.34%)","qty":1},{"name":"Meowth","set":"Phantasmal Flames / Illustration Rare / 106/094 / Near Mint / \u2022 / Holofoil","price":17.1,"deltaabs":-1.51,"deltapct":"(-8.11%)","qty":1},{"name":"Omanyte","set":"SV: 151 / Illustration Rare / 180/165 / Near Mint / \u2022 / Holofoil","price":16.12,"deltaabs":1.88,"deltapct":"(13.20%)","qty":1},{"name":"Kabuto","set":"Fossil / Common / 50 / Near Mint / \u2022 / 1st Edition","price":16.08,"deltaabs":-2.1,"deltapct":"(-11.55%)","qty":1},{"name":"Kangaskhan","set":"Jungle / Holo Rare / 5 / Lightly Played / \u2022 / Unlimited Holofoil","price":15.95,"deltaabs":0.21,"deltapct":"(1.35%)","qty":1},{"name":"Cyndaquil (57)","set":"Neo Genesis / Common / 57 / Near Mint / \u2022 / 1st Edition","price":14.18,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Totodile (80)","set":"Neo Genesis / Common / 80 / Near Mint / \u2022 / 1st Edition","price":14.05,"deltaabs":0.84,"deltapct":"(6.36%)","qty":1},{"name":"Kadabra","set":"Base Set (1st Edition & Shadowless) / Uncommon / 32 / Near Mint / \u2022 / Shadowless","price":12.58,"deltaabs":-0.21,"deltapct":"(-1.64%)","qty":1},{"name":"Flying Pikachu","set":"Evolutions / Secret Rare / 110/108 / Near Mint / \u2022 / Normal","price":11.86,"deltaabs":0.97,"deltapct":"(8.91%)","qty":1},{"name":"Team Rocket's Houndoom","set":"Destined Rivals / Illustration Rare / 191/182 / Near Mint / \u2022 / Holofoil","price":11.68,"deltaabs":-1.39,"deltapct":"(-10.64%)","qty":1},{"name":"Jigglypuff","set":"Jungle / Common / 54 / Near Mint / \u2022 / 1st Edition","price":7.14,"deltaabs":-0.85,"deltapct":"(-10.64%)","qty":1},{"name":"Magneton (26)","set":"Fossil / Rare / 26 / Near Mint / \u2022 / Unlimited","price":6.87,"deltaabs":0.03,"deltapct":"(0.44%)","qty":1},{"name":"Team Rocket's Wobbuffet","set":"Scarlet & Violet Promo / Promo / 203 / Near Mint / \u2022 / Holofoil","price":6.7,"deltaabs":-1.22,"deltapct":"(-15.40%)","qty":1},{"name":"Magmar","set":"Fossil / Uncommon / 39 / Near Mint / \u2022 / 1st Edition","price":6.54,"deltaabs":0.11,"deltapct":"(1.71%)","qty":1},{"name":"Hypno","set":"BREAKpoint / Rare / 51 / Lightly Played / \u2022 / Normal","price":6.33,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Donphan","set":"Neo Genesis / Rare / 21 / Near Mint / \u2022 / Unlimited","price":6.14,"deltaabs":-0.44,"deltapct":"(-6.69%)","qty":1},{"name":"Meowth","set":"Jungle / Common / 56 / Near Mint / \u2022 / 1st Edition","price":5.17,"deltaabs":0.11,"deltapct":"(2.17%)","qty":1},{"name":"Team Rocket's Persian ex","set":"Destined Rivals / Ultra Rare / 219/182 / Near Mint / \u2022 / Holofoil","price":4.76,"deltaabs":0.14,"deltapct":"(3.03%)","qty":1},{"name":"Spearow","set":"Mega Evolution / Illustration Rare / 151/132 / Near Mint / \u2022 / Holofoil","price":4.6,"deltaabs":-0.09,"deltapct":"(-1.92%)","qty":1},{"name":"Swinub","set":"Journey Together / Illustration Rare / 165/159 / Near Mint / \u2022 / Holofoil","price":3.39,"deltaabs":0.12,"deltapct":"(3.67%)","qty":1},{"name":"Parasect","set":"Jungle / Uncommon / 41 / Near Mint / \u2022 / 1st Edition","price":3.05,"deltaabs":-0.23,"deltapct":"(-7.01%)","qty":1},{"name":"Cyndaquil (57)","set":"Neo Genesis / Common / 57 / Near Mint / \u2022 / Unlimited","price":2.74,"deltaabs":0.01,"deltapct":"(0.37%)","qty":1},{"name":"Raticate","set":"Perfect Order / Illustration Rare / 099/088 / Near Mint / \u2022 / Holofoil","price":2.34,"deltaabs":-0.21,"deltapct":"(-8.24%)","qty":1},{"name":"Claydol","set":"Chaos Rising / Illustration Rare / 092/086 / Near Mint / \u2022 / Holofoil","price":1.86,"deltaabs":-0.08,"deltapct":"(-4.12%)","qty":1}],"value":3024.94,"qty":66,"note":"Live Overview total $3,024.94; per-card table sums to $3015.25 (66 rows) \u2014 small variance (~0.3%), likely rounding/timing between Overview refresh and per-card scrape."},{"key":"gymhero","label":"Gym Hero","rows":[{"name":"Blaine's Moltres","set":"Gym Heroes / Holo Rare / 1 / Near Mint / \u2022 / Unlimited Holofoil","price":133.36,"deltaabs":-3.34,"deltapct":"(-2.44%)","qty":1},{"name":"Rocket's Scyther","set":"Gym Heroes / Holo Rare / 13 / Near Mint / \u2022 / Unlimited Holofoil","price":87.73,"deltaabs":1.59,"deltapct":"(1.85%)","qty":1},{"name":"Misty (18)","set":"Gym Heroes / Holo Rare / 18 / Near Mint / \u2022 / Unlimited Holofoil","price":70.1,"deltaabs":1.29,"deltapct":"(1.87%)","qty":1},{"name":"Erika's Clefable","set":"Gym Heroes / Holo Rare / 3 / Lightly Played / \u2022 / Unlimited Holofoil","price":42.57,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Tentacruel","set":"Gym Heroes / Holo Rare / 10 / Near Mint / \u2022 / Unlimited Holofoil","price":27.78,"deltaabs":-0.16,"deltapct":"(-0.57%)","qty":1},{"name":"Erika's Vileplume","set":"Gym Heroes / Holo Rare / 5 / Near Mint / \u2022 / Unlimited Holofoil","price":27.7,"deltaabs":-0.26,"deltapct":"(-0.93%)","qty":1},{"name":"Sabrina's Haunter","set":"Gym Heroes / Uncommon / 58 / Near Mint / \u2022 / Unlimited","price":22.6,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Brock's Rhyhorn (22)","set":"Gym Heroes / Rare / 22 / Near Mint / \u2022 / Unlimited","price":12.85,"deltaabs":0.08,"deltapct":"(0.63%)","qty":1},{"name":"Lt. Surge's Pikachu","set":"Gym Heroes / Common / 81 / Near Mint / \u2022 / Unlimited","price":9.12,"deltaabs":-0.34,"deltapct":"(-3.59%)","qty":1},{"name":"Blaine's Kangaskhan","set":"Gym Heroes / Uncommon / 36 / Near Mint / \u2022 / Unlimited","price":5.65,"deltaabs":0.06,"deltapct":"(1.07%)","qty":1},{"name":"Erika's Dratini","set":"Gym Heroes / Uncommon / 42 / Near Mint / \u2022 / Unlimited","price":5.37,"deltaabs":-0.02,"deltapct":"(-0.37%)","qty":1},{"name":"Sabrina's ESP","set":"Gym Heroes / Uncommon / 117 / Near Mint / \u2022 / Unlimited","price":4.97,"deltaabs":0.31,"deltapct":"(6.65%)","qty":1},{"name":"Minion of Team Rocket","set":"Gym Heroes / Uncommon / 113 / Near Mint / \u2022 / Unlimited","price":4.89,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Starmie","set":"Gym Heroes / Uncommon / 56 / Near Mint / \u2022 / Unlimited","price":4.44,"deltaabs":-0.66,"deltapct":"(-12.94%)","qty":1},{"name":"Brock's Lickitung","set":"Gym Heroes / Uncommon / 41 / Near Mint / \u2022 / Unlimited","price":3.82,"deltaabs":-0.39,"deltapct":"(-9.26%)","qty":1},{"name":"Erika's Gloom (46)","set":"Gym Heroes / Uncommon / 46 / Near Mint / \u2022 / Unlimited","price":3.56,"deltaabs":0.08,"deltapct":"(2.30%)","qty":1},{"name":"Erika's Oddish (47)","set":"Gym Heroes / Uncommon / 47 / Near Mint / \u2022 / Unlimited","price":3.33,"deltaabs":0.01,"deltapct":"(0.30%)","qty":1},{"name":"Blaine's Charmander","set":"Gym Heroes / Common / 61 / Near Mint / \u2022 / Unlimited","price":2.94,"deltaabs":-0.09,"deltapct":"(-2.97%)","qty":1},{"name":"Erika's Maids","set":"Gym Heroes / Uncommon / 109 / Near Mint / \u2022 / Unlimited","price":2.83,"deltaabs":-0.08,"deltapct":"(-2.75%)","qty":1},{"name":"Misty's Seaking","set":"Gym Heroes / Uncommon / 55 / Near Mint / \u2022 / Unlimited","price":2.67,"deltaabs":-0.03,"deltapct":"(-1.11%)","qty":1},{"name":"Misty's Tentacool (57)","set":"Gym Heroes / Uncommon / 57 / Near Mint / \u2022 / Unlimited","price":2.45,"deltaabs":-0.1,"deltapct":"(-3.92%)","qty":1},{"name":"Sabrina's Slowpoke","set":"Gym Heroes / Common / 95 / Near Mint / \u2022 / Unlimited","price":2.37,"deltaabs":-0.45,"deltapct":"(-15.96%)","qty":1},{"name":"Misty's Staryu","set":"Gym Heroes / Common / 90 / Near Mint / \u2022 / Unlimited","price":2.08,"deltaabs":-0.16,"deltapct":"(-7.14%)","qty":1},{"name":"Sabrina's Mr. Mime","set":"Gym Heroes / Common / 94 / Near Mint / \u2022 / Unlimited","price":1.86,"deltaabs":-0.04,"deltapct":"(-2.11%)","qty":1},{"name":"Erika's Gloom (45)","set":"Gym Heroes / Uncommon / 45 / Near Mint / \u2022 / Unlimited","price":1.83,"deltaabs":-0.1,"deltapct":"(-5.18%)","qty":1},{"name":"Erika's Exeggutor","set":"Gym Heroes / Uncommon / 44 / Near Mint / \u2022 / Unlimited","price":1.75,"deltaabs":0.05,"deltapct":"(2.94%)","qty":1},{"name":"Misty's Goldeen (85)","set":"Gym Heroes / Common / 85 / Near Mint / \u2022 / Unlimited","price":1.66,"deltaabs":-0.07,"deltapct":"(-4.05%)","qty":1},{"name":"Blaine's Ponyta","set":"Gym Heroes / Common / 63 / Near Mint / \u2022 / Unlimited","price":1.45,"deltaabs":-0.07,"deltapct":"(-4.61%)","qty":1},{"name":"Sabrina's Venonat","set":"Gym Heroes / Common / 96 / Near Mint / \u2022 / Unlimited","price":1.42,"deltaabs":-0.04,"deltapct":"(-2.74%)","qty":1},{"name":"Brock's Mankey (68)","set":"Gym Heroes / Common / 68 / Near Mint / \u2022 / Unlimited","price":1.37,"deltaabs":-0.01,"deltapct":"(-0.72%)","qty":1},{"name":"Brock's Sandshrew (71)","set":"Gym Heroes / Common / 71 / Near Mint / \u2022 / Unlimited","price":1.3,"deltaabs":-0.08,"deltapct":"(-5.80%)","qty":1},{"name":"Erika's Bellsprout (75)","set":"Gym Heroes / Common / 75 / Near Mint / \u2022 / Unlimited","price":1.27,"deltaabs":-0.12,"deltapct":"(-8.63%)","qty":1},{"name":"Blaine's Tauros","set":"Gym Heroes / Common / 64 / Near Mint / \u2022 / Unlimited","price":1.25,"deltaabs":-0.06,"deltapct":"(-4.58%)","qty":2},{"name":"Sabrina's Gaze","set":"Gym Heroes / Common / 125 / Near Mint / \u2022 / Unlimited","price":1.12,"deltaabs":-0.16,"deltapct":"(-12.50%)","qty":1},{"name":"Lt. Surge's Spearow (52)","set":"Gym Heroes / Uncommon / 52 / Near Mint / \u2022 / Unlimited","price":1.08,"deltaabs":0.03,"deltapct":"(2.86%)","qty":1},{"name":"Brock's Zubat (74)","set":"Gym Heroes / Common / 74 / Near Mint / \u2022 / Unlimited","price":1.02,"deltaabs":0.04,"deltapct":"(4.08%)","qty":1},{"name":"Lt. Surge's Voltorb","set":"Gym Heroes / Common / 84 / Near Mint / \u2022 / Unlimited","price":0.93,"deltaabs":-0.13,"deltapct":"(-12.26%)","qty":1},{"name":"Erika's Tangela","set":"Gym Heroes / Common / 79 / Near Mint / \u2022 / Unlimited","price":0.9,"deltaabs":-0.02,"deltapct":"(-2.17%)","qty":1},{"name":"Lt. Surge's Magnemite (80)","set":"Gym Heroes / Common / 80 / Near Mint / \u2022 / Unlimited","price":0.88,"deltaabs":0.04,"deltapct":"(4.76%)","qty":1},{"name":"Lt. Surge's Rattata","set":"Gym Heroes / Common / 82 / Near Mint / \u2022 / Unlimited","price":0.83,"deltaabs":0.03,"deltapct":"(3.75%)","qty":1},{"name":"Celadon City Gym","set":"Gym Heroes / Uncommon / 107 / Near Mint / \u2022 / Unlimited","price":0.8,"deltaabs":-0.03,"deltapct":"(-3.61%)","qty":1},{"name":"Erika's Bellsprout (76)","set":"Gym Heroes / Common / 76 / Near Mint / \u2022 / Unlimited","price":0.76,"deltaabs":-0.01,"deltapct":"(-1.30%)","qty":1},{"name":"Blaine's Gamble","set":"Gym Heroes / Common / 121 / Near Mint / \u2022 / Unlimited","price":0.54,"deltaabs":-0.02,"deltapct":"(-3.57%)","qty":1},{"name":"Energy Flow","set":"Gym Heroes / Common / 122 / Near Mint / \u2022 / Unlimited","price":0.54,"deltaabs":-0.01,"deltapct":"(-1.82%)","qty":1}],"value":510.99,"qty":45,"note":null},{"key":"gymchallenge","label":"Gym Challenge","rows":[{"name":"Giovanni's Machamp","set":"Gym Challenge / Holo Rare / 6 / Lightly Played / \u2022 / Unlimited Holofoil","price":71.7,"deltaabs":0.7,"deltapct":"(0.98%)","qty":1},{"name":"Giovanni's Nidoking","set":"Gym Challenge / Holo Rare / 7 / Lightly Played / \u2022 / Unlimited Holofoil","price":64.84,"deltaabs":0.04,"deltapct":"(0.07%)","qty":1},{"name":"Koga's Beedrill","set":"Gym Challenge / Holo Rare / 9 / Lightly Played / \u2022 / Unlimited Holofoil","price":33.37,"deltaabs":0.26,"deltapct":"(0.80%)","qty":1},{"name":"Blaine's Ninetales","set":"Gym Challenge / Rare / 21 / Near Mint / \u2022 / Unlimited","price":22.43,"deltaabs":-0.48,"deltapct":"(-2.10%)","qty":1},{"name":"Sabrina's Gastly (97)","set":"Gym Challenge / Common / 97 / Near Mint / \u2022 / 1st Edition","price":16.39,"deltaabs":0.64,"deltapct":"(4.06%)","qty":1},{"name":"Erika's Bulbasaur","set":"Gym Challenge / Uncommon / 39 / Near Mint / \u2022 / Unlimited","price":13.15,"deltaabs":-0.14,"deltapct":"(-1.05%)","qty":1},{"name":"Sabrina's Psychic Control","set":"Gym Challenge / Uncommon / 121 / Near Mint / \u2022 / Unlimited","price":9.88,"deltaabs":0.02,"deltapct":"(0.20%)","qty":1},{"name":"Sabrina's Hypno","set":"Gym Challenge / Uncommon / 56 / Near Mint / \u2022 / 1st Edition","price":9.26,"deltaabs":0.15,"deltapct":"(1.65%)","qty":1},{"name":"Brock's Sandslash","set":"Gym Challenge / Uncommon / 36 / Near Mint / \u2022 / 1st Edition","price":8.27,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Dewgong","set":"Gym Challenge / Uncommon / 54 / Near Mint / \u2022 / 1st Edition","price":8.09,"deltaabs":0.06,"deltapct":"(0.75%)","qty":1},{"name":"Sabrina's Mr. Mime","set":"Gym Challenge / Uncommon / 59 / Near Mint / \u2022 / Unlimited","price":4.69,"deltaabs":-0.05,"deltapct":"(-1.05%)","qty":1},{"name":"Blaine's Charmander","set":"Gym Challenge / Common / 60 / Near Mint / \u2022 / Unlimited","price":3.8,"deltaabs":-0.02,"deltapct":"(-0.52%)","qty":1},{"name":"Giovanni's Magikarp","set":"Gym Challenge / Common / 73 / Near Mint / \u2022 / Unlimited","price":3.78,"deltaabs":0.16,"deltapct":"(4.42%)","qty":1},{"name":"Brock's Primeape","set":"Gym Challenge / Uncommon / 35 / Near Mint / \u2022 / Unlimited","price":3.62,"deltaabs":0.07,"deltapct":"(1.97%)","qty":1},{"name":"Sabrina's Abra (94)","set":"Gym Challenge / Common / 94 / Near Mint / \u2022 / Unlimited","price":3.3,"deltaabs":-0.12,"deltapct":"(-3.51%)","qty":1},{"name":"Blaine's Rapidash","set":"Gym Challenge / Uncommon / 33 / Near Mint / \u2022 / Unlimited","price":2.98,"deltaabs":0.03,"deltapct":"(1.02%)","qty":1},{"name":"Koga's Pidgey (49)","set":"Gym Challenge / Uncommon / 49 / Near Mint / \u2022 / Unlimited","price":2.92,"deltaabs":-0.06,"deltapct":"(-2.01%)","qty":1},{"name":"Erika's Jigglypuff","set":"Gym Challenge / Common / 69 / Near Mint / \u2022 / Unlimited","price":2.84,"deltaabs":0.08,"deltapct":"(2.90%)","qty":2},{"name":"Giovanni's Machoke","set":"Gym Challenge / Uncommon / 42 / Near Mint / \u2022 / Unlimited","price":2.78,"deltaabs":-0.02,"deltapct":"(-0.71%)","qty":1},{"name":"Sabrina's Abra (93)","set":"Gym Challenge / Common / 93 / Near Mint / \u2022 / Unlimited","price":2.77,"deltaabs":-0.2,"deltapct":"(-6.73%)","qty":1},{"name":"Lt. Surge's Electrode","set":"Gym Challenge / Uncommon / 52 / Near Mint / \u2022 / Unlimited","price":2.75,"deltaabs":-0.22,"deltapct":"(-7.41%)","qty":1},{"name":"Erika's Bellsprout","set":"Gym Challenge / Uncommon / 38 / Near Mint / \u2022 / Unlimited","price":2.58,"deltaabs":0.05,"deltapct":"(1.98%)","qty":1},{"name":"Lt. Surge's Raticate","set":"Gym Challenge / Uncommon / 53 / Near Mint / \u2022 / Unlimited","price":2.32,"deltaabs":0.02,"deltapct":"(0.87%)","qty":1},{"name":"Blaine's Vulpix","set":"Gym Challenge / Common / 66 / Near Mint / \u2022 / Unlimited","price":2.09,"deltaabs":-0.21,"deltapct":"(-9.13%)","qty":1},{"name":"Koga's Weezing","set":"Gym Challenge / Uncommon / 50 / Near Mint / \u2022 / Unlimited","price":2.03,"deltaabs":0.02,"deltapct":"(1.00%)","qty":1},{"name":"Blaine's Dodrio","set":"Gym Challenge / Uncommon / 32 / Near Mint / \u2022 / Unlimited","price":1.92,"deltaabs":-0.02,"deltapct":"(-1.03%)","qty":1},{"name":"Koga's Koffing (48)","set":"Gym Challenge / Uncommon / 48 / Near Mint / \u2022 / Unlimited","price":1.89,"deltaabs":0.01,"deltapct":"(0.53%)","qty":1},{"name":"Giovanni's Machop","set":"Gym Challenge / Common / 72 / Near Mint / \u2022 / Unlimited","price":1.78,"deltaabs":0.02,"deltapct":"(1.14%)","qty":1},{"name":"Brock's Diglett","set":"Gym Challenge / Common / 67 / Near Mint / \u2022 / Unlimited","price":1.68,"deltaabs":-0.11,"deltapct":"(-6.15%)","qty":1},{"name":"Koga's Pidgey (80)","set":"Gym Challenge / Common / 80 / Near Mint / \u2022 / Unlimited","price":1.51,"deltaabs":0.06,"deltapct":"(4.14%)","qty":1},{"name":"Koga's Tangela","set":"Gym Challenge / Common / 81 / Near Mint / \u2022 / Unlimited","price":1.44,"deltaabs":0.06,"deltapct":"(4.35%)","qty":1},{"name":"Brock's Geodude","set":"Gym Challenge / Common / 68 / Near Mint / \u2022 / Unlimited","price":1.28,"deltaabs":0.0,"deltapct":"(0.00%)","qty":1},{"name":"Misty's Seel","set":"Gym Challenge / Common / 91 / Near Mint / \u2022 / Unlimited","price":1.27,"deltaabs":-0.01,"deltapct":"(-0.78%)","qty":1},{"name":"Blaine's Mankey","set":"Gym Challenge / Common / 63 / Near Mint / \u2022 / Unlimited","price":1.26,"deltaabs":0.02,"deltapct":"(1.61%)","qty":1},{"name":"Koga's Ekans","set":"Gym Challenge / Common / 77 / Near Mint / \u2022 / Unlimited","price":1.24,"deltaabs":-0.06,"deltapct":"(-4.62%)","qty":1},{"name":"Giovanni's Nidoran F","set":"Gym Challenge / Common / 75 / Near Mint / \u2022 / Unlimited","price":1.22,"deltaabs":0.04,"deltapct":"(3.39%)","qty":1},{"name":"Koga's Grimer","set":"Gym Challenge / Common / 78 / Near Mint / \u2022 / Unlimited","price":1.1,"deltaabs":-0.01,"deltapct":"(-0.90%)","qty":1},{"name":"Blaine's Ponyta","set":"Gym Challenge / Common / 64 / Near Mint / \u2022 / Unlimited","price":1.09,"deltaabs":-0.03,"deltapct":"(-2.68%)","qty":1},{"name":"Cinnabar City Gym","set":"Gym Challenge / Uncommon / 113 / Near Mint / \u2022 / Unlimited","price":1.08,"deltaabs":-0.1,"deltapct":"(-8.47%)","qty":1},{"name":"Lt. Surge's Rattata","set":"Gym Challenge / Common / 85 / Near Mint / \u2022 / Unlimited","price":1.07,"deltaabs":-0.03,"deltapct":"(-2.73%)","qty":1},{"name":"Lt. Surge's Voltorb","set":"Gym Challenge / Common / 86 / Near Mint / \u2022 / Unlimited","price":1.04,"deltaabs":0.01,"deltapct":"(0.97%)","qty":1},{"name":"Blaine's Doduo","set":"Gym Challenge / Common / 61 / Near Mint / \u2022 / Unlimited","price":0.72,"deltaabs":0.01,"deltapct":"(1.41%)","qty":1}],"value":328.06,"qty":43,"note":null},{"key":"rocket","label":"PC \u2014 Rocket","rows":[],"value":630.9,"qty":61,"note":"Products view returned \u201cNo Results Found\u201d this run even after clearing filters. Overview aggregate (61 cards / $630.90) shown; full per-card table not yet required by spec checklist."}],"private_holding":{"name":"Umbreon ex - 176 #SVP 176 (Scarlet & Violet Promo)","item_id":"INV-035","grade":"PSA 10.0 GEM-MT","price":149.5,"deltaabs":-9.99,"deltapct":"-6.27%","cost":260.0,"unrealized":-110.5,"target":null,"notes":"Acquired 5/31/26 via trade-up consolidation (Slurpuff + Latias + Psyduck + ~$10 cash = $260 entry). Investment hold, no target set."},"biz_gainers":[{"name":"Destined Rivals Booster Box","set":"Main Inventory","price":431.41,"deltaabs":13.84,"deltapct":"+3.31%"},{"name":"Moo Moo Milk (JP)","set":"David Consign (uncat.)","price":35.74,"deltaabs":13.8,"deltapct":"+62.93%"},{"name":"Mewtwo","set":"Main Inventory","price":69.3,"deltaabs":10.78,"deltapct":"+18.42%"},{"name":"Mega Greninja ex Premium Collection","set":"Main Inventory","price":51.69,"deltaabs":3.44,"deltapct":"+7.13%"},{"name":"Azumarill (JP)","set":"Japanese Poke","price":14.77,"deltaabs":2.72,"deltapct":"+22.59%"},{"name":"Gyarados (#30 Holo)","set":"Main Inventory","price":31.64,"deltaabs":1.67,"deltapct":"+5.56%"}],"biz_losers":[{"name":"Kabutops (JP)","set":"Main Inventory","price":30.86,"deltaabs":-7.48,"deltapct":"-19.51%"},{"name":"Erika's Clefable (JP)","set":"Main Inventory","price":16.61,"deltaabs":-5.12,"deltapct":"-23.57%"},{"name":"M Rayquaza EX","set":"Main Inventory","price":40.15,"deltaabs":-3.33,"deltapct":"-7.66%"},{"name":"Mega Moonlit Tin [Mega Gengar ex]","set":"Main Inventory","price":32.4,"deltaabs":-2.86,"deltapct":"-8.11%"},{"name":"Misty's Tentacruel (JP)","set":"Japanese Poke","price":14.95,"deltaabs":-2.55,"deltapct":"-14.54%"},{"name":"Charmander","set":"Main Inventory","price":47.69,"deltaabs":-2.33,"deltapct":"-4.66%"}],"pc_gainers":[{"name":"Mew (JP)","set":"Personal Collection","price":162.26,"deltaabs":52.15,"deltapct":"+47.35%"},{"name":"Rocket's Zapdos","set":"Personal Collection","price":258.28,"deltaabs":37.93,"deltapct":"+17.21%"},{"name":"MewTwo (JP)","set":"Personal Collection","price":95.99,"deltaabs":16.34,"deltapct":"+20.52%"},{"name":"Mewtwo","set":"Personal Collection","price":78.54,"deltaabs":12.21,"deltapct":"+18.42%"},{"name":"Dark Blastoise","set":"Personal Collection","price":201.48,"deltaabs":5.69,"deltapct":"+2.91%"}],"pc_losers":[{"name":"Blaine's Moltres","set":"Gym Hero","price":133.36,"deltaabs":-3.34,"deltapct":"-2.44%"},{"name":"Kabuto","set":"Personal Collection","price":16.08,"deltaabs":-2.1,"deltapct":"-11.55%"},{"name":"Articuno","set":"Personal Collection","price":66.49,"deltaabs":-1.87,"deltapct":"-2.74%"},{"name":"Snorlax","set":"Personal Collection","price":19.51,"deltaabs":-1.81,"deltapct":"-8.49%"},{"name":"Meowth","set":"Personal Collection","price":17.1,"deltaabs":-1.51,"deltapct":"-8.11%"}],"realized_pl_detail":{"items_sold":63,"gross_revenue":2435.07,"selling_fees":0,"net_revenue":2435.07,"cogs":1283.95,"gross_profit":1151.12,"opex":0,"net_profit":1151.12,"margin":"47.27%"},"cash_flow_detail":{"cash_in":2435.07,"cash_out":-1940.6,"net_cash":494.47,"inventory_on_hand":973.61,"consignment_payable":0,"purchase_iou":-470.0,"true_economic_position":998.08}};
 
-function fmtUSD(n){
-  const sign = n < 0 ? "-" : "";
-  return sign + "$" + Math.abs(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+function money(v, opts={}){
+  const neg = v < 0; v = Math.abs(v);
+  const s = '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  return (neg ? '-' : '') + s;
 }
+function pctClass(deltaabs){ return deltaabs > 0 ? 'pos' : (deltaabs < 0 ? 'neg' : ''); }
+function sign(v){ return v > 0 ? '+' : ''; }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-function rowHtml(r, holdBadge){
-  const deltaHtml = (r.delta===null||r.delta===undefined)
-    ? '<span style="color:var(--text-faint)">—</span>'
-    : `<span class="${r.delta>=0?'pos':'neg'}">${r.delta>=0?'+':''}${r.delta.toFixed(2)}%</span>`;
-  const setLine = r.num && r.num !== "—" ? `${r.set} · ${r.num}` : r.set;
-  return `<tr data-card="${r.card.toLowerCase()}" data-set="${r.set.toLowerCase()}">
-    <td><span class="card-name">${r.card}${holdBadge?'<span class="hold-badge">🔒</span>':''}</span><span class="card-set">${setLine}</span></td>
-    <td class="cond">${r.cond}</td>
-    <td class="num">${fmtUSD(r.price)}</td>
-    <td class="num">${deltaHtml}</td>
-    <td class="num">${r.qty}</td>
-  </tr>`;
-}
+// ---------- date ----------
+document.getElementById('report-date').textContent =
+  new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'}) + ' · live from Collectr';
 
-function portfolioBlock(id, title, rows, opts){
-  opts = opts || {};
-  if(!rows.length){
-    return `<div class="portfolio-block">
-      <div class="portfolio-head"><div class="portfolio-head-left"><span class="portfolio-name">${title}</span><span class="portfolio-count">0 items</span></div><div class="portfolio-total">$0.00</div></div>
-      <div class="empty-state" style="padding:24px;">No items currently in this portfolio.</div>
-    </div>`;
-  }
-  const total = rows.reduce((s,r)=>s+r.price*r.qty,0);
-  const qty = rows.reduce((s,r)=>s+r.qty,0);
-  const excludeHold = opts.excludeFromTotal;
-  const rowsHtml = rows.map(r=>rowHtml(r, opts.holdKey && r.card===opts.holdKey)).join("");
-  return `<div class="portfolio-block" id="${id}">
-    <div class="portfolio-head" onclick="this.parentElement.classList.toggle('collapsed')">
-      <div class="portfolio-head-left"><span class="portfolio-name">${title}</span><span class="portfolio-count">${rows.length} lines · ${qty} qty</span></div>
-      <div style="display:flex;align-items:center;gap:8px;"><span class="portfolio-total">${fmtUSD(total)}</span><span class="chev">▾</span></div>
-    </div>
-    <div class="portfolio-body">
-      <table>
-        <thead><tr>
-          <th onclick="sortTable('${id}',0)">Card</th>
-          <th onclick="sortTable('${id}',1)">Cond.</th>
-          <th class="num" onclick="sortTable('${id}',2)">Price</th>
-          <th class="num" onclick="sortTable('${id}',3)">Δ%</th>
-          <th class="num" onclick="sortTable('${id}',4)">Qty</th>
-        </tr></thead>
-        <tbody>${rowsHtml}</tbody>
-      </table>
-    </div>
-  </div>`;
-}
-
-document.getElementById('biz-portfolios').innerHTML =
-  portfolioBlock('port-wotc','WOTC Lot (David consignment, 20% KCE)', DATA.wotcLot) +
-  portfolioBlock('port-main','Main Inventory', DATA.mainInventory, {holdKey:"Umbreon ex - 176"}) +
-  portfolioBlock('port-under10','Under 10', DATA.under10) +
-  portfolioBlock('port-jp','Japanese Poke', DATA.japanesePoke) +
-  portfolioBlock('port-exmega','EX & Mega EX', DATA.exMegaEx) +
-  portfolioBlock('port-vcards','V Cards', DATA.vCards) +
-  portfolioBlock('port-trainers','Trainers', DATA.trainers) +
-  portfolioBlock('port-david','David Consign - Side List (uncategorized)', DATA.davidConsign);
-
-document.getElementById('pc-portfolios').innerHTML =
-  portfolioBlock('port-pc','Personal Collection', DATA.personalCollection) +
-  portfolioBlock('port-gymhero','PC - Gym Hero', DATA.gymHero) +
-  portfolioBlock('port-gymchal','PC - Gym Challenge', DATA.gymChallenge) +
-  portfolioBlock('port-rocket','PC - Rocket', DATA.rocket);
-
-function applyFilter(tab){
-  const inputId = tab==='business' ? 'biz-filter' : 'pc-filter';
-  const containerId = tab==='business' ? 'biz-portfolios' : 'pc-portfolios';
-  const q = document.getElementById(inputId).value.trim().toLowerCase();
-  const container = document.getElementById(containerId);
-  const blocks = container.querySelectorAll('.portfolio-block');
-  blocks.forEach(block=>{
-    const rows = block.querySelectorAll('tbody tr');
-    let anyMatch = false;
-    rows.forEach(row=>{
-      const card = row.getAttribute('data-card')||'';
-      const set = row.getAttribute('data-set')||'';
-      const match = !q || card.includes(q) || set.includes(q);
-      row.style.display = match ? '' : 'none';
-      if(match) anyMatch = true;
-    });
-    if(q){
-      block.classList.remove('collapsed');
-      block.style.display = anyMatch ? '' : 'none';
-    } else {
-      block.style.display = '';
-    }
-  });
-}
-
-function sortTable(blockId, colIdx){
-  const block = document.getElementById(blockId);
-  if(!block) return;
-  const tbody = block.querySelector('tbody');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
-  const dir = block.getAttribute('data-sort-col') === String(colIdx) && block.getAttribute('data-sort-dir')==='asc' ? 'desc' : 'asc';
-  block.setAttribute('data-sort-col', colIdx);
-  block.setAttribute('data-sort-dir', dir);
-  rows.sort((a,b)=>{
-    const A = a.children[colIdx].textContent.replace(/[$,%+]/g,'');
-    const B = b.children[colIdx].textContent.replace(/[$,%+]/g,'');
-    const nA = parseFloat(A), nB = parseFloat(B);
-    let cmp;
-    if(!isNaN(nA) && !isNaN(nB)){ cmp = nA - nB; } else { cmp = A.localeCompare(B); }
-    return dir==='asc' ? cmp : -cmp;
-  });
-  rows.forEach(r=>tbody.appendChild(r));
-}
-
+// ---------- tabs ----------
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
   });
 });
-</script>
 
+// ---------- KPIs ----------
+const k = KCE.kpis;
+document.getElementById('kpi-live-value').textContent = money(k.live_value);
+document.getElementById('kpi-live-value-sub').textContent =
+  money(k.live_value_physical) + ' at 100% physical · WOTC Lot counted at ~20% KCE interest';
+document.getElementById('kpi-public-holdings').textContent = money(k.public_holdings);
+document.getElementById('kpi-unrealized').textContent = money(k.unrealized_gain);
+document.getElementById('kpi-unrealized').className = 'value ' + pctClass(k.unrealized_gain);
+document.getElementById('kpi-unrealized-sub').textContent = 'vs ' + money(k.cost_basis_on_hand) + ' cost basis on hand';
+document.getElementById('kpi-realized').textContent = money(k.realized_pl);
+document.getElementById('kpi-realized-sub').textContent = KCE.realized_pl_detail.items_sold + ' items sold to date';
+document.getElementById('kpi-cash').textContent = money(k.net_cash);
+document.getElementById('kpi-cash').className = 'value ' + pctClass(k.net_cash);
+document.getElementById('kpi-cash-sub').textContent =
+  'True economic position ' + money(k.true_economic_position) + ' after ' + money(-k.outstanding_iou) + ' outstanding IOU';
+
+// ---------- portfolio bars ----------
+(function(){
+  const el = document.getElementById('portfolio-bars');
+  const all = KCE.biz_portfolios;
+  const maxVal = Math.max(...all.map(p=>p.value), 1);
+  el.innerHTML = all.map(p=>{
+    const pct = Math.max((p.value/maxVal)*100, p.value>0?2:0);
+    const wotcNote = p.key==='wotc' ? ' · ~' + money(p.value*0.2) + ' KCE @ 20%' : '';
+    return `<div class="bar-row">
+      <div class="bar-label"><span class="nm">${esc(p.label)}</span><span class="vv">${money(p.value)}${wotcNote}</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+      ${p.note ? `<div class="bar-note">${esc(p.note)}</div>` : ''}
+    </div>`;
+  }).join('');
+})();
+
+// ---------- movers ----------
+function renderMovers(id, list){
+  document.getElementById(id).innerHTML = list.map(m=>`
+    <div class="mover-item">
+      <div class="mn">${esc(m.name)}</div>
+      <div class="ms">${esc(m.set)}</div>
+      <div class="md ${pctClass(m.deltaabs)}">${sign(m.deltaabs)}${money(m.deltaabs)} · ${m.deltapct}</div>
+    </div>`).join('');
+}
+renderMovers('biz-gainers', KCE.biz_gainers);
+renderMovers('biz-losers', KCE.biz_losers);
+renderMovers('pc-gainers', KCE.pc_gainers);
+renderMovers('pc-losers', KCE.pc_losers);
+
+// ---------- action alerts ----------
+(function(){
+  const alerts = [
+    {type:'watch', tag:'Watch', title:'30th Celebration launches worldwide Sept 16 — 3 days out', reason:'First simultaneous global TCG release; Classic Collection reprints + 30 Pikachu subset. Pre-order sourcing window closes fast historically (missed drops 7/15 & 7/20). Confirm queue times day-of.'},
+    {type:'watch', tag:'Watch', title:"Destined Rivals Booster Box +3.31% today ($431.41)", reason:'Largest single-item gain in Main Inventory. No target set — track for a sell window if momentum holds another 2–3 days.'},
+    {type:'watch', tag:'Watch', title:"Erika's Clefable (JP) & Kabutops (JP) down ~20–24% today", reason:'Sharp single-day drops in Main Inventory Japanese holdings — verify against TCGplayer/eBay comps before assuming it is noise vs. a real repricing.'},
+    {type:'hold', tag:'Hold', title:'Umbreon ex SVP176 PSA10 — down 6.27% today, −$110.50 unrealized', reason:'No target price set on this investment hold. Continue monitoring; Neo/vintage-era graded slabs remain the stronger long-term thesis than modern promos per current market pulse.'},
+    {type:'watch', tag:'Watch', title:'David Consign — Side List ($65.06, 3 items) still uncategorized', reason:'Not one of the 7 official FOR SALE portfolios — confirm with Ernesto whether to fold into WOTC Lot consignment tracking or treat as standalone.'},
+  ];
+  document.getElementById('action-alerts').innerHTML = alerts.map(a=>`
+    <div class="alert ${a.type}">
+      <span class="badge">${a.tag}</span>
+      <div class="at">${esc(a.title)}</div>
+      <div class="ar">${esc(a.reason)}</div>
+    </div>`).join('');
+})();
+
+// ---------- portfolio tables (collapsible + sortable) ----------
+function buildPortfolioBlock(p, containerId, defaultOpen){
+  const rowCount = p.rows.length;
+  const wrap = document.createElement('div');
+  wrap.className = 'portfolio' + (defaultOpen ? ' open' : '');
+  wrap.dataset.key = p.key;
+  const countLabel = p.key === 'wotc'
+    ? `top ${rowCount} of ${p.qty} qty shown`
+    : (p.key === 'rocket' ? 'Overview aggregate only' : `${rowCount} card${rowCount===1?'':'s'} · ${p.qty} qty`);
+  wrap.innerHTML = `
+    <div class="portfolio-head">
+      <div class="ph-l">
+        <div class="ph-name">${esc(p.label)}</div>
+        <div class="ph-count">${countLabel}</div>
+      </div>
+      <div class="ph-r">
+        <div class="ph-val">${money(p.value)}</div>
+        <div class="chev">▾</div>
+      </div>
+    </div>
+    ${p.note ? `<div class="portfolio-note">${esc(p.note)}</div>` : ''}
+    <div class="portfolio-body"></div>
+  `;
+  const body = wrap.querySelector('.portfolio-body');
+  if (rowCount === 0){
+    body.innerHTML = `<div class="empty-state">No live rows to display.</div>`;
+  } else {
+    const table = document.createElement('table');
+    table.className = 'ptable';
+    table.innerHTML = `
+      <thead><tr>
+        <th data-sort="name">Card<span class="sort-ind">↕</span></th>
+        <th data-sort="price" class="num">Price<span class="sort-ind">↕</span></th>
+        <th data-sort="deltapct" class="num">Δ%<span class="sort-ind">↕</span></th>
+      </tr></thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector('tbody');
+    function renderRows(rows){
+      tbody.innerHTML = rows.map(r => `
+        <tr data-name="${esc(r.name.toLowerCase())}" data-set="${esc((r.set||'').toLowerCase())}">
+          <td><div class="cn">${esc(r.name)}</div><div class="cs">${esc(r.set)}${r.qty>1?` · qty ${r.qty}`:''}</div></td>
+          <td class="num">${money(r.price)}</td>
+          <td class="num ${pctClass(r.deltaabs)}">${sign(r.deltaabs)}${r.deltapct}</td>
+        </tr>`).join('');
+    }
+    let rows = p.rows.slice();
+    renderRows(rows);
+    let sortKey = null, sortDir = 1;
+    table.querySelectorAll('th[data-sort]').forEach(th=>{
+      th.addEventListener('click', ()=>{
+        const key = th.dataset.sort;
+        sortDir = (sortKey === key) ? -sortDir : 1;
+        sortKey = key;
+        table.querySelectorAll('th').forEach(t=>t.classList.remove('sorted'));
+        th.classList.add('sorted');
+        rows = rows.slice().sort((a,b)=>{
+          let av, bv;
+          if (key === 'name'){ av=a.name.toLowerCase(); bv=b.name.toLowerCase(); return av<bv?-1*sortDir:av>bv?1*sortDir:0; }
+          if (key === 'price'){ av=a.price; bv=b.price; return (av-bv)*sortDir; }
+          if (key === 'deltapct'){ av=a.deltaabs; bv=b.deltaabs; return (av-bv)*sortDir; }
+          return 0;
+        });
+        renderRows(rows);
+      });
+    });
+    body.appendChild(table);
+  }
+  wrap.querySelector('.portfolio-head').addEventListener('click', ()=>{
+    wrap.classList.toggle('open');
+  });
+  document.getElementById(containerId).appendChild(wrap);
+  return wrap;
+}
+
+KCE.biz_portfolios.forEach((p,i)=> buildPortfolioBlock(p, 'biz-portfolios', i===0));
+buildPortfolioBlock(KCE.uncategorized, 'uncategorized-portfolio', false);
+KCE.pc_portfolios.forEach((p,i)=> buildPortfolioBlock(p, 'pc-portfolios', i===0));
+
+// ---------- filters (auto-expand on match) ----------
+function wireFilter(inputId, containerIds){
+  document.getElementById(inputId).addEventListener('input', (e)=>{
+    const q = e.target.value.trim().toLowerCase();
+    containerIds.forEach(cid=>{
+      document.getElementById(cid).querySelectorAll('.portfolio').forEach(wrap=>{
+        const rows = wrap.querySelectorAll('tbody tr');
+        let anyMatch = false;
+        rows.forEach(tr=>{
+          const hay = (tr.dataset.name||'') + ' ' + (tr.dataset.set||'');
+          const match = q === '' || hay.includes(q);
+          tr.style.display = match ? '' : 'none';
+          if (match && q !== '') anyMatch = true;
+        });
+        if (q !== ''){
+          if (anyMatch) wrap.classList.add('open'); else wrap.style.display = 'none';
+        } else {
+          wrap.style.display = '';
+        }
+      });
+    });
+  });
+}
+wireFilter('biz-filter', ['biz-portfolios','uncategorized-portfolio']);
+wireFilter('pc-filter', ['pc-portfolios']);
+
+// ---------- private holdings ----------
+(function(){
+  const p = KCE.private_holding;
+  document.getElementById('private-box').innerHTML = `
+    <div class="pb-tag">🔒 Hold-Private — never shown publicly</div>
+    <div class="pb-name">${esc(p.name)}</div>
+    <div class="pb-grade">${esc(p.item_id)} · ${esc(p.grade)}</div>
+    <div class="private-grid">
+      <div class="pg-item"><div class="pg-l">Live Price</div><div class="pg-v">${money(p.price)}</div></div>
+      <div class="pg-item"><div class="pg-l">Today</div><div class="pg-v ${pctClass(p.deltaabs)}">${sign(p.deltaabs)}${money(p.deltaabs)} (${p.deltapct})</div></div>
+      <div class="pg-item"><div class="pg-l">Cost Basis</div><div class="pg-v">${money(p.cost)}</div></div>
+      <div class="pg-item"><div class="pg-l">Unrealized P&amp;L</div><div class="pg-v ${pctClass(p.unrealized)}">${sign(p.unrealized)}${money(p.unrealized)}</div></div>
+    </div>
+    <div class="pb-notes">${esc(p.notes)} ${p.target ? 'Target: '+money(p.target) : '<strong>No target price set.</strong>'} Excel status field literally reads "Available" — known data-hygiene gap; this card is intentionally excluded from every public listing table above.</div>
+  `;
+})();
+
+// ---------- P&L summary ----------
+(function(){
+  const r = KCE.realized_pl_detail, c = KCE.cash_flow_detail;
+  document.getElementById('pl-table').innerHTML = `
+    <tr class="pl-subhead"><td colspan="2">Realized P&amp;L (accountant view)</td></tr>
+    <tr><td>Gross Revenue (${r.items_sold} items sold)</td><td>${money(r.gross_revenue)}</td></tr>
+    <tr><td>Less: Selling Fees</td><td>${money(-r.selling_fees)}</td></tr>
+    <tr><td>Less: Cost of Goods Sold</td><td>${money(-r.cogs)}</td></tr>
+    <tr><td>Less: Operating Expenses</td><td>${money(-r.opex)}</td></tr>
+    <tr class="total"><td>Realized Net Profit</td><td class="pos">${money(r.net_profit)}</td></tr>
+    <tr class="sub"><td>Net margin</td><td>${r.margin}</td></tr>
+    <tr class="pl-subhead"><td colspan="2">Cash Flow (simple view)</td></tr>
+    <tr><td>Cash In (net sales received)</td><td>${money(c.cash_in)}</td></tr>
+    <tr><td>Cash Out (total expenses)</td><td>${money(c.cash_out)}</td></tr>
+    <tr class="total"><td>Net Cash Position</td><td class="${pctClass(c.net_cash)}">${money(c.net_cash)}</td></tr>
+    <tr class="sub"><td>Memo: inventory value on hand</td><td>${money(c.inventory_on_hand)}</td></tr>
+    <tr class="sub"><td>Less: outstanding consignment payables</td><td>${money(-c.consignment_payable)}</td></tr>
+    <tr class="sub"><td>Less: outstanding purchase IOUs</td><td>${money(c.purchase_iou)}</td></tr>
+    <tr class="total"><td>True Economic Position</td><td>${money(c.true_economic_position)}</td></tr>
+  `;
+})();
+
+// ---------- PC KPIs ----------
+(function(){
+  const pcs = KCE.pc_portfolios;
+  const byKey = {}; pcs.forEach(p=>byKey[p.key]=p);
+  const total = pcs.reduce((s,p)=>s+p.value,0);
+  document.getElementById('kpi-pc-total').textContent = money(total);
+  document.getElementById('kpi-pc-personal').textContent = money(byKey.personal.value);
+  document.getElementById('kpi-pc-rocket').textContent = money(byKey.rocket.value);
+  document.getElementById('kpi-pc-gymhero').textContent = money(byKey.gymhero.value);
+  document.getElementById('kpi-pc-gymchallenge').textContent = money(byKey.gymchallenge.value);
+})();
+
+document.getElementById('collection-notes').innerHTML = `
+  Personal Collection's live Overview total (${money(3024.94)}) runs about 0.3% above the per-card table
+  subtotal (${money(3015.25)}) for the 66 scraped rows — most likely a timing gap between the Overview
+  refresh and the per-card list-view scrape, not a missing card. PC — Rocket's Products view returned
+  "No Results Found" again this run even after clearing filters, so its 61-card table still isn't
+  scraped; the ${money(630.90)} Overview aggregate is shown until that's resolved. All 4 PC portfolios
+  are collector-owned and excluded from every business KPI, P&amp;L line, and cash figure on the Business tab.
+`;
+
+// ---------- Market Intel : release calendar ----------
+document.getElementById('release-calendar').innerHTML = `
+  <div class="calendar-item">
+    <div class="cal-date">SEP 16<br>2026</div>
+    <div class="cal-body">
+      <div class="cal-t">30th Celebration — Wave 1 (worldwide simultaneous launch)<span class="tag">3 days out</span></div>
+      <div class="cal-a">First-ever simultaneous global TCG release. Every card foil incl. Basic Energy; new "Classic Collection" reprint subset + 30-card Pikachu-by-30-artists chase subset. Directly touches KCE's Japanese Poke + Neo-era vintage thesis — expect a demand spike on comparable vintage reprints day-of.</div>
+    </div>
+  </div>
+  <div class="calendar-item">
+    <div class="cal-date">OCT 2<br>2026</div>
+    <div class="cal-body">
+      <div class="cal-t">30th Celebration — Wave 2</div>
+      <div class="cal-a">Next scheduled preorder wave per current retailer guides. Watch Pokémon Center queue open time — KCE missed the 7/15 and 7/20 drops on queue timing before.</div>
+    </div>
+  </div>
+  <div class="calendar-item">
+    <div class="cal-date">OCT 30<br>2026</div>
+    <div class="cal-body">
+      <div class="cal-t">30th Celebration — Wave 3</div>
+      <div class="cal-a">Third of four confirmed waves. Specific product lineup not yet finalized in official channels as of this run — re-check closer to date.</div>
+    </div>
+  </div>
+  <div class="calendar-item">
+    <div class="cal-date">NOV 6<br>2026</div>
+    <div class="cal-body">
+      <div class="cal-t">30th Celebration — Wave 4 (final): Ultra-Premium Collection (Day &amp; Night), Ditto Premium Collection, Mew &amp; Mewtwo Figure Collection</div>
+      <div class="cal-a">Highest-ticket wave of the rollout — UPC boxes historically hold value best of the four waves. Good candidate for a pre-order flip if allocation allows.</div>
+    </div>
+  </div>
+`;
+
+// ---------- Market pulse ----------
+document.getElementById('market-stats').innerHTML = `
+  <div class="stat-chip"><div class="sc-l">TCG Price Index</div><div class="sc-v">130.5</div></div>
+  <div class="stat-chip"><div class="sc-l">30d Change</div><div class="sc-v pos">+2.2%</div></div>
+  <div class="stat-chip"><div class="sc-l">Since 2026 Open</div><div class="sc-v pos">+30.5%</div></div>
+`;
+document.getElementById('market-pulse-text').innerHTML = `
+  Vintage is outperforming modern into September: modern chase cards have largely retraced from their
+  spring/summer highs, while vintage WOTC-era holos (PSA 9/10) are holding steady to appreciating.
+  Neo-era Japanese vintage (1999–2002) remains the fastest-growing segment industry-wide, driven by
+  genuinely tiny PSA 10 populations — this maps directly onto KCE's Japanese Poke and WOTC Lot
+  (David consignment) holdings. Named movers in PSA 10: Gym Challenge Blaine's Charizard, Neo Genesis
+  Lugia, Neo Destiny Shining cards. Market is described as entering a "maturity phase" with vintage and
+  modern now attracting genuinely different buyer profiles rather than moving together.
+`;
+
+// ---------- What's hot ----------
+document.getElementById('whats-hot').innerHTML = `
+  <div class="hot-item"><div><div class="hn">Neo Genesis / Neo Discovery (Japanese) PSA 9–10</div>
+    <div class="hd">Fastest-growing segment per current index — KCE holds Skarmory (JP), Kingdra (JP), Steelix (JP), Moo Moo Milk (JP) across WOTC Lot &amp; David Consign.</div></div>
+    <div class="hv pos">↑ trending</div></div>
+  <div class="hot-item"><div><div class="hn">Moo Moo Milk (JP), David Consign</div>
+    <div class="hd">+62.93% today alone ($35.74) — single biggest % mover across all business holdings.</div></div>
+    <div class="hv pos">+62.9%</div></div>
+  <div class="hot-item"><div><div class="hn">High-grade WOTC holo (PSA 9/10)</div>
+    <div class="hd">Renewed appreciation industry-wide per this week's index commentary — relevant to Main Inventory's graded slabs incl. the Hold-Private Umbreon.</div></div>
+    <div class="hv pos">↑ trending</div></div>
+  <div class="hot-item"><div><div class="hn">Modern chase singles (Destined Rivals, Journey Together era)</div>
+    <div class="hd">Broadly retracing from spring highs, though Destined Rivals Booster Box itself bucked the trend +3.31% today.</div></div>
+    <div class="hv neg">↓ mixed</div></div>
+`;
+
+// ---------- Playbook ----------
+document.getElementById('playbook').innerHTML = `
+  <div class="pb-item"><div class="pb-num">1</div><div><div class="pb-t">Track the Destined Rivals Booster Box for a sell window</div><div class="pb-d">Up 3.31% today with no target set — if the next 1–2 days confirm the trend, list at a defined target rather than letting it ride indefinitely.</div></div></div>
+  <div class="pb-item"><div class="pb-num">2</div><div><div class="pb-t">Set a Pokémon Center account alarm for Sept 16, 6am PT / 9am ET</div><div class="pb-d">30th Celebration Wave 1 is the first-ever simultaneous global drop — queue timing has burned KCE twice this year (7/15, 7/20).</div></div></div>
+  <div class="pb-item"><div class="pb-num">3</div><div><div class="pb-t">Verify the two ~20–24% single-day drops before reacting</div><div class="pb-d">Erika's Clefable (JP) and Kabutops (JP) both fell sharply today — pull a quick TCGplayer/eBay sold-comp check before assuming it's a real repricing vs. a Collectr data blip.</div></div></div>
+  <div class="pb-item"><div class="pb-num">4</div><div><div class="pb-t">Resolve the David Consign — Side List categorization</div><div class="pb-d">$65.06 / 3 Japanese Neo Genesis singles sitting outside the official 7-portfolio structure — fold into WOTC Lot consignment tracking or confirm as a standalone 8th portfolio.</div></div></div>
+  <div class="pb-item"><div class="pb-num">5</div><div><div class="pb-t">Re-attempt PC — Rocket's Products view scrape</div><div class="pb-d">"No Results Found" even after clearing filters, two runs running — try a fresh login session or contact Collectr support if it persists into the next run.</div></div></div>
+`;
+
+// ---------- Sourcing ----------
+document.getElementById('platform-coverage').innerHTML = `
+  <div class="platform-status"><span><span class="ps-dot up"></span>ShopGoodwill</span><span>1,771 live "pokemon" listings — scanned</span></div>
+  <div class="platform-status"><span><span class="ps-dot up"></span>HiBid</span><span>9,464 live "pokemon" lots — scanned</span></div>
+  <div class="platform-status"><span><span class="ps-dot up"></span>EBTH</span><span>103 live "pokemon" items — scanned</span></div>
+  <div class="platform-status"><span><span class="ps-dot down"></span>LiveAuctioneers</span><span>Reachable but sparse for "pokemon" — one low-value figure lot only</span></div>
+  <div class="platform-status"><span><span class="ps-dot down"></span>THS Auctions</span><span>Not scanned this run (time budget) — carry to next run</span></div>
+`;
+document.getElementById('auction-lots').innerHTML = `
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">HiBid Lot 155 — Roaring Moon EX CGC 8.5 Japanese Holo, no bids ($10 open)</div>
+      <div class="lc-meta">HiBid · $0 current / $10 min bid</div></div>
+      <span class="verdict WATCH">Watch</span></div>
+    <a class="lc-link" href="https://hibid.com/lots?q=pokemon" target="_blank" rel="noopener">View on HiBid →</a>
+  </div>
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">HiBid Lot 168 — Torterra EX CGC 10 Japanese Full Art, no bids ($20 open)</div>
+      <div class="lc-meta">HiBid · $0 current / $20 min bid</div></div>
+      <span class="verdict WATCH">Watch</span></div>
+    <a class="lc-link" href="https://hibid.com/lots?q=pokemon" target="_blank" rel="noopener">View on HiBid →</a>
+  </div>
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">HiBid Lot 26f — 1999 Jungle Pidgeot #24 PSA 6, 8 bids ($6 current, 2d5h left)</div>
+      <div class="lc-meta">HiBid · $6.00 current / 8 bids</div></div>
+      <span class="verdict WATCH">Watch</span></div>
+    <a class="lc-link" href="https://hibid.com/lots?q=pokemon" target="_blank" rel="noopener">View on HiBid →</a>
+  </div>
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">HiBid Lot 46c — Pokemon Lugia ex 017/034 CGC 9, 1 bid ($2 current)</div>
+      <div class="lc-meta">HiBid · $2.00 current / 1 bid</div></div>
+      <span class="verdict WATCH">Watch</span></div>
+    <a class="lc-link" href="https://hibid.com/lots?q=pokemon" target="_blank" rel="noopener">View on HiBid →</a>
+  </div>
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">EBTH — 1st Ed. Holo Fossil Set (Gengar, Light Dragonite &amp; more), $500 current</div>
+      <div class="lc-meta">EBTH · 3h left at scan time — too soon to act on for tomorrow's report</div></div>
+      <span class="verdict PASS">Pass</span></div>
+    <a class="lc-link" href="https://www.ebth.com/browse?q=pokemon" target="_blank" rel="noopener">View on EBTH →</a>
+  </div>
+  <div class="lot-card">
+    <div class="lc-top"><div><div class="lc-name">ShopGoodwill — bulk "pokemon" listings (1,771 total)</div>
+      <div class="lc-meta">ShopGoodwill · scanned first 40 by Ending Soonest — mostly low-value bulk/sealed lots, nothing graded or vintage cleared the screen</div></div>
+      <span class="verdict PASS">Pass</span></div>
+    <a class="lc-link" href="https://shopgoodwill.com/categories/listing?st=pokemon&hp=999999&p=1&ps=40" target="_blank" rel="noopener">View on ShopGoodwill →</a>
+  </div>
+`;
+document.getElementById('sourcing-verdict').innerHTML = `
+  <strong>Today's verdict: no BID.</strong> Nothing scanned across ShopGoodwill, HiBid, and EBTH cleared
+  the ROI sliding scale (≈400%+ all-in for sub-$50 lots, tapering to ≈100% above $600) against real
+  multi-channel resale comps. The CGC 9/10 Japanese modern lots on HiBid sit at $0–20 opening bids with
+  zero-to-one bids — genuinely cheap, but modern CGC 9/10 slabs typically comp $15–40 raw, which doesn't
+  clear the threshold once buyer's premium and shipping are added; flagged as Watch rather than Pass
+  outright in case they close near opening bid. EBTH's lots were already bid up close to street value with
+  most closing in 3 hours (too soon to act on before this report goes stale). LiveAuctioneers and THS
+  Auctions need a fuller pass next run — pass decisively today rather than force a buy.
+`;
+
+// ---------- sources ----------
+document.getElementById('sources-line').innerHTML = `
+  Sources: Collectr (live, condition-adjusted) · korins_expense_tracker.xlsx (cost/P&amp;L/cash) ·
+  <a href="https://www.pokemon.com/us/pokemon-news/get-ready-for-pokemon-tcg-30th-celebration" target="_blank" rel="noopener">Pokémon.com — 30th Celebration</a> ·
+  <a href="https://www.trackalacker.com/articles/news/pokemon-30th-celebration-release-date-preorders-price" target="_blank" rel="noopener">TrackaLacker — 30th Celebration release/wave dates</a> ·
+  <a href="https://www.pokemonwizard.com/stats" target="_blank" rel="noopener">Pokémon Wizard — market stats</a> ·
+  <a href="https://seller.tcgplayer.com/blog/price-trends-pok%C3%A9mon-cards-climbing-in-price-09-01-2026" target="_blank" rel="noopener">TCGplayer Seller — price trends 9/1/26</a> ·
+  <a href="https://hibid.com/lots?q=pokemon" target="_blank" rel="noopener">HiBid</a> ·
+  <a href="https://www.ebth.com/browse?q=pokemon" target="_blank" rel="noopener">EBTH</a> ·
+  <a href="https://shopgoodwill.com/categories/listing?st=pokemon" target="_blank" rel="noopener">ShopGoodwill</a> ·
+  <a href="https://www.liveauctioneers.com/search/?keyword=pokemon" target="_blank" rel="noopener">LiveAuctioneers</a>
+`;
+</script>
 </body>
 </html>
