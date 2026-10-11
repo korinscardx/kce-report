@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>KCE Daily Intel</title>
 <style>:root{
   --bg:#0f1117; --bg2:#161925; --card:#1a1e2c; --border:#262b3d;
@@ -109,6 +109,10 @@ table.data tbody .cset{color:var(--text-faint);font-size:10.5px;}
 .lot-name a:hover{color:var(--accent2);}
 .lot-meta{font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.5;}
 .verdict{flex-shrink:0;font-size:9.5px;font-weight:700;padding:4px 8px;border-radius:6px;text-transform:uppercase;white-space:nowrap;}
+.verdict.watch{background:rgba(255,193,7,.15);color:#ffc107;}
+.verdict.pass{background:rgba(148,152,171,.15);color:var(--text-dim);}
+.verdict.check{background:rgba(255,193,7,.15);color:#ffc107;}
+.verdict.bid{background:rgba(51,211,154,.15);color:var(--green);}
 .plat-status{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;}
 .plat-status:last-child{border-bottom:none;}
 .plat-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;}
@@ -120,13 +124,13 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
 
 <header class="top">
   <div class="brand">
-    <div><h1>Korin's Card Exchange</h1><div class="date">Daily Intel &middot; October 6, 2026</div></div>
-    <span class="badge" style="background:#33d39a;color:#042b1d;">Live today</span>
+    <div><h1>Korin's Card Exchange</h1><div class="date">Daily Intel &middot; October 11, 2026</div></div>
+    <span class="badge" style="background:#ffc107;color:#2b2104;">Partial refresh</span>
   </div>
 </header>
 
-<div class="banner good">
-  <b>Collectr was reachable live today, no CAPTCHA</b> &mdash; all 12 portfolios reconciled against Collectr's own Overview-tab totals: 539 total items, matching yesterday's count exactly. Business-side portfolios (Main Inventory, Under 10, Japanese Poke, EX &amp; Mega EX, V Cards, Trainers, WOTC Lot, David Consign) summed to $3,795.42 today, and all <b>4 My Collection portfolios are now at full line-by-line coverage on every one &mdash; PC-Rocket joins the other three for the first time</b> &mdash; summing to $4,453.64. Combined, that's $8,249.06 against Collectr's own live Combined Value of $8,308.36 (a $59.30/0.7% gap consistent with ordinary price drift across a long multi-step scrape, not a data error). <b>Only two business-side line items were refreshed live today</b> (the Umbreon ex private holding and the Destined Rivals Booster Box) &mdash; the rest of the FOR SALE/WOTC/David tables below still carry yesterday's full scrape while today's aggregate KPIs, portfolio totals and all 4 My Collection tables are live. The expense tracker workbook was checked again today and remains unchanged since Sept 18. <b>Auction coverage was narrower than usual this run</b> &mdash; only ShopGoodwill was successfully live-scanned (HiBid still Cloudflare-blocked; EBTH, LiveAuctioneers and THS Auctions weren't reachable this run). <b>No October data was available</b> for the Market Pulse index cited in recent reports (latest located figures date to around June 2026) &mdash; today's market intel leans on the other sources listed at the end of that section. <b>GitHub Pages push: attempting now, result below</b>
+<div class="banner warn">
+  <b>Collectr was completely unreachable today &mdash; CAPTCHA gate on sign-in, not a scraping problem.</b> This is the 4th confirmed occurrence of this exact "Let's confirm you're human" block on Collectr's own auth flow (previously 9/11, 9/29, 9/30) &mdash; a real, recurring pattern now, not a one-off. No portfolio could be refreshed, including the Umbreon private holding. <b>Every figure below is carried forward</b>: Umbreon / PC &ndash; Gym Hero / PC &ndash; Gym Challenge from the Oct 9 report (now 2 days stale) and the other 9 portfolios (Main Inventory, Under 10, Japanese Poke, EX &amp; Mega EX, V Cards, Trainers, WOTC Lot, David Consign, Personal Collection, PC &ndash; Rocket) from Oct 6 (now 5 days stale). A PriceCharting cross-check for Umbreon was also attempted but hit its own Cloudflare challenge &mdash; no independent price source was reachable today. The expense tracker workbook was re-checked and remains byte-identical since Sept 18 &mdash; all P&amp;L/cash figures hold. <b>Market intel got a real refresh</b>: the Oct 30 Battle Deck catalyst was independently reconfirmed via Best Buy's own product page (still $19.99, still "High Demand," release date 10/30/2026, now 19 days out), and a fresh Oct 7, 2026 TCGPlayer price-trend report was found, filling the data gap the Oct 9 report flagged. <b>Auction sourcing got its best coverage in weeks &mdash; all 5 platforms attempted</b>: EBTH and LiveAuctioneers both live and scraped cleanly, ShopGoodwill worked this run too (687 results via the search-box method), THS Auctions loaded cleanly but is genuinely empty of current lots, and only HiBid stayed Cloudflare-blocked (standing issue). <b>GitHub Pages push succeeded</b> &mdash; the mobile link at <a href="https://korinscardx.github.io/kce-report/" target="_blank">korinscardx.github.io/kce-report</a> is now current, pushed via the device-side method (runs on Ernesto's own machine, not the cloud container, which is what let it get through where the cloud-side push was blocked back in September).
 </div>
 
 <nav class="tabs">
@@ -137,18 +141,18 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
 <section class="tab active" id="tab-business">
 <div class="kpi-grid">
   <div class="kpi wide"><div class="label">Live Portfolio Value (KCE economic interest)</div>
-    <div class="value">$2,733.67</div>
-    <div class="sub">$3,795.42 at 100% physical &middot; WOTC Lot counted at 20% KCE / 80% consignor</div></div>
+    <div class="value">$2,728.42</div>
+    <div class="sub">$3,790.17 at 100% physical &middot; WOTC Lot counted at 20% KCE / 80% consignor &middot; only Umbreon refreshed today, rest carried forward</div></div>
   <div class="kpi"><div class="label">Public Holdings</div><div class="value">$2,593.42</div>
-    <div class="sub">excl. Hold-Private</div></div>
-  <div class="kpi"><div class="label">Unrealized Gain</div><div class="value pos">$1,722.37</div>
-    <div class="sub">+176.91% vs cost basis &middot; basis stale, see alert</div></div>
+    <div class="sub">excl. Hold-Private &middot; carried forward, unaffected by Umbreon</div></div>
+  <div class="kpi"><div class="label">Unrealized Gain</div><div class="value pos">$1,717.12</div>
+    <div class="sub">+176.37% vs cost basis &middot; basis stale, see alert</div></div>
   <div class="kpi"><div class="label">Realized P&amp;L</div><div class="value pos">$1,154.12</div>
     <div class="sub">47.1% net margin, 64 sales</div></div>
   <div class="kpi"><div class="label">Net Cash Position</div><div class="value pos">$509.47</div>
     <div class="sub">$482.00 in known payables outstanding</div></div>
 </div>
-<h2 class="section-title">Portfolio Breakdown <span class="count">7 FOR SALE portfolios &middot; line items as of Oct 5 scrape, totals live Oct 6</span></h2><div class="card-block"><div class="bar-row"><div class="row-top"><span class="name">Main Inventory <span style="color:var(--text-faint);font-weight:400;">(42)</span></span><span class="val">$2,092.90</span></div>
+<h2 class="section-title">Portfolio Breakdown <span class="count">7 FOR SALE portfolios &middot; Oct 6 scrape, 5 days stale &mdash; Collectr CAPTCHA-blocked again today</span></h2><div class="card-block"><div class="bar-row"><div class="row-top"><span class="name">Main Inventory <span style="color:var(--text-faint);font-weight:400;">(42)</span></span><span class="val">$2,092.90</span></div>
       <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></div><div class="bar-row"><div class="row-top"><span class="name">Under 10 <span style="color:var(--text-faint);font-weight:400;">(61)</span></span><span class="val">$221.88</span></div>
       <div class="bar-track"><div class="bar-fill" style="width:10.6%"></div></div></div><div class="bar-row"><div class="row-top"><span class="name">Japanese Poke <span style="color:var(--text-faint);font-weight:400;">(31)</span></span><span class="val">$92.12</span></div>
       <div class="bar-track"><div class="bar-fill" style="width:4.4%"></div></div></div><div class="bar-row"><div class="row-top"><span class="name">EX &amp;amp; Mega EX <span style="color:var(--text-faint);font-weight:400;">(5)</span></span><span class="val">$5.31</span></div>
@@ -156,7 +160,7 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
       <div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></div><div class="bar-row"><div class="row-top"><span class="name">Trainers <span style="color:var(--text-faint);font-weight:400;">(0)</span></span><span class="val">$0.00 <span style="color:var(--text-faint);">(empty)</span></span></div>
       <div class="bar-track"><div class="bar-fill" style="width:0.0%"></div></div></div><div class="bar-row"><div class="row-top"><span class="name">WOTC Lot <span style="color:var(--text-faint);font-weight:400;">(169)</span></span><span class="val">$1,325.25 <span style="color:var(--text-faint);">(20%: $265.05)</span></span></div>
       <div class="bar-track"><div class="bar-fill" style="width:63.4%"></div></div></div><div class="bar-row" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
-  <div class="row-top"><span class="name" style="color:var(--text-faint);">David Consign &mdash; Side List <span style="font-weight:400;">(3, unclassified &mdash; unresolved)</span></span><span class="val">$69.80</span></div></div></div><h2 class="section-title">Top Price Movers <span class="count">Main Inventory/Japanese Poke as of Oct 5 scrape</span></h2><div class="card-block"><div class="mover-row"><div><span class="name">Pokemon March (JP)</span><div class="meta">WOTC Lot &middot; Near Mint • Normal</div></div>
+  <div class="row-top"><span class="name" style="color:var(--text-faint);">David Consign &mdash; Side List <span style="font-weight:400;">(3, unclassified &mdash; unresolved)</span></span><span class="val">$69.80</span></div></div></div><h2 class="section-title">Top Price Movers <span class="count">Main Inventory/Japanese Poke, Oct 6 scrape &mdash; not re-verifiable today, Collectr blocked</span></h2><div class="card-block"><div class="mover-row"><div><span class="name">Pokemon March (JP)</span><div class="meta">WOTC Lot &middot; Near Mint • Normal</div></div>
       <div class="right"><div class="price">$6.29</div><div class="meta pos">+114.75%</div></div></div><div class="mover-row"><div><span class="name">Kabutops (JP)</span><div class="meta">Main Inventory &middot; Near Mint • Holofoil</div></div>
       <div class="right"><div class="price">$52.97</div><div class="meta pos">+51.71%</div></div></div><div class="mover-row"><div><span class="name">Weedle (JP)</span><div class="meta">Japanese Poke &middot; Near Mint • Normal</div></div>
       <div class="right"><div class="price">$2.62</div><div class="meta pos">+31.19%</div></div></div><div class="mover-row"><div><span class="name">Pikachu</span><div class="meta">Main Inventory &middot; Damaged • Holofoil</div></div>
@@ -164,7 +168,7 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
       <div class="right"><div class="price">$20.68</div><div class="meta neg">-21.61%</div></div></div><div class="mover-row"><div><span class="name">Sentret (JP)</span><div class="meta">Japanese Poke &middot; Near Mint • Normal</div></div>
       <div class="right"><div class="price">$2.63</div><div class="meta pos">+20.29%</div></div></div><div class="mover-row"><div><span class="name">Ursaring (JP)</span><div class="meta">Main Inventory &middot; Near Mint • Holofoil</div></div>
       <div class="right"><div class="price">$20.76</div><div class="meta neg">-20.17%</div></div></div><div class="mover-row"><div><span class="name">Dunsparce (JP)</span><div class="meta">Japanese Poke &middot; Near Mint • Normal</div></div>
-      <div class="right"><div class="price">$2.55</div><div class="meta pos">+19.49%</div></div></div></div><h2 class="section-title">Action Alerts</h2><div class="card-block"><div class="alert"><span class="badge good">good</span><div class="txt"><b>Collectr reachable live today &mdash; full 12-portfolio reconciliation, 539 items.</b> Business portfolios ($3,795.42) plus all 4 My Collection portfolios ($4,453.64, now at full line-by-line coverage on every one &mdash; PC-Rocket included for the first time) sum to $8,249.06 against Collectr's own live Combined Value of $8,308.36 (a 0.7% gap, consistent with ordinary price drift across a long multi-step scrape).</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>Umbreon ex SVP176 PSA10 bounced back today &mdash; $140.25, +2.05% since the last report.</b> Live Collectr price is now $140.25, up from $137.43 flagged in the last report, reversing that pullback. Still -46.06% vs the $260 cost and $169.75 short of the (unverified) $310 target. The Oct 30 Espeon ex/Umbreon ex Battle Decks catalyst is now 24 days out. One up tick after one down tick isn't a trend either way &mdash; standing plan remains hold through Oct 30.</div></div><div class="alert"><span class="badge check">check</span><div class="txt"><b>Umbreon's $310 target price still can't be re-verified in the workbook's own Target Sale Price column.</b> Unchanged from prior runs: the Inventory tab has no Target Sale Price set in column H for this item, so the $310 figure carried into this report and the Private Holdings block below is sourced from prior-run history, not a live workbook field. Worth confirming directly with Ernesto or re-entering it in the workbook.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>Destined Rivals Booster Box (INV-278) is up to $405.69 &mdash; the $470 friend IOU gap narrowed to about $64.31.</b> Live price was $404.49 in the last report; today it's $405.69, closing about $1.20 more of the gap to the $470 owed (down from about $65.51 to about $64.31). Good direction for the hold; still a shortfall if sold today.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>Big inventory build-up still isn't reflected in cost-basis tracking.</b> The expense tracker workbook hasn't been touched since Sept 18, so the $973.61 business cost basis (and the +176.91% unrealized-gain figure above) still only covers 211 workbook rows, not the 539 items now live across all 12 Collectr portfolios. Worth a workbook update before leaning on that cost-basis number.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>$12 David consignment payable (9/13 Skarmory JP sale) is still open.</b> Unchanged since the last several runs &mdash; the workbook has not been touched since Sept 18. The other 6 WOTC Lot sales are already settled via the Aug 26 Zelle payout. True Cash Position remains +$27.47.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>&quot;DAVID CONSIGN - SIDE LIST&quot; remains unclassified.</b> 3 items, $69.80 on Collectr's Overview total as of the last full scrape (Oct 5; not re-verified today). Still doesn't match the FOR SALE or PC naming rule, so it stays out of business KPIs. Open for multiple weeks now &mdash; worth a direct ask to Ernesto rather than re-flagging indefinitely.</div></div><div class="alert"><span class="badge bundle">bundle</span><div class="txt"><b>Trainers portfolio is still empty.</b> 0 items, unresolved for multiple runs now. Retire it in Collectr or restock with trainer singles worth listing separately.</div></div><div class="alert"><span class="badge check">check</span><div class="txt"><b>GitHub Pages: attempting now, result below</b></div></div></div><h2 class="section-title">Full Inventory &mdash; FOR SALE Portfolios</h2><div class="table-wrap">
+      <div class="right"><div class="price">$2.55</div><div class="meta pos">+19.49%</div></div></div></div><h2 class="section-title">Action Alerts</h2><div class="card-block"><div class="alert"><span class="badge check">check</span><div class="txt"><b>Collectr's sign-in CAPTCHA is now a confirmed recurring gate, not a one-off &mdash; 4th occurrence (9/11, 9/29, 9/30, today 10/11).</b> No portfolio could be refreshed today, including the Umbreon private holding; a PriceCharting cross-check was also blocked by its own Cloudflare challenge, so no independent price was reachable at all. The pattern across all 4 occurrences is identical: the browser reaches the sign-in page fine, then throws "Let's confirm you're human." Per standing safety rules this is never solved automatically. <b>The most useful fix at this point is for Ernesto to sign into Collectr once himself</b> in a real browser session &mdash; that should let the persistent profile carry a session forward and stop this from recurring.</div></div><div class="alert"><span class="badge sell">sell</span><div class="txt"><b>Umbreon ex SVP176 PSA10 still sits at its last-verified $135.00 (Oct 9) &mdash; not re-checked today, so treat this as informational, not a fresh reading.</b> That reading was -48.08% vs the $260 cost and $175.00 short of the (unverified) $310 target, and had gone sideways in the $134&ndash;141 band for a week and a half. The Oct 30 Battle Decks catalyst is now 19 days out (independently reconfirmed today via Best Buy's own product page: still $19.99, still "High Demand," no date slip). Standing plan remains hold through Oct 30; the direct-conversation-with-Ernesto flag from the 10/9 and 10/1 reports still stands and hasn't been superseded by anything new today.</div></div><div class="alert"><span class="badge check">check</span><div class="txt"><b>Umbreon's $310 target price still can't be re-verified in the workbook's own Target Sale Price column.</b> Unchanged from prior runs: the Inventory tab has no Target Sale Price set in column H for this item, so the $310 figure carried into this report and the Private Holdings block below is sourced from prior-run history, not a live workbook field. Worth confirming directly with Ernesto or re-entering it in the workbook.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>Zero of 12 Collectr portfolios were refreshed this run &mdash; a step back from Oct 9's partial refresh (3 of 12).</b> Umbreon, PC-Gym Hero and PC-Gym Challenge carry Oct 9 prices (2 days stale); Main Inventory, Under 10, Japanese Poke, EX &amp; Mega EX, V Cards, Trainers, WOTC Lot, David Consign, Personal Collection and PC-Rocket all still carry Oct 6 prices (5 days stale) &mdash; treat every table and the Portfolio Breakdown bars below accordingly. Destined Rivals Booster Box (INV-278, $405.69 as of Oct 6) was not re-checked today, so the ~$64.31 gap to the $470 friend IOU is also not re-verified.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>Big inventory build-up still isn't reflected in cost-basis tracking.</b> The expense tracker workbook hasn't been touched since Sept 18 (re-confirmed byte-identical today), so the $973.61 business cost basis (and the unrealized-gain figure above) still only covers 211 workbook rows, not the 539+ items live across all 12 Collectr portfolios. Worth a workbook update before leaning on that cost-basis number.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>$12 David consignment payable (9/13 Skarmory JP sale) is still open.</b> Unchanged since the last several runs &mdash; the workbook has not been touched since Sept 18. The other 6 WOTC Lot sales are already settled via the Aug 26 Zelle payout. True Cash Position remains +$27.47.</div></div><div class="alert"><span class="badge watch">watch</span><div class="txt"><b>&quot;DAVID CONSIGN - SIDE LIST&quot; remains unclassified.</b> 3 items, $69.80 as of the last full scrape (Oct 5/6, not re-verified today). Still doesn't match the FOR SALE or PC naming rule, so it stays out of business KPIs. Open for multiple weeks now &mdash; worth a direct ask to Ernesto rather than re-flagging indefinitely.</div></div><div class="alert"><span class="badge bundle">bundle</span><div class="txt"><b>Trainers portfolio is still empty.</b> 0 items, unresolved for multiple runs now. Retire it in Collectr or restock with trainer singles worth listing separately.</div></div><div class="alert"><span class="badge good">good</span><div class="txt"><b>Auction sourcing had its best coverage in weeks &mdash; all 5 platforms attempted, 4 reachable.</b> EBTH, LiveAuctioneers and ShopGoodwill all scraped cleanly today; THS Auctions loaded cleanly too (genuinely zero current lots, not a scraping failure). Only HiBid stayed Cloudflare-blocked, a standing issue across many runs now. See the Sourcing tab for the full breakdown and verdicts.</div></div><div class="alert"><span class="badge check">check</span><div class="txt"><b>GitHub Pages push succeeded today</b> &mdash; pushed from the device shell (not the cloud container) using the method confirmed working 10/6. The mobile link at korinscardx.github.io/kce-report is now current with today's report.</div></div></div><h2 class="section-title">Full Inventory &mdash; FOR SALE Portfolios</h2><div class="table-wrap">
   <div class="table-head" onclick="toggleTable('main')">
     <div><span class="ttl">Main Inventory</span><span class="meta">39 of 39 &amp;middot; full coverage &amp;middot; Umbreon (1) flagged Private below</span></div>
     <span class="chev" id="chev-main">&#9662;</span>
@@ -1617,20 +1621,20 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
 </div><h2 class="section-title">&#128274; Private Holdings Monitor</h2><div class="priv-block">
   <div class="htitle">&#128274; Umbreon ex &mdash; 176 <span style="color:var(--text-faint);font-weight:500;">SVP 176 &middot; PSA 10 GEM-MT &middot; INV-035</span></div>
   <div class="priv-grid">
-    <div><div class="plabel">Live Price (Oct 6)</div><div class="pval">$140.25</div></div>
-    <div><div class="plabel">Since Last Report</div><div class="pval pos">+2.82 (+2.05%)</div></div>
+    <div><div class="plabel">Live Price (last verified Oct 9)</div><div class="pval">$135.00</div></div>
+    <div><div class="plabel">Since Last Report</div><div class="pval neg">-5.25 (-3.74%)</div></div>
     <div><div class="plabel">Cost</div><div class="pval">$260.00</div></div>
-    <div><div class="plabel">P&amp;L vs Cost</div><div class="pval neg">-119.75 (-46.06%)</div></div>
+    <div><div class="plabel">P&amp;L vs Cost</div><div class="pval neg">-125.00 (-48.08%)</div></div>
     <div><div class="plabel">Target (list price, unverified)</div><div class="pval">$310.00</div></div>
-    <div><div class="plabel">Gap to Target</div><div class="pval">$169.75</div></div>
+    <div><div class="plabel">Gap to Target</div><div class="pval">$175.00</div></div>
   </div>
   <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(124,108,255,.2);font-size:12px;color:var(--text-dim);line-height:1.55;">
-    <b style="color:var(--text);">Read:</b> Today's price bounced back to $140.25, up 2.05% from the $137.43 flagged in the last report &mdash; reversing that pullback, which itself had reversed the report before it's +8.49% bounce. Still 46.06% underwater vs the $260 cost and $169.75 short of the (unverified) $310 target. The Oct 30 Espeon ex/Umbreon ex Battle Decks are 24 days out and remain the last confirmed catalyst; Sept 16's 30th Celebration launch already passed with no bounce. Two choppy reads in a row aren't a trend yet either way &mdash; worth watching the next few before concluding anything. Standing plan: hold through Oct 30.
+    <b style="color:var(--text);">Read:</b> Not re-verifiable today &mdash; Collectr's sign-in CAPTCHA blocked every portfolio including this one (4th occurrence of this exact gate: 9/11, 9/29, 9/30, today), and a PriceCharting cross-check hit its own Cloudflare challenge. The figures above are the last live read from Oct 9: $135.00, down 3.74% that day from $140.25, the worst reading since the accelerating-decline episode flagged 10/1, 48.08% underwater vs the $260 cost and $175.00 short of the (unverified) $310 target. Over the prior week and a half of reads the price had gone sideways in a $134&ndash;141 band rather than resuming the slide or recovering &mdash; the post-slide floor may simply be lower than pre-slide. The Oct 30 Espeon ex/Umbreon ex Battle Decks are now 19 days out and remain the last confirmed catalyst (independently reconfirmed today via Best Buy's own product page: still $19.99, still listed "High Demand," no date slip, release date 10/30/2026). Standing plan remains hold through Oct 30; the direct-conversation-with-Ernesto flag from 10/9 and 10/1 still stands.
   </div>
 </div><h2 class="section-title">P&amp;L Summary</h2><div class="card-block">
   <div class="mover-row"><span class="name">Cost Basis (on hand, business)</span><span>$973.61</span></div>
-  <div class="mover-row"><span class="name">Live Value (KCE economic interest)</span><span>$2,695.98</span></div>
-  <div class="mover-row"><span class="name">Unrealized Gain</span><span class="pos">$1,722.37</span></div>
+  <div class="mover-row"><span class="name">Live Value (KCE economic interest)</span><span>$2,690.73</span></div>
+  <div class="mover-row"><span class="name">Unrealized Gain</span><span class="pos">$1,717.12</span></div>
   <div class="mover-row"><span class="name">Realized Net Profit (64 sales)</span><span class="pos">$1,154.12</span></div>
   <div class="mover-row"><span class="name">Net Cash Position</span><span class="pos">$509.47</span></div>
   <div class="mover-row"><span class="name">Less: Outstanding Consignment Payable</span><span class="neg">-$12.00</span></div>
@@ -1638,7 +1642,7 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
   <div class="mover-row" style="border-top:1px solid var(--border);padding-top:11px;margin-top:2px;"><span class="name" style="font-weight:700;">True Cash Position</span><span style="font-weight:700;" class="pos">+$27.47</span></div>
 </div>
 <div class="notes-box" style="margin:-4px 0 14px;padding:0 2px;">
-  Workbook checked again today (Oct 6) &mdash; still unchanged since Sept 18, so these figures still hold: consignment payable at $12 (just the 9/13 Skarmory JP sale) after the Aug 26 Zelle payout, and True Cash Position holding at +$27.47. Cost basis here ($973.61) still covers only the 211 items tracked in the workbook and does not include the full 539 now live in Collectr &mdash; see the Action Alert above. IOU note: $470 fronted by a friend for INV-278 (Destined Rivals Booster Box, $405.69 live today) &mdash; not yet repaid; the gap has narrowed to about $64.31.
+  No live Collectr data today at all &mdash; the CAPTCHA sign-in gate blocked every portfolio (4th occurrence, see banner). Live Value and Unrealized Gain above are unchanged, carried forward exactly from the Oct 9 report. Workbook itself re-checked and confirmed still byte-identical since Sept 18, so these figures still hold: consignment payable at $12 (just the 9/13 Skarmory JP sale) after the Aug 26 Zelle payout, and True Cash Position holding at +$27.47. Cost basis here ($973.61) still covers only the 211 items tracked in the workbook and does not include the full 539+ now live in Collectr &mdash; see the Action Alert above. IOU note: $470 fronted by a friend for INV-278 (Destined Rivals Booster Box, not re-verified today &mdash; last known $405.69 as of Oct 6) &mdash; not yet repaid; gap last known at about $64.31, not re-checked this run.
 </div>
 <h2 class="section-title">Selling Channel Net Rates</h2><div class="card-block notes-box">
   <b>eBay</b> ~83% net (after ~13% final value fee + payment processing)<br>
@@ -1649,19 +1653,19 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
 <section class="tab" id="tab-collection">
 <div class="kpi-grid">
   <div class="kpi wide"><div class="label">Total My Collection</div>
-    <div class="value">$4,453.64</div>
-    <div class="sub">215 items across 4 portfolios &middot; never counted in business KPIs</div></div>
-  <div class="kpi"><div class="label">Personal Collection</div><div class="value">$2,960.22</div><div class="sub">66 items</div></div><div class="kpi"><div class="label">PC - Gym Hero</div><div class="value">$515.12</div><div class="sub">45 items</div></div><div class="kpi"><div class="label">PC - Gym Challenge</div><div class="value">$328.86</div><div class="sub">43 items</div></div><div class="kpi"><div class="label">PC - Rocket</div><div class="value">$649.44</div><div class="sub">61 items</div></div>
+    <div class="value">$4,493.51</div>
+    <div class="sub">215 items across 4 portfolios &middot; never counted in business KPIs &middot; Collectr unreachable today, all 4 carried forward</div></div>
+  <div class="kpi"><div class="label">Personal Collection</div><div class="value">$2,960.22</div><div class="sub">66 items &middot; carried forward, Oct 6</div></div><div class="kpi"><div class="label">PC - Gym Hero</div><div class="value">$525.65</div><div class="sub">45 items &middot; carried forward, Oct 9</div></div><div class="kpi"><div class="label">PC - Gym Challenge</div><div class="value">$358.20</div><div class="sub">43 items &middot; carried forward, Oct 9</div></div><div class="kpi"><div class="label">PC - Rocket</div><div class="value">$649.44</div><div class="sub">61 items &middot; carried forward, Oct 6</div></div>
 </div>
-<h2 class="section-title">Top PC Movers <span class="count">live today, Oct 6</span></h2><div class="card-block"><div class="mover-row"><div><span class="name">Claydol</span><div class="meta">Personal Collection &middot; Near Mint • Holofoil</div></div>
-      <div class="right"><div class="price">$1.38</div><div class="meta neg">-15.34%</div></div></div><div class="mover-row"><div><span class="name">Sleep!</span><div class="meta">PC - Rocket &middot; Near Mint • 1st Edition</div></div>
-      <div class="right"><div class="price">$11.12</div><div class="meta neg">-14.72%</div></div></div><div class="mover-row"><div><span class="name">MewTwo (JP)</span><div class="meta">Personal Collection &middot; Near Mint • Glossy</div></div>
-      <div class="right"><div class="price">$74.22</div><div class="meta neg">-13.89%</div></div></div><div class="mover-row"><div><span class="name">Team Rocket&#x27;s Wobbuffet</span><div class="meta">Personal Collection &middot; Near Mint • Holofoil</div></div>
-      <div class="right"><div class="price">$3.74</div><div class="meta neg">-13.23%</div></div></div><div class="mover-row"><div><span class="name">Raticate</span><div class="meta">Personal Collection &middot; Near Mint • Holofoil</div></div>
-      <div class="right"><div class="price">$1.83</div><div class="meta pos">+9.58%</div></div></div><div class="mover-row"><div><span class="name">Charmander</span><div class="meta">PC - Rocket &middot; Near Mint • Unlimited</div></div>
-      <div class="right"><div class="price">$4.76</div><div class="meta neg">-8.11%</div></div></div></div><h2 class="section-title">Collection Notes</h2><div class="card-block notes-box">Collectr was reachable live today (no CAPTCHA) &mdash; all 4 PC portfolios below reconcile to Collectr's own Overview-tab totals by count (Personal Collection 66/66, PC-Gym Hero 45/45, PC-Gym Challenge 43/43, PC-Rocket 61/61). Two graded slabs live in Personal Collection: <b>Rocket's Zapdos</b> (Gym Challenge, graded) $286.40 and <b>Lt. Surge's Raichu</b> (Gym Challenge, graded) $281.46 as of today; Collectr's Products view doesn't surface a grade/condition tag for these two the way it does for raw cards, so both show as placeholders in the table below. <b>All 4 PC portfolios are now at full line-by-line coverage</b> &mdash; PC-Rocket joins the other three today, up from top-30-of-61 in the prior run. Day-over-day % moves below are computed against yesterday's line-item prices by matching card+set+condition; a handful of PC-Rocket rows that weren't captured in yesterday's partial scrape are marked "new" rather than given a misleading % figure. Never counted in business KPIs or P&amp;L per the standing PC-vs-FOR-SALE rule.</div><h2 class="section-title">Full Collection &mdash; 4 PC Portfolios</h2><div class="table-wrap">
+<h2 class="section-title">Top PC Movers <span class="count">Oct 9 reads &middot; Gym Hero &amp; Gym Challenge, not re-verifiable today</span></h2><div class="card-block"><div class="mover-row"><div><span class="name">Sabrina&#x27;s Haunter</span><div class="meta">PC - Gym Hero &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$26.58</div><div class="meta pos">+7.09%</div></div></div><div class="mover-row"><div><span class="name">Energy Flow</span><div class="meta">PC - Gym Hero &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$0.53</div><div class="meta pos">+6.00%</div></div></div><div class="mover-row"><div><span class="name">Koga&#x27;s Tangela</span><div class="meta">PC - Gym Challenge &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$1.65</div><div class="meta pos">+5.77%</div></div></div><div class="mover-row"><div><span class="name">Lt. Surge&#x27;s Spearow</span><div class="meta">PC - Gym Hero &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$0.96</div><div class="meta neg">-17.24%</div></div></div><div class="mover-row"><div><span class="name">Blaine&#x27;s Mankey</span><div class="meta">PC - Gym Challenge &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$1.16</div><div class="meta neg">-16.55%</div></div></div><div class="mover-row"><div><span class="name">Brock&#x27;s Diglett</span><div class="meta">PC - Gym Challenge &middot; Near Mint • Unlimited</div></div>
+      <div class="right"><div class="price">$1.43</div><div class="meta neg">-15.88%</div></div></div></div><h2 class="section-title">Collection Notes</h2><div class="card-block notes-box">No live Collectr data today &mdash; the sign-in CAPTCHA (4th occurrence, see Business tab banner) blocked every portfolio, so all 4 My Collection tables below are carried forward unchanged: <b>PC-Gym Hero</b> and <b>PC-Gym Challenge</b> from Oct 9 (their last live reads, reconciled exactly to Collectr's own "45 Total"/"43 Total" that day), <b>Personal Collection</b> (66 items, incl. two graded slabs &mdash; Rocket's Zapdos $286.40, Lt. Surge's Raichu $281.46) and <b>PC-Rocket</b> (61 items) from Oct 6. Never counted in business KPIs or P&amp;L per the standing PC-vs-FOR-SALE rule.</div><h2 class="section-title">Full Collection &mdash; 4 PC Portfolios</h2><div class="table-wrap">
   <div class="table-head" onclick="toggleTable('pc')">
-    <div><span class="ttl">Personal Collection</span><span class="meta">66 of 66 &amp;middot; full coverage &amp;middot; 2 graded slabs (Lt. Surge&#x27;s Raichu, Rocket&#x27;s Zapdos)</span></div>
+    <div><span class="ttl">Personal Collection</span><span class="meta">66 of 66 &amp;middot; full coverage &amp;middot; 2 graded slabs (Lt. Surge&#x27;s Raichu, Rocket&#x27;s Zapdos) &amp;middot; carried forward, Oct 6</span></div>
     <span class="chev" id="chev-pc">&#9662;</span>
   </div>
   <div class="table-body" id="body-pc">
@@ -2140,7 +2144,7 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
   </div>
 </div><div class="table-wrap">
   <div class="table-head" onclick="toggleTable('gymhero')">
-    <div><span class="ttl">PC - Gym Hero</span><span class="meta">44 of 44 &amp;middot; full coverage (45 units)</span></div>
+    <div><span class="ttl">PC - Gym Hero</span><span class="meta">44 of 44 &amp;middot; full coverage (45 units) &amp;middot; live Oct 9</span></div>
     <span class="chev" id="chev-gymhero">&#9662;</span>
   </div>
   <div class="table-body" id="body-gymhero">
@@ -2153,319 +2157,319 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
         <th class="num" onclick="sortTable('gymhero',3)">&Delta;<span class="arrow">&#8597;</span></th>
         <th>Status</th>
       </tr></thead>
-      <tbody id="tbody-gymhero"><tr data-name="blaine&#x27;s moltres gym heroes" data-price="138.5" data-pct="0.0">
+      <tbody id="tbody-gymhero"><tr data-name="blaine&#x27;s moltres gym heroes" data-price="139.66" data-pct="0.84">
   <td><span class="cname">Blaine&#x27;s Moltres</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited Holofoil</span></td>
-  <td class="num">$138.50</td>
-  <td class="num pos">+0.00%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$139.66</td>
+  <td class="num pos">+0.84%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="rocket&#x27;s scyther gym heroes" data-price="88.05" data-pct="0.0">
-  <td><span class="cname">Rocket&#x27;s Scyther</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited Holofoil</span></td>
-  <td class="num">$88.05</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="misty (18) gym heroes" data-price="68.34" data-pct="0.0">
-  <td><span class="cname">Misty (18)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited Holofoil</span></td>
-  <td class="num">$68.34</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s clefable gym heroes" data-price="43.18" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Clefable</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Lightly Played • Unlimited Holofoil</span></td>
-  <td class="num">$43.18</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="misty&#x27;s tentacruel gym heroes" data-price="27.81" data-pct="0.0">
-  <td><span class="cname">Misty&#x27;s Tentacruel</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited Holofoil</span></td>
-  <td class="num">$27.81</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s vileplume gym heroes" data-price="27.8" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Vileplume</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited Holofoil</span></td>
-  <td class="num">$27.80</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s haunter gym heroes" data-price="24.95" data-pct="0.0">
-  <td><span class="cname">Sabrina&#x27;s Haunter</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$24.95</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s rhyhorn (22) gym heroes" data-price="13.03" data-pct="-1.29">
-  <td><span class="cname">Brock&#x27;s Rhyhorn (22)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$13.03</td>
-  <td class="num neg">-1.29%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s pikachu gym heroes" data-price="8.26" data-pct="0.0">
+<tr data-name="lt. surge&#x27;s pikachu gym heroes" data-price="8.23" data-pct="-1.79">
   <td><span class="cname">Lt. Surge&#x27;s Pikachu</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$8.26</td>
-  <td class="num pos">+0.00%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$8.23</td>
+  <td class="num neg">-1.79%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s dratini gym heroes" data-price="5.34" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Dratini</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$5.34</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="rocket&#x27;s scyther gym heroes" data-price="88.21" data-pct="0.18">
+  <td><span class="cname">Rocket&#x27;s Scyther</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$88.21</td>
+  <td class="num pos">+0.18%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="blaine&#x27;s kangaskhan gym heroes" data-price="5.17" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Kangaskhan</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$5.17</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="misty&#x27;s tentacruel gym heroes" data-price="27.91" data-pct="-0.07">
+  <td><span class="cname">Misty&#x27;s Tentacruel</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$27.91</td>
+  <td class="num neg">-0.07%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="sabrina&#x27;s esp gym heroes" data-price="5.06" data-pct="0.0">
-  <td><span class="cname">Sabrina&#x27;s ESP</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$5.06</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="erika&#x27;s vileplume gym heroes" data-price="27.84" data-pct="0.14">
+  <td><span class="cname">Erika&#x27;s Vileplume</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$27.84</td>
+  <td class="num pos">+0.14%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="minion of team rocket gym heroes" data-price="4.5" data-pct="-0.88">
-  <td><span class="cname">Minion of Team Rocket</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$4.50</td>
-  <td class="num neg">-0.88%</td>
+<tr data-name="misty (18) gym heroes" data-price="68.34" data-pct="-0.09">
+  <td><span class="cname">Misty (18)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$68.34</td>
+  <td class="num neg">-0.09%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="misty&#x27;s starmie gym heroes" data-price="4.12" data-pct="0.73">
-  <td><span class="cname">Misty&#x27;s Starmie</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$4.12</td>
-  <td class="num pos">+0.73%</td>
+<tr data-name="erika&#x27;s clefable gym heroes" data-price="51.93" data-pct="2.22">
+  <td><span class="cname">Erika&#x27;s Clefable</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$51.93</td>
+  <td class="num pos">+2.22%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s gloom (46) gym heroes" data-price="3.74" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Gloom (46)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.74</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s lickitung gym heroes" data-price="3.56" data-pct="-5.32">
-  <td><span class="cname">Brock&#x27;s Lickitung</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.56</td>
-  <td class="num neg">-5.32%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s oddish (47) gym heroes" data-price="3.31" data-pct="-1.78">
-  <td><span class="cname">Erika&#x27;s Oddish (47)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.31</td>
-  <td class="num neg">-1.78%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s maids gym heroes" data-price="3.11" data-pct="-0.32">
-  <td><span class="cname">Erika&#x27;s Maids</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.11</td>
-  <td class="num neg">-0.32%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s charmander gym heroes" data-price="2.91" data-pct="1.04">
+<tr data-name="blaine&#x27;s charmander gym heroes" data-price="2.95" data-pct="1.72">
   <td><span class="cname">Blaine&#x27;s Charmander</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.91</td>
-  <td class="num pos">+1.04%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.95</td>
+  <td class="num pos">+1.72%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="misty&#x27;s seaking gym heroes" data-price="2.66" data-pct="0.0">
-  <td><span class="cname">Misty&#x27;s Seaking</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.66</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="sabrina&#x27;s haunter gym heroes" data-price="26.58" data-pct="7.09">
+  <td><span class="cname">Sabrina&#x27;s Haunter</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$26.58</td>
+  <td class="num pos">+7.09%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="misty&#x27;s tentacool (57) gym heroes" data-price="2.61" data-pct="-0.76">
-  <td><span class="cname">Misty&#x27;s Tentacool (57)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.61</td>
-  <td class="num neg">-0.76%</td>
+<tr data-name="erika&#x27;s dratini gym heroes" data-price="5.37" data-pct="0.19">
+  <td><span class="cname">Erika&#x27;s Dratini</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$5.37</td>
+  <td class="num pos">+0.19%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="sabrina&#x27;s slowpoke gym heroes" data-price="2.26" data-pct="-3.0">
-  <td><span class="cname">Sabrina&#x27;s Slowpoke</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.26</td>
-  <td class="num neg">-3.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s mr. mime gym heroes" data-price="2.01" data-pct="-0.5">
-  <td><span class="cname">Sabrina&#x27;s Mr. Mime</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.01</td>
-  <td class="num neg">-0.50%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s gloom (45) gym heroes" data-price="1.95" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Gloom (45)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.95</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="misty&#x27;s staryu gym heroes" data-price="1.69" data-pct="1.2">
-  <td><span class="cname">Misty&#x27;s Staryu</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.69</td>
-  <td class="num pos">+1.20%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s exeggutor gym heroes" data-price="1.68" data-pct="-2.33">
-  <td><span class="cname">Erika&#x27;s Exeggutor</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.68</td>
-  <td class="num neg">-2.33%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s ponyta gym heroes" data-price="1.53" data-pct="0.66">
-  <td><span class="cname">Blaine&#x27;s Ponyta</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.53</td>
-  <td class="num pos">+0.66%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="misty&#x27;s goldeen (85) gym heroes" data-price="1.41" data-pct="-0.7">
-  <td><span class="cname">Misty&#x27;s Goldeen (85)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.41</td>
-  <td class="num neg">-0.70%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s venonat gym heroes" data-price="1.33" data-pct="-2.92">
+<tr data-name="sabrina&#x27;s venonat gym heroes" data-price="1.29" data-pct="-7.86">
   <td><span class="cname">Sabrina&#x27;s Venonat</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.33</td>
-  <td class="num neg">-2.92%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.29</td>
+  <td class="num neg">-7.86%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="brock&#x27;s mankey (68) gym heroes" data-price="1.27" data-pct="0.79">
-  <td><span class="cname">Brock&#x27;s Mankey (68)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.27</td>
-  <td class="num pos">+0.79%</td>
+<tr data-name="sabrina&#x27;s mr. mime gym heroes" data-price="2.0" data-pct="3.63">
+  <td><span class="cname">Sabrina&#x27;s Mr. Mime</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.00</td>
+  <td class="num pos">+3.63%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="brock&#x27;s sandshrew (71) gym heroes" data-price="1.22" data-pct="0.0">
-  <td><span class="cname">Brock&#x27;s Sandshrew (71)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.22</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="sabrina&#x27;s slowpoke gym heroes" data-price="2.14" data-pct="-15.42">
+  <td><span class="cname">Sabrina&#x27;s Slowpoke</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.14</td>
+  <td class="num neg">-15.42%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="blaine&#x27;s tauros gym heroes" data-price="1.21" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Tauros</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.21</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="blaine&#x27;s kangaskhan gym heroes" data-price="5.17" data-pct="-3.54">
+  <td><span class="cname">Blaine&#x27;s Kangaskhan</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$5.17</td>
+  <td class="num neg">-3.54%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="sabrina&#x27;s gaze gym heroes" data-price="1.13" data-pct="-1.74">
-  <td><span class="cname">Sabrina&#x27;s Gaze</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.13</td>
-  <td class="num neg">-1.74%</td>
+<tr data-name="misty&#x27;s staryu gym heroes" data-price="1.56" data-pct="-11.86">
+  <td><span class="cname">Misty&#x27;s Staryu</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.56</td>
+  <td class="num neg">-11.86%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s bellsprout (75) gym heroes" data-price="1.07" data-pct="0.0">
-  <td><span class="cname">Erika&#x27;s Bellsprout (75)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.07</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="misty&#x27;s tentacool (57) gym heroes" data-price="2.58" data-pct="-4.09">
+  <td><span class="cname">Misty&#x27;s Tentacool (57)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.58</td>
+  <td class="num neg">-4.09%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="lt. surge&#x27;s spearow (52) gym heroes" data-price="1.05" data-pct="0.0">
-  <td><span class="cname">Lt. Surge&#x27;s Spearow (52)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.05</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s zubat (74) gym heroes" data-price="1.0" data-pct="0.0">
+<tr data-name="brock&#x27;s zubat (74) gym heroes" data-price="0.97" data-pct="-3.96">
   <td><span class="cname">Brock&#x27;s Zubat (74)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.00</td>
-  <td class="num pos">+0.00%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.97</td>
+  <td class="num neg">-3.96%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s tangela gym heroes" data-price="0.92" data-pct="-1.08">
+<tr data-name="misty&#x27;s goldeen (85) gym heroes" data-price="1.36" data-pct="-8.11">
+  <td><span class="cname">Misty&#x27;s Goldeen (85)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.36</td>
+  <td class="num neg">-8.11%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="sabrina&#x27;s gaze gym heroes" data-price="1.06" data-pct="-7.83">
+  <td><span class="cname">Sabrina&#x27;s Gaze</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.06</td>
+  <td class="num neg">-7.83%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s tangela gym heroes" data-price="0.91" data-pct="-5.21">
   <td><span class="cname">Erika&#x27;s Tangela</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.92</td>
-  <td class="num neg">-1.08%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.91</td>
+  <td class="num neg">-5.21%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="celadon city gym gym heroes" data-price="0.89" data-pct="2.3">
-  <td><span class="cname">Celadon City Gym</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.89</td>
-  <td class="num pos">+2.30%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s voltorb gym heroes" data-price="0.86" data-pct="1.18">
+<tr data-name="lt. surge&#x27;s voltorb gym heroes" data-price="0.82" data-pct="-7.87">
   <td><span class="cname">Lt. Surge&#x27;s Voltorb</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.86</td>
-  <td class="num pos">+1.18%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.82</td>
+  <td class="num neg">-7.87%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="lt. surge&#x27;s magnemite (80) gym heroes" data-price="0.83" data-pct="-2.35">
+<tr data-name="lt. surge&#x27;s magnemite (80) gym heroes" data-price="0.83" data-pct="-1.19">
   <td><span class="cname">Lt. Surge&#x27;s Magnemite (80)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
   <td class="num">$0.83</td>
-  <td class="num neg">-2.35%</td>
+  <td class="num neg">-1.19%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s bellsprout (76) gym heroes" data-price="0.79" data-pct="0.0">
+<tr data-name="blaine&#x27;s ponyta gym heroes" data-price="1.53" data-pct="-4.38">
+  <td><span class="cname">Blaine&#x27;s Ponyta</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.53</td>
+  <td class="num neg">-4.38%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s lickitung gym heroes" data-price="3.58" data-pct="-8.67">
+  <td><span class="cname">Brock&#x27;s Lickitung</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.58</td>
+  <td class="num neg">-8.67%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s gloom (45) gym heroes" data-price="1.89" data-pct="-1.56">
+  <td><span class="cname">Erika&#x27;s Gloom (45)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.89</td>
+  <td class="num neg">-1.56%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s sandshrew (71) gym heroes" data-price="1.16" data-pct="-10.08">
+  <td><span class="cname">Brock&#x27;s Sandshrew (71)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.16</td>
+  <td class="num neg">-10.08%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s exeggutor gym heroes" data-price="1.67" data-pct="-3.47">
+  <td><span class="cname">Erika&#x27;s Exeggutor</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.67</td>
+  <td class="num neg">-3.47%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="misty&#x27;s starmie gym heroes" data-price="4.13" data-pct="2.48">
+  <td><span class="cname">Misty&#x27;s Starmie</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$4.13</td>
+  <td class="num pos">+2.48%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s bellsprout (76) gym heroes" data-price="0.75" data-pct="0.0">
   <td><span class="cname">Erika&#x27;s Bellsprout (76)</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.79</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.75</td>
   <td class="num pos">+0.00%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="lt. surge&#x27;s rattata gym heroes" data-price="0.77" data-pct="0.0">
+<tr data-name="lt. surge&#x27;s rattata gym heroes" data-price="0.75" data-pct="-1.32">
   <td><span class="cname">Lt. Surge&#x27;s Rattata</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.77</td>
-  <td class="num pos">+0.00%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.75</td>
+  <td class="num neg">-1.32%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s tauros gym heroes" data-price="1.15" data-pct="-5.74">
+  <td><span class="cname">Blaine&#x27;s Tauros</span><span class="cset">Gym Heroes &times;2</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.15</td>
+  <td class="num neg">-5.74%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s bellsprout (75) gym heroes" data-price="1.05" data-pct="-12.5">
+  <td><span class="cname">Erika&#x27;s Bellsprout (75)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.05</td>
+  <td class="num neg">-12.50%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s oddish (47) gym heroes" data-price="3.21" data-pct="-5.87">
+  <td><span class="cname">Erika&#x27;s Oddish (47)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.21</td>
+  <td class="num neg">-5.87%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s mankey (68) gym heroes" data-price="1.26" data-pct="-5.26">
+  <td><span class="cname">Brock&#x27;s Mankey (68)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.26</td>
+  <td class="num neg">-5.26%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="lt. surge&#x27;s spearow (52) gym heroes" data-price="0.96" data-pct="-17.24">
+  <td><span class="cname">Lt. Surge&#x27;s Spearow (52)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.96</td>
+  <td class="num neg">-17.24%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s gloom (46) gym heroes" data-price="3.74" data-pct="0.81">
+  <td><span class="cname">Erika&#x27;s Gloom (46)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.74</td>
+  <td class="num pos">+0.81%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="misty&#x27;s seaking gym heroes" data-price="2.6" data-pct="-3.35">
+  <td><span class="cname">Misty&#x27;s Seaking</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.60</td>
+  <td class="num neg">-3.35%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s gamble gym heroes" data-price="0.48" data-pct="2.13">
+  <td><span class="cname">Blaine&#x27;s Gamble</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.48</td>
+  <td class="num pos">+2.13%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="sabrina&#x27;s esp gym heroes" data-price="5.07" data-pct="-0.98">
+  <td><span class="cname">Sabrina&#x27;s ESP</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$5.07</td>
+  <td class="num neg">-0.98%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s rhyhorn (22) gym heroes" data-price="13.0" data-pct="-1.07">
+  <td><span class="cname">Brock&#x27;s Rhyhorn (22)</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$13.00</td>
+  <td class="num neg">-1.07%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s maids gym heroes" data-price="2.94" data-pct="-8.13">
+  <td><span class="cname">Erika&#x27;s Maids</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.94</td>
+  <td class="num neg">-8.13%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
 <tr data-name="energy flow gym heroes" data-price="0.53" data-pct="6.0">
   <td><span class="cname">Energy Flow</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
   <td class="num">$0.53</td>
   <td class="num pos">+6.00%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="blaine&#x27;s gamble gym heroes" data-price="0.5" data-pct="2.04">
-  <td><span class="cname">Blaine&#x27;s Gamble</span><span class="cset">Gym Heroes</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.50</td>
-  <td class="num pos">+2.04%</td>
+<tr data-name="minion of team rocket gym heroes" data-price="4.47" data-pct="-1.54">
+  <td><span class="cname">Minion of Team Rocket</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$4.47</td>
+  <td class="num neg">-1.54%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="celadon city gym gym heroes" data-price="0.87" data-pct="1.16">
+  <td><span class="cname">Celadon City Gym</span><span class="cset">Gym Heroes</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.87</td>
+  <td class="num pos">+1.16%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr></tbody>
     </table>
   </div>
 </div><div class="table-wrap">
   <div class="table-head" onclick="toggleTable('gymchallenge')">
-    <div><span class="ttl">PC - Gym Challenge</span><span class="meta">42 of 42 &amp;middot; full coverage (43 units)</span></div>
+    <div><span class="ttl">PC - Gym Challenge</span><span class="meta">42 of 42 &amp;middot; full coverage (43 units) &amp;middot; live Oct 9</span></div>
     <span class="chev" id="chev-gymchallenge">&#9662;</span>
   </div>
   <div class="table-body" id="body-gymchallenge">
@@ -2478,305 +2482,305 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
         <th class="num" onclick="sortTable('gymchallenge',3)">&Delta;<span class="arrow">&#8597;</span></th>
         <th>Status</th>
       </tr></thead>
-      <tbody id="tbody-gymchallenge"><tr data-name="giovanni&#x27;s machamp gym challenge" data-price="71.66" data-pct="0.0">
-  <td><span class="cname">Giovanni&#x27;s Machamp</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Lightly Played • Unlimited Holofoil</span></td>
-  <td class="num">$71.66</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="giovanni&#x27;s nidoking gym challenge" data-price="65.91" data-pct="0.08">
+      <tbody id="tbody-gymchallenge"><tr data-name="giovanni&#x27;s nidoking gym challenge" data-price="77.54" data-pct="0.19">
   <td><span class="cname">Giovanni&#x27;s Nidoking</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Lightly Played • Unlimited Holofoil</span></td>
-  <td class="num">$65.91</td>
-  <td class="num pos">+0.08%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$77.54</td>
+  <td class="num pos">+0.19%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="koga&#x27;s beedrill gym challenge" data-price="33.12" data-pct="-0.21">
+<tr data-name="giovanni&#x27;s machamp gym challenge" data-price="84.59" data-pct="1.26">
+  <td><span class="cname">Giovanni&#x27;s Machamp</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$84.59</td>
+  <td class="num pos">+1.26%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s beedrill gym challenge" data-price="39.01" data-pct="-0.1">
   <td><span class="cname">Koga&#x27;s Beedrill</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Lightly Played • Unlimited Holofoil</span></td>
-  <td class="num">$33.12</td>
-  <td class="num neg">-0.21%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited Holofoil</span></td>
+  <td class="num">$39.01</td>
+  <td class="num neg">-0.10%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="blaine&#x27;s ninetales gym challenge" data-price="21.74" data-pct="0.0">
+<tr data-name="blaine&#x27;s charmander gym challenge" data-price="3.57" data-pct="-4.8">
+  <td><span class="cname">Blaine&#x27;s Charmander</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.57</td>
+  <td class="num neg">-4.80%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="giovanni&#x27;s magikarp gym challenge" data-price="3.54" data-pct="-3.28">
+  <td><span class="cname">Giovanni&#x27;s Magikarp</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.54</td>
+  <td class="num neg">-3.28%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s jigglypuff gym challenge" data-price="2.77" data-pct="-7.05">
+  <td><span class="cname">Erika&#x27;s Jigglypuff</span><span class="cset">Gym Challenge &times;2</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.77</td>
+  <td class="num neg">-7.05%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s bulbasaur gym challenge" data-price="12.5" data-pct="-2.8">
+  <td><span class="cname">Erika&#x27;s Bulbasaur</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$12.50</td>
+  <td class="num neg">-2.80%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s ninetales gym challenge" data-price="21.74" data-pct="-3.38">
   <td><span class="cname">Blaine&#x27;s Ninetales</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
   <td class="num">$21.74</td>
-  <td class="num pos">+0.00%</td>
+  <td class="num neg">-3.38%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="sabrina&#x27;s abra (94) gym challenge" data-price="3.43" data-pct="1.18">
+  <td><span class="cname">Sabrina&#x27;s Abra (94)</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.43</td>
+  <td class="num pos">+1.18%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
 <tr data-name="sabrina&#x27;s gastly (97) gym challenge" data-price="17.32" data-pct="-0.23">
   <td><span class="cname">Sabrina&#x27;s Gastly (97)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • 1st Edition</span></td>
+  <td><span class="cond-tag">Near Mint &bull; 1st Edition</span></td>
   <td class="num">$17.32</td>
   <td class="num neg">-0.23%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="erika&#x27;s bulbasaur gym challenge" data-price="12.6" data-pct="0.08">
-  <td><span class="cname">Erika&#x27;s Bulbasaur</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$12.60</td>
-  <td class="num pos">+0.08%</td>
+<tr data-name="blaine&#x27;s vulpix gym challenge" data-price="2.17" data-pct="-2.25">
+  <td><span class="cname">Blaine&#x27;s Vulpix</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.17</td>
+  <td class="num neg">-2.25%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="sabrina&#x27;s psychic control gym challenge" data-price="10.14" data-pct="0.0">
-  <td><span class="cname">Sabrina&#x27;s Psychic Control</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$10.14</td>
-  <td class="num pos">+0.00%</td>
+<tr data-name="sabrina&#x27;s abra (93) gym challenge" data-price="2.53" data-pct="0.8">
+  <td><span class="cname">Sabrina&#x27;s Abra (93)</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.53</td>
+  <td class="num pos">+0.80%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s grimer gym challenge" data-price="1.01" data-pct="-4.72">
+  <td><span class="cname">Koga&#x27;s Grimer</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.01</td>
+  <td class="num neg">-4.72%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="giovanni&#x27;s machoke gym challenge" data-price="2.82" data-pct="-1.74">
+  <td><span class="cname">Giovanni&#x27;s Machoke</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.82</td>
+  <td class="num neg">-1.74%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="giovanni&#x27;s machop gym challenge" data-price="1.61" data-pct="-3.59">
+  <td><span class="cname">Giovanni&#x27;s Machop</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.61</td>
+  <td class="num neg">-3.59%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s ekans gym challenge" data-price="1.07" data-pct="-15.75">
+  <td><span class="cname">Koga&#x27;s Ekans</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.07</td>
+  <td class="num neg">-15.75%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
 <tr data-name="sabrina&#x27;s hypno gym challenge" data-price="9.34" data-pct="0.0">
   <td><span class="cname">Sabrina&#x27;s Hypno</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • 1st Edition</span></td>
+  <td><span class="cond-tag">Near Mint &bull; 1st Edition</span></td>
   <td class="num">$9.34</td>
   <td class="num pos">+0.00%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="misty&#x27;s dewgong gym challenge" data-price="8.22" data-pct="0.86">
-  <td><span class="cname">Misty&#x27;s Dewgong</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • 1st Edition</span></td>
-  <td class="num">$8.22</td>
-  <td class="num pos">+0.86%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s sandslash gym challenge" data-price="8.08" data-pct="0.0">
-  <td><span class="cname">Brock&#x27;s Sandslash</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • 1st Edition</span></td>
-  <td class="num">$8.08</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s mr. mime gym challenge" data-price="5.05" data-pct="0.0">
-  <td><span class="cname">Sabrina&#x27;s Mr. Mime</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$5.05</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s charmander gym challenge" data-price="3.58" data-pct="-1.65">
-  <td><span class="cname">Blaine&#x27;s Charmander</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.58</td>
-  <td class="num neg">-1.65%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="giovanni&#x27;s magikarp gym challenge" data-price="3.51" data-pct="-4.1">
-  <td><span class="cname">Giovanni&#x27;s Magikarp</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.51</td>
-  <td class="num neg">-4.10%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s abra (94) gym challenge" data-price="3.43" data-pct="2.39">
-  <td><span class="cname">Sabrina&#x27;s Abra (94)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.43</td>
-  <td class="num pos">+2.39%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s primeape gym challenge" data-price="3.4" data-pct="0.59">
-  <td><span class="cname">Brock&#x27;s Primeape</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.40</td>
-  <td class="num pos">+0.59%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s rapidash gym challenge" data-price="3.22" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Rapidash</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$3.22</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s electrode gym challenge" data-price="2.97" data-pct="0.34">
-  <td><span class="cname">Lt. Surge&#x27;s Electrode</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.97</td>
-  <td class="num pos">+0.34%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s pidgey (49) gym challenge" data-price="2.88" data-pct="0.0">
-  <td><span class="cname">Koga&#x27;s Pidgey (49)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.88</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s jigglypuff gym challenge" data-price="2.88" data-pct="-0.35">
-  <td><span class="cname">Erika&#x27;s Jigglypuff</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.88</td>
-  <td class="num neg">-0.35%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="erika&#x27;s bellsprout gym challenge" data-price="2.83" data-pct="0.35">
-  <td><span class="cname">Erika&#x27;s Bellsprout</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.83</td>
-  <td class="num pos">+0.35%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="giovanni&#x27;s machoke gym challenge" data-price="2.81" data-pct="-0.71">
-  <td><span class="cname">Giovanni&#x27;s Machoke</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.81</td>
-  <td class="num neg">-0.71%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="sabrina&#x27;s abra (93) gym challenge" data-price="2.46" data-pct="2.07">
-  <td><span class="cname">Sabrina&#x27;s Abra (93)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.46</td>
-  <td class="num pos">+2.07%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s raticate gym challenge" data-price="2.31" data-pct="0.43">
-  <td><span class="cname">Lt. Surge&#x27;s Raticate</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.31</td>
-  <td class="num pos">+0.43%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s weezing gym challenge" data-price="2.26" data-pct="1.8">
-  <td><span class="cname">Koga&#x27;s Weezing</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.26</td>
-  <td class="num pos">+1.80%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s vulpix gym challenge" data-price="2.2" data-pct="2.8">
-  <td><span class="cname">Blaine&#x27;s Vulpix</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.20</td>
-  <td class="num pos">+2.80%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s dodrio gym challenge" data-price="2.13" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Dodrio</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$2.13</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s koffing (48) gym challenge" data-price="1.99" data-pct="0.0">
-  <td><span class="cname">Koga&#x27;s Koffing (48)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.99</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="giovanni&#x27;s machop gym challenge" data-price="1.65" data-pct="0.0">
-  <td><span class="cname">Giovanni&#x27;s Machop</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.65</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s tangela gym challenge" data-price="1.63" data-pct="0.0">
-  <td><span class="cname">Koga&#x27;s Tangela</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.63</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s diglett gym challenge" data-price="1.45" data-pct="2.11">
-  <td><span class="cname">Brock&#x27;s Diglett</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.45</td>
-  <td class="num pos">+2.11%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s mankey gym challenge" data-price="1.39" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Mankey</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.39</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s pidgey (80) gym challenge" data-price="1.27" data-pct="0.0">
-  <td><span class="cname">Koga&#x27;s Pidgey (80)</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.27</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s rattata gym challenge" data-price="1.17" data-pct="0.0">
-  <td><span class="cname">Lt. Surge&#x27;s Rattata</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.17</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="giovanni&#x27;s nidoran f gym challenge" data-price="1.15" data-pct="3.6">
-  <td><span class="cname">Giovanni&#x27;s Nidoran F</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.15</td>
-  <td class="num pos">+3.60%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="brock&#x27;s geodude gym challenge" data-price="1.13" data-pct="-4.24">
+<tr data-name="brock&#x27;s geodude gym challenge" data-price="1.14" data-pct="-9.52">
   <td><span class="cname">Brock&#x27;s Geodude</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.13</td>
-  <td class="num neg">-4.24%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.14</td>
+  <td class="num neg">-9.52%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr>
-<tr data-name="misty&#x27;s seel gym challenge" data-price="1.11" data-pct="-0.89">
-  <td><span class="cname">Misty&#x27;s Seel</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.11</td>
-  <td class="num neg">-0.89%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="cinnabar city gym gym challenge" data-price="1.1" data-pct="0.0">
-  <td><span class="cname">Cinnabar City Gym</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.10</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s ekans gym challenge" data-price="1.08" data-pct="0.0">
-  <td><span class="cname">Koga&#x27;s Ekans</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.08</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s ponyta gym challenge" data-price="1.03" data-pct="0.0">
-  <td><span class="cname">Blaine&#x27;s Ponyta</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.03</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="lt. surge&#x27;s voltorb gym challenge" data-price="1.01" data-pct="0.0">
-  <td><span class="cname">Lt. Surge&#x27;s Voltorb</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.01</td>
-  <td class="num pos">+0.00%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="koga&#x27;s grimer gym challenge" data-price="1.0" data-pct="-1.96">
-  <td><span class="cname">Koga&#x27;s Grimer</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$1.00</td>
-  <td class="num neg">-1.96%</td>
-  <td><span class="status-tag status-avail">Available</span></td>
-</tr>
-<tr data-name="blaine&#x27;s doduo gym challenge" data-price="0.77" data-pct="-2.53">
+<tr data-name="blaine&#x27;s doduo gym challenge" data-price="0.75" data-pct="2.74">
   <td><span class="cname">Blaine&#x27;s Doduo</span><span class="cset">Gym Challenge</span></td>
-  <td><span class="cond-tag">Near Mint • Unlimited</span></td>
-  <td class="num">$0.77</td>
-  <td class="num neg">-2.53%</td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.75</td>
+  <td class="num pos">+2.74%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s tangela gym challenge" data-price="1.65" data-pct="5.77">
+  <td><span class="cname">Koga&#x27;s Tangela</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.65</td>
+  <td class="num pos">+5.77%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="sabrina&#x27;s mr. mime gym challenge" data-price="5.13" data-pct="1.38">
+  <td><span class="cname">Sabrina&#x27;s Mr. Mime</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$5.13</td>
+  <td class="num pos">+1.38%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="misty&#x27;s seel gym challenge" data-price="1.1" data-pct="-2.65">
+  <td><span class="cname">Misty&#x27;s Seel</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.10</td>
+  <td class="num neg">-2.65%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s mankey gym challenge" data-price="1.16" data-pct="-16.55">
+  <td><span class="cname">Blaine&#x27;s Mankey</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.16</td>
+  <td class="num neg">-16.55%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s rapidash gym challenge" data-price="3.24" data-pct="-14.29">
+  <td><span class="cname">Blaine&#x27;s Rapidash</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.24</td>
+  <td class="num neg">-14.29%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="lt. surge&#x27;s rattata gym challenge" data-price="1.12" data-pct="-3.45">
+  <td><span class="cname">Lt. Surge&#x27;s Rattata</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.12</td>
+  <td class="num neg">-3.45%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="lt. surge&#x27;s voltorb gym challenge" data-price="0.95" data-pct="-7.77">
+  <td><span class="cname">Lt. Surge&#x27;s Voltorb</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$0.95</td>
+  <td class="num neg">-7.77%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s diglett gym challenge" data-price="1.43" data-pct="-15.88">
+  <td><span class="cname">Brock&#x27;s Diglett</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.43</td>
+  <td class="num neg">-15.88%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s weezing gym challenge" data-price="2.24" data-pct="-0.88">
+  <td><span class="cname">Koga&#x27;s Weezing</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.24</td>
+  <td class="num neg">-0.88%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="sabrina&#x27;s psychic control gym challenge" data-price="10.11" data-pct="-2.79">
+  <td><span class="cname">Sabrina&#x27;s Psychic Control</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$10.11</td>
+  <td class="num neg">-2.79%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s ponyta gym challenge" data-price="1.01" data-pct="-5.61">
+  <td><span class="cname">Blaine&#x27;s Ponyta</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.01</td>
+  <td class="num neg">-5.61%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="misty&#x27;s dewgong gym challenge" data-price="8.18" data-pct="0.12">
+  <td><span class="cname">Misty&#x27;s Dewgong</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; 1st Edition</span></td>
+  <td class="num">$8.18</td>
+  <td class="num pos">+0.12%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s pidgey (80) gym challenge" data-price="1.23" data-pct="-12.14">
+  <td><span class="cname">Koga&#x27;s Pidgey (80)</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.23</td>
+  <td class="num neg">-12.14%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="giovanni&#x27;s nidoran f gym challenge" data-price="1.14" data-pct="1.79">
+  <td><span class="cname">Giovanni&#x27;s Nidoran F</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.14</td>
+  <td class="num pos">+1.79%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="blaine&#x27;s dodrio gym challenge" data-price="2.05" data-pct="-0.97">
+  <td><span class="cname">Blaine&#x27;s Dodrio</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.05</td>
+  <td class="num neg">-0.97%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="lt. surge&#x27;s electrode gym challenge" data-price="2.89" data-pct="-3.34">
+  <td><span class="cname">Lt. Surge&#x27;s Electrode</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.89</td>
+  <td class="num neg">-3.34%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s primeape gym challenge" data-price="3.38" data-pct="-3.43">
+  <td><span class="cname">Brock&#x27;s Primeape</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$3.38</td>
+  <td class="num neg">-3.43%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s pidgey (49) gym challenge" data-price="2.84" data-pct="-4.05">
+  <td><span class="cname">Koga&#x27;s Pidgey (49)</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.84</td>
+  <td class="num neg">-4.05%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="brock&#x27;s sandslash gym challenge" data-price="7.96" data-pct="-1.36">
+  <td><span class="cname">Brock&#x27;s Sandslash</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; 1st Edition</span></td>
+  <td class="num">$7.96</td>
+  <td class="num neg">-1.36%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="erika&#x27;s bellsprout gym challenge" data-price="2.77" data-pct="-2.12">
+  <td><span class="cname">Erika&#x27;s Bellsprout</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.77</td>
+  <td class="num neg">-2.12%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="lt. surge&#x27;s raticate gym challenge" data-price="2.28" data-pct="-2.15">
+  <td><span class="cname">Lt. Surge&#x27;s Raticate</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.28</td>
+  <td class="num neg">-2.15%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="koga&#x27;s koffing (48) gym challenge" data-price="2.03" data-pct="3.05">
+  <td><span class="cname">Koga&#x27;s Koffing (48)</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$2.03</td>
+  <td class="num pos">+3.05%</td>
+  <td><span class="status-tag status-avail">Available</span></td>
+</tr>
+<tr data-name="cinnabar city gym gym challenge" data-price="1.09" data-pct="0.0">
+  <td><span class="cname">Cinnabar City Gym</span><span class="cset">Gym Challenge</span></td>
+  <td><span class="cond-tag">Near Mint &bull; Unlimited</span></td>
+  <td class="num">$1.09</td>
+  <td class="num pos">+0.00%</td>
   <td><span class="status-tag status-avail">Available</span></td>
 </tr></tbody>
     </table>
   </div>
 </div><div class="table-wrap">
   <div class="table-head" onclick="toggleTable('pcrocket')">
-    <div><span class="ttl">PC - Rocket</span><span class="meta">59 of 61 &amp;middot; full coverage (61 units)</span></div>
+    <div><span class="ttl">PC - Rocket</span><span class="meta">59 of 61 &amp;middot; full coverage (61 units) &amp;middot; carried forward, Oct 6</span></div>
     <span class="chev" id="chev-pcrocket">&#9662;</span>
   </div>
   <div class="table-body" id="body-pcrocket">
@@ -3209,13 +3213,13 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
 <h2 class="section-title">Upcoming Releases</h2><div class="card-block">
   <div class="release-item"><div class="rdate">SEP 16, 2026 &mdash; LAUNCHED</div>
     <div class="rname">30th Celebration (worldwide day-and-date)</div>
-    <div class="rangle">First-ever simultaneous global Pok&eacute;mon TCG launch. Catalyst #1 for the Umbreon PSA10 hold &mdash; came and went with no price bounce at the time. Umbreon has now swung both ways across the last three reports (+8.49%, then -3.32%, then +2.05% today) &mdash; still deep underwater vs cost regardless of the day-to-day noise.</div></div>
+    <div class="rangle">First-ever simultaneous global Pok&eacute;mon TCG launch. Catalyst #1 for the Umbreon PSA10 hold &mdash; came and went with no price bounce at the time. Umbreon's last live read (Oct 9) was $135.00, still deep underwater vs the $260 cost; not re-verifiable today, Collectr CAPTCHA-blocked.</div></div>
   <div class="release-item"><div class="rdate">OCT 2, 2026 &mdash; LAUNCHED</div>
     <div class="rname">30th Celebration Booster Bundle</div>
     <div class="rangle">Landed on schedule per the official Pok&eacute;mon TCG Q4 2026 release schedule. Doesn't directly touch KCE holdings.</div></div>
-  <div class="release-item"><div class="rdate">OCT 30, 2026 &mdash; CONFIRMED, 24 DAYS OUT</div>
+  <div class="release-item"><div class="rdate">OCT 30, 2026 &mdash; CONFIRMED, 19 DAYS OUT</div>
     <div class="rname">30th Celebration Battle Decks &mdash; Espeon ex &amp; Umbreon ex ($19.99 each)</div>
-    <div class="rangle">All-foil 60-card ready-to-play decks releasing in the Pok&eacute;mon Center and in select stores. This remains the last confirmed catalyst on the calendar for the Umbreon hold. Today's bounce-back is a reminder not to read single-day moves as a trend heading into it, in either direction.</div></div>
+    <div class="rangle">All-foil 60-card ready-to-play decks releasing in the Pok&eacute;mon Center and in select stores. Independently reconfirmed today via Best Buy's own product page: still $19.99, release date 10/30/2026 confirmed, listed as a high-demand item expected to sell out quickly. This remains the last confirmed catalyst on the calendar for the Umbreon hold &mdash; with 19 days left and no bounce yet (as of the last live Oct 9 read), it's the main thing left to wait on.</div></div>
   <div class="release-item"><div class="rdate">NOV 6, 2026 &mdash; CONFIRMED</div>
     <div class="rname">Mega Evolution: Delta Reign (main expansion, ft. Mega Rayquaza ex) &amp; 30th Celebration Ultra-Premium Collections</div>
     <div class="rangle">Sixth main Mega Evolution expansion (English adaptation of Japan's Storm Emeralda), headlined by Mega Rayquaza ex. Next mainline set after the current Mega Evolution/Ascended Heroes cycle KCE already holds singles from. Worth checking Under 10 and EX &amp; Mega EX for early speculation once the full checklist is priced.</div></div>
@@ -3227,55 +3231,62 @@ footer.foot{text-align:center;padding:20px 16px;font-size:10.5px;color:var(--tex
     <div class="rangle">Pok&eacute;mon Center's own Estimated Preorder Release Dates page lists only non-TCG merchandise for the surrounding weeks &mdash; nothing Espeon/Umbreon/TCG-specific beyond the Oct 30 Battle Decks already tracked above.</div></div>
 </div>
 <h2 class="section-title">Market Pulse</h2><div class="card-block notes-box">
-  <b>No October 2026 update was found for the index figures below this run</b> &mdash; the latest located data point was from around June 2026, so treat the trend figures here as background rather than freshly refreshed today. Pok&eacute;mon TCG remains the largest tracked TCG by market cap per TCGIndex.io: $811,113 (in the tracker's own units), up roughly 8% over the trailing 90 days &mdash; ahead of Magic ($775,052) and One Piece ($160,916). That gain is concentrated, not broad-based: only about 54% of tracked Pok&eacute;mon cards are actually rising. The standout theme this run is a reported 30&ndash;50% surge in vintage WOTC-era holos over the first five months of 2026 (Base Set holos roughly $400 PSA8/raw in late 2025 to $600&ndash;700 now; Neo Genesis 1st Edition following a similar path; Skyridge catching up after lagging), driven by nostalgia buying from millennial collectors at peak earning power, institutional/fund interest treating high-grade vintage as an uncorrelated asset class, and sealed-product scarcity (vintage sealed up 15&ndash;25% YTD). Segments still flagged as having room to run: Japanese-exclusive promos (+30&ndash;100% YoY), Neo Discovery &amp; Neo Revelation (discounted vs. Neo Genesis), Expedition/Aquapolis e-Reader cards, and vintage WOTC Black Star promos. This maps directly onto KCE's own book: the vintage-heavy WOTC Lot, Japanese Poke, Personal Collection and PC-Rocket sit in segments still being called out as undervalued, while the modern commons in Under 10, V Cards and EX &amp; Mega EX sit in the thinner, choppier 46%-declining segment &mdash; consistent with today's biggest movers again being small-dollar Japanese/WOTC Lot items (Pokemon March JP +114.75%, Kabutops JP +51.71%) rather than large dollar moves.
+  <b>Fresh data found this run, closing the gap the Oct 9 report flagged</b> &mdash; TCGPlayer's own seller blog published a "Price Trends: Pok&eacute;mon Cards Climbing in Price" report dated 10/07/2026, tracking Near Mint singles with 10+ sales over the 30 days from Sept 5 to Oct 4, 2026. No aggregate index/YoY figure was given, but the named movers lean heavily vintage: <b>Gengar &amp; Mimikyu GX (Secret)</b> (SM&mdash;Team Up) +$73.29 to $546.23; <b>Pikachu [W Stamped]</b> (WotC Promo) +$71.50 to $248.26, getting extra attention from the 30th Celebration Ken Sugimori redraw; <b>Slowking</b> (Southern Islands) +$62.25 to $349.08, part of a steady Southern Islands climb; <b>Team Aqua's Kyogre-EX</b> (Double Crisis) +$56.39 to $576.61; and <b>Darkrai (Team Plasma) BW73</b> +$45.38 to $279.37 (the last NM copy actually sold for $474.97 on Sept 24, so the listed price likely understates true value). Smaller vintage movers under $50: <b>Garchomp</b> (Supreme Victors) +$51.11 to $97.03 (last four NM copies bought Oct 2), <b>Tyranitar</b> (Mysterious Treasures) +$25.94 to $65.76, <b>Zoroark BW19</b> +$20.99 to $28.34. The only modern entries are 2026 "What's Your Favorite?" 30th-anniversary stamped promos (Armarouge, Primarina), which rose on the coattails of a Mewtwo promo tied to the 30th Celebration Booster Bundle. <b>This directly reinforces the vintage-strength thesis already carried in this report</b>: WotC-era (Team Up, Southern Islands, Double Crisis, Black &amp; White) and other pre-2020s cards dominate the gainers, the same era as KCE's WOTC Lot, Japanese Poke, Main Inventory and Personal Collection holdings &mdash; while KCE's modern commons in Under 10, V Cards and EX &amp; Mega EX sit outside this named-mover list entirely.
 </div>
-<h2 class="section-title">What's Hot</h2><div class="card-block"><div class="mover-row"><div><span class="name">Umbreon ex &mdash; SVP176 (KCE's own private holding)</span><div class="meta">Live today: $140.25 (+2.05% since last report) &mdash; bounced back after yesterday's pullback</div></div>
-    <div class="right"><div class="price">ref</div></div></div><div class="mover-row"><div><span class="name">Pokemon March (JP)</span><div class="meta">WOTC Lot &middot; today's single biggest % mover on KCE's own book</div></div>
-    <div class="right"><div class="price">$6.29</div><div class="meta pos">+114.75%</div></div></div><div class="mover-row"><div><span class="name">Vintage WOTC holos (market-wide)</span><div class="meta">Base Set/Neo Genesis 1st Ed holos +30&ndash;50% YTD per thecardshopfinder.com &mdash; same era as KCE's WOTC Lot, Main Inventory and Personal Collection</div></div>
-    <div class="right"><div class="price">ref</div></div></div><div class="mover-row"><div><span class="name">Destined Rivals Booster Box</span><div class="meta">Main Inventory &middot; KCE's single highest-value FOR SALE item, fronted by a friend ($470.00 owed on resale)</div></div>
-    <div class="right"><div class="price">$405.69</div><div class="meta pos">+0.30%</div></div></div><div class="mover-row"><div><span class="name">Mega Evolution: Delta Reign chase SIRs</span><div class="meta">Not yet in KCE inventory &mdash; set drops Nov 6, worth pre-planning pulls/pickups given Mega Rayquaza ex's headline billing</div></div>
+<h2 class="section-title">What's Hot</h2><div class="card-block"><div class="mover-row"><div><span class="name">Gengar &amp; Mimikyu GX (Secret)</span><div class="meta">SM&mdash;Team Up &middot; +$73.29 (30d) to $546.23 per TCGPlayer's 10/7 report &mdash; pre-2020s Gengar cards rising consistently</div></div>
+    <div class="right"><div class="price">$546.23</div></div></div><div class="mover-row"><div><span class="name">Pikachu [W Stamped]</span><div class="meta">WotC Promo &middot; +$71.50 (30d) to $248.26 &mdash; getting a lift from the 30th Celebration Ken Sugimori redraw</div></div>
+    <div class="right"><div class="price">$248.26</div></div></div><div class="mover-row"><div><span class="name">Umbreon ex &mdash; SVP176 (KCE's own private holding)</span><div class="meta">Last live read Oct 9: $135.00 &mdash; Collectr CAPTCHA-blocked today, not re-verifiable, 4th occurrence of this gate</div></div>
+    <div class="right"><div class="price">ref</div></div></div><div class="mover-row"><div><span class="name">Destined Rivals Booster Box</span><div class="meta">Main Inventory &middot; KCE's single highest-value FOR SALE item, fronted by a friend ($470.00 owed on resale) &mdash; not re-verified today, carried forward at Oct 6 price</div></div>
+    <div class="right"><div class="price">$405.69</div><div class="meta pos">+0.30%</div></div></div><div class="mover-row"><div><span class="name">EBTH Shadowless/1st-Ed lot &mdash; re-listed</span><div class="meta">108 cards, fresh listing, current bid $11, closes Oct 17 &mdash; directly in KCE's vintage WOTC lane, see Sourcing tab</div></div>
     <div class="right"><div class="price">watch</div></div></div></div>
 <h2 class="section-title">KCE Playbook</h2><div class="card-block">
-  <div class="playbook-item"><span class="num">1</span>Hold Umbreon through Oct 30 (24 days out) per standing plan &mdash; today's bounce back to $140.25 is a reminder that one good (or bad) read doesn't make a trend; keep watching rather than reacting to single-day swings either direction.</div>
+  <div class="playbook-item"><span class="num">1</span>Have a direct conversation with Ernesto about the Umbreon hold thesis &mdash; standing plan remains hold through Oct 30 (19 days out). The last live read (Oct 9, $135.00) was the worst since 10/1 with a week-and-a-half sideways-to-down grind at the lows; today adds no new data (Collectr blocked) but doesn't change the thesis either.</div>
   <div class="playbook-item"><span class="num">2</span>Re-verify the $310 Umbreon target price directly &mdash; it's still not set in the workbook's own Target Sale Price column, so this report keeps carrying it forward from history rather than pulling it live.</div>
-  <div class="playbook-item"><span class="num">3</span>Decide on the Destined Rivals Booster Box IOU &mdash; the gap to the $470 owed narrowed to about $64.31 today from about $65.51 in the last report. Good direction; still a shortfall if sold today.</div>
+  <div class="playbook-item"><span class="num">3</span>Decide on the Destined Rivals Booster Box IOU &mdash; not re-verified today (carried forward at the Oct 6 price of $405.69, gap to the $470 owed last known at about $64.31). Worth a fresh check next full-coverage run.</div>
   <div class="playbook-item"><span class="num">4</span>Update the expense tracker &mdash; it still only covers 211 of the 539 items now live in Collectr, so cost-basis and unrealized-gain figures understate true coverage.</div>
   <div class="playbook-item"><span class="num">5</span>Close out the last $12 David consignment payable (9/13 Skarmory JP sale) &mdash; the other 6 sales already settled via the Aug 26 Zelle payout.</div>
   <div class="playbook-item"><span class="num">6</span>Resolve what "David Consign - Side List" actually is (own inventory vs. consignment vs. exclude) &mdash; still unclassified after several weeks.</div>
   <div class="playbook-item"><span class="num">7</span>Retire or restock the empty Trainers portfolio &mdash; zero contribution to the business book for multiple runs running.</div>
   <div class="playbook-item"><span class="num">8</span>Lean into the WOTC Lot, Japanese Poke and vintage PC holdings while they sit in the market's reported hottest segment &mdash; hold rather than discount for quick turnover.</div>
-  <div class="playbook-item"><span class="num">9</span>Take a closer look at the EBTH Shadowless/1st-Edition lot below before it closes Oct 10 &mdash; directly in KCE's collecting lane at an attractive implied per-card price.</div>
+  <div class="playbook-item"><span class="num">9</span>Watch the EBTH Shadowless/1st-Edition lot &mdash; re-listed fresh (new item #, prior listing closed), 108 cards, current bid just $11, closes Oct 17 @ 7:31pm EST &mdash; directly in KCE's vintage WOTC lane at a very low implied per-card price this early.</div>
+  <div class="playbook-item"><span class="num">10</span>Ernesto should sign into Collectr once in a real browser session &mdash; the sign-in CAPTCHA has now blocked 4 separate runs (9/11, 9/29, 9/30, today), and a persistent session is the most direct fix available.</div>
 </div>
-<h2 class="section-title">&#128296; Sourcing &mdash; Auction Watch</h2><div class="card-block" style="margin-bottom:10px;"><div class="plat-status"><span><span class="plat-dot dot-ok"></span>ShopGoodwill</span><span style="color:var(--text-faint);font-size:11px;">Live-scraped today &amp;mdash; 6 listings found, not individually assessed yet (see below)</span></div><div class="plat-status"><span><span class="plat-dot dot-fail"></span>HiBid</span><span style="color:var(--text-faint);font-size:11px;">Cloudflare bot-check still blocking &amp;mdash; standing issue, not bypassed per safety rules</span></div><div class="plat-status"><span><span class="plat-dot dot-fail"></span>LiveAuctioneers</span><span style="color:var(--text-faint);font-size:11px;">Not reachable this run &amp;mdash; reduced scope, see banner above</span></div><div class="plat-status"><span><span class="plat-dot dot-fail"></span>EBTH</span><span style="color:var(--text-faint);font-size:11px;">Not reachable this run &amp;mdash; reduced scope, see banner above (last scan: Oct 5, Shadowless/1st-Ed lot, closes ~Oct 10 &mdash; not re-checked today)</span></div><div class="plat-status"><span><span class="plat-dot dot-fail"></span>THS Auctions</span><span style="color:var(--text-faint);font-size:11px;">Still not confidently locatable &amp;mdash; standing issue, recommend confirming URL with Ernesto</span></div></div><div style="margin-bottom:8px;"><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/279117353" target="_blank">ShopGoodwill item #279117353</a></div>
+<h2 class="section-title">&#128296; Sourcing &mdash; Auction Watch</h2><div class="card-block" style="margin-bottom:10px;"><div class="plat-status"><span><span class="plat-dot dot-ok"></span>EBTH</span><span style="color:var(--text-faint);font-size:11px;">Live-scraped today &mdash; 3 Pok&eacute;mon lots found and assessed</span></div><div class="plat-status"><span><span class="plat-dot dot-ok"></span>LiveAuctioneers</span><span style="color:var(--text-faint);font-size:11px;">Live-scraped today &mdash; 36 results, 6 assessed below (rest outside KCE's price band or category)</span></div><div class="plat-status"><span><span class="plat-dot dot-ok"></span>ShopGoodwill</span><span style="color:var(--text-faint);font-size:11px;">Live-scraped today &mdash; 687 results via the search-box method, bulk-dominated, no individually-graded vintage singles found</span></div><div class="plat-status"><span><span class="plat-dot dot-fail"></span>HiBid</span><span style="color:var(--text-faint);font-size:11px;">Cloudflare &quot;Attention Required&quot; bot-check again today &mdash; standing issue, not bypassed per safety rules</span></div><div class="plat-status"><span><span class="plat-dot dot-ok"></span>THS Auctions</span><span style="color:var(--text-faint);font-size:11px;">Site loads cleanly today &mdash; genuinely zero current auctions/lots, not a scraping failure</span></div></div><div style="margin-bottom:8px;"><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.ebth.com/items/14630482-pokemon-card-collection-featuring-shadowless-and-1st-edition-1990s-2000s" target="_blank">Pok&eacute;mon Card Collection Featuring Shadowless and 1st Edition, 1990s&ndash;2000s</a></div>
+      <span class="verdict watch">WATCH</span></div>
+      <div class="lot-meta">EBTH &middot; re-listed fresh (new item #, the Oct 5/6/9-tracked listing has closed) &middot; ~108 cards, little-to-no wear. Current bid $11, no bid count given, 7 days left, closes Oct 17 @ 7:31pm EST. Very low entry this early for Shadowless/1st Ed material &mdash; directly in KCE's collecting lane. Watch as it climbs rather than bid now; plenty of runway left before close.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.ebth.com/items/14628112-pokemon-card-collection-featuring-holos-and-more-2020s" target="_blank">Pok&eacute;mon Card Collection Featuring Holos and More, 2020s</a></div>
+      <span class="verdict pass">PASS</span></div>
+      <div class="lot-meta">EBTH &middot; ~540 cards, little-to-no wear. Current bid $11, closes Oct 17 @ 7:45pm EST. Modern bulk (2020s only) &mdash; doesn't fit KCE's vintage lane regardless of today's low bid.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.ebth.com/items/14637783-pokemon-cards-featuring-xerneas-alakazam-and-more-2026" target="_blank">Pok&eacute;mon Cards Featuring Xerneas, Alakazam and More, 2026</a></div>
+      <span class="verdict pass">PASS</span></div>
+      <div class="lot-meta">EBTH &middot; just 8 loose modern cards in sleeves. Current bid $11, closes Oct 17 @ 9:17pm EST. Tiny random mix, no edge at this price.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.liveauctioneers.com/item/241218037_umbreon-holo-13-psa-7-neo-discovery-graded-pokemon-card-germantown-hills-il" target="_blank">Umbreon-Holo #13 PSA7 &mdash; Neo Discovery</a></div>
+      <span class="verdict watch">WATCH</span></div>
+      <div class="lot-meta">LiveAuctioneers (Crafted Auctions, Germantown Hills IL &middot; 4.6&#9733;) &middot; Est. $800&ndash;1,200, current bid $550 / 3 bids, closes Oct 23. On-theme with KCE's own Umbreon hold (different card/era, Neo Discovery vs. SVP176). All-in at today's bid (~$680 w/ BP + shipping) sits below the 100%-ROI bar this size needs against a conservative resale read &mdash; worth tracking as bidding develops, not a bid yet.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.liveauctioneers.com/item/243315282_2016-umbreon-ex-55-psa-10-xy-fates-collide-graded-pokemon-card-germantown-hills-il" target="_blank">2016 Umbreon EX #55 PSA10 &mdash; XY Fates Collide</a></div>
+      <span class="verdict watch">WATCH</span></div>
+      <div class="lot-meta">LiveAuctioneers, same seller &middot; Est. $1,200&ndash;1,600, current bid $800 / 4 bids, closes Nov 7. Another Umbreon-themed grade; long runway to close, worth a later look rather than a bid today.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.liveauctioneers.com/item/243315279_2000-ancient-mew-psa-10-pokemon-2000-movie-game-promo-graded-pokemon-card-germantown-hills-il" target="_blank">2000 Ancient Mew PSA10 &mdash; Movie Game Promo</a></div>
       <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/278835581" target="_blank">ShopGoodwill item #278835581</a></div>
+      <div class="lot-meta">LiveAuctioneers, same seller &middot; Est. $2,500&ndash;3,500, current bid $1,400 / 5 bids, closes Nov 7. Iconic promo, clean pop &mdash; but see the data-quality note on the Gengar lot below; same seller's listings have shown identical estimate ranges across unrelated cards before, so treat this estimate with some caution rather than at face value.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.liveauctioneers.com/item/243315277_1999-gengar-5-psa-9-fossil-holo-1st-edition-graded-pokemon-card-germantown-hills-il" target="_blank">1999 Gengar #5 PSA9 &mdash; Fossil Holo, 1st Edition</a></div>
       <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/279087008" target="_blank">ShopGoodwill item #279087008</a></div>
-      <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/278728498" target="_blank">ShopGoodwill item #278728498</a></div>
-      <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/278840946" target="_blank">ShopGoodwill item #278840946</a></div>
-      <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div><div class="lot-card"><div class="lot-top">
-      <div class="lot-name"><a href="https://shopgoodwill.com/item/278836221" target="_blank">ShopGoodwill item #278836221</a></div>
-      <span class="verdict check">CHECK</span></div>
-      <div class="lot-meta">ShopGoodwill &middot; surfaced in today's live scan &mdash; this run didn't get to a full card-by-card assessment before wrapping (long session). Worth a manual look at the listing photos/current bid before treating as a WATCH or PASS.</div></div></div><div class="card-block" style="margin-top:4px;">
+      <div class="lot-meta">LiveAuctioneers, same seller as the Ancient Mew lot above &middot; current bid $1,100 / 5 bids. Scraped estimate shows the identical $2,500&ndash;3,500 range as the Ancient Mew lot &mdash; the same data-quality artifact flagged on 10/9 (two different cards, two different grades, same estimate text) persists this run. Flagging as a data-quality CHECK, not a bargain claim &mdash; verify the real estimate on the live listing before acting on it.</div></div><div class="lot-card"><div class="lot-top">
+      <div class="lot-name"><a href="https://www.liveauctioneers.com/item/242459191_pokemon-gym-heroes-vintage-lt-surge-theme-deck-factory-sealed-english-los-angeles-ca" target="_blank">Pok&eacute;mon Gym Heroes &quot;Lt. Surge&quot; Theme Deck, Factory Sealed</a></div>
+      <span class="verdict watch">WATCH</span></div>
+      <div class="lot-meta">LiveAuctioneers (Alltrades Auction, Los Angeles CA &middot; 4.5&#9733;) &middot; Est. $300&ndash;500, current bid just $30 / 2 bids, closes Oct 22. Sealed vintage at a low entry &mdash; all-in today (~$51 w/ ~20% BP + shipping) against even a conservative resale would clear the 400%+ sub-$50 ROI bar, but 11 days remain for the bid to run up well past that estimate. Worth watching closely into the final day rather than bidding this far out.</div></div></div><div class="card-block" style="margin-top:4px;">
   <div style="font-size:12.5px;font-weight:700;margin-bottom:6px;">Today's Verdict</div>
-  <div class="notes-box">Auction scanning was narrower than usual this run &mdash; only ShopGoodwill came back live, with 6 fresh listings, but this long-running session didn't leave time to assess them card-by-card, so all 6 are flagged CHECK rather than guessed at. The EBTH Shadowless/1st-Edition lot flagged WATCH on Oct 5 (closes ~Oct 10) wasn't re-checked today &mdash; its price and bid count may have moved. HiBid and THS Auctions remain coverage gaps, not bypassed per standing guidance.</div>
+  <div class="notes-box">Best sourcing coverage in several runs &mdash; 4 of 5 platforms reachable (only HiBid stayed Cloudflare-blocked). ShopGoodwill came back online this run (687 results) but stayed bulk-dominated with no individually-graded vintage singles worth flagging. EBTH's Shadowless/1st-Edition lot re-listed at a very low $11 opening bid &mdash; the top item to watch as it develops over its 7-day window. LiveAuctioneers surfaced a cluster of Umbreon-themed grades (on-theme with KCE's own hold) and a sealed Lt. Surge Theme Deck at a strong early price, plus a recurring data-quality artifact (duplicate estimate text across two different cards from the same seller, also seen 10/9) that keeps the Ancient Mew and Gengar lots at CHECK rather than a confident call. No lot cleared a confident BID today &mdash; everything actionable is early-stage and worth tracking into its close date rather than acting on now.</div>
 </div><div style="font-size:11.5px;color:var(--text-dim);margin:10px 0 4px;">Platform search fallbacks: <a href="https://shopgoodwill.com/search?st=pokemon" target="_blank">ShopGoodwill</a> &middot; <a href="https://hibid.com/lots?q=pokemon" target="_blank">HiBid</a> &middot; <a href="https://www.ebth.com/browse?q=pokemon" target="_blank">EBTH</a> &middot; <a href="https://www.liveauctioneers.com/search/?keyword=pokemon" target="_blank">LiveAuctioneers</a> &middot; <a href="https://www.thsauctions.com" target="_blank">THS Auctions</a></div>
 <div class="sources">
-  Sources: <a href="https://app.getcollectr.com" target="_blank">Collectr</a> (live today, full 12-portfolio reconciliation, no CAPTCHA) &middot;
-  korins_expense_tracker.xlsx (cost/P&amp;L/cash, checked today, unchanged since Sept 18) &middot;
+  Sources: <a href="https://app.getcollectr.com" target="_blank">Collectr</a> (unreachable today &mdash; sign-in CAPTCHA, 4th occurrence; all portfolio data carried forward from Oct 6/Oct 9) &middot;
+  korins_expense_tracker.xlsx (cost/P&amp;L/cash, re-checked today, unchanged since Sept 18) &middot;
+  Best Buy product page (Oct 30 Battle Decks, reconfirmed live today) &middot;
+  TCGPlayer seller blog, &quot;Price Trends: Pok&eacute;mon Cards Climbing in Price&quot; (10/07/2026) &middot;
   Pok&eacute;mon TCG Q4 2026 release schedule &middot;
   Pok&eacute;mon Center Estimated Preorder Release Dates &middot;
-  TCGIndex.io market cap tracker (no October data available, latest found ~June 2026) &middot;
-  thecardshopfinder.com vintage WOTC surge analysis &middot;
-  ShopGoodwill auction scan (live today) &middot; HiBid blocked by Cloudflare &middot; EBTH/LiveAuctioneers/THS Auctions not reachable this run
+  EBTH, LiveAuctioneers and ShopGoodwill auction scans (live today) &middot; HiBid Cloudflare-blocked, THS Auctions live but empty
 </div>
 </section>
 
